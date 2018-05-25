@@ -20,3 +20,6 @@ Make sure that android experience is good
 Add metadata. i.e. interview start\end time\date, Gps data, interview code and status.  
 ask about encrypting CSPro csdb files. - Coming in a later version of CSPro  
 Figure how to run code at the end of the questionnaire  
+  
+ISSUES:  
+When synchronised from the web, the Menu app does not launch the Visitation Record or the Census Questionnaire. Works fine in windows.
