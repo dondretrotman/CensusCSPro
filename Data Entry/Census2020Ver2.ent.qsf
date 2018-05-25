@@ -1,0 +1,177 @@
+﻿[CAPI QUESTIONS]
+Version=CSPro 7.1
+
+[LANGUAGES]
+EN=English
+
+[QUESTION]
+Field=CENSUS2020_DICT.BUILDING
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Building Number (Sequential # starting from 001)\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.DOB_DAY
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Day of Birth\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.DOB_MONTH
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Month of Birth\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.DOB_YEAR
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Year of Birth\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.DWELLING_UNIT
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Dwelling Unit Number (Sequential # starting from 001\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.ED
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Enumeration District\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.FIRST_NAME
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Enter the First Name of the Head of Household\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.FIRST_NAME
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Enter the First Name of the Head of Household\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.FIRST_NAME
+Occurrences=2:40
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Enter the First Name of this person\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.H15
+
+[QUESTION]
+Field=CENSUS2020_DICT.HNOPERSONS
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 How many persons are in this household?\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.HOUSEHOLD
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Household Number (Sequential # starting from 001)\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.LAST_NAME
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Enter the Last Name of the head of household\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.LAST_NAME
+Occurrences=2:40
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Enter the Last Name of this person\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.SEX
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 What is your gender?\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.UR
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\cf1\fs24 Does this person usually live in this house?\par
+EN=}
+
+[HELP]
+Field=CENSUS2020_DICT.LAST_NAME
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Last name only\par
+EN=}
+
+[HELP]
+Field=CENSUS2020_DICT.INITIAL
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Enter first initial only if more than one\par
+EN=}
+
+[HELP]
+Field=CENSUS2020_DICT.H15
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Exclude kitchens, toilets, bathrooms, garages, patios, verandas and laudry rooms\par
+EN=}
+
+[HELP]
+Field=CENSUS2020_DICT.P8A
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Enter your mother's line number or enter 00 if she does not reside in this household.\par
+EN=}
+
+[HELP]
+Field=CENSUS2020_DICT.P8B
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Enter your father's line number or enter 00 if he does not reside in this household.\par
+EN=}
+
+[HELP]
+Field=CENSUS2020_DICT.HNOPERSONS
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Number of persons must match the Individual listing\par
+EN=}
+
+[HELP]
+Field=CENSUS2020_DICT.ED
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\cf1\fs24 ED number should correspond with parish\par
+EN=}
+
