@@ -1,0 +1,114 @@
+﻿[FormFile]
+Version=CSPro 7.1
+Name=MENU_FF
+Label=Menu
+DefaultTextFont=-013 0000 0000 0000 0700 0000 0000 0000 0000 0000 0000 0000 0000 Arial
+FieldEntryFont=0018 0000 0000 0000 0600 0000 0000 0000 0000 0000 0000 0000 0000 Courier New
+Type=SystemControlled
+  
+[Dictionaries]
+File=.\Menu.dcf
+  
+[Form]
+Name=FORM001
+Label=Menu record
+Level=1
+Size=701,300
+  
+Item=LOGIN
+Item=INTERVIEWER_MENU
+Item=SUPERVISOR_MENU
+Item=SENIOR_SUPERVISOR_MENU
+Item=ZONE_MANAGER_MENU
+Item=CHOOSE_HOUSEHOLD
+  
+[EndForm]
+  
+[Level]
+Name=MENU_QUEST
+Label=Menu questionnaire
+  
+[Group]
+Required=Yes
+Name=MENU_REC_FORM
+Label=Menu record
+Form=1
+LogicControl=No
+Max=1
+  
+[Field]
+Name=LOGIN
+Position=225,27,240,47
+Item=LOGIN,MENU_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
+Form=1
+  
+[Text]
+Position=50,30,86,46
+Text=Login
+ 
+  
+[Field]
+Name=INTERVIEWER_MENU
+Position=225,57,240,77
+Item=INTERVIEWER_MENU,MENU_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
+Form=1
+  
+[Text]
+Position=50,60,161,76
+Text=Interviewer Menu
+ 
+  
+[Field]
+Name=SUPERVISOR_MENU
+Position=225,87,240,107
+Item=SUPERVISOR_MENU,MENU_DICT
+FieldLabelType=DictionaryLabel
+Form=1
+  
+[Text]
+Position=50,90,158,106
+Text=Supervisor menu
+ 
+  
+[Field]
+Name=SENIOR_SUPERVISOR_MENU
+Position=225,117,240,137
+Item=SENIOR_SUPERVISOR_MENU,MENU_DICT
+FieldLabelType=DictionaryLabel
+Form=1
+  
+[Text]
+Position=50,120,203,136
+Text=Senior Supervisor Menu
+ 
+  
+[Field]
+Name=ZONE_MANAGER_MENU
+Position=225,147,240,167
+Item=ZONE_MANAGER_MENU,MENU_DICT
+FieldLabelType=DictionaryLabel
+Form=1
+  
+[Text]
+Position=50,150,180,166
+Text=Zone Manager Menu
+ 
+  
+[Field]
+Name=CHOOSE_HOUSEHOLD
+Position=225,177,422,197
+Item=CHOOSE_HOUSEHOLD,MENU_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=RadioButton
+Form=1
+  
+[Text]
+Position=50,180,168,196
+Text=Choose Household
+ 
+[EndGroup]
+  

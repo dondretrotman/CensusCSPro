@@ -1,0 +1,15 @@
+﻿[Run Information]
+Version=CSPro 7.1
+AppType=Entry
+
+[DataEntryInit]
+Interactive=Ask
+
+[Files]
+Application=.\Visitation Record.ent
+InputData=..\Data\VisitationRecord.csdb|CSPRODB
+Paradata=.\Visitation Record.cslog
+
+
+[Parameters]
+
