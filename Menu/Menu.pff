@@ -1,0 +1,24 @@
+﻿[Run Information]
+Version=CSPro 7.1
+AppType=Entry
+Description=Barbados Census 2020
+
+[DataEntryInit]
+StartMode=Add
+Lock=CaseListing
+Interactive=Ask
+
+[Files]
+Application=.\Menu.ent
+InputData=|NONE
+Paradata=.\Menu.cslog
+
+[ExternalFiles]
+VISITATION_RECORD_DICT=..\Data\VisitationRecord.csdb|CSPRODB
+
+[UserFiles]
+PFFFILE=
+
+[Parameters]
+Parameter=onexit = ..\Menu\Menu.pff
+

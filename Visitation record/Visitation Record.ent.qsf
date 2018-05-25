@@ -1,0 +1,13 @@
+﻿[CAPI QUESTIONS]
+Version=CSPro 7.1
+
+[LANGUAGES]
+EN=English
+
+[HELP]
+Field=VISITATION_RECORD_DICT.VI_LATITUDE
+EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Press the Get GPS buton to capture the location.\par
+EN=}
+

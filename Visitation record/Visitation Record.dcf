@@ -1,0 +1,142 @@
+﻿[Dictionary]
+Version=CSPro 7.1
+Label=Visitation Record
+Name=VISITATION_RECORD_DICT
+RecordTypeStart=1
+RecordTypeLen=1
+Positions=Relative
+ZeroFill=No
+DecimalChar=Yes
+
+[Level]
+Label=Visitation Record questionnaire
+Name=VISITATION_RECORD_QUEST
+
+[IdItems]
+
+[Item]
+Label=Parish
+Name=VI_PARISH
+Start=2
+Len=2
+ZeroFill=Yes
+
+[Item]
+Label=ED
+Name=VI_ED
+Start=4
+Len=3
+ZeroFill=Yes
+
+[Item]
+Label=Building
+Name=VI_BUILDING
+Start=7
+Len=3
+ZeroFill=Yes
+
+[Item]
+Label=Dwelling Unit
+Name=VI_DWELLING_UNIT
+Start=10
+Len=3
+ZeroFill=Yes
+
+[Item]
+Label=Household
+Name=VI_HOUSEHOLD
+Start=13
+Len=3
+ZeroFill=Yes
+
+[Record]
+Label=Visitation Record record
+Name=VISITATION_RECORD_REC
+RecordTypeValue='V'
+RecordLen=605
+
+[Item]
+Label=Completion Status
+Name=VI_STATUS
+Start=16
+Len=1
+
+[ValueSet]
+Label=Completion Status
+Name=VI_STATUS_VS1
+Value=1;Completed
+Value=2;Non-contact
+Value=3;Vacant
+Value=4;Refused
+Value=5;Partially complete
+
+[Item]
+Label=Address 1
+Name=VI_ADDRESS1
+Note=House Number, street name\number
+Start=17
+Len=100
+DataType=Alpha
+
+[Item]
+Label=Address 2
+Name=VI_ADDRESS2
+Note=District name
+Start=117
+Len=100
+DataType=Alpha
+
+[Item]
+Label=Last Name
+Name=VI_LAST_NAME
+Start=217
+Len=50
+DataType=Alpha
+
+[Item]
+Label=First Name
+Name=VI_FIRST_NAME
+Start=267
+Len=50
+DataType=Alpha
+
+[Item]
+Label=Total
+Name=VI_TOTAL
+Start=317
+Len=2
+
+[Item]
+Label=Males
+Name=VI_MALES
+Start=319
+Len=2
+
+[Item]
+Label=Females
+Name=VI_FEMALES
+Start=321
+Len=2
+
+[Item]
+Label=Latitude
+Name=VI_LATITUDE
+Start=323
+Len=13
+Decimal=9
+DecimalChar=Yes
+
+[Item]
+Label=Longitude
+Name=VI_LONGITUDE
+Start=336
+Len=14
+Decimal=9
+DecimalChar=Yes
+
+[Item]
+Label=Comments
+Name=VI_COMMENTS
+Start=350
+Len=256
+DataType=Alpha

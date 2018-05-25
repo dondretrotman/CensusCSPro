@@ -1,0 +1,80 @@
+﻿[Dictionary]
+Version=CSPro 7.1
+Label=Menu
+Name=MENU_DICT
+RecordTypeStart=1
+RecordTypeLen=1
+Positions=Relative
+ZeroFill=No
+DecimalChar=Yes
+
+[Level]
+Label=Menu questionnaire
+Name=MENU_QUEST
+
+[IdItems]
+
+[Item]
+Label=Menu identification
+Name=MENU_ID
+Start=2
+Len=1
+
+[Record]
+Label=Menu record
+Name=MENU_REC
+RecordTypeValue='1'
+RecordLen=21
+
+[Item]
+Label=Login
+Name=LOGIN
+Start=3
+Len=1
+
+[ValueSet]
+Label=Login
+Name=LOGIN_VS1
+Value=1;Interviewer
+Value=2;Supervisor
+Value=3;Senior Supervisor
+Value=4;Zone Manager
+Value=9;Exit
+
+[Item]
+Label=Interviewer Menu
+Name=INTERVIEWER_MENU
+Start=4
+Len=1
+
+[ValueSet]
+Label=Interviewer Menu
+Name=INTERVIEWER_MENU_VS1
+Value=1;Visitation Record
+Value=2;Census Questionnaire
+Value=9;Logout
+
+[Item]
+Label=Supervisor menu
+Name=SUPERVISOR_MENU
+Start=5
+Len=1
+
+[Item]
+Label=Senior Supervisor Menu
+Name=SENIOR_SUPERVISOR_MENU
+Start=6
+Len=1
+
+[Item]
+Label=Zone Manager Menu
+Name=ZONE_MANAGER_MENU
+Start=7
+Len=1
+
+[Item]
+Label=Choose Household
+Name=CHOOSE_HOUSEHOLD
+Start=8
+Len=14
+DataType=Alpha

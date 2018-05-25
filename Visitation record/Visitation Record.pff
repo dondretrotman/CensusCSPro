@@ -6,9 +6,9 @@ AppType=Entry
 Interactive=Ask
 
 [Files]
-Application=.\Census2020Ver2.ent
-InputData=.\test.csdb|CSPRODB
-Paradata=.\Census2020Ver2.cslog
+Application=.\Visitation Record.ent
+InputData=..\Data\VisitationRecord.csdb|CSPRODB
+Paradata=.\Visitation Record.cslog
 
 
 [Parameters]
