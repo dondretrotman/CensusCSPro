@@ -11,28 +11,19 @@ It is based on the 2020 Barbados Population and Housing Census questionnaire whi
 To run on desktop, it needs the following file extensions, all with the same name:
 .ent, .net.apc, .ent.mgf, .ent.qsf, .fmf, .pff
 To run on Android, it needs for following file extensions, all with the same name:
-.pff, .pen. Copy the two files to the csentry folder on an android device that has CSPro installed
+.pff, .pen. Copy the two files to the csentry folder on an android device that has CSPro installed  
+Search for DEBUG: to find code with known bugs  
+Search for TODO: to find more things to add  
 
 Special instructions: 
 Make sure that the order of the individual Listing and the population section are the same.
 
 TODO:
-Add more edit checks
 Make sure that android experience is good
-*Not needd - use toupper() (or tolower()) functions to ensure that all alpha variables are the same case
-*Not needed - Add lookup dictionary
-Add metadata. i.e. interview start\end time\date, Gps data, interview code and status.
-*Done - Add a way to handle vacant houses. Maybe add a question about whether house is vacant or not
-*ASK INSTRUCTOR: Check that the dynamic valuesets are being generated correctly
+Add metadata. i.e. Enumerator ID, Supervisor ID and Interview status.
 *Done - Ask about getting statistics about enumerator performance. ie how long do they take to answer each question, history of changes, etc.
 ask about encrypting CSPro csdb files
-Need to develop a VR in CSPro
-Build navigation system
-Figure how to run code at the end of the questionnaire
-
-Questions for the committee\Cecsus bureau:
-What is the best way to handle NOT STATED? Do we continue to questions that might have otherwise been skipped or do we skip to the next topic?
-www.github.com/aaronwhitesell
+Add code to Check that days, months, years don't exceed limits
 }
 
 PROC GLOBAL
@@ -142,7 +133,7 @@ onfocus
 	
 //-----------------------------------------------------------------
 PROC PARISH
-preproc
+{preproc
 	if visualvalue(PARISH) = notappl then		//if Parish is blank
 		PARISH = tonumber(sysparm("PARISH"));		//Go to the pff file and get the system parameter named Parish. Change it to number and assign to variable
 		setproperty(PARISH,"PROTECTED","Yes");	//and set province to proctected
@@ -163,6 +154,8 @@ preproc
 		HOUSEHOLD = tonumber(sysparm("HOUSEHOLD"));
 		setproperty(HOUSEHOLD,"PROTECTED","Yes");	
 	endif;
+}
+//------------------------------------------------------------------------------
 PROC ED
 //validate ED with parish
 	if $ in 1:181 and PARISH <> 1 or		//if ed is not in St. Michael
@@ -179,12 +172,14 @@ PROC ED
 		errmsg("Enumeration district (%d) does not match the Parish (%s)",$,getlabel(PARISH_VS1,PARISH))
 			select("Correct Parish",PARISH,"Correct ED",$);
 	endif;
-PROC INDIVIDUAL_FORM
-preproc
-	if visualvalue(START_TIME) = notappl then
-		START_TIME = systime();
-	endif;
+
+//----------------------------------------------------------------------------------
 PROC H14A
+preproc
+	if visualvalue(START_TIME) = notappl then		//if starting the questionnaire
+		START_TIME = systime();		//set start time
+	endif;
+	
 onfocus
 	if visualvalue(HNOPERSONS) > 0 then		//set to occupied if number of persons in the household is more than 0. This is used if changing from an unoccupied house to an occupied one
 		$ = 1;
@@ -197,7 +192,7 @@ postproc
 		endgroup;	//don't enter any people
 	endif;
 
-//Maybe put this field at the top of the individual listing and if unoccupied then skip listing, and only take some household info then end the questionnaire
+
 
 //----------------------------------------------------------------------
 PROC POPULATION000
@@ -232,6 +227,51 @@ POSTPROC
 	setocclabel(POPULATION000(CUROCC()), strip(FIRST_NAME));
 
 //------------------------------------------------------------
+PROC DOB
+Postproc
+	if not DOB_YEAR in 1900:2020,9999 then
+		errmsg("Invalid Year of Birth. (=%d)",DOB_YEAR);
+		reenter;
+	endif;
+	
+	if not DOB_MONTH in 1:12,99 then
+		errmsg("Invalid Month of Birth. (=%d)",DOB_Month);
+		reenter;
+	endif;
+	
+//DEBUG: Does not detect Leap years for some reason
+	if DOB_MONTH in 9,4,6,11 then		//30 days have September, April, June and November
+		if not DOB_DAY in 1:30,99 then
+			errmsg("%s does not have %d days. Please confirm.",getlabel(DOB_MONTH_VS1,DOB_MONTH),DOB_DAY);
+			reenter;
+		endif;
+	elseif DOB_MONTH in 1,3,5,7,8,10,12 then		//All the rest have 31
+		if not DOB_DAY in 1:31,99 then
+			errmsg("%s does not have %d days. Please confirm.",getlabel(DOB_MONTH_VS1,DOB_MONTH),DOB_DAY);
+			reenter;
+		endif;
+	elseif DOB_MONTH = 2 and DOB_YEAR in 1900:2020 then					//Except February alone
+		if DOB_YEAR % 4 = 0 or DOB_YEAR % 100 <> 0 then		
+			if not DOB_DAY in 1:29,99 then		//Which has 29 days each leap year
+				errmsg("%s does not have %d days. Please confirm.",getlabel(DOB_MONTH_VS1,DOB_MONTH),DOB_DAY);
+				reenter;
+			endif;	
+		else
+			if not DOB_DAY in 1:28,99 then		//And 28 on all other years
+				errmsg("%s does not have %d days. Please confirm.",getlabel(DOB_MONTH_VS1,DOB_MONTH),DOB_DAY);
+				reenter;
+			endif;		
+		endif;		//I had to change the rhyme a bit so that it would fit my code
+	elseif DOB_YEAR = 9999 then		//cleanup for unknown year
+		if DOB_MONTH = 2 then
+			if not DOB_DAY in 1:29,99 then
+				errmsg("%s does not have %d days. Please confirm.",getlabel(DOB_MONTH_VS1,DOB_MONTH),DOB_DAY);
+				reenter;
+			endif;
+		endif;
+	endif;
+
+//-----------------------------------------------------------------------------------------
 PROC AGE
 preproc
 	tempage = datediff(DOB, 20200501, "Y");
@@ -450,6 +490,13 @@ postproc
 	endif;
 	
 //----------------------------------------------------------------------------
+PROC H31
+Postproc	//should run after household has been entered
+	if visualvalue(END_TIME) <> notappl and H14A = 2 then		//If no end time and the house is vacant
+		END_TIME = systime();						//then update the end time
+	endif;
+
+//-------------------------------------------------------------------------------------
 PROC E8A
 	if $ = 2 then		//if no emmigrants
 		endgroup;		//end emmigration section
@@ -479,6 +526,13 @@ onfocus
 	do i = 1 while i <= totocc(POPULATION001)
 		setocclabel(POPULATION001(i), strip(FIRST_NAME(i)));
 	enddo;
+
+Postproc	//should run after the last person has been entered
+	if visualvalue(END_TIME) <> notappl then		//If no end time
+		END_TIME = systime();						//then update the end time
+	endif;
+
+//-------------------------------------------------------------------------------------
 PROC PID
 preproc
 	do numeric idx = 1 while idx <= totocc(PID)
