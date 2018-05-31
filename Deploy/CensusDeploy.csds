@@ -36,12 +36,15 @@
       "uploadForSync": true
     },
     {
+      "path": "..\\Logins\\Loginlist.dcf"
+    },
+    {
       "path": "..\\Census2020.dcf",
       "uploadForSync": true
     }
   ],
   "deployment": {
-    "type": "CSWeb",
+    "type": "Dropbox",
     "cswebUrl": "http:\/\/csweb.teleyah.com\/api",
     "ftpUrl": "ftp:\/\/",
     "localFilePath": ".\\Census2020Ver2.zip",

@@ -25,6 +25,9 @@ function launchSupervisorVR()
 	filewrite(pffFile,"AppType=Entry");
 
 	filewrite(pffFile,"[DataEntryInit]");
+	
+	filewrite(pffFile,"StartMode=Add;%s",CHOOSE_VR);
+	filewrite(pffFile,"ShowInApplicationListing=Hidden");
 
 	filewrite(pffFile,"[Files]");
 	filewrite(pffFile,"Application=%s","./Visitation Record.ent");
