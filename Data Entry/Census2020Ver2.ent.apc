@@ -133,7 +133,8 @@ onfocus
 	
 //-----------------------------------------------------------------
 PROC PARISH
-{preproc
+preproc
+	// ALW - Uncommented the prefill
 	if visualvalue(PARISH) = notappl then		//if Parish is blank
 		PARISH = tonumber(sysparm("PARISH"));		//Go to the pff file and get the system parameter named Parish. Change it to number and assign to variable
 		setproperty(PARISH,"PROTECTED","Yes");	//and set province to proctected
@@ -154,7 +155,7 @@ PROC PARISH
 		HOUSEHOLD = tonumber(sysparm("HOUSEHOLD"));
 		setproperty(HOUSEHOLD,"PROTECTED","Yes");	
 	endif;
-}
+
 //------------------------------------------------------------------------------
 PROC ED
 //validate ED with parish

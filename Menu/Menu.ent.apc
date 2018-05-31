@@ -10,7 +10,8 @@ array string vsLabel(99);
 //------------------Function Declaration------------------
 //Launches the visitation record
 function launchVR()
-	execpff("..\Visitation record\Visitation record.pff");
+	// ALW - Added stop
+	execpff("..\Visitation record\Visitation record.pff", stop);
 end;
 
 //Launches the Questionnaire and lets you choose a household
@@ -25,7 +26,11 @@ function launchQuestionnaire()
 	filewrite(pffFile,"Description=Barbados 2020 Census Questionnaire");
 
 	filewrite(pffFile,"[DataEntryInit]");
-	filewrite(pffFile,"StartMode=Modify;%s",CHOOSE_HOUSEHOLD);
+	
+	// ALW - The below line will add the case if it does not exist
+	// or enter the case in modify mode if it does
+	filewrite(pffFile,"StartMode=Add;%s",CHOOSE_HOUSEHOLD);
+//	filewrite(pffFile,"StartMode=Modify;%s",CHOOSE_HOUSEHOLD);
 //	filewrite(pffFile,"Lock=Add");
 	filewrite(pffFile,"ShowInApplicationListing=Hidden");
 
@@ -51,7 +56,8 @@ function launchQuestionnaire()
 
 	close(pffFile);
 
-	execpff(filename(pffFile));
+	// ALW - Added stop
+	execpff(filename(pffFile), stop);
 
 end;
 
@@ -83,6 +89,7 @@ postproc
 	endif;
 reenter;		//don't leave the menu
 PROC CHOOSE_HOUSEHOLD
+
 onfocus
 	numeric nextEntry = 1;
 	forcase VISITATION_RECORD_DICT do

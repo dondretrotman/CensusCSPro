@@ -3,7 +3,7 @@ Version=CSPro 7.1
 AppType=Entry
 Description=Barbados 2020 Census Questionnaire
 [DataEntryInit]
-StartMode=Modify;02877754061307
+StartMode=Add;01001001001001
 ShowInApplicationListing=Hidden
 [Files]
 Application=./Census2020Ver2.ent
@@ -15,8 +15,8 @@ VISITATION_RECORD_DICT=../Data/VisitationRecord.csdb|CSPRODB
 PFFFILE=
 [Parameters]
 Parameter=onexit = ..\Menu\Menu.pff
-PARISH=02
-ED=877
-BUILDING=754
-DWELLING_UNIT=061
-HOUSEHOLD=307
+PARISH=01
+ED=001
+BUILDING=001
+DWELLING_UNIT=001
+HOUSEHOLD=001
