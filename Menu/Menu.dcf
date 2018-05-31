@@ -24,7 +24,7 @@ Len=1
 Label=Menu record
 Name=MENU_REC
 RecordTypeValue='1'
-RecordLen=21
+RecordLen=33
 
 [Item]
 Label=Login
@@ -52,6 +52,7 @@ Label=Interviewer Menu
 Name=INTERVIEWER_MENU_VS1
 Value=1;Visitation Record
 Value=2;Census Questionnaire
+Value=3;Upload data
 Value=9;Logout
 
 [Item]
@@ -60,21 +61,24 @@ Name=SUPERVISOR_MENU
 Start=5
 Len=1
 
-[Item]
-Label=Senior Supervisor Menu
-Name=SENIOR_SUPERVISOR_MENU
-Start=6
-Len=1
-
-[Item]
-Label=Zone Manager Menu
-Name=ZONE_MANAGER_MENU
-Start=7
-Len=1
+[ValueSet]
+Label=Supervisor menu
+Name=SUPERVISOR_MENU_VS1
+Value=1;Download data
+Value=2;Open Visitation Record
+Value=3;Open Questionnaire
+Value=9;Logout
 
 [Item]
 Label=Choose Household
 Name=CHOOSE_HOUSEHOLD
-Start=8
+Start=6
+Len=14
+DataType=Alpha
+
+[Item]
+Label=Choose Visitation Record
+Name=CHOOSE_VR
+Start=20
 Len=14
 DataType=Alpha

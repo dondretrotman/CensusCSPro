@@ -13,14 +13,22 @@ File=.\Menu.dcf
 Name=FORM001
 Label=Menu record
 Level=1
-Size=701,300
+Size=368,194
   
 Item=LOGIN
 Item=INTERVIEWER_MENU
 Item=SUPERVISOR_MENU
-Item=SENIOR_SUPERVISOR_MENU
-Item=ZONE_MANAGER_MENU
 Item=CHOOSE_HOUSEHOLD
+Item=CHOOSE_VR
+  
+[EndForm]
+  
+[Form]
+Name=FORM000
+Label=Login
+Level=1
+Size=500,500
+  
   
 [EndForm]
   
@@ -38,77 +46,79 @@ Max=1
   
 [Field]
 Name=LOGIN
-Position=225,27,240,47
+Position=222,29,237,49
 Item=LOGIN,MENU_DICT
+HideInCaseTree=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=1
   
 [Text]
-Position=50,30,86,46
+Position=40,32,76,48
 Text=Login
  
   
 [Field]
 Name=INTERVIEWER_MENU
-Position=225,57,240,77
+Position=222,59,237,79
 Item=INTERVIEWER_MENU,MENU_DICT
+HideInCaseTree=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=1
   
 [Text]
-Position=50,60,161,76
+Position=40,62,151,78
 Text=Interviewer Menu
  
   
 [Field]
 Name=SUPERVISOR_MENU
-Position=225,87,240,107
+Position=222,89,237,109
 Item=SUPERVISOR_MENU,MENU_DICT
+HideInCaseTree=Yes
 FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
 Form=1
   
 [Text]
-Position=50,90,158,106
+Position=40,92,148,108
 Text=Supervisor menu
  
   
 [Field]
-Name=SENIOR_SUPERVISOR_MENU
-Position=225,117,240,137
-Item=SENIOR_SUPERVISOR_MENU,MENU_DICT
-FieldLabelType=DictionaryLabel
-Form=1
-  
-[Text]
-Position=50,120,203,136
-Text=Senior Supervisor Menu
- 
-  
-[Field]
-Name=ZONE_MANAGER_MENU
-Position=225,147,240,167
-Item=ZONE_MANAGER_MENU,MENU_DICT
-FieldLabelType=DictionaryLabel
-Form=1
-  
-[Text]
-Position=50,150,180,166
-Text=Zone Manager Menu
- 
-  
-[Field]
 Name=CHOOSE_HOUSEHOLD
-Position=225,177,422,197
+Position=188,119,385,139
 Item=CHOOSE_HOUSEHOLD,MENU_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=RadioButton
 Form=1
   
 [Text]
-Position=50,180,168,196
+Position=40,122,158,138
 Text=Choose Household
  
+  
+[Field]
+Name=CHOOSE_VR
+Position=228,149,425,169
+Item=CHOOSE_VR,MENU_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=RadioButton
+Form=1
+  
+[Text]
+Position=40,152,199,168
+Text=Choose Visitation Record
+ 
+[EndGroup]
+  
+[Group]
+Required=Yes
+Name=LO_LOGIN
+Label=Login
+Form=2
+LogicControl=No
+Max=1
 [EndGroup]
   

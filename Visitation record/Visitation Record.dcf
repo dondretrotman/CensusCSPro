@@ -21,12 +21,42 @@ Start=2
 Len=2
 ZeroFill=Yes
 
+[ValueSet]
+Label=Parish
+Name=VI_PARISH_VS1
+Value=1;St. Michael
+Value=2;Christ Church
+Value=3;St. George
+Value=4;St. Philip
+Value=5;St. John
+Value=6;St. James
+Value=7;St. Thomas
+Value=8;St. Joseph
+Value=9;St. Andrew
+Value=10;St. Peter
+Value=11;St. Lucy
+
 [Item]
 Label=ED
 Name=VI_ED
 Start=4
 Len=3
 ZeroFill=Yes
+
+[ValueSet]
+Label=ED
+Name=VI_ED_VS1
+Value=1:181;St. Michael
+Value=182:295;Christ Church
+Value=296:335;St. George
+Value=336:397;St. Philip
+Value=398:418;St. John
+Value=419:479;St. James
+Value=480:508;St. Thomas
+Value=509:521;St. Joseph
+Value=522:532;St. Andrew
+Value=533:559;St. Peter
+Value=560:583;St. Lucy
 
 [Item]
 Label=Building
@@ -64,6 +94,7 @@ Len=1
 [ValueSet]
 Label=Completion Status
 Name=VI_STATUS_VS1
+Value=0;Not Started
 Value=1;Completed
 Value=2;Non-contact
 Value=3;Vacant
@@ -106,17 +137,35 @@ Name=VI_TOTAL
 Start=317
 Len=2
 
+[ValueSet]
+Label=Total
+Name=VI_TOTAL_VS1
+Value=0:40;Valid
+Value=99;Not Stated
+
 [Item]
 Label=Males
 Name=VI_MALES
 Start=319
 Len=2
 
+[ValueSet]
+Label=Males
+Name=VI_MALES_VS1
+Value=0:40;Valid
+Value=99;Not Stated
+
 [Item]
 Label=Females
 Name=VI_FEMALES
 Start=321
 Len=2
+
+[ValueSet]
+Label=Females
+Name=VI_FEMALES_VS1
+Value=0:40;Valid
+Value=99;Not Stated
 
 [Item]
 Label=Latitude
@@ -126,6 +175,11 @@ Len=13
 Decimal=9
 DecimalChar=Yes
 
+[ValueSet]
+Label=Latitude
+Name=VI_LATITUDE_VS1
+Value=-90.000000000:90.000000000;Valid
+
 [Item]
 Label=Longitude
 Name=VI_LONGITUDE
@@ -133,6 +187,11 @@ Start=336
 Len=14
 Decimal=9
 DecimalChar=Yes
+
+[ValueSet]
+Label=Longitude
+Name=VI_LONGITUDE_VS1
+Value=-180.000000000:180.000000000;Valid
 
 [Item]
 Label=Comments

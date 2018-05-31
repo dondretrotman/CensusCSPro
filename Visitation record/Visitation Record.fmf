@@ -60,6 +60,7 @@ Name=VI_PARISH
 Position=157,27,186,47
 Item=VI_PARISH,VISITATION_RECORD_DICT
 FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
 Form=1
   
 [Text]
@@ -72,6 +73,7 @@ Name=VI_ED
 Position=157,57,200,77
 Item=VI_ED,VISITATION_RECORD_DICT
 FieldLabelType=DictionaryLabel
+DataCaptureType=ComboBox
 Form=1
   
 [Text]
@@ -229,7 +231,7 @@ Text=Total
 Name=VI_LATITUDE
 Position=140,282,323,302
 Item=VI_LATITUDE,VISITATION_RECORD_DICT
-Protected=Yes
+HideInCaseTree=Yes
 FieldLabelType=DictionaryLabel
 Form=2
   
@@ -242,7 +244,7 @@ Text=Latitude
 Name=VI_LONGITUDE
 Position=140,312,337,332
 Item=VI_LONGITUDE,VISITATION_RECORD_DICT
-Protected=Yes
+HideInCaseTree=Yes
 FieldLabelType=DictionaryLabel
 Form=2
   

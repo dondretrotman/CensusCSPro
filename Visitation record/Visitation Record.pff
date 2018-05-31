@@ -1,15 +1,15 @@
 ﻿[Run Information]
 Version=CSPro 7.1
 AppType=Entry
-
 [DataEntryInit]
-Interactive=Ask
-
 [Files]
-Application=.\Visitation Record.ent
-InputData=..\Data\VisitationRecord.csdb|CSPRODB
-Paradata=.\Visitation Record.cslog
-
-
+Application=./Visitation Record.ent
+InputData=../Data/VisitationRecord.csdb|CSPRODB
+Paradata=./Visitation Record.cslog
 [Parameters]
-
+Parameter=onexit = ..\Menu\Menu.pff
+VI_PARISH=01
+VI_ED=001
+VI_BUILDING=001
+VI_DWELLING_UNIT=001
+VI_HOUSEHOLD=001

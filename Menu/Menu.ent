@@ -19,6 +19,7 @@ ParadataCollection=AllEvents
 ParadataDeviceStateMinutes=5
 [External Dictionaries]
 File=..\Visitation record\Visitation Record.dcf
+File=..\Logins\Loginlist.dcf
 [AppCode]
 File=.\Menu.ent.apc
 [Message]
@@ -30,6 +31,7 @@ File=.\Menu.fmf
 [Dictionary Types]
 Dict-Type=.\Menu.dcf,Input,.\Menu.fmf
 Dict-Type=..\Visitation record\Visitation Record.dcf,External
+Dict-Type=..\Logins\Loginlist.dcf,External
 [Sync]
 Server=http://csweb.teleyah.com/api
 Direction=Put

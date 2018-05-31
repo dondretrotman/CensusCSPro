@@ -14,6 +14,39 @@ function launchVR()
 	execpff("..\Visitation record\Visitation record.pff", stop);
 end;
 
+//Launches the Visitation Record for Supervisors
+function launchSupervisorVR()
+
+	string pffFilename = pathname(application) + "..\Visitation Record\Visitation Record.pff";
+	setfile(pffFile,pffFilename,create);
+
+	filewrite(pffFile,"[Run Information]");
+	filewrite(pffFile,"Version=CSPro 7.1");
+	filewrite(pffFile,"AppType=Entry");
+
+	filewrite(pffFile,"[DataEntryInit]");
+
+	filewrite(pffFile,"[Files]");
+	filewrite(pffFile,"Application=%s","./Visitation Record.ent");
+	filewrite(pffFile,"InputData=%s","../Data/VisitationRecord.csdb|CSPRODB");
+	filewrite(pffFile,"Paradata=%s","./Visitation Record.cslog");
+
+	filewrite(pffFile,"[Parameters]");
+	filewrite(pffFile,"Parameter=%s","onexit = ..\Menu\Menu.pff");
+
+	filewrite(pffFile,"VI_PARISH=%S",CHOOSE_VR[1:2]);		//CHOOSE_HOUSEHOLD[X:Y] where x = starting position, y = length
+	filewrite(pffFile,"VI_ED=%S",CHOOSE_VR[3:3]);
+	filewrite(pffFile,"VI_BUILDING=%S",CHOOSE_VR[6:3]);
+	filewrite(pffFile,"VI_DWELLING_UNIT=%S",CHOOSE_VR[9:3]);
+	filewrite(pffFile,"VI_HOUSEHOLD=%S",CHOOSE_VR[12:3]);
+	
+	close(pffFile);
+
+	execpff(filename(pffFile), stop);
+
+end;
+
+
 //Launches the Questionnaire and lets you choose a household
 function launchQuestionnaire()
 
@@ -30,8 +63,6 @@ function launchQuestionnaire()
 	// ALW - The below line will add the case if it does not exist
 	// or enter the case in modify mode if it does
 	filewrite(pffFile,"StartMode=Add;%s",CHOOSE_HOUSEHOLD);
-//	filewrite(pffFile,"StartMode=Modify;%s",CHOOSE_HOUSEHOLD);
-//	filewrite(pffFile,"Lock=Add");
 	filewrite(pffFile,"ShowInApplicationListing=Hidden");
 
 	filewrite(pffFile,"[Files]");
@@ -64,6 +95,7 @@ end;
 PROC MENU_FF
 
 PROC LOGIN
+
 	if $ = 1 then	//interviewer
 		skip to INTERVIEWER_MENU;
 	elseif $ = 2 then 	//supervisor
@@ -88,13 +120,28 @@ postproc
 		stop(1);
 	endif;
 reenter;		//don't leave the menu
+PROC SUPERVISOR_MENU
+onfocus
+	$ = notappl;	//don't show the last selection
+	
+postproc
+	if $ = 1 then		//Download Data
+		
+	elseif $ = 2 then	//Open VR
+		skip to CHOOSE_VR;		//DEBUG: AN ERROR APPEARS AT THIS POINT
+	elseif$ = 3 then
+		skip to CHOOSE_HOUSEHOLD;
+	elseif $ = 9 then	//logout
+		stop(1);
+	endif;
+reenter;		//don't leave the menu
 PROC CHOOSE_HOUSEHOLD
 
 onfocus
 	numeric nextEntry = 1;
 	forcase VISITATION_RECORD_DICT do
 		vscode(nextEntry) = maketext("%v%v%v%v%v",VI_PARISH,VI_ED,VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD);
-		vsLabel(nextEntry) = maketext("%v: (%V)",VI_HOUSEHOLD,strip(VI_LAST_NAME));
+		vsLabel(nextEntry) = maketext("%v%v%v: %V (%v)",VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD,strip(VI_LAST_NAME),getlabel(VI_STATUS_VS1,VI_STATUS));
 		inc(nextEntry);
 	endfor;
 	
@@ -104,4 +151,21 @@ onfocus
 
 postproc
 	launchQuestionnaire();
+	move to LOGIN;
+PROC CHOOSE_VR
+
+onfocus
+	numeric nextEntry = 1;
+	forcase VISITATION_RECORD_DICT do
+		vscode(nextEntry) = maketext("%v%v%v%v%v",VI_PARISH,VI_ED,VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD);
+		vsLabel(nextEntry) = maketext("%v%v%v: %V (%v)",VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD,strip(VI_LAST_NAME),getlabel(VI_STATUS_VS1,VI_STATUS));
+		inc(nextEntry);
+	endfor;
+	
+	vsCode(nextEntry) = "";
+	
+	setvalueset($, vsCode, vsLabel);
+
+postproc
+	launchSupervisorVR();
 	move to LOGIN;

@@ -4,10 +4,90 @@ Version=CSPro 7.1
 [LANGUAGES]
 EN=English
 
+[QUESTION]
+Field=VISITATION_RECORD_DICT.VI_ED
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Enumeration District\par
+EN=}
+
+[QUESTION]
+Field=VISITATION_RECORD_DICT.VI_FEMALES
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Total number of females usually resident in this household\par
+EN=}
+
+[QUESTION]
+Field=VISITATION_RECORD_DICT.VI_FIRST_NAME
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 %VI_LAST_NAME%' s first name\par
+EN=}
+
+[QUESTION]
+Field=VISITATION_RECORD_DICT.VI_LAST_NAME
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Last name of the Head of Household\par
+EN=}
+
+[QUESTION]
+Field=VISITATION_RECORD_DICT.VI_LATITUDE
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Press the 'Get Location' button in the navbar to fill this in\par
+EN=}
+
+[QUESTION]
+Field=VISITATION_RECORD_DICT.VI_LONGITUDE
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Press the 'Get Location' button in the navbar to fill this in\par
+EN=}
+
+[QUESTION]
+Field=VISITATION_RECORD_DICT.VI_MALES
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Total number of Males usually resident in this household\par
+EN=}
+
+[QUESTION]
+Field=VISITATION_RECORD_DICT.VI_TOTAL
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Total number of persons usually resident in this household\par
+EN=}
+
 [HELP]
 Field=VISITATION_RECORD_DICT.VI_LATITUDE
 EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
 EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Press the Get GPS buton to capture the location.\par
+EN=}
+
+[HELP]
+Field=VISITATION_RECORD_DICT.VI_ADDRESS1
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Lot number, Street name\par
+EN=}
+
+[HELP]
+Field=VISITATION_RECORD_DICT.VI_ADDRESS2
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Community name\par
 EN=}
 

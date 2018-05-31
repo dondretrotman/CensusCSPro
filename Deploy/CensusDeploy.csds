@@ -1,0 +1,50 @@
+{
+  "fileType": "Application Deployment Specification",
+  "version": "7.1",
+  "name": "Census2020Ver2",
+  "description": "Barbados 2020 Census",
+  "files": [
+    {
+      "path": "..\\Menu\\Menu.pff"
+    },
+    {
+      "path": "..\\Menu\\Menu.ent"
+    },
+    {
+      "path": "..\\Data Entry\\Census2020Ver2.pff"
+    },
+    {
+      "path": "..\\Resources\\Enumerators_Manual_2010.pdf"
+    },
+    {
+      "path": "..\\Data Entry\\Census2020Ver2.ent"
+    },
+    {
+      "path": "..\\Visitation record\\Visitation Record.pff"
+    },
+    {
+      "path": "..\\Visitation record\\Visitation Record.ent"
+    }
+  ],
+  "dictionaries": [
+    {
+      "path": "..\\Menu\\Menu.dcf",
+      "uploadForSync": true
+    },
+    {
+      "path": "..\\Visitation record\\Visitation Record.dcf",
+      "uploadForSync": true
+    },
+    {
+      "path": "..\\Census2020.dcf",
+      "uploadForSync": true
+    }
+  ],
+  "deployment": {
+    "type": "CSWeb",
+    "cswebUrl": "http:\/\/csweb.teleyah.com\/api",
+    "ftpUrl": "ftp:\/\/",
+    "localFilePath": ".\\Census2020Ver2.zip",
+    "localFolderPath": "..\\Deploy"
+  }
+}
