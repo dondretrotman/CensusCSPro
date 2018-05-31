@@ -1,0 +1,171 @@
+﻿Application     I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.ent
+Type            ENTRY
+Input Data      <<CSPro DB>> I:\Dondre\Projects2\Census2020\Source code\Prototype\Data\CensusData.csdb
+<Paradata Log>  I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.cslog
+
+Date            May 31, 2018
+Start Time      15:10:45
+End Time        15:10:58
+
+CSPRO Process Summary
+
+User unnumbered messages:
+
+   Line    Freq  Pct.  Message text                                        Denom
+   ----    ----  ----  ------------                                        -----
+     89       1    -   ..\Resources\Enumerators_Manual_2010.pdf                -
+
+CSPRO Executor Normal End
+--------------------------------------------------------------------------------
+Application     I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.ent
+Type            ENTRY
+Input Data      <<CSPro DB>> I:\Dondre\Projects2\Census2020\Source code\Prototype\Data\CensusData.csdb
+<Paradata Log>  I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.cslog
+
+Date            May 31, 2018
+Start Time      15:13:43
+End Time        15:13:57
+
+CSPRO Process Summary
+
+User unnumbered messages:
+
+   Line    Freq  Pct.  Message text                                        Denom
+   ----    ----  ----  ------------                                        -----
+     89       1    -   ..\Resources\Enumerators_Manual_2010.pdf                -
+
+CSPRO Executor Normal End
+--------------------------------------------------------------------------------
+Application     I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.ent
+Type            ENTRY
+Input Data      <<CSPro DB>> I:\Dondre\Projects2\Census2020\Source code\Prototype\Data\CensusData.csdb
+<Paradata Log>  I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.cslog
+
+Date            May 31, 2018
+Start Time      15:14:09
+End Time        15:14:45
+
+CSPRO Process Summary
+
+CSPRO Executor Normal End
+--------------------------------------------------------------------------------
+Application     I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.ent
+Type            ENTRY
+Input Data      <<CSPro DB>> I:\Dondre\Projects2\Census2020\Source code\Prototype\Data\CensusData.csdb
+<Paradata Log>  I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.cslog
+
+Date            May 31, 2018
+Start Time      15:16:39
+End Time        15:17:02
+
+CSPRO Process Summary
+
+System messages:
+
+ Number    Frequency   Message text
+ ------    ---------   ------------
+  99990            1   Operator entered a value out of range            
+
+User unnumbered messages:
+
+   Line    Freq  Pct.  Message text                                        Denom
+   ----    ----  ----  ------------                                        -----
+     89       1    -   ..\Resources\Enumerators_Manual_2010.pdf                -
+
+CSPRO Executor Normal End
+--------------------------------------------------------------------------------
+Application     I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.ent
+Type            ENTRY
+Input Data      <<CSPro DB>> I:\Dondre\Projects2\Census2020\Source code\Prototype\Data\CensusData.csdb
+<Paradata Log>  I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.cslog
+
+Date            May 31, 2018
+Start Time      15:17:31
+End Time        15:20:54
+
+CSPRO Process Summary
+
+User unnumbered messages:
+
+   Line    Freq  Pct.  Message text                                        Denom
+   ----    ----  ----  ------------                                        -----
+     89       1    -   maketext                                                -
+
+CSPRO Executor Normal End
+--------------------------------------------------------------------------------
+Application     I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.ent
+Type            ENTRY
+Input Data      <<CSPro DB>> I:\Dondre\Projects2\Census2020\Source code\Prototype\Data\CensusData.csdb
+<Paradata Log>  I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.cslog
+
+Date            May 31, 2018
+Start Time      15:40:31
+End Time        15:40:51
+
+CSPRO Process Summary
+
+User unnumbered messages:
+
+   Line    Freq  Pct.  Message text                                        Denom
+   ----    ----  ----  ------------                                        -----
+     89       1    -   maketext                                                -
+
+CSPRO Executor Normal End
+--------------------------------------------------------------------------------
+Application     I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.ent
+Type            ENTRY
+Input Data      <<CSPro DB>> I:\Dondre\Projects2\Census2020\Source code\Prototype\Data\CensusData.csdb
+<Paradata Log>  I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.cslog
+
+Date            May 31, 2018
+Start Time      15:53:45
+End Time        15:54:03
+
+CSPRO Process Summary
+
+User unnumbered messages:
+
+   Line    Freq  Pct.  Message text                                        Denom
+   ----    ----  ----  ------------                                        -----
+     89       2    -   maketext                                                -
+
+CSPRO Executor Normal End
+--------------------------------------------------------------------------------
+Application     I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.ent
+Type            ENTRY
+Input Data      <<CSPro DB>> I:\Dondre\Projects2\Census2020\Source code\Prototype\Data\CensusData.csdb
+<Paradata Log>  I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.cslog
+
+Date            May 31, 2018
+Start Time      15:55:24
+End Time        15:55:35
+
+CSPRO Process Summary
+
+User unnumbered messages:
+
+   Line    Freq  Pct.  Message text                                        Denom
+   ----    ----  ----  ------------                                        -----
+     89       1    -   maketext                                                -
+
+CSPRO Executor Normal End
+--------------------------------------------------------------------------------
+Application     I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.ent
+Type            ENTRY
+Input Data      <<CSPro DB>> I:\Dondre\Projects2\Census2020\Source code\Prototype\Data\CensusData.csdb
+<Paradata Log>  I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.cslog
+
+Date            May 31, 2018
+Start Time      16:06:38
+End Time        16:07:13
+
+CSPRO Process Summary
+
+User unnumbered messages:
+
+   Line    Freq  Pct.  Message text                                        Denom
+   ----    ----  ----  ------------                                        -----
+     89       1    -   maketext                                                -
+
+CSPRO Executor Normal End
+--------------------------------------------------------------------------------

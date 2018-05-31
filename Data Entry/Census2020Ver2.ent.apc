@@ -83,11 +83,11 @@ end;
 //DEBUG: WILL NOT OPEN THE FILE!!!
 function manual()
 	if getos() = 20 then	//if android
-		errmsg("view:../Resources/Enumerators_Manual_2010.pdf");
-		execsystem("view:../Resources/Enumerators_Manual_2010.pdf");
+		errmsg(maketext("Enumerators_Manual_2010.pdf"));
+		execsystem(maketext("view:Enumerators_Manual_2010.pdf"));
 	elseif getos() = 10 then	//if windows
-		errmsg("..\Resources\Enumerators_Manual_2010.pdf"{,pathname(application)});
-		execsystem("..\Resources\Enumerators_Manual_2010.pdf");
+		errmsg(maketext("%sEnumerators_Manual_2010.pdf",pathname(application)));
+		execsystem(maketext("%sEnumerators_Manual_2010.pdf",pathname(application)));
 	endif;
 end;
 {
@@ -240,7 +240,7 @@ Postproc
 		reenter;
 	endif;
 	
-//DEBUG: Does not detect Leap years for some reason
+//DEBUG: Does not detect Leap years for some reason. Should be fixed
 	if DOB_MONTH in 9,4,6,11 then		//30 days have September, April, June and November
 		if not DOB_DAY in 1:30,99 then
 			errmsg("%s does not have %d days. Please confirm.",getlabel(DOB_MONTH_VS1,DOB_MONTH),DOB_DAY);
@@ -252,7 +252,7 @@ Postproc
 			reenter;
 		endif;
 	elseif DOB_MONTH = 2 and DOB_YEAR in 1900:2020 then					//Except February alone
-		if DOB_YEAR % 4 = 0 or DOB_YEAR % 100 <> 0 then		
+		if DOB_YEAR % 4 = 0 and DOB_YEAR <> 1900 then		
 			if not DOB_DAY in 1:29,99 then		//Which has 29 days each leap year
 				errmsg("%s does not have %d days. Please confirm.",getlabel(DOB_MONTH_VS1,DOB_MONTH),DOB_DAY);
 				reenter;
@@ -523,11 +523,12 @@ PROC ECOUNTRY
 	
 PROC POPULATION001
 //show names in label fields when first starting the questionnaire
+{
 onfocus
 	do i = 1 while i <= totocc(POPULATION001)
 		setocclabel(POPULATION001(i), strip(FIRST_NAME(i)));
 	enddo;
-
+}
 Postproc	//should run after the last person has been entered
 	if visualvalue(END_TIME) <> notappl then		//If no end time
 		END_TIME = systime();						//then update the end time
@@ -536,9 +537,8 @@ Postproc	//should run after the last person has been entered
 //-------------------------------------------------------------------------------------
 PROC PID
 preproc
-	do numeric idx = 1 while idx <= totocc(PID)
-		setocclabel(POPULATION001(idx), strip(FIRST_NAME));
-	enddo;
+	setocclabel(POPULATION001(curocc()), strip(FIRST_NAME));
+
 	
 onfocus
 	$ = curocc();
@@ -845,32 +845,34 @@ Age range, shool level
 PROC P23
 //P23 - what is the highest level of educational institution ever attended by you?
 //highest level institution should not be lower than P21B if still attending school
-//DEBUG: Should display all schools if P21B was skipped
+//DEBUG: Should display all schools if P21B was skipped. Should be fixed now
 
 onfocus
-	//create dynamic valueset exclude schools above the current school
-	vsindex = 1;		//initialise valueset index
-	clearNumArray(vsNumCodes);	//reset the valueset array
-	
-	do i=1 while i <= 6		//go through all items
-		if $(i) <= P21B then	//if it's not the same as current schoo
-			vslabels(vsindex) = getlabel(P23_VS1,i);	//include the school in the valueset
-			vsnumcodes(vsindex) = i;
-			inc(vsindex);					//increment the valueset index
-		endif;
-	enddo;
-	vslabels(vsindex) = "Other";
-	vsnumcodes(vsindex) = 7;
-	inc(vsindex);
-	vslabels(vsindex) = "None";
-	vsnumcodes(vsindex) = 8;
-	inc(vsindex);
-	vslabels(vsindex) = "Not Sated";
-	vsnumcodes(vsindex) = 9;
-	inc(vsindex);
-	
-	vsnumcodes(vsindex) = notappl;
-	setvalueset($, vsnumcodes, vslabels);
+	if P21B <> notappl then
+		//create dynamic valueset exclude schools above the current school
+		vsindex = 1;		//initialise valueset index
+		clearNumArray(vsNumCodes);	//reset the valueset array
+		
+		do i=1 while i <= 6		//go through all items
+			if $(i) <= P21B then	//if it's not the same as current schoo
+				vslabels(vsindex) = getlabel(P23_VS1,i);	//include the school in the valueset
+				vsnumcodes(vsindex) = i;
+				inc(vsindex);					//increment the valueset index
+			endif;
+		enddo;
+		vslabels(vsindex) = "Other";
+		vsnumcodes(vsindex) = 7;
+		inc(vsindex);
+		vslabels(vsindex) = "None";
+		vsnumcodes(vsindex) = 8;
+		inc(vsindex);
+		vslabels(vsindex) = "Not Sated";
+		vsnumcodes(vsindex) = 9;
+		inc(vsindex);
+		
+		vsnumcodes(vsindex) = notappl;
+		setvalueset($, vsnumcodes, vslabels);
+	endif;
 
 postproc
 	if P21A = 1 and $ < P21B then	//if currently attending school and current school is lower than highest school attended
