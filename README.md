@@ -19,9 +19,7 @@ Make sure that the order of the individual Listing and the population section ar
 TODO:  
 Make sure that android experience is good  
 Add metadata. i.e. Enumerator ID, Supervisor ID and Interview status.  
-*Done - Ask about getting statistics about enumerator performance. ie how long do they take to answer each question, history of changes, etc.  
 ask about encrypting CSPro csdb files  
-Add code to Check that days, months, years don't exceed limits  
      
 ISSUES:  
 When synchronised from the web, the Menu app does not launch the Visitation Record or the Census Questionnaire. Works fine in windows.
