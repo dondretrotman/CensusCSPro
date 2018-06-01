@@ -14,8 +14,22 @@ CAPIFont2Color=16711680
 NotesDeleteOtherOperators=No
 NotesEditOtherOperators=No
 ShowErrorMessageNumbers=No
-ParadataCollection=AllEvents
-ParadataDeviceStateMinutes=5
+ParadataCollection=SomeEvents
+ParadataRecordValues=Yes
+ParadataRecordCoordinates=Yes
+ParadataDeviceStateMinutes=20
+ParadataGpsLocationMinutes=5
+ParadataCollectEvent=data_source_event
+ParadataCollectEvent=device_state_event
+ParadataCollectEvent=field_entry_event
+ParadataCollectEvent=field_movement_event
+ParadataCollectEvent=field_validation_event
+ParadataCollectEvent=gps_event
+ParadataCollectEvent=impute_event
+ParadataCollectEvent=message_event
+ParadataCollectEvent=note_event
+ParadataCollectEvent=operator_selection_event
+ParadataCollectEvent=property_event
 [AppCode]
 File=.\Census2020Ver2.ent.apc
 [Message]
@@ -27,6 +41,5 @@ File=.\Census2020Ver2.fmf
 [Dictionary Types]
 Dict-Type=..\Census2020.dcf,Input,.\Census2020Ver2.fmf
 [Sync]
-Server=http://csweb.teleyah.com/api
+Server=Dropbox
 Direction=Put
-AppDownloadPath=/apps/MYAPP/
