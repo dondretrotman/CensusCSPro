@@ -13,7 +13,7 @@ File=.\Visitation Record.dcf
 Name=FORM000
 Label=(Id Items)
 Level=1
-Size=701,300
+Size=2423,841
   
 Item=VI_PARISH
 Item=VI_ED
@@ -25,10 +25,11 @@ Item=VI_HOUSEHOLD
   
 [Form]
 Name=FORM001
-Label=Visitation Record record
+Label=Visitation Record
 Level=1
-Size=2223,387
+Size=2326,521
   
+Item=VI_STATUS
 Item=VI_ADDRESS1
 Item=VI_ADDRESS2
 Item=VI_LAST_NAME
@@ -36,10 +37,13 @@ Item=VI_FIRST_NAME
 Item=VI_TOTAL
 Item=VI_MALES
 Item=VI_FEMALES
+Item=VI_MALES_RESIDENT_ABROAD
+Item=VI_FEMALES_RESIDENT_ABROAD
+Item=VI_DATE_STARTED
+Item=VI_DATE_COMPLETED
 Item=VI_LATITUDE
 Item=VI_LONGITUDE
 Item=VI_COMMENTS
-Item=VI_STATUS
   
 [EndForm]
   
@@ -125,15 +129,15 @@ Text=Household
   
 [Group]
 Required=Yes
-Name=VISITATION_RECORD_REC_FORM
-Label=Visitation Record record
+Name=VISITATION_RECORD_FORM
+Label=Visitation Record
 Form=2
 LogicControl=No
 Max=1
   
 [Field]
 Name=VI_STATUS
-Position=233,44,248,64
+Position=193,5,208,25
 Item=VI_STATUS,VISITATION_RECORD_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -141,13 +145,28 @@ DataCaptureType=DropDown
 Form=2
   
 [Text]
-Position=51,47,167,63
+Position=8,8,124,24
 Text=Completion Status
  
   
 [Field]
+Name=VI_DATE_STARTED
+Position=193,39,306,59
+Item=VI_DATE_STARTED,VISITATION_RECORD_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+DataCaptureType=Date
+CaptureDateFormat=YYYYMMDD
+Form=2
+  
+[Text]
+Position=8,42,87,58
+Text=Date Started
+ 
+  
+[Field]
 Name=VI_ADDRESS1
-Position=140,72,950,92
+Position=193,68,1003,88
 Item=VI_ADDRESS1,VISITATION_RECORD_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -155,13 +174,13 @@ UseUnicodeTextBox=Yes
 Form=2
   
 [Text]
-Position=50,75,111,91
+Position=8,71,69,87
 Text=Address 1
  
   
 [Field]
 Name=VI_ADDRESS2
-Position=140,102,950,122
+Position=193,98,1003,118
 Item=VI_ADDRESS2,VISITATION_RECORD_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -169,13 +188,13 @@ UseUnicodeTextBox=Yes
 Form=2
   
 [Text]
-Position=50,105,111,121
+Position=8,101,69,117
 Text=Address 2
  
   
 [Field]
 Name=VI_LAST_NAME
-Position=140,132,550,152
+Position=193,128,603,148
 Item=VI_LAST_NAME,VISITATION_RECORD_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -183,13 +202,13 @@ UseUnicodeTextBox=Yes
 Form=2
   
 [Text]
-Position=50,135,117,151
+Position=8,131,75,147
 Text=Last Name
  
   
 [Field]
 Name=VI_FIRST_NAME
-Position=140,162,550,182
+Position=193,158,603,178
 Item=VI_FIRST_NAME,VISITATION_RECORD_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -197,80 +216,125 @@ UseUnicodeTextBox=Yes
 Form=2
   
 [Text]
-Position=50,165,118,181
+Position=8,161,76,177
 Text=First Name
  
   
 [Field]
 Name=VI_MALES
-Position=140,189,169,209
+Position=193,186,222,206
 Item=VI_MALES,VISITATION_RECORD_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
+DataCaptureType=ComboBox
 Form=2
   
 [Text]
-Position=50,192,87,208
+Position=8,189,45,205
 Text=Males
  
   
 [Field]
 Name=VI_FEMALES
-Position=140,219,169,239
+Position=193,216,222,236
 Item=VI_FEMALES,VISITATION_RECORD_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
+DataCaptureType=ComboBox
 Form=2
   
 [Text]
-Position=50,222,104,238
+Position=8,219,62,235
 Text=Females
  
   
 [Field]
-Name=VI_TOTAL
-Position=140,251,169,271
-Item=VI_TOTAL,VISITATION_RECORD_DICT
+Name=VI_MALES_RESIDENT_ABROAD
+Position=193,246,222,266
+Item=VI_MALES_RESIDENT_ABROAD,VISITATION_RECORD_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
+DataCaptureType=ComboBox
 Form=2
   
 [Text]
-Position=50,254,82,270
-Text=Total
+Position=8,249,154,265
+Text=Males Resident Abroad
+ 
+  
+[Field]
+Name=VI_FEMALES_RESIDENT_ABROAD
+Position=193,276,222,296
+Item=VI_FEMALES_RESIDENT_ABROAD,VISITATION_RECORD_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+DataCaptureType=ComboBox
+Form=2
+  
+[Text]
+Position=8,279,171,295
+Text=Females Resident Abroad
+ 
+  
+[Field]
+Name=VI_TOTAL
+Position=193,306,222,326
+Item=VI_TOTAL,VISITATION_RECORD_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+DataCaptureType=ComboBox
+Form=2
+  
+[Text]
+Position=8,309,92,325
+Text=Total Part B's
  
   
 [Field]
 Name=VI_LATITUDE
-Position=140,282,323,302
+Position=193,333,376,353
 Item=VI_LATITUDE,VISITATION_RECORD_DICT
-HideInCaseTree=Yes
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=2
   
 [Text]
-Position=50,285,102,301
+Position=8,336,60,352
 Text=Latitude
  
   
 [Field]
 Name=VI_LONGITUDE
-Position=140,312,337,332
+Position=193,363,390,383
 Item=VI_LONGITUDE,VISITATION_RECORD_DICT
-HideInCaseTree=Yes
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=2
   
 [Text]
-Position=50,315,114,331
+Position=8,366,72,382
 Text=Longitude
  
   
 [Field]
+Name=VI_DATE_COMPLETED
+Position=193,394,306,414
+Item=VI_DATE_COMPLETED,VISITATION_RECORD_DICT
+Verify=No
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+DataCaptureType=Date
+CaptureDateFormat=YYYYMMDD
+Form=2
+  
+[Text]
+Position=8,397,110,413
+Text=Date Completed
+ 
+  
+[Field]
 Name=VI_COMMENTS
-Position=140,342,2198,362
+Position=193,425,2251,445
 Item=VI_COMMENTS,VISITATION_RECORD_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -278,7 +342,7 @@ UseUnicodeTextBox=Yes
 Form=2
   
 [Text]
-Position=50,345,117,361
+Position=8,428,75,444
 Text=Comments
  
 [EndGroup]

@@ -83,7 +83,7 @@ ZeroFill=Yes
 Label=Visitation Record record
 Name=VISITATION_RECORD_REC
 RecordTypeValue='V'
-RecordLen=605
+RecordLen=625
 
 [Item]
 Label=Completion Status
@@ -132,13 +132,13 @@ Len=50
 DataType=Alpha
 
 [Item]
-Label=Total
+Label=Total Part B's
 Name=VI_TOTAL
 Start=317
 Len=2
 
 [ValueSet]
-Label=Total
+Label=Total Part B's
 Name=VI_TOTAL_VS1
 Value=0:40;Valid
 Value=99;Not Stated
@@ -168,9 +168,110 @@ Value=0:40;Valid
 Value=99;Not Stated
 
 [Item]
+Label=Males Resident Abroad
+Name=VI_MALES_RESIDENT_ABROAD
+Start=323
+Len=2
+
+[ValueSet]
+Label=Males Resident Abroad
+Name=VI_MALES_RESIDENT_ABROAD_VS1
+Value=0:40;Valid
+Value=99;Not Stated
+
+[Item]
+Label=Females Resident Abroad
+Name=VI_FEMALES_RESIDENT_ABROAD
+Start=325
+Len=2
+
+[ValueSet]
+Label=Females Resident Abroad
+Name=VI_FEMALES_RESIDENT_ABROAD_VS1
+Value=0:40;Valid
+Value=99;Not Stated
+
+[Item]
+Label=Date Started
+Name=VI_DATE_STARTED
+Start=327
+Len=8
+
+[Item]
+Label=Year
+Name=VI_YEAR_STARTED
+Start=327
+Len=4
+ItemType=SubItem
+
+[Item]
+Label=Month
+Name=VI_MONTH_STARTED
+Start=331
+Len=2
+ItemType=SubItem
+
+[ValueSet]
+Label=Month
+Name=VI_MONTH_STARTED_VS1
+Link=72057208
+Value=1;January
+Value=2;February
+Value=3;March
+Value=4;April
+Value=5;May
+Value=6;June
+Value=7;July
+Value=8;August
+Value=9;September
+Value=10;October
+Value=11;November
+Value=12;December
+Value=99;Not stated
+
+[Item]
+Label=Day
+Name=VI_DAY_STARTED
+Start=333
+Len=2
+ItemType=SubItem
+
+[Item]
+Label=Date Completed
+Name=VI_DATE_COMPLETED
+Start=335
+Len=8
+
+[Item]
+Label=Year
+Name=VI_YEAR_COMPLETED
+Start=335
+Len=4
+ItemType=SubItem
+
+[Item]
+Label=Month
+Name=VI_MONTH_COMPLETED
+Start=339
+Len=2
+ItemType=SubItem
+
+[ValueSet]
+Label=Month
+Name=VI_MONTH_COMPLETED_VS1
+Link=72057208
+
+[Item]
+Label=Day
+Name=VI_DAY_COMPLETED
+Start=341
+Len=2
+ItemType=SubItem
+
+[Item]
 Label=Latitude
 Name=VI_LATITUDE
-Start=323
+Start=343
 Len=13
 Decimal=9
 DecimalChar=Yes
@@ -183,7 +284,7 @@ Value=-90.000000000:90.000000000;Valid
 [Item]
 Label=Longitude
 Name=VI_LONGITUDE
-Start=336
+Start=356
 Len=14
 Decimal=9
 DecimalChar=Yes
@@ -196,6 +297,6 @@ Value=-180.000000000:180.000000000;Valid
 [Item]
 Label=Comments
 Name=VI_COMMENTS
-Start=350
+Start=370
 Len=256
 DataType=Alpha

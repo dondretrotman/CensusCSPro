@@ -95,6 +95,18 @@ function launchQuestionnaire()
 
 end;
 
+//Function to upload all Census and VR data
+function uploadData()
+	if syncconnect(Dropbox) then		//connect to dropbox
+		syncdata(PUT,Census2020_DICT);	//Upload Census data
+		syncdata(PUT,VISITATION_RECORD_DICT);	//Upload VR
+		syncfile(PUT,"../Data Entry/Census2020Ver2.cslog","/CSPro/CensusLogs/censuslog.cslog");	//upload Questionnaire log file
+		syncfile(PUT,"../Visitation record/Visitation Record.cslog","/CSPro/VRLogs/vrlog.cslog");	//upload VR log
+		syncfile(PUT,"../Menu/Menu.cslog","/CSPro/MenuLogs/Menulog.cslog");		//Upload menu log
+		syncdisconnect();
+	endif;
+end;
+
 PROC MENU_FF
 
 PROC LOGIN
@@ -119,6 +131,8 @@ postproc
 		launchVR();	
 	elseif $ = 2 then	//interview households
 		skip to CHOOSE_HOUSEHOLD;		//DEBUG: AN ERROR APPEARS AT THIS POINT
+	elseif $ = 3 then	//upload data
+		uploadData();
 	elseif $ = 9 then	//logout
 		stop(1);
 	endif;

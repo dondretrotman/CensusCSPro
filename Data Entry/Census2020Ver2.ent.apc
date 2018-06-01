@@ -61,7 +61,7 @@ function checkDate(YEAR, MONTH, DAY)
 	
 //DEBUG: Does not detect Leap years for some reason. Should be fixed
 	if MONTH in 9,4,6,11 then		//30 days have September, April, June and November
-		if not DOB_DAY in 1:30,99 then
+		if not DAY in 1:30,99 then
 			errmsg("%s does not have %d days. Please confirm.",getlabel(DOB_MONTH_VS1,MONTH),DAY);
 			checkDate = 0;
 		endif;
@@ -129,11 +129,11 @@ end;
 //DEBUG: WILL NOT OPEN THE FILE!!!
 function manual()
 	if getos() = 20 then	//if android
-		errmsg(maketext("Enumerators_Manual_2010.pdf"));
-		execsystem(maketext("view:Enumerators_Manual_2010.pdf"));
+		errmsg(maketext(pathname(csentry)+"../Resources/Enumerators_Manual_2010.pdf"));
+		execsystem(maketext("view:"+pathname(csentry)+"Enumerators_Manual_2010.pdf"));
 	elseif getos() = 10 then	//if windows
-		errmsg(maketext("%sEnumerators_Manual_2010.pdf",pathname(application)));
-		execsystem(maketext("%sEnumerators_Manual_2010.pdf",pathname(application)));
+		errmsg(maketext("%s..\Resources\Enumerators_Manual_2010.pdf",pathname(application)));
+		execsystem(maketext("%s..\Resources\Enumerators_Manual_2010.pdf",pathname(application)));
 	endif;
 end;
 {
@@ -224,7 +224,7 @@ PROC ED
 PROC H14A
 preproc
 	if visualvalue(START_TIME) = notappl then		//if starting the questionnaire
-		START_TIME = systime();		//set start time
+		START_TIME = systime("HHMM");		//set start time
 	endif;
 	
 onfocus
@@ -540,7 +540,7 @@ onfocus
 }
 Postproc	//should run after the last person has been entered
 	if visualvalue(END_TIME) <> notappl then		//If no end time
-		END_TIME = systime();						//then update the end time
+		END_TIME = systime("HHMM");						//then update the end time
 	endif;
 
 //-------------------------------------------------------------------------------------

@@ -15,11 +15,27 @@ CreateListing=No
 CreateLog=No
 AutoAdvanceOnSelection=Yes
 ShowErrorMessageNumbers=No
-ParadataCollection=AllEvents
-ParadataDeviceStateMinutes=5
+ParadataCollection=SomeEvents
+ParadataRecordValues=Yes
+ParadataRecordCoordinates=Yes
+ParadataDeviceStateMinutes=20
+ParadataGpsLocationMinutes=5
+ParadataCollectEvent=data_source_event
+ParadataCollectEvent=device_state_event
+ParadataCollectEvent=external_application_event
+ParadataCollectEvent=field_entry_event
+ParadataCollectEvent=field_movement_event
+ParadataCollectEvent=field_validation_event
+ParadataCollectEvent=gps_event
+ParadataCollectEvent=impute_event
+ParadataCollectEvent=message_event
+ParadataCollectEvent=note_event
+ParadataCollectEvent=operator_selection_event
+ParadataCollectEvent=property_event
 [External Dictionaries]
 File=..\Visitation record\Visitation Record.dcf
 File=..\Logins\Loginlist.dcf
+File=..\Census2020.dcf
 [AppCode]
 File=.\Menu.ent.apc
 [Message]
@@ -32,6 +48,7 @@ File=.\Menu.fmf
 Dict-Type=.\Menu.dcf,Input,.\Menu.fmf
 Dict-Type=..\Visitation record\Visitation Record.dcf,External
 Dict-Type=..\Logins\Loginlist.dcf,External
+Dict-Type=..\Census2020.dcf,External
 [Sync]
 Server=http://csweb.teleyah.com/api
 Direction=Put
