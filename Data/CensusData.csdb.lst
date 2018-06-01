@@ -169,3 +169,113 @@ User unnumbered messages:
 
 CSPRO Executor Normal End
 --------------------------------------------------------------------------------
+Application     I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.ent
+Type            ENTRY
+Input Data      <<CSPro DB>> I:\Dondre\Projects2\Census2020\Source code\Prototype\Data\CensusData.csdb
+<Paradata Log>  I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.cslog
+
+Date            Jun  1, 2018
+Start Time      11:51:50
+End Time        12:22:47
+
+CSPRO Process Summary
+
+System messages:
+
+ Number    Frequency   Message text
+ ------    ---------   ------------
+  92103            1   New case ids '%s'. Old ids were '%s'.            
+  99990            1   Operator entered a value out of range            
+
+User unnumbered messages:
+
+   Line    Freq  Pct.  Message text                                        Denom
+   ----    ----  ----  ------------                                        -----
+     53       1    -   Invalid Year. (=%d)                                     -
+     58       1    -   Invalid Month. (=%d)                                    -
+     81       1    -   %s does not have %d days. Please confirm.               -
+    296       1    -   age (%d) does not agree with DOB (%s), please ver       -
+    304       1    -   Please verify that this person is the head of hou       -
+    471       1    -   There are victims of crime in this household but        -
+    844       2    -   Age (%d) does not correspond with current school        -
+
+CSPRO Executor Normal End
+--------------------------------------------------------------------------------
+Application     I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.ent
+Type            ENTRY
+Input Data      <<CSPro DB>> I:\Dondre\Projects2\Census2020\Source code\Prototype\Data\CensusData.csdb
+<Paradata Log>  I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.cslog
+
+Date            Jun  1, 2018
+Start Time      12:22:52
+End Time        12:23:00
+
+CSPRO Process Summary
+
+System messages:
+
+ Number    Frequency   Message text
+ ------    ---------   ------------
+  92103            1   New case ids '%s'. Old ids were '%s'.            
+  99990            1   Operator entered a value out of range            
+
+User unnumbered messages:
+
+   Line    Freq  Pct.  Message text                                        Denom
+   ----    ----  ----  ------------                                        -----
+     53       1    -   Invalid Year. (=%d)                                     -
+     58       1    -   Invalid Month. (=%d)                                    -
+     81       1    -   %s does not have %d days. Please confirm.               -
+    296       1    -   age (%d) does not agree with DOB (%s), please ver       -
+    304       2    -   Please verify that this person is the head of hou       -
+    471       1    -   There are victims of crime in this household but        -
+    844       2    -   Age (%d) does not correspond with current school        -
+
+CSPRO Executor Normal End
+--------------------------------------------------------------------------------
+Application     I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.ent
+Type            ENTRY
+Input Data      <<CSPro DB>> I:\Dondre\Projects2\Census2020\Source code\Prototype\Data\CensusData.csdb
+<Paradata Log>  I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.cslog
+
+Date            Jun  1, 2018
+Start Time      12:23:21
+End Time        13:46:03
+
+CSPRO Process Summary
+
+System messages:
+
+ Number    Frequency   Message text
+ ------    ---------   ------------
+  99990            1   Operator entered a value out of range            
+
+User unnumbered messages:
+
+   Line    Freq  Pct.  Message text                                        Denom
+   ----    ----  ----  ------------                                        -----
+    296       1    -   age (%d) does not agree with DOB (%s), please ver       -
+    304       2    -   Please verify that this person is the head of hou       -
+    845       8    -   Age (%d) does not correspond with current school        -
+
+CSPRO Executor Normal End
+--------------------------------------------------------------------------------
+Application     I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.ent
+Type            ENTRY
+Input Data      <<CSPro DB>> I:\Dondre\Projects2\Census2020\Source code\Prototype\Data\CensusData.csdb
+<Paradata Log>  I:\Dondre\Projects2\Census2020\Source code\Prototype\Data Entry\Census2020Ver2.cslog
+
+Date            Jun  1, 2018
+Start Time      13:46:18
+End Time        14:04:49
+
+CSPRO Process Summary
+
+User unnumbered messages:
+
+   Line    Freq  Pct.  Message text                                        Denom
+   ----    ----  ----  ------------                                        -----
+    304       1    -   Please verify that this person is the head of hou       -
+
+CSPRO Executor Normal End
+--------------------------------------------------------------------------------

@@ -105,7 +105,7 @@ Item=E8B
 Name=FORM004
 Label=Population
 Level=1
-Size=3243,710
+Size=3244,710
   
 Item=POPULATION001
   
@@ -1471,7 +1471,7 @@ Type=Record
 TypeName=POPULATION
 Max=40
 MaxField=HNOPERSONS
-DisplaySize=16,80,3218,685
+DisplaySize=17,80,3219,685
 Orientation=Vertical
 ColumnWidth=0
 StubColumnWidth=0
@@ -2461,7 +2461,7 @@ DataCaptureType=ComboBox
   
 [Text]
 Position=0,0,326,16
-Text=P27(a)ii - If YES, for which occupation\\profession?
+Text=P27(a)ii - If YES, for which occupation\profession?
  
 [EndColumn]
   
@@ -2565,25 +2565,6 @@ Text=P30(a) - Have you ever had any children?
 [EndColumn]
   
 [Column]
-Width=56
-  
-[HeaderText]
-Position=11,0,155,56
-Text=P30(b)i - How many liveborn children did you have in all?
- 
-[Field]
-Name=P30BI
-Position=266,0,295,20
-Item=P30BI,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-  
-[Text]
-Text=P30(b)i - How many liveborn children did you have in all?
- 
-[EndColumn]
-  
-[Column]
 Width=72
   
 [HeaderText]
@@ -2622,21 +2603,21 @@ Text=P30(b)iii - How many female liveborn children did you have?
 [EndColumn]
   
 [Column]
-Width=72
+Width=56
   
 [HeaderText]
-Position=10,0,155,72
-Text=P30(c)i - How many of your total liveborn children are still alive?
+Position=11,0,155,56
+Text=P30(b)i - How many liveborn children did you have in all?
  
 [Field]
-Name=P30CI
+Name=P30BI
 Position=266,0,295,20
-Item=P30CI,CENSUS2020_DICT
+Item=P30BI,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
-Text=P30(c)i - How many of your total liveborn children are still alive?
+Text=P30(b)i - How many liveborn children did you have in all?
  
 [EndColumn]
   
@@ -2679,6 +2660,25 @@ Text=P30(c)iii - How many of your female liveborn children are still alive?
 [EndColumn]
   
 [Column]
+Width=72
+  
+[HeaderText]
+Position=10,0,155,72
+Text=P30(c)i - How many of your total liveborn children are still alive?
+ 
+[Field]
+Name=P30CI
+Position=266,0,295,20
+Item=P30CI,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+  
+[Text]
+Text=P30(c)i - How many of your total liveborn children are still alive?
+ 
+[EndColumn]
+  
+[Column]
 Width=56
   
 [HeaderText]
@@ -2691,8 +2691,11 @@ Position=182,0,295,20
 Item=P31A,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
+DataCaptureType=Date
+CaptureDateFormat=YYYYMMDD
   
 [Text]
+Position=0,0,386,16
 Text=P31(a) - What is the date of birth of your first liveborn child?
  
 [EndColumn]
@@ -2729,8 +2732,11 @@ Position=182,0,295,20
 Item=P31C,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
+DataCaptureType=Date
+CaptureDateFormat=YYYYMMDD
   
 [Text]
+Position=0,0,384,16
 Text=P31(c) - What is the date of birth of your last liveborn child?
  
 [EndColumn]
