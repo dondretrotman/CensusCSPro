@@ -26,15 +26,6 @@ Item=ME_ED
   
 [EndForm]
   
-[Form]
-Name=FORM000
-Label=Login
-Level=1
-Size=500,500
-  
-  
-[EndForm]
-  
 [Level]
 Name=MENU_QUEST
 Label=Menu questionnaire
@@ -63,7 +54,7 @@ Text=User Name
   
 [Field]
 Name=USER_PIN
-Position=126,53,166,73
+Position=126,53,179,73
 Item=USER_PIN,MENU_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -158,14 +149,5 @@ Form=1
 Position=40,228,199,244
 Text=Choose Visitation Record
  
-[EndGroup]
-  
-[Group]
-Required=Yes
-Name=LO_LOGIN
-Label=Login
-Form=2
-LogicControl=No
-Max=1
 [EndGroup]
   

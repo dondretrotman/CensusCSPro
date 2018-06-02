@@ -48,7 +48,6 @@ function launchSupervisorVR()
 	close(pffFile);
 
 	execpff(filename(pffFile), stop);
-
 end;
 
 
@@ -94,7 +93,6 @@ function launchQuestionnaire()
 
 	// ALW - Added stop
 	execpff(filename(pffFile), stop);
-
 end;
 
 //Function to upload all Census and VR data
@@ -125,7 +123,7 @@ function synchroniseDAta()
 		560-583	=>	11;
 	endrecode;
 
-	cases = maketext("%V%V",ME_ED,PAR);		//Get ED number TODO: Its hard coded for now, need to create a dictionary item that gets this from the login
+	cases = maketext("%V%V",ME_ED,PAR);		
 	if syncconnect(Dropbox) then	//connect to dropbox
 		syncdata(BOTH,Census2020_DICT,cases);		//download Census Data, TODO: may need to tweak the universe  
 		syncdata(BOTH,VISITATION_RECORD_DICT,cases);	//Download VR
@@ -135,10 +133,8 @@ end;
 
 PROC MENU_FF
 
-PROC UNAME
-//add code to make sure that what is typed is in the valueset
 PROC USER_PIN
-//add code to make sure that the valueset label matches Username
+//code to make sure that the valueset label matches Username
 postproc
 	if getlabel(USER_PIN_VS1,$) = strip(UNAME) then
 		//success
@@ -146,6 +142,8 @@ postproc
 		errmsg("Username and ID don't match! Please try again");
 		move to UNAME;
 	endif;
+
+//---------------------------------------------------------------
 PROC LOGIN
 onfocus
 	if USER_PIN > 1000 then		//Supervisor
@@ -162,21 +160,27 @@ postproc
 	elseif $ = 9 then
 		stop(1);
 	endif;
+
+//---------------------------------------------------
 PROC INTERVIEWER_MENU
 onfocus
 	$ = notappl;	//don't show the last selection
 	
 postproc
 	if $ = 1 then		//Visitation Record
-		launchVR();	
+		launchVR();
+		move to LOGIN;	
 	elseif $ = 2 then	//interview households
-		skip to CHOOSE_HOUSEHOLD;		//DEBUG: AN ERROR APPEARS AT THIS POINT
+		skip to CHOOSE_HOUSEHOLD;		
 	elseif $ = 3 then	//upload data
 		uploadData();
 	elseif $ = 9 then	//logout
 		stop(1);
 	endif;
 reenter;		//don't leave the menu
+
+
+//-----------------------------------------------------------------------------
 PROC SUPERVISOR_MENU
 onfocus
 	$ = notappl;	//don't show the last selection
@@ -185,13 +189,16 @@ postproc
 	if $ = 1 then		//Download/upload Data
 		synchroniseData();
 	elseif $ = 2 then	//Open VR
-		skip to CHOOSE_VR;		//DEBUG: AN ERROR APPEARS AT THIS POINT
+		skip to CHOOSE_VR;		
 	elseif$ = 3 then
 		skip to CHOOSE_HOUSEHOLD;
 	elseif $ = 9 then	//logout
 		stop(1);
 	endif;
 reenter;		//don't leave the menu
+
+
+//----------------------------------------------------------------------
 PROC CHOOSE_HOUSEHOLD
 
 onfocus
@@ -209,6 +216,9 @@ onfocus
 postproc
 	launchQuestionnaire();
 	move to LOGIN;
+
+
+//-----------------------------------------------------------------------
 PROC CHOOSE_VR
 
 onfocus
@@ -226,3 +236,6 @@ onfocus
 postproc
 	launchSupervisorVR();
 	move to LOGIN;
+
+
+//----------------------------------------------------------------
