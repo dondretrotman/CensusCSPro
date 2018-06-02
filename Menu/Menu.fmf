@@ -22,6 +22,7 @@ Item=CHOOSE_HOUSEHOLD
 Item=CHOOSE_VR
 Item=UNAME
 Item=USER_PIN
+Item=ME_ED
   
 [EndForm]
   
@@ -74,6 +75,18 @@ Text=User Pin
  
   
 [Field]
+Name=ME_ED
+Position=126,80,166,100
+Item=ME_ED,MENU_DICT
+FieldLabelType=DictionaryLabel
+Form=1
+  
+[Text]
+Position=37,83,54,99
+Text=ED
+ 
+  
+[Field]
 Name=LOGIN
 Position=222,105,236,125
 Item=LOGIN,MENU_DICT
@@ -84,7 +97,7 @@ DataCaptureType=DropDown
 Form=1
   
 [Text]
-Position=40,108,76,124
+Position=37,108,73,124
 Text=Login
  
   

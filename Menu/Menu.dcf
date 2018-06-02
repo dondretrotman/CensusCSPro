@@ -15,21 +15,59 @@ Name=MENU_QUEST
 [IdItems]
 
 [Item]
-Label=Menu identification
-Name=MENU_ID
+Label=Parish
+Name=ME_PARISH
 Start=2
-Len=1
+Len=2
+ZeroFill=Yes
+
+[ValueSet]
+Label=Parish
+Name=ME_PARISH_VS1
+Value=1;St. Michael
+Value=2;Christ Church
+Value=3;St. George
+Value=4;St. Philip
+Value=5;St. John
+Value=6;St. James
+Value=7;St. Thomas
+Value=8;St. Joseph
+Value=9;St. Andrew
+Value=10;St. Peter
+Value=11;St. Lucy
+
+[Item]
+Label=ED
+Name=ME_ED
+Start=4
+Len=3
+ZeroFill=Yes
+
+[ValueSet]
+Label=ED
+Name=ME_ED_VS1
+Value=1:181;St. Michael
+Value=182:295;Christ Church
+Value=296:335;St. George
+Value=336:397;St. Philip
+Value=398:418;St. John
+Value=419:479;St. James
+Value=480:508;St. Thomas
+Value=509:521;St. Joseph
+Value=522:532;St. Andrew
+Value=533:559;St. Peter
+Value=560:583;St. Lucy
 
 [Record]
 Label=Menu record
 Name=MENU_REC
 RecordTypeValue='1'
-RecordLen=86
+RecordLen=90
 
 [Item]
 Label=User Name
 Name=UNAME
-Start=3
+Start=7
 Len=50
 DataType=Alpha
 
@@ -41,18 +79,18 @@ Value='dondre.trotman                                    ';Dondre Trotman
 [Item]
 Label=User Pin
 Name=USER_PIN
-Start=53
+Start=57
 Len=3
 
 [ValueSet]
 Label=User Pin
 Name=USER_PIN_VS1
-Value=100;dondre.trotman
+Value=100;DONDRE.TROTMAN
 
 [Item]
 Label=Login
 Name=LOGIN
-Start=56
+Start=60
 Len=1
 
 [ValueSet]
@@ -67,7 +105,7 @@ Value=9;Exit
 [Item]
 Label=Interviewer Menu
 Name=INTERVIEWER_MENU
-Start=57
+Start=61
 Len=1
 
 [ValueSet]
@@ -81,7 +119,7 @@ Value=9;Logout
 [Item]
 Label=Supervisor menu
 Name=SUPERVISOR_MENU
-Start=58
+Start=62
 Len=1
 
 [ValueSet]
@@ -95,13 +133,13 @@ Value=9;Logout
 [Item]
 Label=Choose Household
 Name=CHOOSE_HOUSEHOLD
-Start=59
+Start=63
 Len=14
 DataType=Alpha
 
 [Item]
 Label=Choose Visitation Record
 Name=CHOOSE_VR
-Start=73
+Start=77
 Len=14
 DataType=Alpha
