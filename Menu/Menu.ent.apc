@@ -147,15 +147,18 @@ postproc
 		move to UNAME;
 	endif;
 PROC LOGIN
-
+onfocus
+	if USER_PIN > 1000 then		//Supervisor
+		setvalueset(LOGIN,LOGIN_VS1);
+	elseif USER_PIN < 1000 then	//enumerator
+		setvalueset(LOGIN,LOGIN_VS2);
+	endif;
+	
+postproc
 	if $ = 1 then	//interviewer
 		skip to INTERVIEWER_MENU;
 	elseif $ = 2 then 	//supervisor
 		skip to SUPERVISOR_MENU;
-	elseif $ = 3 then	//senior supervisor
-	
-	elseif $ = 4 then	//zone manager
-	
 	elseif $ = 9 then
 		stop(1);
 	endif;

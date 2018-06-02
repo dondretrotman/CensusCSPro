@@ -62,7 +62,7 @@ Value=560:583;St. Lucy
 Label=Menu record
 Name=MENU_REC
 RecordTypeValue='1'
-RecordLen=90
+RecordLen=91
 
 [Item]
 Label=User Name
@@ -74,38 +74,44 @@ DataType=Alpha
 [ValueSet]
 Label=User Name
 Name=UNAME_VS1
-Value='dondre.trotman                                    ';Dondre Trotman
+Value='DONDRE.TROTMAN                                    ';Dondre Trotman
+Value='SUPERVISOR                                        ';Supervisor
 
 [Item]
 Label=User Pin
 Name=USER_PIN
 Start=57
-Len=3
+Len=4
 
 [ValueSet]
 Label=User Pin
 Name=USER_PIN_VS1
 Value=100;DONDRE.TROTMAN
+Value=1100;SUPERVISOR
 
 [Item]
 Label=Login
 Name=LOGIN
-Start=60
+Start=61
 Len=1
 
 [ValueSet]
 Label=Login
 Name=LOGIN_VS1
-Value=1;Interviewer
-Value=2;Supervisor
-Value=3;Senior Supervisor
-Value=4;Zone Manager
+Value=1;Enumerator Menu
+Value=2;Supervisor Menu
+Value=9;Exit
+
+[ValueSet]
+Label=Login
+Name=LOGIN_VS2
+Value=1;Enumerator Menu
 Value=9;Exit
 
 [Item]
 Label=Interviewer Menu
 Name=INTERVIEWER_MENU
-Start=61
+Start=62
 Len=1
 
 [ValueSet]
@@ -119,7 +125,7 @@ Value=9;Logout
 [Item]
 Label=Supervisor menu
 Name=SUPERVISOR_MENU
-Start=62
+Start=63
 Len=1
 
 [ValueSet]
@@ -133,13 +139,13 @@ Value=9;Logout
 [Item]
 Label=Choose Household
 Name=CHOOSE_HOUSEHOLD
-Start=63
+Start=64
 Len=14
 DataType=Alpha
 
 [Item]
 Label=Choose Visitation Record
 Name=CHOOSE_VR
-Start=77
+Start=78
 Len=14
 DataType=Alpha
