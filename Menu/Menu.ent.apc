@@ -2,6 +2,9 @@
 PROC GLOBAL
 //-----------------Variable Declaration-------------------
 file	pffFile;
+numeric EDNUM;
+numeric PAR;
+string	cases;
 
 //-------------------Array Declaration--------------------
 array string vsCode(99);
@@ -107,6 +110,21 @@ function uploadData()
 	endif;
 end;
 
+//Function to download Census and VR data for an ED
+function synchroniseDAta()
+	recode EDNUM => PAR;
+		1-181	=>	1;
+		182-583	=>	2;
+	endrecode;
+
+	cases = maketext("%V%V",EDNUM,PAR);		//Get ED number TODO: Its hard coded for now, need to create a dictionary item that gets this from the login
+	if syncconnect(Dropbox) then	//connect to dropbox
+		syncdata(BOTH,Census2020_DICT,cases);		//download Census Data, TODO: may need to tweak the universe  
+		syncdata(BOTH,VISITATION_RECORD_DICT,cases);	//Download VR
+		syncDisconnect();
+	endif;
+end;
+
 PROC MENU_FF
 
 PROC UNAME
@@ -146,8 +164,8 @@ onfocus
 	$ = notappl;	//don't show the last selection
 	
 postproc
-	if $ = 1 then		//Download Data
-		
+	if $ = 1 then		//Download/upload Data
+		synchroniseData();
 	elseif $ = 2 then	//Open VR
 		skip to CHOOSE_VR;		//DEBUG: AN ERROR APPEARS AT THIS POINT
 	elseif$ = 3 then
