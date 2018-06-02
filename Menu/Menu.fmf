@@ -13,13 +13,15 @@ File=.\Menu.dcf
 Name=FORM001
 Label=Menu record
 Level=1
-Size=368,194
+Size=561,270
   
 Item=LOGIN
 Item=INTERVIEWER_MENU
 Item=SUPERVISOR_MENU
 Item=CHOOSE_HOUSEHOLD
 Item=CHOOSE_VR
+Item=UNAME
+Item=USER_PIN
   
 [EndForm]
   
@@ -45,70 +47,102 @@ LogicControl=No
 Max=1
   
 [Field]
+Name=UNAME
+Position=126,23,536,43
+Item=UNAME,MENU_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+Form=1
+  
+[Text]
+Position=37,26,106,42
+Text=User Name
+ 
+  
+[Field]
+Name=USER_PIN
+Position=126,53,166,73
+Item=USER_PIN,MENU_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+Form=1
+  
+[Text]
+Position=37,56,90,72
+Text=User Pin
+ 
+  
+[Field]
 Name=LOGIN
-Position=222,29,237,49
+Position=222,105,236,125
 Item=LOGIN,MENU_DICT
 HideInCaseTree=Yes
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=1
   
 [Text]
-Position=40,32,76,48
+Position=40,108,76,124
 Text=Login
  
   
 [Field]
 Name=INTERVIEWER_MENU
-Position=222,59,237,79
+Position=222,135,236,155
 Item=INTERVIEWER_MENU,MENU_DICT
 HideInCaseTree=Yes
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=1
   
 [Text]
-Position=40,62,151,78
+Position=40,138,151,154
 Text=Interviewer Menu
  
   
 [Field]
 Name=SUPERVISOR_MENU
-Position=222,89,237,109
+Position=222,165,236,185
 Item=SUPERVISOR_MENU,MENU_DICT
 HideInCaseTree=Yes
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=1
   
 [Text]
-Position=40,92,148,108
+Position=40,168,148,184
 Text=Supervisor menu
  
   
 [Field]
 Name=CHOOSE_HOUSEHOLD
-Position=188,119,385,139
+Position=188,195,371,215
 Item=CHOOSE_HOUSEHOLD,MENU_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=RadioButton
 Form=1
   
 [Text]
-Position=40,122,158,138
+Position=40,198,158,214
 Text=Choose Household
  
   
 [Field]
 Name=CHOOSE_VR
-Position=228,149,425,169
+Position=228,225,411,245
 Item=CHOOSE_VR,MENU_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=RadioButton
 Form=1
   
 [Text]
-Position=40,152,199,168
+Position=40,228,199,244
 Text=Choose Visitation Record
  
 [EndGroup]

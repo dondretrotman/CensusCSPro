@@ -24,12 +24,35 @@ Len=1
 Label=Menu record
 Name=MENU_REC
 RecordTypeValue='1'
-RecordLen=33
+RecordLen=86
+
+[Item]
+Label=User Name
+Name=UNAME
+Start=3
+Len=50
+DataType=Alpha
+
+[ValueSet]
+Label=User Name
+Name=UNAME_VS1
+Value='dondre.trotman                                    ';Dondre Trotman
+
+[Item]
+Label=User Pin
+Name=USER_PIN
+Start=53
+Len=3
+
+[ValueSet]
+Label=User Pin
+Name=USER_PIN_VS1
+Value=100;dondre.trotman
 
 [Item]
 Label=Login
 Name=LOGIN
-Start=3
+Start=56
 Len=1
 
 [ValueSet]
@@ -44,7 +67,7 @@ Value=9;Exit
 [Item]
 Label=Interviewer Menu
 Name=INTERVIEWER_MENU
-Start=4
+Start=57
 Len=1
 
 [ValueSet]
@@ -58,7 +81,7 @@ Value=9;Logout
 [Item]
 Label=Supervisor menu
 Name=SUPERVISOR_MENU
-Start=5
+Start=58
 Len=1
 
 [ValueSet]
@@ -72,13 +95,13 @@ Value=9;Logout
 [Item]
 Label=Choose Household
 Name=CHOOSE_HOUSEHOLD
-Start=6
+Start=59
 Len=14
 DataType=Alpha
 
 [Item]
 Label=Choose Visitation Record
 Name=CHOOSE_VR
-Start=20
+Start=73
 Len=14
 DataType=Alpha

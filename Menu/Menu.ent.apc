@@ -109,6 +109,10 @@ end;
 
 PROC MENU_FF
 
+PROC UNAME
+//add code to make sure that what is typed is in the valueset
+PROC USER_PIN
+//add code to make sure that the valueset label matches Username
 PROC LOGIN
 
 	if $ = 1 then	//interviewer
