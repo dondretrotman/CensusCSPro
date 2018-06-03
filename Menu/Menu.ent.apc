@@ -100,9 +100,9 @@ function uploadData()
 	if syncconnect(Dropbox) then		//connect to dropbox
 		syncdata(PUT,Census2020_DICT);	//Upload Census data
 		syncdata(PUT,VISITATION_RECORD_DICT);	//Upload VR
-		syncfile(PUT,"../Data Entry/Census2020Ver2.cslog","/CSPro/CensusLogs/censuslog.cslog");	//upload Questionnaire log file
-		syncfile(PUT,"../Visitation record/Visitation Record.cslog","/CSPro/VRLogs/vrlog.cslog");	//upload VR log
-		syncfile(PUT,"../Menu/Menu.cslog","/CSPro/MenuLogs/Menulog.cslog");		//Upload menu log
+		syncfile(PUT,"../Data Entry/Census2020Ver2.cslog",maketext("/CSPro/CensusLogs/censuslog%d.cslog",USER_PIN));	//upload Questionnaire log file
+		syncfile(PUT,"../Visitation record/Visitation Record.cslog",maketext("/CSPro/VRLogs/vrlog%d.cslog",USER_PIN));	//upload VR log
+		syncfile(PUT,"../Menu/Menu.cslog",maketext("/CSPro/MenuLogs/Menulog%d.cslog",USER_PIN));		//Upload menu log
 		syncdisconnect();
 	endif;
 end;
