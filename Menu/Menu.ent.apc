@@ -2,8 +2,10 @@
 PROC GLOBAL
 //-----------------Variable Declaration-------------------
 file	pffFile;		//creates .pff file
+file	loginfile;		//saves login status in a file
 numeric PAR;			//temp Parish variable
 string	cases;			//case id
+string status;			//holds current login status
 
 //-------------------Array Declaration--------------------
 array string vsCode(99);
@@ -131,13 +133,42 @@ function synchroniseDAta()
 	endif;
 end;
 
+//Function that writes login status to a file
+function writeloginStatus(x);
+	string loginFilename = pathname(application)+"loginflag.dat";
+	setfile(loginfile,loginFilename,create);
+
+	filewrite(loginfile,"%d",x);	//write value of "x" to file. 1=logged in, 0=logged out
+	
+	close(loginfile);
+end;
+
+//Function that reads login status and returns 1 (logged in) or 0 (not logged in)
+function readloginstatus();
+	string loginfilename = pathname(application)+"loginflag.dat";	//set file path
+	setfile(loginfile, loginfilename);		//set file handle
+	fileread(loginfile, status);			//read file
+	close(loginfile);						//close file
+	
+	readloginstatus = tonumber(status);		//set function to file contents
+end;
+
 PROC MENU_FF
 
+PROC UNAME
+preproc
+	if readloginstatus() = 1 then		//if already logged in
+		skip to LOGIN;					//just login
+	elseif readloginstatus() = 0 then	//if not, continue logging in
+		
+	endif;
+
+//------------------------------------------------------------
 PROC USER_PIN
 //code to make sure that the valueset label matches Username
 postproc
 	if getlabel(USER_PIN_VS1,$) = strip(UNAME) then
-		//success
+		writeLoginStatus(1);//success
 	else
 		errmsg("Username and ID don't match! Please try again");
 		move to UNAME;
@@ -158,6 +189,7 @@ postproc
 	elseif $ = 2 then 	//supervisor
 		skip to SUPERVISOR_MENU;
 	elseif $ = 9 then
+		writeloginstatus(0);
 		stop(1);
 	endif;
 
@@ -175,6 +207,7 @@ postproc
 	elseif $ = 3 then	//upload data
 		uploadData();
 	elseif $ = 9 then	//logout
+		writeloginstatus(0);
 		stop(1);
 	endif;
 reenter;		//don't leave the menu
@@ -193,6 +226,7 @@ postproc
 	elseif$ = 3 then
 		skip to CHOOSE_HOUSEHOLD;
 	elseif $ = 9 then	//logout
+		writeloginstatus(0);
 		stop(1);
 	endif;
 reenter;		//don't leave the menu
