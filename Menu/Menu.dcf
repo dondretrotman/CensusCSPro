@@ -37,8 +37,6 @@ Label=Login
 Name=LOGIN_VS1
 Value=1;Interviewer
 Value=2;Supervisor
-Value=3;Senior Supervisor
-Value=4;Zone Manager
 Value=9;Exit
 
 [Item]
