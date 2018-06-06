@@ -1541,8 +1541,13 @@ Start=141
 Len=3
 
 [ValueSet]
-Label=CARICOM Countries
+Label=P17(a) - In which country were you born?
 Name=P17A_VS1
+Link=110302064
+
+[ValueSet]
+Label=CARICOM Countries
+Name=P17A_VS5
 Link=80748232
 Value=24;Antigua and Barbuda
 Value=35;Bahamas
@@ -1682,6 +1687,7 @@ Len=3
 [ValueSet]
 Label=All Countries
 Name=P20B_VS1
+Link=110302064
 Value=1;Canada
 Value=2;U.S.A
 Value=3:22;Other Latin America

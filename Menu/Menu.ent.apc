@@ -10,6 +10,7 @@ file	loginfile;		//saves login status in a file
 numeric PAR;			//temp Parish variable
 string	cases;			//case id
 string status;			//holds current login status
+numeric usertype;		//sets user type
 
 //-------------------Array Declaration--------------------
 array string vsCode(99);
@@ -145,7 +146,7 @@ function writeloginStatus(x);
 	string loginFilename = pathname(application)+"loginflag.dat";
 	setfile(loginfile,loginFilename,create);
 
-	filewrite(loginfile,"%d",x);	//write value of "x" to file. 1=logged in, 0=logged out
+	filewrite(loginfile,"%d%03d%04d%s",x,visualvalue(ME_ED),USER_PIN,strip(UNAME));	//write value of "x" to file. 1=logged in, 0=logged out
 	
 	close(loginfile);
 end;
@@ -157,7 +158,10 @@ function readloginstatus();
 	fileread(loginfile, status);			//read file
 	close(loginfile);						//close file
 	
-	readloginstatus = tonumber(status);		//set function to file contents
+	readloginstatus = tonumber(status[1:1]);		//set function to file contents
+	ME_ED = tonumber(status[2:3]);
+	USER_PIN = tonumber(status[5:4]);
+	UNAME = status[9];
 end;
 
 PROC MENU_FF
@@ -165,7 +169,7 @@ PROC MENU_FF
 PROC UNAME
 preproc
 	if readloginstatus() = 1 then		//if already logged in
-		skip to LOGIN;					//just login
+		skip to ME_ED;					//just login
 	elseif readloginstatus() = 0 then	//if not, continue logging in
 		
 	endif;
@@ -181,12 +185,22 @@ postproc
 		move to UNAME;
 	endif;
 
+
 //---------------------------------------------------------------
+PROC ME_ED
+{onfocus
+	if USER_PIN > 1000 then		//Supervisor
+		usertype = 2;
+	elseif USER_PIN < 1000 then	//enumerator
+		usertype = 1;
+	endif;
+	writeloginstatus(1);
+}
 PROC LOGIN
 onfocus
-	if USER_PIN > 1000 then		//Supervisor
+	if visualvalue(USER_PIN) > 1000 then		//Supervisor
 		setvalueset(LOGIN,LOGIN_VS1);
-	elseif USER_PIN < 1000 then	//enumerator
+	elseif visualvalue(USER_PIN) < 1000 then	//enumerator
 		setvalueset(LOGIN,LOGIN_VS2);
 	endif;
 	
