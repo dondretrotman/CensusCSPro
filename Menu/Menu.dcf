@@ -119,7 +119,7 @@ Label=Interviewer Menu
 Name=INTERVIEWER_MENU_VS1
 Value=1;Visitation Record
 Value=2;Census Questionnaire
-Value=3;Upload data
+Value=3;Upload data\Update app
 Value=9;Logout
 
 [Item]
@@ -131,7 +131,7 @@ Len=1
 [ValueSet]
 Label=Supervisor menu
 Name=SUPERVISOR_MENU_VS1
-Value=1;Download data
+Value=1;Synchronize data
 Value=2;Open Visitation Record
 Value=3;Open Questionnaire
 Value=9;Logout

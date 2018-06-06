@@ -5,6 +5,22 @@ Version=CSPro 7.1
 EN=English
 
 [QUESTION]
+Field=MENU_DICT.CHOOSE_HOUSEHOLD
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Enumeration District = %VI_ED%\par
+EN=}
+
+[QUESTION]
+Field=MENU_DICT.CHOOSE_VR
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 ED = %VI_ED%\par
+EN=}
+
+[QUESTION]
 Field=MENU_DICT.LOGIN
 Condition=USER_PIN < 1000
 EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}

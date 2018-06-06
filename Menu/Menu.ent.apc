@@ -5,6 +5,9 @@ Notes:
  - Supervisor IDs must be 4 digits starting with 1 and foll0wed by three digits
  - Enumerator IDs must be 4 digits starting with 0 and followed by three digits
  - this is to avoid possible clashes since each ID must be unique in order for the login to work. A different solution can be found if needed but for now this works based on the information that I have.
+TODO:
+ - Need to be able to specify ED for Visitation Record and Household Questionnaires
+ - Need to pass certain variables to the visitation record and questionnaire. i.e. interview status, Enumerator ID, Supervisor ID
 }
 PROC GLOBAL
 //-----------------Variable Declaration-------------------
@@ -108,7 +111,7 @@ end;
 //Function to upload all Census and VR data
 function uploadData()
 	if syncconnect(Dropbox) then		//connect to dropbox
-		syncdata(PUT,Census2020_DICT);	//Upload Census data
+		syncdata(PUT,CENSUS2020_DICT);	//Upload Census data
 		syncdata(PUT,VISITATION_RECORD_DICT);	//Upload VR
 		syncfile(PUT,"../Data Entry/Census2020Ver2.cslog",maketext("/CSPro/Logs/CensusLogs/censuslog%d.cslog",USER_PIN));	//upload Questionnaire log file
 		syncfile(PUT,"../Visitation record/Visitation Record.cslog",maketext("/CSPro/Logs/VRLogs/vrlog%d.cslog",USER_PIN));	//upload VR log
@@ -122,7 +125,7 @@ end;
 
 //Function to download Census and VR data for an ED
 function synchroniseDAta()
-	recode ME_ED => PAR;
+	recode ME_ED => ME_PARISH;
 		1-181	=>	1;
 		182-295	=>	2;
 		296-335	=>	3;
@@ -136,9 +139,10 @@ function synchroniseDAta()
 		560-583	=>	11;
 	endrecode;
 
-	cases = maketext("%V%V",ME_ED,PAR);		
+	cases = maketext("%V%V",ME_PARISH,ME_ED);
+	errmsg("sychronising the following cases: Parish = %V, ED = %V",ME_PARISH,ME_ED);		
 	if syncconnect(Dropbox) then	//connect to dropbox
-		syncdata(BOTH,Census2020_DICT,cases);		//download Census Data, TODO: may need to tweak the universe  
+		syncdata(BOTH,CENSUS2020_DICT,cases);		//download Census Data, TODO: may need to tweak the universe  
 		syncdata(BOTH,VISITATION_RECORD_DICT,cases);	//Download VR
 		syncDisconnect();
 	endif;
@@ -263,7 +267,7 @@ onfocus
 	numeric nextEntry = 1;
 	forcase VISITATION_RECORD_DICT do
 		vscode(nextEntry) = maketext("%v%v%v%v%v",VI_PARISH,VI_ED,VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD);
-		vsLabel(nextEntry) = maketext("%v%v%v: %V (%v)",VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD,strip(VI_LAST_NAME),getlabel(VI_STATUS_VS1,VI_STATUS));
+		vsLabel(nextEntry) = maketext("%v%v%v: %V, %V (%v)",VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD,strip(VI_LAST_NAME),strip(VI_FIRST_NAME),getlabel(VI_STATUS_VS1,VI_STATUS));
 		inc(nextEntry);
 	endfor;
 	
@@ -283,7 +287,7 @@ onfocus
 	numeric nextEntry = 1;
 	forcase VISITATION_RECORD_DICT do
 		vscode(nextEntry) = maketext("%v%v%v%v%v",VI_PARISH,VI_ED,VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD);
-		vsLabel(nextEntry) = maketext("%v%v%v: %V (%v)",VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD,strip(VI_LAST_NAME),getlabel(VI_STATUS_VS1,VI_STATUS));
+		vsLabel(nextEntry) = maketext("%v%v%v: %V, %V (%v)",VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD,strip(VI_LAST_NAME),strip(VI_FIRST_NAME),getlabel(VI_STATUS_VS1,VI_STATUS));
 		inc(nextEntry);
 	endfor;
 	
