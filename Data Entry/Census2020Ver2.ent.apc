@@ -168,11 +168,11 @@ preproc
 PROC PART_A
 //show names in label fields when first starting the questionnaire
 onfocus
-	{do i = 1 while i <= totocc(POPULATION000)		//DEBUG: totocc and count all return 0 if executed before the roster that they are referring to
+	do i = 1 while i <= totocc(POPULATION000)		//DEBUG: totocc and count all return 0 if executed before the roster that they are referring to
 		setocclabel(POPULATION000(i), strip(FIRST_NAME(i)));
 		setocclabel(POPULATION001(i), strip(FIRST_NAME(i)));	//DEBUG: each occurence label is the first one
 	enddo;
-}	
+	
 	if visualvalue(HNOPERSONS) = notappl then
 		HNOPERSONS = 0;
 	endif;
@@ -411,7 +411,7 @@ PROC H18
 
 //----------------------------------------------------------------------
 PROC H19E
-onfocus
+preproc		//DEBUG: (used to be onfocus) stops here when using navigation
 	if not H19B in 3,4 then		//if not rented or leased
 		skip to H20;			//skip to Water supply
 	endif;
@@ -532,12 +532,12 @@ PROC ECOUNTRY
 	
 PROC POPULATION001
 //show names in label fields when first starting the questionnaire
-{
+
 onfocus
 	do i = 1 while i <= totocc(POPULATION001)
 		setocclabel(POPULATION001(i), strip(FIRST_NAME(i)));
 	enddo;
-}
+
 Postproc	//should run after the last person has been entered
 	if visualvalue(END_TIME) <> notappl then		//If no end time
 		END_TIME = systime("HHMM");						//then update the end time

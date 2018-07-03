@@ -19,6 +19,7 @@ LOGINLIST_DICT=..\Data\Login.csdb|CSPRODB
 VISITATION_RECORD_DICT=..\Data\VisitationRecord.csdb|CSPRODB
 
 [UserFiles]
+LOGINFILE=
 PFFFILE=
 
 [Parameters]

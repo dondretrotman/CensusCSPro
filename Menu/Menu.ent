@@ -4,6 +4,7 @@ Label=MENU
 Name=MENU
 AppType=DataEntry
 OperatorID=No
+ShowEndCaseDialog=No
 CAPI=Yes
 CAPIFont1=-016 0000 0000 0000 0400 0000 0000 0000 0000 0000 0000 0000 0000 Arial
 CAPIFont2=-016 0000 0000 0000 0400 0000 0000 0000 0000 0000 0000 0000 0000 Arial
@@ -34,7 +35,6 @@ ParadataCollectEvent=operator_selection_event
 ParadataCollectEvent=property_event
 [External Dictionaries]
 File=..\Visitation record\Visitation Record.dcf
-File=..\Logins\Loginlist.dcf
 File=..\Census2020.dcf
 [AppCode]
 File=.\Menu.ent.apc
@@ -47,7 +47,6 @@ File=.\Menu.fmf
 [Dictionary Types]
 Dict-Type=.\Menu.dcf,Input,.\Menu.fmf
 Dict-Type=..\Visitation record\Visitation Record.dcf,External
-Dict-Type=..\Logins\Loginlist.dcf,External
 Dict-Type=..\Census2020.dcf,External
 [Sync]
 Server=http://csweb.teleyah.com/api

@@ -4,3 +4,83 @@ Version=CSPro 7.1
 [LANGUAGES]
 EN=English
 
+[QUESTION]
+Field=MENU_DICT.CHOOSE_HOUSEHOLD
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Enumeration District = %VI_ED%\par
+EN=}
+
+[QUESTION]
+Field=MENU_DICT.CHOOSE_VR
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 ED = %VI_ED%\par
+EN=}
+
+[QUESTION]
+Field=MENU_DICT.LOGIN
+Condition=USER_PIN < 1000
+EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
+EN={\colortbl;\red0\green0\blue0;}
+EN={\*\generator Wine Riched20 2.0;}
+EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Logged in as \b %UNAME%\b0  (Enumerator). ED = \b %ME_ED%\par
+EN=\b0 \par
+EN=}
+
+[QUESTION]
+Field=MENU_DICT.LOGIN
+Condition=USER_PIN > 1000
+EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
+EN={\colortbl;\red0\green0\blue0;}
+EN={\*\generator Wine Riched20 2.0;}
+EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Logged in as \b %UNAME%\b0  (Supervisor). ED = \b %ME_ED%\par
+EN=}
+
+[QUESTION]
+Field=MENU_DICT.ME_ED
+EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
+EN={\colortbl;\red0\green0\blue0;}
+EN={\*\generator Wine Riched20 2.0;}
+EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Enter the Enumeration District that you will be working in.\par
+EN=}
+
+[QUESTION]
+Field=MENU_DICT.UNAME
+EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
+EN={\colortbl;\red0\green0\blue0;}
+EN={\*\generator Wine Riched20 2.0;}
+EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Please enter your username in the format: \b firstname.lastname\b0 \par
+EN=}
+
+[QUESTION]
+Field=MENU_DICT.USER_PIN
+EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
+EN={\colortbl;\red0\green0\blue0;}
+EN={\*\generator Wine Riched20 2.0;}
+EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Please enter the ID number for \b %UNAME%\par
+EN=\b0 Append "1" to the beginning of supervisor ID\par
+EN=}
+
+[HELP]
+Field=MENU_DICT.UNAME
+EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
+EN={\colortbl;\red0\green0\blue0;}
+EN={\*\generator Wine Riched20 2.0;}
+EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Examples: \par
+EN=CLARK.KENT, \par
+EN=BRUCE.WAYNE, \par
+EN=DIANA.PRINCE\par
+EN=}
+
+[HELP]
+Field=MENU_DICT.USER_PIN
+EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
+EN={\colortbl;\red0\green0\blue0;}
+EN={\*\generator Wine Riched20 2.0;}
+EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Enumerator ID = 0999\par
+EN=Supervisor ID = 1999\par
+EN=}
+

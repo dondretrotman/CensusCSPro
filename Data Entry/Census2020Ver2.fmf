@@ -2198,9 +2198,10 @@ Position=252,0,295,20
 Item=P20B,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
-DataCaptureType=DropDown
+DataCaptureType=ComboBox
   
 [Text]
+Position=0,0,214,16
 Text=P20(b) - If YES, in which country?
  
 [EndColumn]
@@ -2951,8 +2952,10 @@ Position=238,0,295,20
 Item=P37,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
   
 [Text]
+Position=0,0,623,16
 Text=P37 - What was your main type of job or occupation during the 12 months ending 30th April 2020
  
 [EndColumn]
