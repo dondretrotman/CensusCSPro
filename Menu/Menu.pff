@@ -1,7 +1,7 @@
 ﻿[Run Information]
 Version=CSPro 7.1
 AppType=Entry
-Description=Continuous Labour Force Sample Survey
+Description=Barbados Census 2020
 
 [DataEntryInit]
 StartMode=Add
@@ -14,13 +14,14 @@ InputData=|NONE
 Paradata=..\Data\Menu.cslog
 
 [ExternalFiles]
-ENUMERATIONREPORT_DICT=..\Data\enumrpt.csdb|CSPRODB
-LABOURFORCE_DICT=..\Data\data.csdb|CSPRODB
-LISTING_DICT=..\Data\Controlsheet.csdb|CSPRODB
+CENSUS2020_DICT=..\Data\CensusData.csdb|CSPRODB
+LOGINLIST_DICT=..\Data\Login.csdb|CSPRODB
+VISITATION_RECORD_DICT=..\Data\VisitationRecord.csdb|CSPRODB
 
 [UserFiles]
 LOGINFILE=
 PFFFILE=
 
 [Parameters]
+Parameter=onexit = ..\Menu\Menu.pff
 

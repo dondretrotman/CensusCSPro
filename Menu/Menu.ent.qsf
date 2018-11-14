@@ -5,149 +5,82 @@ Version=CSPro 7.1
 EN=English
 
 [QUESTION]
-Field=MENU_DICT.CHOOSE_ED
-EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
-EN={\colortbl ;\red0\green0\blue0;}
-EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 Which Enumeration District data would you like to download?\par
-EN=}
-
-[QUESTION]
-Field=MENU_DICT.CHOOSE_ROUND
-EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
-EN={\colortbl ;\red0\green0\blue0;}
-EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 Choose Round to download\par
-EN=}
-
-[QUESTION]
-Field=MENU_DICT.LOGIN
-Condition=USERID < 90
-EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
-EN={\colortbl ;\red0\green0\blue0;\red0\green0\blue255;}
-EN={\*\generator Riched20 10.0.17134}\viewkind4\uc1
-EN=\pard\cf1\fs24 Logged in as \b %username%\b0  (Enumerator) \par
-EN=Your Enumeration District is \b %ME_ED%\par
-EN=\cf2\b0 Version: %VERSION%\cf1\b\par
-EN=\par
-EN=\b0 Please choose an action\par
-EN=\cf2 Press the question mark symbol (?) for help\cf1\par
-EN=}
-
-[QUESTION]
-Field=MENU_DICT.LOGIN
-Condition=USERID >= 90
-EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
-EN={\colortbl ;\red0\green0\blue0;\red0\green0\blue255;}
-EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 Logged in as \b %username%\b0  (Supervisor) \par
-EN=Your Enumeration District is \b %ME_ED%\par
-EN=\cf2\b0 Version: %VERSION%\cf1\par
-EN=\par
-EN=Please choose an action\par
-EN=\cf2 Press the question mark symbol (?) for help\cf1\par
-EN=}
-
-[QUESTION]
-Field=MENU_DICT.ME_ED
-EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
-EN={\colortbl ;\red0\green0\blue0;}
-EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 Enter the Enumeration District that you will be working on\par
-EN=}
-
-[QUESTION]
-Field=MENU_DICT.UNAME
-EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
-EN={\colortbl ;\red0\green0\blue0;\red0\green0\blue255;}
-EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 Welcome to the Continuous Labour Force Sample Survey. Please enter your username in the format FirstInitialLastName (e.g. John Doe types "JDOE")\par
-EN=\par
-EN=\cf2 Version: %VERSION%\cf1\par
-EN=}
-
-[QUESTION]
-Field=MENU_DICT.USERID
-EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
-EN={\colortbl ;\red0\green0\blue0;}
-EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 Please enter the ID number for \b %UNAME%\b0\par
-EN=}
-
-[HELP]
-Field=MENU_DICT.LOGIN
-EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
-EN={\colortbl ;\red0\green0\blue0;}
-EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 Interviewer - Login as an interviewer\par
-EN=Supervisor - Login as a supervisor\par
-EN=}
-
-[HELP]
-Field=MENU_DICT.LOGIN
-Condition=USERID < 90
-EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
-EN={\colortbl ;\red0\green0\blue0;}
-EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 Enumerator menu - Work as an interviewer\par
-EN=Change ED - Change from ED %ME_ED% to another ED\par
-EN=Update App - Get the latest updates\par
-EN=Upload Data - Upload tablet data\par
-EN=Logout - Logout and close the app\par
-EN=}
-
-[HELP]
-Field=MENU_DICT.LOGIN
-Condition=USERID >= 90
-EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
-EN={\colortbl ;\red0\green0\blue0;}
-EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 Enumerator menu - Work as an interviewer\par
-EN=Supervisor menu - Work as a supervisor\par
-EN=Change ED - Change from ED %ME_ED% to another ED\par
-EN=Update App - Get the latest updates\par
-EN=Upload Data - Upload tablet data\par
-EN=Logout - Logout and close the app\par
-EN=\par
-EN=}
-
-[HELP]
-Field=MENU_DICT.SUPERVISOR_MENU
-EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
-EN={\colortbl ;\red0\green0\blue0;}
-EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 Download Data - Download data for ED %ME_ED%\par
-EN=Open Control Sheet - Opens a control sheet for ED %ME_ED%\par
-EN=Open Questionnaire - Opens a questionnaire for ED %ME_ED%\par
-EN=Delete Questionnaire - Flags a questionnaire for deletion. Please note that this does not actually delete the questionnaire\par
-EN=View Enumeration Report - View a summary of work done in ED %ME_ED%\par
-EN=Back - Go back to Login Menu\par
-EN=}
-
-[HELP]
 Field=MENU_DICT.CHOOSE_HOUSEHOLD
 EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
 EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 ID format is ED-Building#-Household#: Last name (Completion status)\par
-EN=\par
-EN=Completion status can be one of the following:\par
-EN=Blank - The questionnaire is new\par
-EN=Part responding - The questionnaire is partially complete\par
-EN=Complete - the questionnaire has been completed\par
+EN=\pard\cf1\fs24 Enumeration District = %VI_ED%\par
 EN=}
 
-[HELP]
-Field=MENU_DICT.INTERVIEWER_MENU
+[QUESTION]
+Field=MENU_DICT.CHOOSE_VR
 EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
 EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 View\\Fill Questionnaire - See a list of all available questionnaires and fill them out\par
-EN=Fill Control Sheet - Fill out a new control sheet\par
-EN=View Control Sheet - View existing control sheets\par
-EN=Download Control Sheets - Download control sheets that were filled out and uploaded from a computer\par
-EN=View Enumeration Report - View a report on completed households\par
-EN=Upload Data - Upload data to server. Please be sure to have internet access first\par
-EN=Back - Go back to the previous menu\par
+EN=\pard\cf1\fs24 ED = %VI_ED%\par
+EN=}
+
+[QUESTION]
+Field=MENU_DICT.LOGIN
+Condition=USERID < 1000
+EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
+EN={\colortbl;\red0\green0\blue0;}
+EN={\*\generator Wine Riched20 2.0;}
+EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Logged in as \b %UNAME%\b0  (Enumerator). ED = \b %ME_ED%\par
+EN=\b0 \par
+EN=}
+
+[QUESTION]
+Field=MENU_DICT.LOGIN
+Condition=USERID > 1000
+EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
+EN={\colortbl;\red0\green0\blue0;}
+EN={\*\generator Wine Riched20 2.0;}
+EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Logged in as \b %UNAME%\b0  (Supervisor). ED = \b %ME_ED%\par
+EN=}
+
+[QUESTION]
+Field=MENU_DICT.ME_ED
+EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
+EN={\colortbl;\red0\green0\blue0;}
+EN={\*\generator Wine Riched20 2.0;}
+EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Enter the Enumeration District that you will be working in.\par
+EN=}
+
+[QUESTION]
+Field=MENU_DICT.UNAME
+EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
+EN={\colortbl;\red0\green0\blue0;}
+EN={\*\generator Wine Riched20 2.0;}
+EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Please enter your username in the format: \b firstname.lastname\b0 \par
+EN=}
+
+[QUESTION]
+Field=MENU_DICT.USERID
+EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
+EN={\colortbl;\red0\green0\blue0;}
+EN={\*\generator Wine Riched20 2.0;}
+EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Please enter the ID number for \b %UNAME%\par
+EN=\b0 Append "1" to the beginning of supervisor ID\par
+EN=}
+
+[HELP]
+Field=MENU_DICT.UNAME
+EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
+EN={\colortbl;\red0\green0\blue0;}
+EN={\*\generator Wine Riched20 2.0;}
+EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Examples: \par
+EN=CLARK.KENT, \par
+EN=BRUCE.WAYNE, \par
+EN=DIANA.PRINCE\par
+EN=}
+
+[HELP]
+Field=MENU_DICT.USERID
+EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
+EN={\colortbl;\red0\green0\blue0;}
+EN={\*\generator Wine Riched20 2.0;}
+EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Enumerator ID = 0999\par
+EN=Supervisor ID = 1999\par
 EN=}
 

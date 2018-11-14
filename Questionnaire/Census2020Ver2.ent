@@ -1,20 +1,18 @@
 ﻿[CSPro Application]
 Version=CSPro 7.1
-Label=MENU
-Name=MENU
+Label=CENSUS2020VER2
+Name=CENSUS2020VER2
 AppType=DataEntry
 OperatorID=No
-ShowEndCaseDialog=No
+PartialSave=Yes
+AutoPartialSaveMinutes=5
 CAPI=Yes
 CAPIFont1=-016 0000 0000 0000 0400 0000 0000 0000 0000 0000 0000 0000 0000 Arial
 CAPIFont2=-016 0000 0000 0000 0400 0000 0000 0000 0000 0000 0000 0000 0000 Arial
 CAPIFont1Color=0
 CAPIFont2Color=16711680
-CaseTree=Never
-CenterForms=Yes
-CreateListing=No
-CreateLog=No
-AutoAdvanceOnSelection=Yes
+NotesDeleteOtherOperators=No
+NotesEditOtherOperators=No
 ShowErrorMessageNumbers=No
 ParadataCollection=SomeEvents
 ParadataRecordValues=Yes
@@ -23,7 +21,6 @@ ParadataDeviceStateMinutes=20
 ParadataGpsLocationMinutes=5
 ParadataCollectEvent=data_source_event
 ParadataCollectEvent=device_state_event
-ParadataCollectEvent=external_application_event
 ParadataCollectEvent=field_entry_event
 ParadataCollectEvent=field_movement_event
 ParadataCollectEvent=field_validation_event
@@ -33,22 +30,16 @@ ParadataCollectEvent=message_event
 ParadataCollectEvent=note_event
 ParadataCollectEvent=operator_selection_event
 ParadataCollectEvent=property_event
-[External Dictionaries]
-File=..\Visitation record\Visitation Record.dcf
-File=..\Census2020.dcf
 [AppCode]
-File=.\Menu.ent.apc
+File=.\Census2020Ver2.ent.apc
 [Message]
-File=.\Menu.ent.mgf
+File=.\Census2020Ver2.ent.mgf
 [Help]
-File=.\Menu.ent.qsf
+File=.\Census2020Ver2.ent.qsf
 [Forms]
-File=.\Menu.fmf
+File=.\Census2020Ver2.fmf
 [Dictionary Types]
-Dict-Type=.\Menu.dcf,Input,.\Menu.fmf
-Dict-Type=..\Visitation record\Visitation Record.dcf,External
-Dict-Type=..\Census2020.dcf,External
+Dict-Type=.\Census2020.dcf,Input,.\Census2020Ver2.fmf
 [Sync]
-Server=http://csweb.teleyah.com/api
+Server=Dropbox
 Direction=Put
-AppDownloadPath=/apps/MYAPP/

@@ -1,0 +1,26 @@
+﻿[Run Information]
+Version=CSPro 7.1
+AppType=Entry
+Description=Continuous Labour Force Sample Survey
+
+[DataEntryInit]
+StartMode=Add
+Lock=CaseListing
+Interactive=Ask
+
+[Files]
+Application=.\Menu.ent
+InputData=|NONE
+Paradata=..\Data\Menu.cslog
+
+[ExternalFiles]
+ENUMERATIONREPORT_DICT=..\Data\enumrpt.csdb|CSPRODB
+LABOURFORCE_DICT=..\Data\data.csdb|CSPRODB
+LISTING_DICT=..\Data\Controlsheet.csdb|CSPRODB
+
+[UserFiles]
+LOGINFILE=
+PFFFILE=
+
+[Parameters]
+

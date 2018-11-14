@@ -4,6 +4,7 @@ Label=MENU
 Name=MENU
 AppType=DataEntry
 OperatorID=No
+ShowEndCaseDialog=No
 CAPI=Yes
 CAPIFont1=-016 0000 0000 0000 0400 0000 0000 0000 0000 0000 0000 0000 0000 Arial
 CAPIFont2=-016 0000 0000 0000 0400 0000 0000 0000 0000 0000 0000 0000 0000 Arial
@@ -15,11 +16,26 @@ CreateListing=No
 CreateLog=No
 AutoAdvanceOnSelection=Yes
 ShowErrorMessageNumbers=No
-ParadataCollection=AllEvents
-ParadataDeviceStateMinutes=5
+ParadataCollection=SomeEvents
+ParadataRecordValues=Yes
+ParadataRecordCoordinates=Yes
+ParadataDeviceStateMinutes=20
+ParadataGpsLocationMinutes=5
+ParadataCollectEvent=data_source_event
+ParadataCollectEvent=device_state_event
+ParadataCollectEvent=external_application_event
+ParadataCollectEvent=field_entry_event
+ParadataCollectEvent=field_movement_event
+ParadataCollectEvent=field_validation_event
+ParadataCollectEvent=gps_event
+ParadataCollectEvent=impute_event
+ParadataCollectEvent=message_event
+ParadataCollectEvent=note_event
+ParadataCollectEvent=operator_selection_event
+ParadataCollectEvent=property_event
 [External Dictionaries]
-File=..\Data Entry\Census2020.dcf
 File=..\Visitation record\Visitation Record.dcf
+File=..\Questionnaire\Census2020.dcf
 [AppCode]
 File=.\Menu.ent.apc
 [Message]
@@ -30,5 +46,9 @@ File=.\Menu.ent.qsf
 File=.\Menu.fmf
 [Dictionary Types]
 Dict-Type=.\Menu.dcf,Input,.\Menu.fmf
-Dict-Type=..\Data Entry\Census2020.dcf,External
 Dict-Type=..\Visitation record\Visitation Record.dcf,External
+Dict-Type=..\Questionnaire\Census2020.dcf,External
+[Sync]
+Server=http://csweb.teleyah.com/api
+Direction=Put
+AppDownloadPath=/apps/MYAPP/

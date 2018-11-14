@@ -1,22 +1,20 @@
 ﻿[Run Information]
 Version=CSPro 7.1
 AppType=Entry
-
+Description=Census VR
 [DataEntryInit]
+OperatorID=DONDRE.TROTMAN                                    
+StartMode=Add
 ShowInApplicationListing=Hidden
-Interactive=Ask
-
+AutoAdd=Yes
 [Files]
-Application=.\Visitation Record.ent
-InputData=..\Data\VisitationRecord.csdb|CSPRODB
-Paradata=./Visitation Record.cslog
-
-
+Application=./Visitation Record.ent
+InputData=../Data/Visitation Record.csdb|CSPRODB
+Paradata=../Data/Visitation Record.cslog
+[UserFiles]
+PFFFILE=
 [Parameters]
-Parameter=onexit = ..\Menu\Menu.pff
-VI_BUILDING=001
-VI_DWELLING_UNIT=001
-VI_ED=001
-VI_HOUSEHOLD=001
-VI_PARISH=01
-
+OnExit=../Menu/Menu.pff
+MODE=DEFAULT
+LSTENUMCODE=100
+LSTED=185
