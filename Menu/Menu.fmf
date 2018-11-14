@@ -10,19 +10,24 @@ Type=SystemControlled
 File=.\Menu.dcf
   
 [Form]
-Name=FORM001
-Label=Menu record
+Name=FORM000
+Label=Menu questionnaire
+QuestionTextHeight=145
 Level=1
-Size=561,270
+Size=754,509
   
-Item=LOGIN
 Item=INTERVIEWER_MENU
 Item=SUPERVISOR_MENU
+Item=LOGIN
+Item=CHOOSE_ED
+Item=CHOOSE_ROUND
+Item=CHOOSE_QUESTIONNAIRE
 Item=CHOOSE_HOUSEHOLD
-Item=CHOOSE_VR
 Item=UNAME
-Item=USER_PIN
+Item=USERID
 Item=ME_ED
+Item=CHOOSE_CONTROL_SHEET
+Item=DELETE_CONTROL_SHEET
   
 [EndForm]
   
@@ -32,15 +37,15 @@ Label=Menu questionnaire
   
 [Group]
 Required=Yes
-Name=MENU_REC_FORM
-Label=Menu record
+Name=MENU_QUEST_FORM
+Label=Menu questionnaire
 Form=1
 LogicControl=No
 Max=1
   
 [Field]
 Name=UNAME
-Position=126,23,536,43
+Position=319,3,729,23
 Item=UNAME,MENU_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -48,83 +53,122 @@ UseUnicodeTextBox=Yes
 Form=1
   
 [Text]
-Position=37,26,106,42
+Position=127,6,196,22
 Text=User Name
  
   
 [Field]
-Name=USER_PIN
-Position=126,53,179,73
-Item=USER_PIN,MENU_DICT
+Name=USERID
+Position=319,42,348,62
+Item=USERID,MENU_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=1
   
 [Text]
-Position=37,56,90,72
-Text=User Pin
+Position=127,45,172,61
+Text=User ID
  
   
 [Field]
 Name=ME_ED
-Position=126,80,166,100
+Position=319,81,362,101
 Item=ME_ED,MENU_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=1
   
 [Text]
-Position=37,83,54,99
+Position=127,84,144,100
 Text=ED
  
   
 [Field]
 Name=LOGIN
-Position=222,105,236,125
+Position=319,120,334,140
 Item=LOGIN,MENU_DICT
-HideInCaseTree=Yes
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
-DataCaptureType=DropDown
+DataCaptureType=RadioButton
 Form=1
   
 [Text]
-Position=37,108,73,124
-Text=Login
+Position=127,123,197,139
+Text=Main Menu
  
   
 [Field]
 Name=INTERVIEWER_MENU
-Position=222,135,236,155
+Position=319,159,334,179
 Item=INTERVIEWER_MENU,MENU_DICT
-HideInCaseTree=Yes
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
-DataCaptureType=DropDown
+DataCaptureType=RadioButton
 Form=1
   
 [Text]
-Position=40,138,151,154
+Position=127,162,238,178
 Text=Interviewer Menu
  
   
 [Field]
 Name=SUPERVISOR_MENU
-Position=222,165,236,185
+Position=319,198,334,218
 Item=SUPERVISOR_MENU,MENU_DICT
-HideInCaseTree=Yes
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+DataCaptureType=RadioButton
+Form=1
+  
+[Text]
+Position=127,201,234,217
+Text=Supervisor Menu
+ 
+  
+[Field]
+Name=CHOOSE_ROUND
+Position=319,238,348,258
+Item=CHOOSE_ROUND,MENU_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+DataCaptureType=RadioButton
+Form=1
+  
+[Text]
+Position=127,241,219,257
+Text=Choose Round
+ 
+  
+[Field]
+Name=CHOOSE_ED
+Position=319,278,362,298
+Item=CHOOSE_ED,MENU_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+Form=1
+  
+[Text]
+Position=127,281,195,297
+Text=Choose ED
+ 
+  
+[Field]
+Name=CHOOSE_QUESTIONNAIRE
+Position=319,318,488,338
+Item=CHOOSE_QUESTIONNAIRE,MENU_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=1
   
 [Text]
-Position=40,168,148,184
-Text=Supervisor menu
+Position=127,321,261,337
+Text=Delete Questionnaire
  
   
 [Field]
 Name=CHOOSE_HOUSEHOLD
-Position=188,195,371,215
+Position=319,358,530,378
 Item=CHOOSE_HOUSEHOLD,MENU_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -132,22 +176,35 @@ DataCaptureType=RadioButton
 Form=1
   
 [Text]
-Position=40,198,158,214
+Position=127,361,245,377
 Text=Choose Household
  
   
 [Field]
-Name=CHOOSE_VR
-Position=228,225,411,245
-Item=CHOOSE_VR,MENU_DICT
+Name=CHOOSE_CONTROL_SHEET
+Position=319,398,530,418
+Item=CHOOSE_CONTROL_SHEET,MENU_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=RadioButton
 Form=1
   
 [Text]
-Position=40,228,199,244
-Text=Choose Visitation Record
+Position=127,401,265,417
+Text=Choose Control Sheet
+ 
+  
+[Field]
+Name=DELETE_CONTROL_SHEET
+Position=319,442,530,462
+Item=DELETE_CONTROL_SHEET,MENU_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=RadioButton
+Form=1
+  
+[Text]
+Position=127,445,259,461
+Text=Delete Control Sheet
  
 [EndGroup]
   

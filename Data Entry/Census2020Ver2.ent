@@ -39,7 +39,7 @@ File=.\Census2020Ver2.ent.qsf
 [Forms]
 File=.\Census2020Ver2.fmf
 [Dictionary Types]
-Dict-Type=..\Census2020.dcf,Input,.\Census2020Ver2.fmf
+Dict-Type=.\Census2020.dcf,Input,.\Census2020Ver2.fmf
 [Sync]
 Server=Dropbox
 Direction=Put

@@ -7,7 +7,7 @@ FieldEntryFont=0018 0000 0000 0000 0600 0000 0000 0000 0000 0000 0000 0000 0000 
 Type=SystemControlled
   
 [Dictionaries]
-File=..\Census2020.dcf
+File=.\Census2020.dcf
   
 [Form]
 Name=FORM000
