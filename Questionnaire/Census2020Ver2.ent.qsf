@@ -139,7 +139,7 @@ EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Enter the L
 EN=}
 
 [QUESTION]
-Field=CENSUS2020_DICT.P31A
+Field=CENSUS2020_DICT.P30A
 Occurrences=1:40
 EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
@@ -148,7 +148,7 @@ EN=\pard\cf1\fs24 What is the date of birth of your first liveborn child? (YYYY/
 EN=}
 
 [QUESTION]
-Field=CENSUS2020_DICT.P31C
+Field=CENSUS2020_DICT.P30C
 Occurrences=1:40
 EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
