@@ -83,7 +83,7 @@ ZeroFill=Yes
 Label=Housing
 Name=HOUSING
 RecordTypeValue='1'
-RecordLen=627
+RecordLen=628
 
 [Item]
 Label=Number of persons in household
@@ -106,34 +106,34 @@ Value=8:40;8
 
 [Item]
 Label=H8 – What type of dwelling unit is this?
-Name=H8A
+Name=H8
 Start=18
-Len=1
+Len=2
 
 [ValueSet]
 Label=H8 – What type of dwelling unit is this?
-Name=H8A_VS1
+Name=H8_VS1
 Value=1;Separate house\detached\undivided
-Value=2;Part of a private house\Attached
-Value=3;Flat\Apartment
-Value=4;Townhouse\Condominium
-Value=5;Double house\Duplex
-Value=6;Part of a commercial building
-Value=7;Group Dwelling
-Value=8;Other
-Value=9;Not stated
+Value=2;Rented room in a separate\detached house
+Value=3;Part of a private house\Attached
+Value=4;Flat\Apartment
+Value=5;Townhouse\Condominium
+Value=6;Double house\Duplex
+Value=7;Part of a commercial building
+Value=8;Group Dwelling
+Value=9;Other
 
 [Item]
 Label=H8 – Other
 Name=H8_OTHER
-Start=19
+Start=20
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H9 – Of what materials are the outer walls made?
 Name=H9
-Start=69
+Start=70
 Len=2
 
 [ValueSet]
@@ -149,19 +149,18 @@ Value=7;Plywood
 Value=8;Concrete Board
 Value=9;Makeshift Material
 Value=10;Other
-Value=99;Not stated
 
 [Item]
 Label=H9 – Other 
 Name=H9_OTHER
-Start=71
+Start=72
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H10 – Of what material is the roof made?
 Name=H10
-Start=121
+Start=122
 Len=2
 
 [ValueSet]
@@ -170,50 +169,47 @@ Name=H10_VS1
 Value=1;Wooden shingles
 Value=2;Asphalt Shingles
 Value=3;Roofing Tiles
-Value=4;Corrugated Metal Sheets
-Value=5;Other Corrugated Sheets
-Value=6;Concrete
-Value=7;Rubber Rye
-Value=8;Asbestos
-Value=9;Thatch\Makeshift
-Value=10;Other
-Value=99;Not stated
+Value=4;Corrugated Metal Sheets (galvanised or permaclad)
+Value=5;Concrete
+Value=6;Rubber Rye
+Value=7;Asbestos
+Value=8;Thatch\Makeshift
+Value=9;Other
 
 [Item]
 Label=H10 – Other
 Name=H10_OTHER
-Start=123
+Start=124
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H11 – What is the main flooring material?
 Name=H11
-Start=173
+Start=174
 Len=1
 
 [ValueSet]
 Label=Flooring materials
 Name=H11_VS1
-Value=1;Masonry
+Value=1;Masonry (Concrete)
 Value=2;Wood
 Value=3;Cement Board
 Value=4;Combination of cement board, wood and\or masonry
 Value=5;Makeshift marterials
 Value=6;Other
-Value=9;Not stated
 
 [Item]
 Label=H11 – Other
 Name=H11_OTHER
-Start=174
+Start=175
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H12 – How is the foundation of the house constructed?
 Name=H12
-Start=224
+Start=225
 Len=1
 
 [ValueSet]
@@ -223,37 +219,36 @@ Value=1;Fully enclosed masonry
 Value=2;Pillars or columns
 Value=3;Loose rock
 Value=4;Other
-Value=9;Not stated
 
 [Item]
 Label=H12 – Other
 Name=H12_OTHER
-Start=225
+Start=226
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H13 – In what year was the dwelling built?
 Name=H13
-Start=275
+Start=276
 Len=1
 
 [ValueSet]
 Label=Year built
 Name=H13_VS1
-Value=1;2020
-Value=2;2019
-Value=3;2018
-Value=4;2014 - 2017
-Value=5;2010 - 2013
-Value=6;2009 - 2001
-Value=7;2000 or before
-Value=9;Not stated
+Value=1;2018 - 2020
+Value=2;2014 - 2017
+Value=3;2010 - 2013
+Value=4;2001 - 2009
+Value=5;1991 - 2000
+Value=6;1981 - 1990
+Value=7;1980 or before
+Value=8;Don't know
 
 [Item]
 Label=H14(a) – Occupancy Status
 Name=H14A
-Start=276
+Start=277
 Len=1
 
 [ValueSet]
@@ -265,7 +260,7 @@ Value=2;Unoccupied
 [Item]
 Label=H14(b) – If unoccupied, is unit
 Name=H14B
-Start=277
+Start=278
 Len=1
 
 [ValueSet]
@@ -280,21 +275,21 @@ Value=5;Arrangement unknown
 [Item]
 Label=H14(c) – What is the state of construction?
 Name=H14C
-Start=278
+Start=279
 Len=1
 
 [ValueSet]
 Label=State of construction?
 Name=H14C_VS1
 Value=1;Completed
-Value=2;Under active
-Value=3;Under inactive
+Value=2;Under active construction
+Value=3;Under inactive construction
 Value=4;Derelict
 
 [Item]
 Label=H15 – How many rooms does this dwelling have?
 Name=H15
-Start=279
+Start=280
 Len=2
 
 [ValueSet]
@@ -309,12 +304,12 @@ Value=6;Six
 Value=7;Seven
 Value=8;Eight
 Value=9:98;Nine or More
-Value=99;Not Stated
+Value=99;Don't know
 
 [Item]
 Label=H16(a) – How many bedrooms does this dwelling have?
 Name=H16A
-Start=281
+Start=282
 Len=2
 
 [ValueSet]
@@ -330,7 +325,7 @@ Value=5:20;Five and over
 [Item]
 Label=H16(b) – How many Bathrooms does this dwelling have?
 Name=H16B
-Start=283
+Start=284
 Len=2
 
 [ValueSet]
@@ -344,7 +339,7 @@ Value=3:20;Three or more
 [Item]
 Label=H16(c) – Do you share a bathroom with any other household?
 Name=H16C
-Start=285
+Start=286
 Len=1
 
 [ValueSet]
@@ -352,12 +347,11 @@ Label=Shared bathroom
 Name=H16C_VS1
 Value=1;Yes
 Value=2;No
-Value=9;Not stated
 
 [Item]
 Label=H17(a) – Under what type of tenure is this dwelling occupied?
 Name=H17A
-Start=286
+Start=287
 Len=1
 
 [ValueSet]
@@ -370,60 +364,58 @@ Value=4;Gov't rented\leased
 Value=5;Rent free
 Value=6;Squatted
 Value=7;Other
-Value=9;Not Stated
 
 [Item]
 Label=H17(b)i – Is the home owned by
 Name=H17BI
-Start=287
+Start=288
 Len=1
 
 [ValueSet]
 Label=H17(b)i – Is the home owned by
 Name=H17BI_VS1
 Link=75051824
-Value=1;Male
-Value=2;Female
+Value=1;A male
+Value=2;A female
+Value=3;Jointly owned
 
 [Item]
 Label=H17(b)ii – If jointly owned, by how many males?
 Name=H17BII_MALES
-Start=288
+Start=289
 Len=2
 
 [Item]
 Label=H17(b)ii – If jointly owned, by how many females?
 Name=H17BII_FEMALES
-Start=290
+Start=291
 Len=2
 
 [Item]
 Label=H17(c) – If owned, was it acquired through
 Name=H17C
-Start=292
+Start=293
 Len=1
 
 [ValueSet]
 Label=How owned (House)
 Name=H17C_VS1
-Link=75052088
 Value=1;Government project
 Value=2;Private sector project
 Value=3;Inheritance
 Value=4;Other
-Value=9;Not Stated
 
 [Item]
 Label=H17(c) – Other
 Name=H17C_OTHER
-Start=293
+Start=294
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H17(d) – What is the rental period for this dwelling?
 Name=H17D
-Start=343
+Start=344
 Len=1
 
 [ValueSet]
@@ -436,12 +428,11 @@ Value=3;Monthly
 Value=4;Quarterly
 Value=5;Half yearly
 Value=6;Annually
-Value=9;Not stated
 
 [Item]
 Label=H17(e) – How much rent are you now paying?
 Name=H17E
-Start=344
+Start=345
 Len=5
 
 [ValueSet]
@@ -467,7 +458,7 @@ Value=99999;Not Stated
 [Item]
 Label=H18 – Is this dwelling rented fully furnished, semi-furnished or unfurnished?
 Name=H18
-Start=349
+Start=350
 Len=1
 
 [ValueSet]
@@ -476,12 +467,11 @@ Name=H18_VS1
 Value=1;Fully furnished
 Value=2;Semi-furnished
 Value=3;Unfurnished
-Value=9;Not stated
 
 [Item]
 Label=H19(a) – Under what type of tenure is this land occupied?
 Name=H19A
-Start=350
+Start=351
 Len=1
 
 [ValueSet]
@@ -494,19 +484,18 @@ Value=4;Gov't rented\leased
 Value=5;Rent free
 Value=6;Squatted
 Value=7;Other
-Value=9;Not Stated
 
 [Item]
 Label=H19(a) – Other
 Name=H19A_OTHER
-Start=351
+Start=352
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H19(b)i – Is the land owned by
 Name=H19B
-Start=401
+Start=402
 Len=1
 
 [ValueSet]
@@ -517,43 +506,53 @@ Link=75051824
 [Item]
 Label=H19(b)ii – If jointly owned, by how many males?
 Name=H19BII_MALES
-Start=402
+Start=403
 Len=2
 
 [Item]
 Label=H19(b)ii - If jointly owned, by how many females?
 Name=H19BII_FEMALES
-Start=404
+Start=405
 Len=2
 
 [Item]
 Label=H19(c) – Does the land form part of an approved subdivision?
 Name=H19C
-Start=406
+Start=407
 Len=1
+
+[ValueSet]
+Label=H19(c) – Does the land form part of an approved subdivision?
+Name=H19C_VS1
+Value=1;Yes
+Value=2;No
 
 [Item]
 Label=H19(d) – If owned, how was the land acquired?
 Name=H19D
-Start=407
+Start=408
 Len=1
 
 [ValueSet]
 Label=H19(d) – If owned, how was the land acquired?
 Name=H19D_VS1
-Link=75052088
+Value=1;Government project
+Value=2;Private sector project
+Value=3;Tenantries Program
+Value=4;Inheritance
+Value=5;Other
 
 [Item]
 Label=H19(d) – Other
 Name=H19D_OTHER
-Start=408
+Start=409
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H19(e) – What is the rental period for this land?
 Name=H19E
-Start=458
+Start=459
 Len=1
 
 [ValueSet]
@@ -564,7 +563,7 @@ Link=75052616
 [Item]
 Label=H19(f) – How much rent are you now paying?
 Name=H19F
-Start=459
+Start=460
 Len=5
 
 [ValueSet]
@@ -575,7 +574,7 @@ Link=75053320
 [Item]
 Label=H20 – How is your main water supply obtained?
 Name=H20
-Start=464
+Start=465
 Len=1
 
 [ValueSet]
@@ -584,22 +583,21 @@ Name=H20_VS1
 Value=1;Piped into Dwelling
 Value=2;Piped into yard
 Value=3;Friend\relatives pipe
-Value=4;Public stand pipe
+Value=4;Public stand pipe\Public tank
 Value=5;Stream\spring\well
 Value=6;Other
-Value=9;Not stated
 
 [Item]
 Label=H20 – Other
 Name=H20_OTHER
-Start=465
+Start=466
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H21(a) – What type of toilet facilities does this dwelling unit have?
 Name=H21A
-Start=515
+Start=516
 Len=1
 
 [ValueSet]
@@ -607,22 +605,22 @@ Label=Toilet Facilities
 Name=H21A_VS1
 Value=1;Toilet linked to sewer
 Value=2;Toilet linked to suck well\soak-away
-Value=3;Toilet linked to private sewerage treatment facility
+Value=3;Toilet linked to private sewerage treatment facility\Septic tank
 Value=4;Pit toilet
 Value=5;None
-Value=9;Not stated
+Value=6;Other
 
 [Item]
 Label=H21(a) – Other
 Name=H21A_OTHER
-Start=516
+Start=517
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H21(b) – Are the toilet facilities shared with any other household?
 Name=H21B
-Start=566
+Start=567
 Len=1
 
 [ValueSet]
@@ -631,12 +629,11 @@ Name=H21B_VS1
 Value=1;Yes
 Value=2;No
 Value=3;Don't know
-Value=9;Not stated
 
 [Item]
 Label=H22(a) – What source of lighting is mainly used by this household?
 Name=H22A
-Start=567
+Start=568
 Len=1
 
 [ValueSet]
@@ -648,51 +645,56 @@ Value=3;Gas
 Value=4;Batteries
 Value=5;Renewable energy
 Value=6;Other
-Value=9;Not stated
 
 [Item]
 Label=H22(b) – What source of energy is mainly used for cooking?
 Name=H22B
-Start=568
+Start=569
 Len=1
 
 [ValueSet]
 Label=Cooking Energy
 Name=H22B_VS1
-Value=1;Electric
-Value=2;Kerosene
-Value=3;Gas
-Value=4;Batteries
-Value=5;Renewable energy
-Value=6;Other
-Value=9;Not Stated
+Value=1;Natural gas
+Value=2;Liquefied Petroleum Gas (LPG)
+Value=3;Electricity
+Value=4;Wood\Charcoal
+Value=5;Kerosene
+Value=6;Renewable energy
+Value=7;Biogas
+Value=8;Other
 
 [Item]
 Label=H22(c) – Does your household produce solar or any other renewable energy for your own use?
 Name=H22C
-Start=569
+Start=570
 Len=4
 DataType=Alpha
 
 [ValueSet]
 Label=Renewable Energy
 Name=H22C_VS1
-Value='1   ';Yes, from solar panels
-Value='2   ';Yes, from wind power
-Value='3   ';Yes, from other sources
-Value='4   ';No
-Value='9   ';Not stated
+Value='A   ';Yes, from solar panels
+Value='B   ';Yes, from wind power
+Value='C   ';Yes, from other sources
+Value='D   ';No
 
 [Item]
 Label=H23(a) – Does this dwelling have a direct connection to the internet?
 Name=H23A
-Start=573
+Start=574
 Len=1
+
+[ValueSet]
+Label=H23(a) – Does this dwelling have a direct connection to the internet?
+Name=H23A_VS1
+Value=1;Yes
+Value=2;No
 
 [Item]
 Label=H23(b)i – Which of these appliances\household equipment does your household have? (Score as many as are applicable)
 Name=H23BI
-Start=574
+Start=575
 Len=25
 DataType=Alpha
 
@@ -702,26 +704,26 @@ Name=H23BI_VS1
 Link=80780968
 Value='A                        ';Air Conditioner
 Value='B                        ';Stove
-Value='C                        ';Deep Freeze
-Value='D                        ';Microwave
-Value='E                        ';Washing Machine
-Value='F                        ';Clothes Dryer
-Value='G                        ';Electric Generator
-Value='H                        ';TV
-Value='I                        ';Android TV Box
-Value='J                        ';Radio\Stereo System
-Value='K                        ';Refridgerator
-Value='L                        ';Water Tank
-Value='M                        ';Toaster Oven
-Value='N                        ';Dish Washer
-Value='O                        ';Fixed Line Telephone
-Value='P                        ';Mobile Phone
-Value='Q                        ';Tablet
-Value='R                        ';Game Consoles
-Value='S                        ';Solar Water Heater
-Value='T                        ';Other Water Heater
-Value='U                        ';DVD Player\VCR
-Value='V                        ';Cable TV\Satallite
+Value='C                        ';Refrigerator
+Value='D                        ';Deep Freeze
+Value='E                        ';Microwave
+Value='F                        ';Washing Machine
+Value='G                        ';Clothes Dryer
+Value='H                        ';Electric Generator
+Value='I                        ';TV
+Value='J                        ';Android TV Box
+Value='K                        ';Cable TV\Satallite
+Value='L                        ';DVD Player\VCR
+Value='M                        ';Radio\Stereo System
+Value='N                        ';Water Tank
+Value='O                        ';Toaster Oven
+Value='P                        ';Dish Washer
+Value='Q                        ';Fixed Line Telephone
+Value='R                        ';Mobile Phone
+Value='S                        ';Tablet
+Value='T                        ';Game Consoles
+Value='U                        ';Solar Water Heater
+Value='V                        ';Other Water Heater
 Value='W                        ';Computer (Laptop, Desktop)
 Value='X                        ';Smoke Alarm
 Value='Y                        ';Home Security Equipment
@@ -729,7 +731,7 @@ Value='Y                        ';Home Security Equipment
 [Item]
 Label=H23(b)ii – Which of these appliances\household equipment does your household share? (Score as many as are applicable)
 Name=H23BII
-Start=599
+Start=600
 Len=25
 DataType=Alpha
 
@@ -741,7 +743,7 @@ Link=80780968
 [Item]
 Label=H24 – how many vehicles does this household keep at home for private use?
 Name=H24
-Start=624
+Start=625
 Len=1
 
 [ValueSet]
@@ -752,12 +754,11 @@ Value=1;1
 Value=2;2
 Value=3;3
 Value=4;4 or more
-Value=9;Not stated
 
 [Item]
 Label=E8(a) - Since the last census (2010), has anyone left this household to live overseas and continues to reside abroad?
 Name=E8A
-Start=625
+Start=626
 Len=1
 
 [ValueSet]
@@ -769,7 +770,7 @@ Value=2;No
 [Item]
 Label=E8(b) - If YES, Please give the total number of persons who have gone abroad
 Name=E8B
-Start=626
+Start=627
 Len=2
 
 [Record]
@@ -955,7 +956,7 @@ Name=POPULATION
 RecordTypeValue='3'
 Required=No
 MaxRecords=40
-RecordLen=991
+RecordLen=1115
 
 [Item]
 Label=Individual Number
@@ -1134,7 +1135,7 @@ Len=2
 [ValueSet]
 Label=Mother Individual Number
 Name=P8A_VS1
-Value=0;Not in household
+Value=99;Not in household
 Value=1:40;Mother in household
 
 [Item]
@@ -1146,7 +1147,7 @@ Len=2
 [ValueSet]
 Label=Father Individual Number
 Name=P8B_VS1
-Value=0;Not in household
+Value=99;Not in household
 Value=1:40;Father in household
 
 [Item]
@@ -1163,7 +1164,6 @@ Value=2;Divorced
 Value=3;Never Married
 Value=4;Legally Separated
 Value=5;Widowed
-Value=9;Not Stated
 
 [Item]
 Label=P10 - What is your ethnic origin?
@@ -1181,7 +1181,6 @@ Value=4;East Indian
 Value=5;Middle Eastern
 Value=6;Mixed
 Value=7;Other
-Value=9;Not Stated
 
 [Item]
 Label=P10 - Other
@@ -1195,6 +1194,12 @@ Label=P11(a) - Are you affiliated with any religious denomination?
 Name=P11A
 Start=152
 Len=1
+
+[ValueSet]
+Label=P11(a) - Are you affiliated with any religious denomination?
+Name=P11A_VS1
+Value=1;Yes
+Value=2;No
 
 [Item]
 Label=P11(b) - To which religion\denomination do you belong?
@@ -1226,8 +1231,6 @@ Value=18;Islam
 Value=19;Judiasm
 Value=20;Rastafarian
 Value=21;Other Non-Christian
-Value=22;No Religious Affiliation (Atheist\Spiritual\None)
-Value=99;Not Stated
 
 [Item]
 Label=P12(a) - Do you have a disability or major impairment?
@@ -1247,11 +1250,27 @@ Name=P12BI
 Start=156
 Len=1
 
+[ValueSet]
+Label=P12(b)i - Do you have difficulty seeing, even if wearing glasses?
+Name=P12BI_VS1
+Value=1;No, no difficulty
+Value=2;Yes, some difficulty
+Value=3;Yes, a lot of difficulty
+Value=4;Cannot see at all
+
 [Item]
 Label=P12(b)ii - Do you have difficulty hearing, even if using an hearing aid?
 Name=P12BII
 Start=157
 Len=1
+
+[ValueSet]
+Label=P12(b)ii - Do you have difficulty hearing, even if using an hearing aid?
+Name=P12BII_VS1
+Value=1;No, no difficulty
+Value=2;Yes, some difficulty
+Value=3;Yes, a lot of difficulty
+Value=4;Cannot hear at all
 
 [Item]
 Label=P12(b)iii - Do you have difficulty walking or climbing steps?
@@ -1259,11 +1278,27 @@ Name=P12BIII
 Start=158
 Len=1
 
+[ValueSet]
+Label=P12(b)iii - Do you have difficulty walking or climbing steps?
+Name=P12BIII_VS1
+Value=1;No, no difficulty
+Value=2;Yes, some difficulty
+Value=3;Yes, a lot of difficulty
+Value=4;Cannot walk/climb steps at all
+
 [Item]
 Label=P12(b)iv - Do you have difficulty remembering or concentrating?
 Name=P12BIV
 Start=159
 Len=1
+
+[ValueSet]
+Label=P12(b)iv - Do you have difficulty remembering or concentrating?
+Name=P12BIV_VS1
+Value=1;No, no difficulty
+Value=2;Yes, some difficulty
+Value=3;Yes, a lot of difficulty
+Value=4;Cannot remember/concentrate at all
 
 [Item]
 Label=P12(b)v - Do you have difficulty with self-care, such as washing all over or dressing?
@@ -1271,42 +1306,59 @@ Name=P12BV
 Start=160
 Len=1
 
+[ValueSet]
+Label=P12(b)v - Do you have difficulty with self-care, such as washing all over or dressing?
+Name=P12BV_VS1
+Value=1;No, no difficulty
+Value=2;Yes, some difficulty
+Value=3;Yes, a lot of difficulty
+Value=4;Cannot care for self at all
+
 [Item]
 Label=P12(b)vi - Using your usual language, do you have difficulty communicating?
 Name=P12BVI
 Start=161
 Len=1
 
+[ValueSet]
+Label=P12(b)vi - Using your usual language, do you have difficulty communicating?
+Name=P12BVI_VS1
+Value=1;No, no difficulty
+Value=2;Yes, some difficulty
+Value=3;Yes, a lot of difficulty
+Value=4;Cannot communicate at all
+
 [Item]
 Label=P12(c) - What type of aid are you required to used because of the disability? (Score as many as are applicable)
 Name=P12C
 Start=162
-Len=7
+Len=8
 DataType=Alpha
 
 [ValueSet]
 Label=P12(c) - What type of aid are you required to used because of the disability? (Score as many as are applicable)
 Name=P12C_VS1
-Value='A      ';Wheelchair
-Value='B      ';Walker
-Value='C      ';Crutches
-Value='D      ';Cane
-Value='E      ';Prostheses
-Value='F      ';Computer Assisted Software\Equipment
-Value='G      ';Hearing Aids
-Value='H      ';None
+Value='A       ';Wheelchair
+Value='B       ';Walker
+Value='C       ';Crutches
+Value='D       ';Cane
+Value='E       ';Prostheses
+Value='F       ';Computer Assisted Software\Equipment
+Value='G       ';Hearing Aids
+Value='H       ';Other
+Value='I       ';None
 
 [Item]
 Label=P12(c) - Other
 Name=P12C_OTHER
-Start=169
+Start=170
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P13(a) - Was your disability\major impairment ever diagnosed by a medical doctor?
 Name=P13A
-Start=219
+Start=220
 Len=1
 
 [ValueSet]
@@ -1314,12 +1366,11 @@ Label=Doctor Diagnosed Disability
 Name=P13A_VS1
 Value=1;Yes
 Value=2;No
-Value=9;Not Stated
 
 [Item]
 Label=P13(b) - What was the origin of your disability?
 Name=P13B
-Start=220
+Start=221
 Len=1
 
 [ValueSet]
@@ -1327,41 +1378,43 @@ Label=Disability Origin
 Name=P13B_VS1
 Value=1;From Birth
 Value=2;Road Traffic Accident
-Value=3;Illness
-Value=4;Workplace Injury/Accident
+Value=3;Workplace Injury/Accident
+Value=4;Illness
 Value=5;Other
-Value=9;Not Stated
 
 [Item]
 Label=P14 - Do you have ay of the following illnesses? (Score as many as are applicable)
 Name=P14
-Start=221
-Len=8
+Start=222
+Len=11
 DataType=Alpha
 
 [ValueSet]
 Label=P14 - Do you have ay of the following illnesses? (Score as many as are applicable)
 Name=P14_VS1
-Value='A       ';Asthma
-Value='B       ';Diabetes
-Value='C       ';Kidney Disease
-Value='D       ';Heart Disease
-Value='E       ';Hypertension
-Value='F       ';Alzheimer's
-Value='G       ';Other
-Value='H       ';None
+Value='A          ';Asthma
+Value='B          ';Diabetes
+Value='C          ';Kidney Disease
+Value='D          ';Heart Disease
+Value='E          ';Hypertension
+Value='F          ';Alzheimer's
+Value='G          ';Lupus
+Value='H          ';Cancer
+Value='I          ';Mental illness
+Value='J          ';Other
+Value='K          ';None
 
 [Item]
 Label=P14 - Other
 Name=P14_OTHER
-Start=229
+Start=233
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P15(a) - Were you born in Barbados?
 Name=P15A
-Start=279
+Start=283
 Len=1
 
 [ValueSet]
@@ -1369,28 +1422,16 @@ Label=P15(a) - Were you born in Barbados?
 Name=P15A_VS1
 Value=1;Yes
 Value=2;No
-Value=9;Not Stated
-
-[ValueSet]
-Label=Born in Barbados
-Name=P15A_VS2
-Value=1;Yes
-
-[ValueSet]
-Label=Born Abroad
-Name=P15A_VS3
-Value=2;Yes
 
 [Item]
 Label=P15(b) - If YES, In which parish? (Where you mother was living at the time)
 Name=P15B
-Start=280
+Start=284
 Len=2
 
 [ValueSet]
 Label=P15(b) - If YES, In which parish? (Where you mother was living at the time)
 Name=P15B_VS1
-Link=80749376
 Value=1;St. Michael
 Value=2;Christ Church
 Value=3;St. Philip
@@ -1402,12 +1443,12 @@ Value=4;St. John
 Value=8;St. Andrew
 Value=10;St. Peter
 Value=11;St. Lucy
-Value=9;Not stated
+Value=99;Dont' Know
 
 [Item]
 Label=P16(a) - In which country were you born?
 Name=P16A
-Start=282
+Start=286
 Len=3
 
 [ValueSet]
@@ -1524,7 +1565,7 @@ Value=342;Vietman
 [Item]
 Label=P16(b) - In which year did you first arrive in Barbados to live?
 Name=P16B
-Start=285
+Start=289
 Len=4
 
 [ValueSet]
@@ -1539,12 +1580,11 @@ Value=2015;2015
 Value=2000:2004;2010-14
 Value=1999:2009;1999-2009
 Value=1900:1998;Before 1999
-Value=9999;Not Stated
 
 [Item]
 Label=P17 - Where were you living one (1) year ago?
 Name=P17
-Start=289
+Start=293
 Len=1
 
 [ValueSet]
@@ -1555,12 +1595,11 @@ Value=1;At Present Address
 Value=2;Elsewhere in same Parish
 Value=3;In Another Parish
 Value=4;Abroad
-Value=9;Not Stated
 
 [Item]
 Label=P18(a) - Where you you living on May 1, 2015?
 Name=P18A
-Start=290
+Start=294
 Len=1
 
 [ValueSet]
@@ -1571,18 +1610,28 @@ Link=80743040
 [Item]
 Label=P18(b) - If IN ANOTHER PARISH, Which parish?
 Name=P18B
-Start=291
+Start=295
 Len=2
 
 [ValueSet]
 Label=P18(b) - If IN ANOTHER PARISH, Which parish?
 Name=P18B_VS1
-Link=80749376
+Value=1;St. Michael
+Value=2;Christ Church
+Value=3;St. Philip
+Value=6;St. James
+Value=7;St. Thomas
+Value=5;St. George
+Value=9;St. Joseph
+Value=4;St. John
+Value=8;St. Andrew
+Value=10;St. Peter
+Value=11;St. Lucy
 
 [Item]
 Label=P19(a) - Did you ever leave Barbados for a continuous period of 5 years or more to reside abroad?
 Name=P19A
-Start=293
+Start=297
 Len=1
 
 [ValueSet]
@@ -1590,12 +1639,11 @@ Label=P19(a) - Did you ever leave Barbados for a continuous period of 5 years or
 Name=P19A_VS1
 Value=1;Yes
 Value=2;No
-Value=9;Not Stated
 
 [Item]
 Label=P19(b) - If YES, in which country?
 Name=P19B
-Start=294
+Start=298
 Len=3
 
 [ValueSet]
@@ -1621,7 +1669,7 @@ Link=80745856
 [Item]
 Label=P19(c) - In what year did you return to Barbados to live?
 Name=P19C
-Start=297
+Start=301
 Len=4
 
 [ValueSet]
@@ -1636,12 +1684,11 @@ Value=2015;2015
 Value=2010:2014;2010-14
 Value=2000:2009;2009-2000
 Value=1900:2000;Before 2000
-Value=9999;Not Stated
 
 [Item]
 Label=P20(a) - Are you currently attending school or any other educational intitution?
 Name=P20A
-Start=301
+Start=305
 Len=1
 
 [ValueSet]
@@ -1649,12 +1696,11 @@ Label=P20(a) - Are you currently attending school or any other educational intit
 Name=P20A_VS1
 Value=1;Yes
 Value=2;No
-Value=9;Not Stated
 
 [Item]
 Label=P20(b) - Please indicate whether full-time or part-time
 Name=P20B
-Start=302
+Start=306
 Len=1
 
 [ValueSet]
@@ -1666,32 +1712,37 @@ Value=2;Part-time
 [Item]
 Label=P20(c) - What type of school or educational institution are you attending?
 Name=P20C
-Start=303
+Start=307
 Len=1
 
 [ValueSet]
 Label=P20(c) - What type of school or educational institution are you attending?
 Name=P20C_VS1
-Link=79017944
 Value=1;Preprimary
 Value=2;Primary
 Value=3;Secondary
 Value=4;Post Secondary
 Value=5;Tertiary
 Value=6;Other
-Value=7;None
-Value=9;Not Stated
 
 [Item]
 Label=P21(a) - During the past three months, were you ever unable to go to school due to lack of resources?
 Name=P21A
-Start=304
+Start=308
 Len=1
+
+[ValueSet]
+Label=P21(a) - During the past three months, were you ever unable to go to school due to lack of resources?
+Name=P21A_VS1
+Value=1;Never
+Value=2;1 - 2 times
+Value=3;3 - 10 times
+Value=4;More than 10
 
 [Item]
 Label=P21(b) - What is the reason for not attending?
 Name=P21B
-Start=305
+Start=309
 Len=1
 
 [ValueSet]
@@ -1703,37 +1754,42 @@ Value=3;Religious
 Value=4;Drop out
 Value=5;Working
 Value=6;Other
-Value=9;Not Stated
 
 [Item]
 Label=P21(b) - Other
 Name=P21B_OTHER
-Start=306
+Start=310
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P22 - What is the highest level of educational institution ever attended by you?
 Name=P22
-Start=356
+Start=360
 Len=1
 
 [ValueSet]
 Label=P22 - What is the highest level of educational institution ever attended by you?
 Name=P22_VS1
-Link=79017944
+Value=1;Preprimary
+Value=2;Primary
+Value=3;Secondary
+Value=4;Post Secondary
+Value=5;Tertiary
+Value=6;Other
+Value=7;None
 
 [Item]
 Label=P22 - Other
 Name=P22_OTHER
-Start=357
+Start=361
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P23 - How many years of schooling have you completed?
 Name=P23
-Start=407
+Start=411
 Len=1
 
 [ValueSet]
@@ -1746,12 +1802,11 @@ Value=4;6 - 9
 Value=5;10 - 12
 Value=6;13 - 15
 Value=7;16+
-Value=9;Not stated
 
 [Item]
 Label=P24(a)i - What examinations have you passed? (Score as many as are applicable)
 Name=P24AI
-Start=408
+Start=412
 Len=20
 DataType=Alpha
 
@@ -1767,7 +1822,7 @@ Value='F                   ';CXC General Grade 1 - 3 \GCE-O (1 - 4 passes)
 Value='G                   ';CXC General Grade 1 - 3\GCE-O (5+ passes)
 Value='H                   ';CXC Cape Grade 1 - 4 (1 - 2 passes)
 Value='I                   ';CXC Cape Grade 1 - 4 (3+ passes)
-Value='J                   ';A Level (1 - 2 passes)\HC
+Value='J                   ';A Level (1 - 2 passes)\Higher Cambridge
 Value='K                   ';A Level (3+ passes)
 Value='L                   ';City & Guilds
 Value='M                   ';Undergraduate Diploma\Certificate
@@ -1782,14 +1837,14 @@ Value='T                   ';Other
 [Item]
 Label=P24(a)i - Other
 Name=P24AI_OTHER
-Start=428
+Start=432
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P24b - Was the highest-level qualification achieved through the attendance at an institution or private study?
 Name=P24B
-Start=478
+Start=482
 Len=1
 
 [ValueSet]
@@ -1797,38 +1852,42 @@ Label=P24b - Was the highest-level qualification achieved through the attendance
 Name=P24B_VS1
 Value=1;Attendance at an Institution
 Value=2;Private Study
-Value=9;Not Stated
 
 [Item]
 Label=P25(a) - Do you have access to the internet?
 Name=P25A
-Start=479
+Start=483
 Len=1
+
+[ValueSet]
+Label=P25(a) - Do you have access to the internet?
+Name=P25A_VS1
+Value=1;Yes
+Value=2;No
 
 [Item]
 Label=P25(b) - Where do you use the internet? (Score as many as are applicable)
 Name=P25B
-Start=480
-Len=9
+Start=484
+Len=8
 DataType=Alpha
 
 [ValueSet]
 Label=P25(b) - Where do you use the internet? (Score as many as are applicable)
 Name=P25B_VS1
-Value='A        ';At Home
-Value='B        ';At School
-Value='C        ';At Work
-Value='D        ';Internet Café
-Value='E        ';At Library
-Value='F        ';Family\Friends
-Value='G        ';Cellular Phone
-Value='H        ';Other
-Value='I        ';Don't Use
+Value='A       ';At Home
+Value='B       ';At School
+Value='C       ';At Work
+Value='D       ';Internet Café
+Value='E       ';At Library
+Value='F       ';Family\Friends
+Value='G       ';Cellular Phone
+Value='H       ';Other
 
 [Item]
 Label=P26(a)i - Were you ever trained\are you being trained for any occupation or profession?
 Name=P26AI
-Start=489
+Start=492
 Len=1
 
 [ValueSet]
@@ -1836,12 +1895,11 @@ Label=P26(a)i - Were you ever trained\are you being trained for any occupation o
 Name=P26AI_VS1
 Value=1;Yes
 Value=2;No
-Value=9;Not Stated
 
 [Item]
 Label=P26(a)ii - If YES, for which occupation\profession?
 Name=P26AII
-Start=490
+Start=493
 Len=4
 
 [ValueSet]
@@ -1907,14 +1965,14 @@ Value=9999;Not Stated
 [Item]
 Label=P26(a)ii - If YES, for which occupation\profession?
 Name=P26AII_TEXT
-Start=494
+Start=497
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P26(b) - Have you completed training or are you still being trained?
 Name=P26B
-Start=544
+Start=547
 Len=1
 
 [ValueSet]
@@ -1923,18 +1981,22 @@ Name=P26B_VS1
 Value=1;Completed Training
 Value=2;Did not compete training
 Value=3;Still Being Trained
-Value=9;Not Stated
 
 [Item]
 Label=P26(c) - If completed training, in what year did you complete training
 Name=P26C
-Start=545
+Start=548
 Len=4
+
+[ValueSet]
+Label=P26(c) - If completed training, in what year did you complete training
+Name=P26C_VS1
+Value=1970:2020;Valid
 
 [Item]
 Label=P27 - Where were you trained are you being trained?
 Name=P27
-Start=549
+Start=552
 Len=2
 
 [ValueSet]
@@ -1954,13 +2016,12 @@ Value=11;Other Institution
 Value=12;On the job
 Value=13;Private Study
 Value=14;Other Non-institutional Training
-Value=9;Not Stated
 
 [Item]
 Label=P28 - How many years of training have you completed?
 Name=P28
-Start=551
-Len=2
+Start=554
+Len=1
 
 [ValueSet]
 Label=P28 - How many years of training have you completed?
@@ -1974,12 +2035,11 @@ Value=6;2 1/2 - 3 years
 Value=7;3 - 4 years
 Value=8;4 - 5 years
 Value=9;5 years and over
-Value=99;Not Stated
 
 [Item]
 Label=P29(a) - Have you ever had any children?
 Name=P29A
-Start=553
+Start=555
 Len=1
 
 [ValueSet]
@@ -1987,54 +2047,83 @@ Label=P29(a) - Have you ever had any children?
 Name=P29A_VS1
 Value=1;Yes
 Value=2;No
-Value=9;Not Stated
 
 [Item]
 Label=P29(b)i - How many liveborn children did you have in all?
 Name=P29BI
-Start=554
+Start=556
 Len=2
+
+[ValueSet]
+Label=P29(b)i - How many liveborn children did you have in all?
+Name=P29BI_VS1
+Value=0:20;valid
 
 [Item]
 Label=P29(b)ii - How many male liveborn children did you have?
 Name=P29BII
-Start=556
+Start=558
 Len=2
+
+[ValueSet]
+Label=P29(b)ii - How many male liveborn children did you have?
+Name=P29BII_VS1
+Value=0:20;valid
 
 [Item]
 Label=P29(b)iii - How many female liveborn children did you have?
 Name=P29BIII
-Start=558
+Start=560
 Len=2
+
+[ValueSet]
+Label=P29(b)iii - How many female liveborn children did you have?
+Name=P29BIII_VS1
+Value=0:20;valid
 
 [Item]
 Label=P29(c)i - How many of your total liveborn children are still alive?
 Name=P29CI
-Start=560
+Start=562
 Len=2
+
+[ValueSet]
+Label=P29(c)i - How many of your total liveborn children are still alive?
+Name=P29CI_VS1
+Value=0:20;valid
 
 [Item]
 Label=P29(c)ii - How many of your male liveborn children are still alive?
 Name=P29CII
-Start=562
+Start=564
 Len=2
+
+[ValueSet]
+Label=P29(c)ii - How many of your male liveborn children are still alive?
+Name=P29CII_VS1
+Value=0:20;valid
 
 [Item]
 Label=P29(c)iii - How many of your female liveborn children are still alive?
 Name=P29CIII
-Start=564
+Start=566
 Len=2
+
+[ValueSet]
+Label=P29(c)iii - How many of your female liveborn children are still alive?
+Name=P29CIII_VS1
+Value=0:20;valid
 
 [Item]
 Label=P30(a) - What is the date of birth of your first liveborn child?
 Name=P30A
-Start=566
+Start=568
 Len=8
 
 [Item]
 Label=Year
 Name=P30A_YEAR
-Start=566
+Start=568
 Len=4
 ItemType=SubItem
 
@@ -2162,12 +2251,12 @@ Value=2017;2,017
 Value=2018;2,018
 Value=2019;2,019
 Value=2020;2,020
-Value=9999;Not Stated
+Value=9999;Don't know
 
 [Item]
 Label=Month
 Name=P30A_MONTH
-Start=570
+Start=572
 Len=2
 ItemType=SubItem
 
@@ -2186,12 +2275,12 @@ Value=9;9
 Value=10;10
 Value=11;11
 Value=12;12
-Value=99;Not stated
+Value=99;Don't know
 
 [Item]
 Label=Day
 Name=P30A_DAY
-Start=572
+Start=574
 Len=2
 ItemType=SubItem
 
@@ -2229,24 +2318,29 @@ Value=28;28
 Value=29;29
 Value=30;30
 Value=31;31
-Value=99;Not stated
+Value=99;Don't know
 
 [Item]
 Label=P30(b) - How old were you at the birth of your first liveborn child?
 Name=P30B
-Start=574
+Start=576
 Len=2
+
+[ValueSet]
+Label=P30(b) - How old were you at the birth of your first liveborn child?
+Name=P30B_VS1
+Value=10:64;valid
 
 [Item]
 Label=P30(c) - What is the date of birth of your last liveborn child?
 Name=P30C
-Start=576
+Start=578
 Len=8
 
 [Item]
 Label=Year
 Name=P30C_YEAR
-Start=576
+Start=578
 Len=4
 ItemType=SubItem
 
@@ -2374,12 +2468,12 @@ Value=2017;2017
 Value=2018;2018
 Value=2019;2019
 Value=2020;2020
-Value=9999;Not stated
+Value=9999;Don't know
 
 [Item]
 Label=Month
 Name=P30C_MONTH
-Start=580
+Start=582
 Len=2
 ItemType=SubItem
 
@@ -2398,12 +2492,12 @@ Value=9;9
 Value=10;10
 Value=11;11
 Value=12;12
-Value=99;Not stated
+Value=99;Don't know
 
 [Item]
 Label=Day
 Name=P30C_DAY
-Start=582
+Start=584
 Len=2
 ItemType=SubItem
 
@@ -2441,34 +2535,38 @@ Value=28;28
 Value=29;29
 Value=30;30
 Value=31;31
-Value=99;Not stated
+Value=99;Don't know
 
 [Item]
 Label=P30(d) - How old were you at the birth of your last liveborn child?
 Name=P30D
-Start=584
+Start=586
 Len=2
+
+[ValueSet]
+Label=P30(d) - How old were you at the birth of your last liveborn child?
+Name=P30D_VS1
+Value=10:64;valid
 
 [Item]
 Label=P31 - How many live births did you have during the 12 months ending 30th April 2020?
 Name=P31
-Start=586
+Start=588
 Len=1
 
 [ValueSet]
 Label=P31 - How many live births did you have during the 12 months ending 30th April 2020?
 Name=P31_VS1
-Value=0;0
-Value=1;1
-Value=2;2
-Value=3;3
-Value=4;4 or more
-Value=9;Not Stated
+Value=1;One
+Value=2;Two separate births
+Value=3;Twins
+Value=4;Three or more
+Value=5;None
 
 [Item]
 Label=P32(a) - are you currently living with a partner?
 Name=P32A
-Start=587
+Start=589
 Len=1
 
 [ValueSet]
@@ -2476,13 +2574,12 @@ Label=P32(a) - are you currently living with a partner?
 Name=P32A_VS1
 Value=1;Yes
 Value=2;No
-Value=9;Not Stated
 
 [Item]
 Label=P32(b)i - If YES and MARRIED, Are you living with your husband?
 Name=P32BI
 Note=Married as stated in P9 (P9=1)
-Start=588
+Start=590
 Len=1
 
 [ValueSet]
@@ -2494,7 +2591,7 @@ Value=2;No, With Common Law Partner
 [Item]
 Label=P32(b)ii - If NO, Have you ever lived with a husband\common law partner?
 Name=P32BII
-Start=589
+Start=591
 Len=1
 
 [ValueSet]
@@ -2502,50 +2599,59 @@ Label=P32(b)ii - If NO, Have you ever lived with a husband\common law partner?
 Name=P32BII_VS1
 Value=1;Yes, No longer living with or not with huusband\Common law partner
 Value=2;No, Never had a husband\common law partner
-Value=9;Not Stated
 
 [Item]
 Label=P32(c) - If with HUSBAND\COMMON LAW PARTNER, score his individual number.
 Name=P32C
-Start=590
+Start=592
 Len=2
+
+[ValueSet]
+Label=P32(c) - If with HUSBAND\COMMON LAW PARTNER, score his individual number.
+Name=P32C_VS1
+Value=0;Not with husband/common law partner
+Value=1:40;With husband/common law partner
 
 [Item]
 Label=P32(d) - If with HUSBAND\COMMON LAW PARTNER, how many years have you and your partner been living together?
 Name=P32D
-Start=592
+Start=594
 Len=2
+
+[ValueSet]
+Label=P32(d) - If with HUSBAND\COMMON LAW PARTNER, how many years have you and your partner been living together?
+Name=P32D_VS1
+Value=0:80;valid
 
 [Item]
 Label=P33 - What was you main activity during the 12 months ending 30th April 2020?
 Name=P33
-Start=594
+Start=596
 Len=1
 
 [ValueSet]
 Label=P33 - What was you main activity during the 12 months ending 30th April 2020?
 Name=P33_VS1
 Value=1;Worked
-Value=2;Student
-Value=3;With Job Not Working
-Value=4;Retired
-Value=5;Looked For Work
+Value=2;With Job Not Working
+Value=3;Looked For Work
+Value=4;Student
+Value=5;Retired
 Value=6;Incapacitated
 Value=7;Home Duties
 Value=8;Other
-Value=9;Not Stated
 
 [Item]
 Label=P33 - Other
 Name=P33_OTHER
-Start=595
+Start=597
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P34 - During the 12 months ending 30th April 220, did you work for an employer or for yourself?
 Name=P34
-Start=645
+Start=647
 Len=2
 
 [ValueSet]
@@ -2558,21 +2664,20 @@ Value=4;For employer - Other
 Value=5;For employer - Unpaid Worker
 Value=6;For self - With Paid Help
 Value=7;For self - With Unpaid Help\Alone
-Value=8;Did not Work
-Value=9;Other
-Value=99;Not Stated
+Value=8;For self - Other
+Value=9;Did not Work
 
 [Item]
 Label=P34 - Other
 Name=P34_OTHER
-Start=647
+Start=649
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P35 - How many months did you work during the 12 months ending 30th April 2020?
 Name=P35
-Start=697
+Start=699
 Len=1
 
 [ValueSet]
@@ -2585,12 +2690,11 @@ Value=4;6 - 7
 Value=5;8 - 9
 Value=6;10 - 11
 Value=7;12
-Value=9;Not Stated
 
 [Item]
 Label=P36 - What was your main type of job or occupation during the 12 months ending 30th April 2020
 Name=P36
-Start=698
+Start=700
 Len=4
 
 [ValueSet]
@@ -2656,14 +2760,14 @@ Value=9999;Not Stated
 [Item]
 Label=P36 - What was your main type of job or occupation during the 12 months ending 30th April 2020
 Name=P36_TEXT
-Start=702
+Start=704
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P37 - In which industry or type of business did you work during the 12 months ending april 2020?
 Name=P37
-Start=752
+Start=754
 Len=4
 
 [ValueSet]
@@ -2708,14 +2812,14 @@ Value=9999;Not stated
 [Item]
 Label=P37 - In which industry or type of business did you work during the 12 months ending april 2020?
 Name=P37_TEXT
-Start=756
+Start=758
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P38 - What are your sources of livelihood other than from employment? (Score as many as applicable)
 Name=P38
-Start=806
+Start=808
 Len=12
 DataType=Alpha
 
@@ -2728,24 +2832,23 @@ Value='C           ';Remittances (overseas)
 Value='D           ';Local contribution from Friends\relatives
 Value='E           ';Investments
 Value='F           ';Savings
-Value='G           ';Other public assistance
-Value='H           ';Unemployment
-Value='I           ';Disability\Inactiveness
+Value='G           ';Unemployment
+Value='H           ';Disability\Inactiveness
+Value='I           ';Other public assistance
 Value='J           ';Other
 Value='K           ';None
-Value='Z           ';Not Stated
 
 [Item]
 Label=P38 - Other
 Name=P38_OTHER
-Start=818
+Start=820
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P39(a) - What is the normal pay period from your main occupation\job?
 Name=P39A
-Start=868
+Start=870
 Len=1
 
 [ValueSet]
@@ -2759,32 +2862,38 @@ Value=4;Other
 [Item]
 Label=P39(a) - Other
 Name=P39A_OTHER
-Start=869
+Start=871
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P39(b) - What was your gross pay or income from your main occupation during the last pay period? (Before tax or deductions)
 Name=P39B
-Start=919
+Start=921
 Len=6
 
 [Item]
 Label=P39(c) - What was your monthly income from sources of livelihood other than employment?
 Name=P39C
-Start=925
+Start=927
 Len=2
 
 [Item]
 Label=P40 - During the past three months, were you unable to go to work due to lack of money or transportation?
 Name=P40
-Start=927
+Start=929
 Len=1
+
+[ValueSet]
+Label=P40 - During the past three months, were you unable to go to work due to lack of money or transportation?
+Name=P40_VS1
+Value=1;Yes
+Value=2;No
 
 [Item]
 Label=P41(a) - Are you involved in any agricultural activity?
 Name=P41A
-Start=928
+Start=930
 Len=1
 
 [ValueSet]
@@ -2792,12 +2901,11 @@ Label=P41(a) - Are you involved in any agricultural activity?
 Name=P41A_VS1
 Value=1;Yes
 Value=2;No
-Value=9;Not Stated
 
 [Item]
 Label=P41(b) - Do you own any agricultural land?
 Name=P41B
-Start=929
+Start=931
 Len=1
 
 [ValueSet]
@@ -2805,12 +2913,11 @@ Label=P41(b) - Do you own any agricultural land?
 Name=P41B_VS1
 Value=1;Yes
 Value=2;No
-Value=9;Not Stated
 
 [Item]
 Label=P42 - What is your area of involvement in agricultural activity
 Name=P42
-Start=930
+Start=932
 Len=1
 
 [ValueSet]
@@ -2818,51 +2925,160 @@ Label=P42 - What is your area of involvement in agricultural activity
 Name=P42_VS1
 Value=1;Farmer
 Value=2;Processor
-Value=3;Backyard gardener\Landless farmer
+Value=3;Backyard gardener
+Value=4;Landless farmer
 
 [Item]
 Label=P43 - In what type of agricultural activity are you involved? (Score as many as applicable)
 Name=P43
-Start=931
-Len=10
+Start=933
+Len=11
 DataType=Alpha
 
 [ValueSet]
 Label=P43 - In what type of agricultural activity are you involved? (Score as many as applicable)
 Name=P43_VS1
-Value='A         ';Sugarcane Farming
-Value='B         ';Fruit Farming
-Value='C         ';Vegetable Farming
-Value='D         ';Horticulture
-Value='E         ';Root Crop Farming
-Value='F         ';Livestock Farming
-Value='G         ';Herbs
-Value='H         ';Poultry Farming
-Value='I         ';Cotton
-Value='J         ';Other
+Value='A          ';Sugarcane Farming
+Value='B          ';Fruit Farming
+Value='C          ';Vegetable Farming
+Value='D          ';Horticulture
+Value='E          ';Root Crop Farming
+Value='F          ';Livestock Farming
+Value='G          ';Herbs
+Value='H          ';Poultry Farming
+Value='I          ';Cotton
+Value='J          ';Fish farming
+Value='K          ';Other
 
 [Item]
 Label=P43 - Other
 Name=P43_OTHER
-Start=941
+Start=944
 Len=50
 DataType=Alpha
 
 [Item]
-Label=P50 - Where did you spend the night of May 1 2020?
-Name=P50
-Start=991
+Label=P44 - During the past four weeks, did you have no food due to lack of resources?
+Name=P44
+Start=994
 Len=1
 
 [ValueSet]
-Label=P50 - Where did you spend the night of May 1 2020?
-Name=P50_VS1
+Label=P44 - During the past four weeks, did you have no food due to lack of resources?
+Name=P44_VS1
+Value=1;Never
+Value=2;1 - 2 times
+Value=3;3 - 10 times
+Value=4;More than 10
+
+[Item]
+Label=P45 - Did you go a whole day and night without eating anything because there was not enough food?
+Name=P45
+Start=995
+Len=1
+
+[ValueSet]
+Label=P45 - Did you go a whole day and night without eating anything because there was not enough food?
+Name=P45_VS1
+Value=1;Never
+Value=2;1 - 2 times
+Value=3;3 - 10 times
+Value=4;More than 10
+
+[Item]
+Label=P46 - During the past three months, did you ever fall ill (and required medical attention) but did not go to a healthcare facility because of a lack of resources?
+Name=P46
+Start=996
+Len=1
+
+[ValueSet]
+Label=P46 - During the past three months, did you ever fall ill (and required medical attention) but did not go to a healthcare facility because of a lack of resources?
+Name=P46_VS1
+Value=1;Never
+Value=2;1 - 2 times
+Value=3;3 - 10 times
+Value=4;More than 10
+
+[Item]
+Label=P47(a) - Have you ever been a victim of crime during the past 12 months ending april 30, 2020?
+Name=P47A
+Start=997
+Len=1
+
+[ValueSet]
+Label=P47(a) - Have you ever been a victim of crime during the past 12 months ending april 30, 2020?
+Name=P47A_VS1
+Value=1;Yes
+Value=2;No
+Value=3;Don't Know
+
+[Item]
+Label=P47(b) - If yes, Please specify the type of crime
+Name=P47B
+Start=998
+Len=8
+DataType=Alpha
+
+[ValueSet]
+Label=P47(b) - If yes, Please specify the type of crime
+Name=P47B_VS1
+Value='A       ';Murder
+Value='B       ';Robbery
+Value='C       ';Kidnapping
+Value='D       ';Wounding
+Value='E       ';Shooting
+Value='F       ';Larceny
+Value='G       ';Rape\Sexual Abuse
+Value='H       ';Other
+
+[Item]
+Label=P47(b) - Other
+Name=P47B_OTHER
+Start=1006
+Len=50
+DataType=Alpha
+
+[Item]
+Label=P47(c) - Out of the crimes indicated, which crimes were reported?
+Name=P47C
+Start=1056
+Len=9
+DataType=Alpha
+
+[ValueSet]
+Label=P47(c) - Out of the crimes indicated, which crimes were reported?
+Name=P47C_VS1
+Value='A        ';Murder
+Value='B        ';Robbery
+Value='C        ';Kidnapping
+Value='D        ';Wounding
+Value='E        ';Shooting
+Value='F        ';Larceny
+Value='G        ';Rape\Sexual Abuse
+Value='H        ';Other
+Value='I        ';None
+
+[Item]
+Label=P47(c) - Other
+Name=P47C_OTHER
+Start=1065
+Len=50
+DataType=Alpha
+
+[Item]
+Label=P48 - Where did you spend the night of May 1 2020?
+Name=P48
+Start=1115
+Len=1
+
+[ValueSet]
+Label=P48 - Where did you spend the night of May 1 2020?
+Name=P48_VS1
 Value=1;In this household
 Value=2;Elsewhere in the country
 Value=3;Institution
 Value=4;Abroad
 Value=5;Other
-Value=9;Not Stated
 
 [Record]
 Label=Metadata

@@ -109,6 +109,15 @@ EN=\pard\cf1\fs24 During the last three months, was any member of this household
 EN=}
 
 [QUESTION]
+Field=CENSUS2020_DICT.H8
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 What is the date of birth of your last liveborn child? (YYYY/MM/DD)\par
+EN=}
+
+[QUESTION]
 Field=CENSUS2020_DICT.HNOPERSONS
 EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
@@ -145,15 +154,6 @@ EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fchars
 EN={\colortbl ;\red0\green0\blue0;}
 EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
 EN=\pard\cf1\fs24 What is the date of birth of your first liveborn child? (YYYY/MM/DD)\b\par
-EN=}
-
-[QUESTION]
-Field=CENSUS2020_DICT.P30C
-Occurrences=1:40
-EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
-EN={\colortbl ;\red0\green0\blue0;}
-EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 What is the date of birth of your last liveborn child? (YYYY/MM/DD)\par
 EN=}
 
 [QUESTION]

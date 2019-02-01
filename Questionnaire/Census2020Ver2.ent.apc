@@ -157,6 +157,354 @@ function getgps()
 end;
 }
 
+PROC H17B
+	if not H17A in 3:4 then		//If not rented or leased
+		skip to H19A;		//goto H19A
+	endif;
+
+//----------------------------------------------------------------------
+PROC H23AI
+//H23(a)i – Which of these appliances\household equipment does your household have?
+	if length(strip($)) = 0 then	//if nothing was chosen
+		skip to H23B;				//skip the next question
+	endif;
+
+//------------------------------------------------------
+PROC H23AII
+preproc
+	ask if H8A = 1 and H8C in 1,3;	//only ask if this is a rented room in a separate house\apartment
+	
+//create dynamic checkboxes based on previous question
+	vsindex = 1;
+	checkboxcodes = "ABCDEFGHIJKLMNOPQRSTUVWXZ";
+	clearStringArray(vsAlphaCodes);		//initialise array
+	
+	do i = 1 while i <= 25;		//loop through all checkboxes
+		checkboxalpha = checkboxcodes[i:1];	//convert index to alpha code
+		if pos(checkboxalpha,H23AI) > 0 then	//if the checkbox was marked in the previous question
+			vsalphacodes(vsindex) = checkboxalpha;	//add it to the valueset
+			vslabels(vsindex) = getlabel(H23AII_VS1, checkboxalpha);
+			inc(vsindex);	//next valueset item
+		endif;		
+	enddo;
+	
+	vsalphacodes(vsindex) = "";	//end valueset
+	setvalueset($,vsalphacodes,vslabels);	//create valueset based on the above
+
+//----------------------------------------------------------------------------
+PROC H25A
+	if $ = 2 then		//if no crime victims
+		skip to H26		//skip to food security
+	endif;
+PROC H25B
+	if pos("i",$) > 0 and length(strip($)) > 1 then
+		errmsg("cannot be not stated and another option");
+		reenter;
+	endif;
+	
+	if length(strip($)) = 0 then
+		errmsg("There are victims of crime in this household but no crimes are selected")
+			select("Change crime status",H25A,"Select a crime",$);
+	endif;
+
+//-------------------------------------------------------------------------
+PROC H25C
+onfocus
+	//DEBUG: Dynamic valueset not showing up
+	//create dynamic checkboxes based on previous question
+	vsindex = 1;
+	checkboxcodes = "abcdefghi";
+	clearStringArray(vsAlphaCodes);		//initialise array
+	
+	do i = 1 while i <= 9;		//loop through all checkboxes
+		checkboxalpha = checkboxcodes[i:1];	//convert index to alpha code
+		if pos(checkboxalpha,H25B) > 0 then	//if the checkbox was marked in the previous question
+			vsalphacodes(vsindex) = checkboxalpha;	//add it to the valueset
+			vslabels(vsindex) = getlabel(H25C_VS1, checkboxalpha);
+			inc(vsindex);	//next valueset item
+		endif;		
+	enddo;
+	
+	vsalphacodes(vsindex) = "";	//end valueset
+	setvalueset($,vsalphacodes,vslabels);	//create valueset based on the above
+	
+postproc
+	if pos("i",$) > 0 and length(strip($)) > 1 then
+		errmsg("cannot be not stated and another option");
+		reenter;
+	endif;
+	
+//----------------------------------------------------------------------------
+PROC H31
+Postproc	//should run after household has been entered
+	if visualvalue(END_TIME) <> notappl and H14A = 2 then		//If no end time and the house is vacant
+		END_TIME = systime();						//then update the end time
+	endif;
+
+//-------------------------------------------------------------------------------------
+PROC H8A
+//H8(a) – Do you rent a room in this Building?
+	if $ = 2 then
+		skip to H8C;
+	endif;
+	
+//----------------------------------------------------------------------
+PROC H8B
+//H8(b) – How many rented rooms are in this Building?
+	if $ = 0 then	//if number of rooms is 0
+		H8A = 2;	//assume no rented rooms
+	elseif $ > 0 then	//if number of rented rooms is more than 0
+		H8A = 1; 	//assume rented rooms
+	endif;
+	
+//----------------------------------------------------------------------
+PROC H8C
+//H8(c) – What type of dwelling unit is this?
+	if H8A = 1 and H14A = 2 then		//if rented rooms exist
+		skip to H14B	//goto H14A
+	endif;
+
+
+//----------------------------------------------------------------------
+PROC P12AI
+onfocus
+	if $ = 2 then		//if no disabilities
+		skip to P14;	//skip to non communicable disease
+	endif;
+	
+//---------------------------------------------------------
+PROC P12AII
+onfocus
+	if P12AI = 2 then
+		skip to P14;
+	endif;
+
+postproc
+	if pos("u",$) > 0 and length(strip($)) > 1 then
+		errmsg("cannot be not stated and another option (%s)",P12AII);
+		reenter;
+	endif;
+
+//-------------------------------------------------------------------------------
+PROC P15C
+onfocus
+//create dynamic checkboxes based on previous question
+	if pos("z",P15B) = 0 then	//if not stated is not selected in the previous question. i.e. show all options if not stated is selected
+		vsindex = 1;
+		checkboxcodes = "ABC";
+		clearStringArray(vsAlphaCodes);		//initialise array
+	
+		do i = 1 while i <= 3;		//loop through all checkboxes
+			checkboxalpha = checkboxcodes[i:1];	//convert index to alpha code
+			if pos(checkboxalpha,P15B) > 0 then	//if the checkbox was marked in the previous question
+				vsalphacodes(vsindex) = checkboxalpha;	//add it to the valueset
+				vslabels(vsindex) = getlabel(P15C_VS1, checkboxalpha);
+				inc(vsindex);	//next valueset item
+			endif;		
+		enddo;
+	
+		vsAlphaCodes(vsindex) = "d";		//add none to valueset
+		vsLabels(vsindex) = "None";
+		inc(vsindex);
+		vsAlphaCodes(vsindex) = "z";		//add not stated to valuset
+		vsLabels(vsindex) = "Not Stated";
+		
+		vsalphacodes(vsindex) = "";	//end valueset
+		setvalueset($,vsalphacodes,vslabels);	//create valueset based on the above
+	endif;
+
+postproc
+	if pos("d",$) > 0 and length(strip($)) > 1 then
+		errmsg("cannot be not stated and another option");
+		reenter;
+	endif;
+	
+	if pos("d",$) > 0 then	//if none
+		$ = "d";			//set all to none
+		skip to P16A;		//skip drug use
+	endif;
+
+//-----------------------------------------------------------------
+PROC P17B
+//P17(b) - In which year did you first arrive in Barbados to live?
+	diff = datediff(DOB_YEAR,$);
+	if diff < 0 then	//if first arrived to live in barbados before birth year
+		errmsg("Year first arrived(%d) is after birth year(%d)",$,DOB_YEAR);
+		reenter;		//birth year is more likely to be correct at this point
+	endif;
+
+//-----------------------------------------------------------
+PROC P18
+	if AGE < 5 then		//if born after may 1, 2015 (Age 5 years)
+		skip to P21A;	//Skip to Education
+	endif;
+
+//----------------------------------------------------------------------
+PROC P25AI
+//TODO: create dynamic checkboxes based on P23
+onfocus
+	//match school levels to exams
+	{
+	Preprimary => b
+	Primary => b
+	secondary => c-g,l
+	senior => c-k,l
+	Post => c-l
+	Tertiary => m-s
+	}
+postproc
+	if pos("a",$) > 0 and length($) > 1 then
+		errmsg("cannot be 'none' and another option");
+		reenter;
+	endif;
+	
+	if pos("b",$) > 0 and length($) > 1 then
+		errmsg("cannot be 'not taken any exam' and another option");
+		reenter;
+	endif;
+	
+//--------------------------------------------------------------------
+PROC P26A
+	if pos("i",$) > 0 and length($) > 1 then				//if both "Don't use" and another option
+		errmsg("Cannot have Don't use and use internet");	
+		reenter;											//input field again
+	endif;
+	
+	if pos("i",$) > 0 then		//if don't use
+		skip to P27AI;			//skip to training
+	endif;
+	
+//------------------------------------------------------------
+PROC P27AI
+preproc
+	if AGE < 15 then		//if under 15 years old
+		skip to P44;		//skip to last question
+	endif;
+	
+postproc
+	if $ = 2 and SEX = 2 then		//if never trained and female
+		skip to P30A;				//skip to fertility
+	elseif $ = 2 and SEX = 1 then	//if male
+		skip to P34;				//skip to Economic activity
+	endif;
+	
+//---------------------------------------------------------------------
+PROC P27C
+//P27(c) - If completed training, in what year did you complete training
+//TODO: year completed training should be at least 15 years after year of birth
+	if $ < DOB_YEAR + 14 then	//if Year completed is less that 15 years after DOB (with 1 year leeway)
+		errmsg("Training was completed when %s was less than 15 years old",strip(FIRST_NAME(curocc())));
+		reenter;
+	endif; 
+
+//-----------------------------------------------------------
+PROC P29
+	if (SEX = 2 and AGE > 64) or SEX = 1 then	//If female over 64 years or male
+		skip to P34;							//skip to economic activity
+	endif;
+	
+//----------------------------------------------------------------------------------
+PROC P30BI
+postproc
+	if $ <> P30BII + P30BIII then
+		errmsg("Number of Male children (%d) and number of Female children (%d) don't add up to Total children (%d)",P30BII,P30BIII,P30BI)
+			select("Correct Male children",P30BII,"Correct Female children",P30BIII,"Correct Total children",$);
+	elseif $ = 0 and P30A = 1 then		//If had children but no births
+		//Need to confirm if this is a valid case or not. i.e. Person could have had children but no *live* births?
+	endif;
+
+//----------------------------------------------------------------------------------------
+PROC P30CI
+postproc
+	if $ <> P30CII + P30CIII then
+		errmsg("Number of Male children (%d) and number of Female children (%d) don't add up to Total children (%d)",P30CII,P30CIII,$)
+			select("Correct Male children",P30CII,"Correct Female children",P30CIII,"Correct Total children",$);
+	elseif $ > P30BI then
+		errmsg("Children still alive (%d) cannot be more than total children (%d)", $,P30BI)
+			select("Correct liveborn children",P30BII,"Correct children still alive",P30CI);
+	endif;
+
+//-----------------------------------------------------------------------------------------------------
+PROC P31A
+postproc
+	if checkdate(P31A_YEAR,P31A_MONTH,P31A_DAY) = 0 then
+		reenter;
+	endif;
+	
+//------------------------------------------------------------------
+PROC P31C
+onfocus
+	if P30BI = 1 then		//if only one child
+		$ = P31A;			//entre the same info for last child
+		P31D = P31B;
+		advance to P32;
+	endif;
+
+	if AGE > 49 then	//if over 49
+		skip to P33A;	//skip to Union status
+	endif;
+
+postproc
+	if checkdate(P31C_YEAR,P31C_MONTH,P31C_DAY) = 0 then
+		reenter;
+	endif;
+	
+	
+//--------------------------------------------------------------------
+PROC P31D
+	if AGE > 49 then	//if age is over 49
+		skip to P33A;	//skip to union status
+	endif;
+	
+//---------------------------------------------------------------
+PROC P32
+//TODO:validate against P30Bi and P30CI
+	if $ in 1:4 and P30BI = 0 then		//if had children in the last 12 months but had no children in total
+		warning("Had %s liveborn children in the last twelve months but %d total live births",getlabel(P32_VS1,P32),P30BI);
+	endif;
+
+//-----------------------------------------------------------------------
+PROC P33A
+	if $ = 2 then		//if not living with a partner
+		skip to P33BII	//skip to P33BII
+	endif;
+	
+//-----------------------------------------------------------
+PROC P33BI
+onfocus
+	if P33A <> 1 or P9 <> 1 then	//if not living with a partner or not married
+		skip to next;				//go to next question
+	endif;
+	
+//---------------------------------------------------------------------------------
+PROC P33C
+onfocus
+	if P33A = 2 then	//if not with husband or common law partner
+		$ = 0;			//score as 0
+		skip to P34;	//and skip to economic activity
+	endif;
+	
+//----------------------------------------------------------------------
+PROC P39
+	if pos("l",$) > 0 and length($) > 1 then		//if Not Stated and other options selected
+		errmsg("cannot be not stated and have other selections");
+		reenter;		//inpute again
+	elseif pos("k",$) > 0 and length($) > 1 then		//if None and other options selected
+		errmsg("Cannot be non and have other selections");
+		reenter;		//impute again
+	endif;
+	
+	if P35 = 8 then		//If did not work
+		skip to P40C;	//skip to Income
+	endif;
+	
+//----------------------------------------------------------
+PROC P40A
+	if pos("k",P39) > 0 then	//if no sources of livelihood
+		skip to P41A;	//skip to agriculture
+	endif;
+	
+//------------------------------------------------------------
 PROC CENSUS2020_FF
 preproc
 	userbar(clear);
@@ -334,33 +682,39 @@ PROC HNOPERSONS
 	endif;
 
 //-------------------------------------------------------
-PROC H8A
-//H8(a) – Do you rent a room in this Building?
-	if $ = 2 then
-		skip to H8C;
-	endif;
-	
-//----------------------------------------------------------------------
-PROC H8B
-//H8(b) – How many rented rooms are in this Building?
-	if $ = 0 then	//if number of rooms is 0
-		H8A = 2;	//assume no rented rooms
-	elseif $ > 0 then	//if number of rented rooms is more than 0
-		H8A = 1; 	//assume rented rooms
-	endif;
-	
-//----------------------------------------------------------------------
-PROC H8C
-//H8(c) – What type of dwelling unit is this?
-	if H8A = 1 and H14A = 2 then		//if rented rooms exist
-		skip to H14B	//goto H14A
-	endif;
+PROC H8_OTHER
+preproc
+	//only ask if other is selected
+	ask if H8 = 9;
 
-
-//----------------------------------------------------------------------
+//-------------------------------------------------------------
 PROC H9
 //H9 – Of what materials are the outer walls made?
 //should checks on the consistency of Walls, roofs, floors and foundations be done afterward?
+PROC H9_OTHER
+preproc
+	//only ask if other is selected
+	ask if H9 = 10;
+
+//-------------------------------------------------------------
+PROC H10_OTHER
+preproc
+	//only ask if other is selected
+	ask if H10 = 9;
+
+//-------------------------------------------------------------
+PROC H11_OTHER
+preproc
+	//only ask if other is selected
+	ask if H11 = 6;
+
+//-------------------------------------------------------------
+PROC H12_OTHER
+preproc
+	//only ask if other is selected
+	ask if H12 = 4;
+
+//-------------------------------------------------------------
 PROC H13
 	if H14A = 1 then		//if occupied
 		skip to H14C	//goto H14C
@@ -400,16 +754,28 @@ postproc
 	endif;
 	
 //------------------------------------------------------------
-PROC H17B
-	if not H17A in 3:4 then		//If not rented or leased
-		skip to H19A;		//goto H19A
-	endif;
+PROC H17C_OTHER
+preproc
+	//only ask if other is selected
+	ask if H17C = 4;
 
-//----------------------------------------------------------------------
+//-------------------------------------------------------------
 PROC H18
 	skip to H20;	//goto H20
 
 //----------------------------------------------------------------------
+PROC H19A_OTHER
+preproc
+	//only ask if other is selected
+	ask if H19A = 7;
+
+//-------------------------------------------------------------
+PROC H19D_OTHER
+preproc
+	//only ask if other is selected
+	ask if H19D = 5;
+
+//-------------------------------------------------------------
 PROC H19E
 preproc		//DEBUG: (used to be onfocus) stops here when using navigation
 	if not H19B in 3,4 then		//if not rented or leased
@@ -417,8 +783,20 @@ preproc		//DEBUG: (used to be onfocus) stops here when using navigation
 	endif;
 
 //----------------------------------------------------
+PROC H20_OTHER
+preproc
+	//only ask if other is selected
+	ask if H20 = 6;
+
+//-------------------------------------------------------------
 PROC H21A
 //May have to check that person can only have Toilet link to sewer, well or private sewerage if their water supply (H20)is piped into dwelling or at least the yard
+PROC H21A_OTHER
+preproc
+	//only ask if other is selected
+	ask if H21A = 6;
+
+//-------------------------------------------------------------
 PROC H22C
 preproc
 
@@ -428,86 +806,14 @@ postproc
 	endif;
 	
 //------------------------------------------------------------
-PROC H23AI
-//H23(a)i – Which of these appliances\household equipment does your household have?
-	if length(strip($)) = 0 then	//if nothing was chosen
-		skip to H23B;				//skip the next question
-	endif;
-
-//------------------------------------------------------
-PROC H23AII
-preproc
-	ask if H8A = 1 and H8C in 1,3;	//only ask if this is a rented room in a separate house\apartment
-	
-//create dynamic checkboxes based on previous question
-	vsindex = 1;
-	checkboxcodes = "ABCDEFGHIJKLMNOPQRSTUVWXZ";
-	clearStringArray(vsAlphaCodes);		//initialise array
-	
-	do i = 1 while i <= 25;		//loop through all checkboxes
-		checkboxalpha = checkboxcodes[i:1];	//convert index to alpha code
-		if pos(checkboxalpha,H23AI) > 0 then	//if the checkbox was marked in the previous question
-			vsalphacodes(vsindex) = checkboxalpha;	//add it to the valueset
-			vslabels(vsindex) = getlabel(H23AII_VS1, checkboxalpha);
-			inc(vsindex);	//next valueset item
-		endif;		
-	enddo;
-	
-	vsalphacodes(vsindex) = "";	//end valueset
-	setvalueset($,vsalphacodes,vslabels);	//create valueset based on the above
-
-//----------------------------------------------------------------------------
-PROC H25A
-	if $ = 2 then		//if no crime victims
-		skip to H26		//skip to food security
-	endif;
-PROC H25B
-	if pos("i",$) > 0 and length(strip($)) > 1 then
-		errmsg("cannot be not stated and another option");
-		reenter;
-	endif;
-	
-	if length(strip($)) = 0 then
-		errmsg("There are victims of crime in this household but no crimes are selected")
-			select("Change crime status",H25A,"Select a crime",$);
-	endif;
-
-//-------------------------------------------------------------------------
-PROC H25C
-onfocus
-	//DEBUG: Dynamic valueset not showing up
-	//create dynamic checkboxes based on previous question
-	vsindex = 1;
-	checkboxcodes = "abcdefghi";
-	clearStringArray(vsAlphaCodes);		//initialise array
-	
-	do i = 1 while i <= 9;		//loop through all checkboxes
-		checkboxalpha = checkboxcodes[i:1];	//convert index to alpha code
-		if pos(checkboxalpha,H25B) > 0 then	//if the checkbox was marked in the previous question
-			vsalphacodes(vsindex) = checkboxalpha;	//add it to the valueset
-			vslabels(vsindex) = getlabel(H25C_VS1, checkboxalpha);
-			inc(vsindex);	//next valueset item
-		endif;		
-	enddo;
-	
-	vsalphacodes(vsindex) = "";	//end valueset
-	setvalueset($,vsalphacodes,vslabels);	//create valueset based on the above
-	
-postproc
-	if pos("i",$) > 0 and length(strip($)) > 1 then
-		errmsg("cannot be not stated and another option");
-		reenter;
-	endif;
-	
-//----------------------------------------------------------------------------
-PROC H31
-Postproc	//should run after household has been entered
-	if visualvalue(END_TIME) <> notappl and H14A = 2 then		//If no end time and the house is vacant
-		END_TIME = systime();						//then update the end time
-	endif;
-
-//-------------------------------------------------------------------------------------
 PROC E8A
+//onfocus
+//	if H14A = 2 then
+//		$ = 2;
+//		endgroup;
+//	endif;
+	
+//postproc
 	if $ = 2 then		//if no emmigrants
 		endgroup;		//end emmigration section
 	endif;
@@ -550,7 +856,7 @@ preproc
 
 	
 onfocus
-	$ = curocc();
+	$ = IID;
 
 
 //-----------------------------------------------------------
@@ -607,26 +913,12 @@ PROC P9
 	endif;
 
 //---------------------------------------------------------------------
-PROC P12AI
-onfocus
-	if $ = 2 then		//if no disabilities
-		skip to P14;	//skip to non communicable disease
-	endif;
-	
-//---------------------------------------------------------
-PROC P12AII
-onfocus
-	if P12AI = 2 then
-		skip to P14;
-	endif;
+PROC P10_OTHER
+preproc
+	//only ask if other is selected
+	ask if P10 = 7;
 
-postproc
-	if pos("u",$) > 0 and length(strip($)) > 1 then
-		errmsg("cannot be not stated and another option (%s)",P12AII);
-		reenter;
-	endif;
-
-//-------------------------------------------------------------------------------
+//-------------------------------------------------------------
 PROC P12C
 	if pos("h",$) > 0 and length(strip($)) > 1 then
 		errmsg("cannot be none and another option");
@@ -644,6 +936,12 @@ PROC P12C
 	endif;
 
 //------------------------------------------------------------------------------------
+PROC P12C_OTHER
+preproc
+	//only ask if other is selected
+	ask if pos(P12C,"H") > 0;
+
+//-------------------------------------------------------------
 PROC P14
 	if pos("h",$) > 0 and length(strip($)) > 1 then
 		errmsg("cannot be not stated and another option");
@@ -651,6 +949,12 @@ PROC P14
 	endif;
 
 //------------------------------------------------------------------------
+PROC P14_OTHER
+preproc
+	//only ask if other is selected
+	ask if pos(P14,"J") > 0;
+
+//-------------------------------------------------------------
 PROC P15A
 	if pos("d",$) > 0 and length(strip($)) > 1 then
 		errmsg("cannot be not stated and another option");
@@ -705,45 +1009,6 @@ postproc
 	endif;
 
 //-----------------------------------------------------------------
-PROC P15C
-onfocus
-//create dynamic checkboxes based on previous question
-	if pos("z",P15B) = 0 then	//if not stated is not selected in the previous question. i.e. show all options if not stated is selected
-		vsindex = 1;
-		checkboxcodes = "ABC";
-		clearStringArray(vsAlphaCodes);		//initialise array
-	
-		do i = 1 while i <= 3;		//loop through all checkboxes
-			checkboxalpha = checkboxcodes[i:1];	//convert index to alpha code
-			if pos(checkboxalpha,P15B) > 0 then	//if the checkbox was marked in the previous question
-				vsalphacodes(vsindex) = checkboxalpha;	//add it to the valueset
-				vslabels(vsindex) = getlabel(P15C_VS1, checkboxalpha);
-				inc(vsindex);	//next valueset item
-			endif;		
-		enddo;
-	
-		vsAlphaCodes(vsindex) = "d";		//add none to valueset
-		vsLabels(vsindex) = "None";
-		inc(vsindex);
-		vsAlphaCodes(vsindex) = "z";		//add not stated to valuset
-		vsLabels(vsindex) = "Not Stated";
-		
-		vsalphacodes(vsindex) = "";	//end valueset
-		setvalueset($,vsalphacodes,vslabels);	//create valueset based on the above
-	endif;
-
-postproc
-	if pos("d",$) > 0 and length(strip($)) > 1 then
-		errmsg("cannot be not stated and another option");
-		reenter;
-	endif;
-	
-	if pos("d",$) > 0 then	//if none
-		$ = "d";			//set all to none
-		skip to P16A;		//skip drug use
-	endif;
-
-//-----------------------------------------------------------------
 PROC P16A
 	if $ = 2 then		//if not born in barbados
 		skip to P17A;	//skip migration
@@ -758,21 +1023,6 @@ PROC P16B
 	endif;
 
 //-----------------------------------------------------------------------------
-PROC P17B
-//P17(b) - In which year did you first arrive in Barbados to live?
-	diff = datediff(DOB_YEAR,$);
-	if diff < 0 then	//if first arrived to live in barbados before birth year
-		errmsg("Year first arrived(%d) is after birth year(%d)",$,DOB_YEAR);
-		reenter;		//birth year is more likely to be correct at this point
-	endif;
-
-//-----------------------------------------------------------
-PROC P18
-	if AGE < 5 then		//if born after may 1, 2015 (Age 5 years)
-		skip to P21A;	//Skip to Education
-	endif;
-
-//----------------------------------------------------------------------
 PROC P19A
 	if $ <> 3 then		//if was not living in another parish
 		skip to P20A;	//skip to Ever left barbados
@@ -851,9 +1101,21 @@ Age range, shool level
 	endif;
 	
 //-----------------------------------------------------------------
+PROC P21B_OTHER
+preproc
+	//only ask if other is selected
+	ask if P21B = 6;
+
+//-------------------------------------------------------------
 PROC P22
 preproc
 	ask if P21A = 2;
+PROC P22_OTHER
+preproc
+	//only ask if other is selected
+	ask if P22 = 6;
+
+//-------------------------------------------------------------
 PROC P23
 //P23 - what is the highest level of educational institution ever attended by you?
 //highest level institution should not be lower than P21B if still attending school
@@ -893,75 +1155,17 @@ postproc
 	endif;
 
 //----------------------------------------------------------------------------------------
-PROC P25AI
-//TODO: create dynamic checkboxes based on P23
-onfocus
-	//match school levels to exams
-	{
-	Preprimary => b
-	Primary => b
-	secondary => c-g,l
-	senior => c-k,l
-	Post => c-l
-	Tertiary => m-s
-	}
-postproc
-	if pos("a",$) > 0 and length($) > 1 then
-		errmsg("cannot be 'none' and another option");
-		reenter;
-	endif;
-	
-	if pos("b",$) > 0 and length($) > 1 then
-		errmsg("cannot be 'not taken any exam' and another option");
-		reenter;
-	endif;
-	
-//--------------------------------------------------------------------
-PROC P26A
-	if pos("i",$) > 0 and length($) > 1 then				//if both "Don't use" and another option
-		errmsg("Cannot have Don't use and use internet");	
-		reenter;											//input field again
-	endif;
-	
-	if pos("i",$) > 0 then		//if don't use
-		skip to P27AI;			//skip to training
-	endif;
-	
-//------------------------------------------------------------
+PROC P24AI_OTHER
+preproc
+	//only ask if other is selected
+	ask if pos(P24AI,"T") > 0;
+
+//-------------------------------------------------------------
 PROC P26B
 //TODO: //TODO: create dynamic valueset based on P26A
 
 
 //-------------------------------------------------------
-PROC P27AI
-preproc
-	if AGE < 15 then		//if under 15 years old
-		skip to P44;		//skip to last question
-	endif;
-	
-postproc
-	if $ = 2 and SEX = 2 then		//if never trained and female
-		skip to P30A;				//skip to fertility
-	elseif $ = 2 and SEX = 1 then	//if male
-		skip to P34;				//skip to Economic activity
-	endif;
-	
-//---------------------------------------------------------------------
-PROC P27C
-//P27(c) - If completed training, in what year did you complete training
-//TODO: year completed training should be at least 15 years after year of birth
-	if $ < DOB_YEAR + 14 then	//if Year completed is less that 15 years after DOB (with 1 year leeway)
-		errmsg("Training was completed when %s was less than 15 years old",strip(FIRST_NAME(curocc())));
-		reenter;
-	endif; 
-
-//-----------------------------------------------------------
-PROC P29
-	if (SEX = 2 and AGE > 64) or SEX = 1 then	//If female over 64 years or male
-		skip to P34;							//skip to economic activity
-	endif;
-	
-//----------------------------------------------------------------------------------
 PROC P30A
 onfocus		//sanity check to make sure that Females outside of childbearing age and Males don't answer
 	if SEX <> 2 then
@@ -976,87 +1180,12 @@ postproc
 	endif;
 	
 //-------------------------------------------------------------------------
-PROC P30BI
-postproc
-	if $ <> P30BII + P30BIII then
-		errmsg("Number of Male children (%d) and number of Female children (%d) don't add up to Total children (%d)",P30BII,P30BIII,P30BI)
-			select("Correct Male children",P30BII,"Correct Female children",P30BIII,"Correct Total children",$);
-	elseif $ = 0 and P30A = 1 then		//If had children but no births
-		//Need to confirm if this is a valid case or not. i.e. Person could have had children but no *live* births?
-	endif;
+PROC P33_OTHER
+preproc
+	//only ask if other is selected
+	ask if P33 = 8;
 
-//----------------------------------------------------------------------------------------
-PROC P30CI
-postproc
-	if $ <> P30CII + P30CIII then
-		errmsg("Number of Male children (%d) and number of Female children (%d) don't add up to Total children (%d)",P30CII,P30CIII,$)
-			select("Correct Male children",P30CII,"Correct Female children",P30CIII,"Correct Total children",$);
-	elseif $ > P30BI then
-		errmsg("Children still alive (%d) cannot be more than total children (%d)", $,P30BI)
-			select("Correct liveborn children",P30BII,"Correct children still alive",P30CI);
-	endif;
-
-//-----------------------------------------------------------------------------------------------------
-PROC P31A
-postproc
-	if checkdate(P31A_YEAR,P31A_MONTH,P31A_DAY) = 0 then
-		reenter;
-	endif;
-	
-//------------------------------------------------------------------
-PROC P31C
-onfocus
-	if P30BI = 1 then		//if only one child
-		$ = P31A;			//entre the same info for last child
-		P31D = P31B;
-		advance to P32;
-	endif;
-
-	if AGE > 49 then	//if over 49
-		skip to P33A;	//skip to Union status
-	endif;
-
-postproc
-	if checkdate(P31C_YEAR,P31C_MONTH,P31C_DAY) = 0 then
-		reenter;
-	endif;
-	
-	
-//--------------------------------------------------------------------
-PROC P31D
-	if AGE > 49 then	//if age is over 49
-		skip to P33A;	//skip to union status
-	endif;
-	
-//---------------------------------------------------------------
-PROC P32
-//TODO:validate against P30Bi and P30CI
-	if $ in 1:4 and P30BI = 0 then		//if had children in the last 12 months but had no children in total
-		warning("Had %s liveborn children in the last twelve months but %d total live births",getlabel(P32_VS1,P32),P30BI);
-	endif;
-
-//-----------------------------------------------------------------------
-PROC P33A
-	if $ = 2 then		//if not living with a partner
-		skip to P33BII	//skip to P33BII
-	endif;
-	
-//-----------------------------------------------------------
-PROC P33BI
-onfocus
-	if P33A <> 1 or P9 <> 1 then	//if not living with a partner or not married
-		skip to next;				//go to next question
-	endif;
-	
-//---------------------------------------------------------------------------------
-PROC P33C
-onfocus
-	if P33A = 2 then	//if not with husband or common law partner
-		$ = 0;			//score as 0
-		skip to P34;	//and skip to economic activity
-	endif;
-	
-//----------------------------------------------------------------------
+//-------------------------------------------------------------
 PROC P34
 onfocus
 	if AGE < 15 then	//if under 15 years old
@@ -1065,6 +1194,12 @@ onfocus
 
 	
 //----------------------------------------------------------
+PROC P34_OTHER
+preproc
+	//only ask if other is selected
+	ask if P34 in 4,8;
+
+//-------------------------------------------------------------
 PROC P35
 //DEBUG: logic not evaluating properly
 	{if not (P34 in 1,8 and not $ in 1:6,8) then		//if worked and worked don't eveluate to false
@@ -1080,26 +1215,18 @@ PROC P35
 	endif;
 
 //--------------------------------------------------------------------
-PROC P39
-	if pos("l",$) > 0 and length($) > 1 then		//if Not Stated and other options selected
-		errmsg("cannot be not stated and have other selections");
-		reenter;		//inpute again
-	elseif pos("k",$) > 0 and length($) > 1 then		//if None and other options selected
-		errmsg("Cannot be non and have other selections");
-		reenter;		//impute again
-	endif;
-	
-	if P35 = 8 then		//If did not work
-		skip to P40C;	//skip to Income
-	endif;
-	
-//----------------------------------------------------------
-PROC P40A
-	if pos("k",P39) > 0 then	//if no sources of livelihood
-		skip to P41A;	//skip to agriculture
-	endif;
-	
-//------------------------------------------------------------
+PROC P38_OTHER
+preproc
+	//only ask if other is selected
+	ask if pos(P38,"J") > 0;
+
+//-------------------------------------------------------------
+PROC P39A_OTHER
+preproc
+	//only ask if other is selected
+	ask if P39A = 4;
+
+//-------------------------------------------------------------
 PROC P41A
 	if $ = 1 then		//if involved in agriculture
 		skip to P42;	//skip to agriculture
@@ -1113,3 +1240,21 @@ PROC P41B
 	endif;
 	
 //-----------------------------------------------------------------------------
+PROC P43_OTHER
+preproc
+	//only ask if other is selected
+	ask if pos(P43,"K") > 0;
+
+//-------------------------------------------------------------
+PROC P47B_OTHER
+preproc
+	//only ask if other is selected
+	ask if pos(P47B,"H") > 0;
+
+//-------------------------------------------------------------
+PROC P47C_OTHER
+preproc
+	//only ask if other is selected
+	ask if pos(P47C,"H") > 0;
+
+//-------------------------------------------------------------
