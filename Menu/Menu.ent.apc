@@ -5,43 +5,51 @@ Notes:
  - Supervisor IDs must be 4 digits starting with 1 and foll0wed by three digits
  - Enumerator IDs must be 4 digits starting with 0 and followed by three digits
  - this is to avoid possible clashes since each ID must be unique in order for the login to work. A different solution can be found if needed but for now this works based on the information that I have.
+ - since the VRs don't need to be filled out beforehand we can treat it as the enumerator report and let enumerators choose their own id info
 TODO:
  - Need to be able to specify ED for Visitation Record and Household Questionnaires
  - Need to pass certain variables to the visitation record and questionnaire. i.e. interview status, Enumerator ID, Supervisor ID
+ - need to implement allocation form
 }
 PROC GLOBAL
 //-----------------Variable Declaration-------------------
 file	pffFile,		//creates .pff file
 		loginfile,		//saves login status in a file
-		;
+		edfile;			//saves ed completion status
 		
-numeric par,		//temp Parish variable
+numeric par,			//temp Parish variable
 		usertype,		//sets user type
 		errflag,		//sets error flag
 		version,		//version number
 		lastupdate,		//last update version day
 		updated,		//Last time the app was updated
-		a,i,j,k,l,		//general counters and temp variables
-		;
+		deleteflag,		//stores flag for case deletion
+		housecount,		//counts number of households
+		indivcounttot,	//counts total number of individuals in an ED
+		allocationdate,	//last allocation date
+		a,i,j,k,l,m,n;		//general counters and temp variables
 
 string	cases,			//case id
 		status,			//holds current login status
 		username,		//stores user name
 		ftpip1,			//Stores ftp address
 		ftpip2,			//stores ftp secondary address
+		cswebip1,		//Stores CSWeb address
+		cswebip2,		//Stores CSWeb secondary address
 		ftpun, 			//stores ftp username
 		ftppw,			//stores ftp password
-		;
+		uid,			//stores user ID for getting allocations
+		edstatus;		//stores ed for ed status file
 
 //-------------------Array Declaration--------------------
 array string vsCode(99);
 array string vsLabel(99);
-array string 	address(99,3);	//stores addresses
-array string	REPORTARRAY(50,10);	//stores enumerator report data (50 = number of records, 10 = number of fields (ERFEILD_OFFICER, ERSERIAL_NO,ERUNIT_NO,WEEK_ENDING,ERLAST-NAME, ERFIRST_NAME, ERADDRESS, ERSTART, EREND,ERREMARKS))
+array string address(99,3);	//stores addresses
+array string VRARRAY(300,19);	//stores Visitation report data (200 = number of records, 18 = number of fields (VI_BUILDING, VI_DWELLING_UNIT, VI_HOUSEHOLD, VI_STATUS, VI_ADDRESS1, VI_ADDRESS2, VI_LAST_NAME, VI_FIRST_NAME, VI_TOTAL, VI_MALES, VI_FEMALES, VI_MALES_RESIDENT_ABROAD, VI_FEMALES_RESIDENT_ABROAD, VI_DATE_STARTED, VI_DATE_COMPLETED, VI_LATITUDE, VI_LONGITUDE, VI_COMMENTS, VI_ENUMERATOR))
 
 //------------------Function Declaration------------------
 //Launches the visitation record
-function launchVR()
+{function launchVR()
 	// ALW - Added stop
 	//execpff("..\Visitation record\Visitation record.pff", stop);
 	string pffFilename = Pathname(application) + "../Visitation Record/Visitation Record.pff";
@@ -78,9 +86,9 @@ function launchVR()
 	close(pffFile);
 	
 	execpff(filename(pffFile), stop);
-end;
+end;}
 
-//Launches the Visitation Record for Supervisors
+{//Launches the Visitation Record for Supervisors
 function launchSupervisorVR()
 
 	string pffFilename = pathname(application) + "..\Visitation Record\Visitation Record.pff";
@@ -119,7 +127,7 @@ function launchSupervisorVR()
 	close(pffFile);
 
 	execpff(filename(pffFile), stop);
-end;
+end;}
 
 //searches an array and returns the position (Originally written by Gregory Martin)
 function searchArray(array string arrayName(,),string findValue) 
@@ -138,14 +146,14 @@ function searchArray(array string arrayName(,),string findValue)
 
 end;
 
-//Launches the Questionnaire and lets you choose a household
+//Launches the Questionnaire to add a household only
 function launchQuestionnaire()
 
 	string pffFilename = pathname(application) + "..\Questionnaire\Census2020Ver2.pff";
 	setfile(pffFile,pffFilename,create);
 
 	filewrite(pffFile,"[Run Information]");
-	filewrite(pffFile,"Version=CSPro 7.1");
+	filewrite(pffFile,"Version=CSPro 7.3");
 	filewrite(pffFile,"AppType=Entry");
 	filewrite(pffFile,"Description=Barbados 2020 Census Questionnaire");
 
@@ -153,7 +161,7 @@ function launchQuestionnaire()
 	filewrite(pffFile,"OperatorID=%s",UNAME);
 	// ALW - The below line will add the case if it does not exist
 	// or enter the case in modify mode if it does
-	filewrite(pffFile,"StartMode=Add;%s",CHOOSE_HOUSEHOLD);
+	filewrite(pffFile,"StartMode=Add");
 	filewrite(pffFile,"ShowInApplicationListing=Hidden");
 	filewrite(pffFile,"AutoAdd=No");
 	filewrite(pffFile,"Lock=CaseListing");
@@ -165,7 +173,48 @@ function launchQuestionnaire()
 
 	filewrite(pffFile,"[ExternalFiles]");
 	filewrite(pffFile,"VISITATION_RECORD_DICT=%s","../Data/VisitationRecord.csdb|CSPRODB");
-	//filewrite(pffFile,"ENUMERATIONREPORT_DICT=%s","../Data/enumrpt.csdb|CSPRODB");		//TODO: to be added
+
+	filewrite(pffFile,"[UserFiles]");
+	filewrite(pffFile,"PFFFILE=%s","");
+
+	filewrite(pffFile,"[Parameters]");
+	filewrite(pffFile,"OnExit = ../Menu/Menu.pff");
+	
+	filewrite(pffFile,"PARISH=%V",ME_PARISH);	
+	filewrite(pffFile,"ED=%V",ME_ED);
+
+	close(pffFile);
+
+	// ALW - Added stop
+	execpff(filename(pffFile), stop);
+end;
+
+//function to view an already completed questionnaire
+function viewQuestionnaire()
+string pffFilename = pathname(application) + "..\Questionnaire\Census2020Ver2.pff";
+	setfile(pffFile,pffFilename,create);
+
+	filewrite(pffFile,"[Run Information]");
+	filewrite(pffFile,"Version=CSPro 7.3");
+	filewrite(pffFile,"AppType=Entry");
+	filewrite(pffFile,"Description=Barbados 2020 Census Questionnaire");
+
+	filewrite(pffFile,"[DataEntryInit]");
+	filewrite(pffFile,"OperatorID=%s",UNAME);
+	// ALW - The below line will add the case if it does not exist
+	// or enter the case in modify mode if it does
+	filewrite(pffFile,"StartMode=Add:%s",CHOOSE_HOUSEHOLD);
+	filewrite(pffFile,"ShowInApplicationListing=Hidden");
+	filewrite(pffFile,"AutoAdd=No");
+	filewrite(pffFile,"Lock=CaseListing");
+
+	filewrite(pffFile,"[Files]");
+	filewrite(pffFile,"Application=%s","./Census2020Ver2.ent");
+	filewrite(pffFile,"InputData=%s","../Data/CensusData.csdb|CSPRODB");
+	filewrite(pffFile,"Paradata=%s","../Data/Census.cslog");
+
+	filewrite(pffFile,"[ExternalFiles]");
+	filewrite(pffFile,"VISITATION_RECORD_DICT=%s","../Data/VisitationRecord.csdb|CSPRODB");
 
 	filewrite(pffFile,"[UserFiles]");
 	filewrite(pffFile,"PFFFILE=%s","");
@@ -178,76 +227,39 @@ function launchQuestionnaire()
 	filewrite(pffFile,"BUILDING=%S",CHOOSE_HOUSEHOLD[6:3]);
 	filewrite(pffFile,"DWELLING_UNIT=%S",CHOOSE_HOUSEHOLD[9:3]);
 	filewrite(pffFile,"HOUSEHOLD=%S",CHOOSE_HOUSEHOLD[12:3]);
-
-	close(pffFile);
-
-	// ALW - Added stop
-	execpff(filename(pffFile), stop);
 end;
 
 //Function to upload all Census and VR data
 function uploadData()
 	errflag = 0;		//clears  flag
-	if syncconnect(FTP,ftpip1,ftpun,ftppw) then		//connect to FTP when outside of the Government WAN
+	if syncconnect(CSWeb,cswebip1,ftpun,ftppw) or syncconnect(CSWeb,cswebip2,ftpun,ftppw) then	//connect to FTP when outside of the Government WAN
 		if not syncdata(PUT,CENSUS2020_DICT,maketext("%2d%3d",ME_PARISH,ME_ED)) then		//Upload Labourforce data
 			inc(errflag);
 		endif;
 		if not syncdata(PUT,VISITATION_RECORD_DICT,maketext("%2d%3d",ME_PARISH,ME_ED)) then		//Upload Control Sheet
 			inc(errflag);
 		endif;
-{		if not syncdata(PUT,ENUMERATIONREPORT_DICT,maketext("%3d",ME_ED)) then	//upload enumeration report			//TODO: Add enumeration report
+		if not syncdata(GET, CENSUS_ALLOCATIONS_DICT) then		//get allocations
 			inc(errflag);
 		endif;
-}		if not syncfile(PUT,"../Data/Census2020Ver2.cslog",maketext("CensusLogs/Census%s.cslog",getdeviceid())) then		//Upload paradata logs
+		if not syncfile(PUT,"../Data/Census2020Ver2.cslog",maketext("CensusLogs/Census%s.cslog",getdeviceid())) then		//Upload paradata logs
 			inc(errflag);
 		endif;
-		//syncfile(PUT,"../Photos/*.jpg", "/CSPro/Photos/");
-		if not syncfile(GET,"/CSPro/Update/Questionnaire/Census2020Ver2.pen","../Questionnaire/Census2020Ver2.pen") then		//update questionnaire
+		if not syncfile(GET,"/Census/Update/Questionnaire/Census2020Ver2.pen","../Questionnaire/Census2020Ver2.pen") then		//update questionnaire
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/CSPro/Update/Visitation Record/Visitation Record.pen","../Visitation Record/Visitation Record.pen") then		//update control sheet
+		if not syncfile(GET,"/Census/Update/Visitation Record/Visitation Record.pen","../Visitation Record/Visitation Record.pen") then		//update control sheet
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/CSPro/Update/Menu/Menu.pen","../Menu/Menu.pen") then		//update Menu
+		if not syncfile(GET,"/Census/Update/Allocation/Allocation.pen","../Allocation/Allocation.pen") then		//update Allocation form
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/CSPro/Update/Reports/EnumerationReport.pen","../Reports/EnumerationReport.pen") then		//update Enumeration Report
+		if not syncfile(GET,"/Census/Update/Menu/Menu.pen","../Menu/Menu.pen") then		//update Menu
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/CSPro/Update/Reports/enumeratorrpt.html","../Reports/enumeratorrpt.html") then		//report template
+{		if not syncfile(GET,"/CSPro/Update/Reports/enumeratorrpt.html","../Reports/enumeratorrpt.html") then		//report template
 			inc(errflag);
-		endif;
-		syncdisconnect();		//disconnect
-
-	elseif syncconnect(FTP,ftpip2,ftpun,ftppw) then		//connect to FTP when within the Government WAN
-		if not syncdata(PUT,CENSUS2020_DICT,maketext("%2d%3d",ME_PARISH,ME_ED)) then		//Upload Lacourforce data
-			inc(errflag);
-		endif;
-		if not syncdata(PUT,VISITATION_RECORD_DICT,maketext("%3d",ME_ED)) then		//Upload Control Sheet
-			inc(errflag);
-		endif;
-{		if not syncdata(PUT,ENUMERATIONREPORT_DICT,maketext("%2d%3d",rnd,ME_ED)) then	//upload enumeration report
-			inc(errflag);
-		endif;
-}		if not syncfile(PUT,"../Data/Labourforce.cslog",maketext("LabourforceLogs/Labourforce%s.cslog",getdeviceid())) then		//Upload paradata logs
-			inc(errflag);
-		endif;
-		//syncfile(PUT,"../Photos/*.jpg", "/CSPro/Photos/");
-		if not syncfile(GET,"/CSPro/Update/Questionnaire/Labourforce.pen","../Questionnaire/Labourforce.pen") then		//update questionnaire
-			inc(errflag);
-		endif;
-		if not syncfile(GET,"/CSPro/Update/Visitation Record/Visitation Record.pen","../Visitation Record/Visitation Record.pen") then		//update control sheet
-			inc(errflag);
-		endif;
-		if not syncfile(GET,"/CSPro/Update/Menu/Menu.pen","../Menu/Menu.pen") then		//update Menu
-			inc(errflag);
-		endif;
-		if not syncfile(GET,"/CSPro/Update/Reports/EnumerationReport.pen","../Reports/EnumerationReport.pen") then		//update Enumeration Report
-			inc(errflag);
-		endif;
-		if not syncfile(GET,"/CSPro/Update/Reports/enumeratorrpt.html","../Reports/enumeratorrpt.html") then		//report template
-			inc(errflag);
-		endif;
+		endif;}
 		syncdisconnect();		//disconnect
 	else
 		inc(errflag,2);
@@ -265,31 +277,20 @@ end;
 //update app only
 function updateApp()
 	errflag = 0;
-	if syncconnect(FTP,ftpip1,ftpun,ftppw) then		//connect to FTP when outside of the Government WAN
-		if not syncfile(GET,"/CSPro/Update/Questionnaire/Census2020Ver2.pen","../Questionnaire/Census2020Ver2.pen") then		//update questionnaire
+	if syncconnect(CSWeb,cswebip1,ftpun,ftppw) or syncconnect(CSWeb,cswebip2,ftpun,ftppw)  then		//connect to FTP when outside of the Government WAN
+		if not syncdata(GET, CENSUS_ALLOCATIONS_DICT) then		//get allocations
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/CSPro/Update/Visitation Record/Visitation Record.pen","../Visitation Record/Visitation Record.pen") then		//update Control Sheets
+		if not syncfile(GET,"/Census/Update/Questionnaire/Census2020Ver2.pen","../Questionnaire/Census2020Ver2.pen") then		//update questionnaire
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/CSPro/Update/Menu/Menu.pen","../Menu/Menu.pen") then		//update Menu
+		if not syncfile(GET,"/Census/Update/Visitation Record/Visitation Record.pen","../Visitation Record/Visitation Record.pen") then		//update Control Sheets
 			inc(errflag);
 		endif;
-{		if not syncfile(GET,"/CSPro/Update/Reports/EnumerationReport.pen","../Reports/EnumerationReport.pen") then		//update Enumeration Report
+		if not syncfile(GET,"/Census/Update/Allocation/Allocation.pen","../Allocation/Allocation.pen") then		//update Allocation form
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/CSPro/Update/Reports/enumeratorrpt.html","../Reports/enumeratorrpt.html") then		//report template
-			inc(errflag);
-		endif;
-}		syncdisconnect();		//disconnect
-	elseif syncconnect(FTP,ftpip2,ftpun,ftppw) then		//connect to FTP when within the Government WAN
-		if not syncfile(GET,"/CSPro/Update/Questionnaire/Census2020Ver2.pen","../Questionnaire/Census2020Ver2.pen") then		//update questionnaire
-			inc(errflag);
-		endif;
-		if not syncfile(GET,"/CSPro/Update/Visitation Record/Visitation Record.pen","../Visitation Record/Visitation Record.pen") then		//update Control Sheet
-			inc(errflag);
-		endif;
-		if not syncfile(GET,"/CSPro/Update/Menu/Menu.pen","../Menu/Menu.pen") then		//update Menu
+		if not syncfile(GET,"/Census/Update/Menu/Menu.pen","../Menu/Menu.pen") then		//update Menu
 			inc(errflag);
 		endif;
 {		if not syncfile(GET,"/CSPro/Update/Reports/EnumerationReport.pen","../Reports/EnumerationReport.pen") then		//update Enumeration Report
@@ -318,51 +319,30 @@ function downloadData()
 	errflag = 0;
 	errmsg("Attempting to download all data from ED :%d",ME_ED);
 	//errmsg("Data dictionary value Round :%V, ED :%V", RNDNO,EDNO);
-	if syncconnect(FTP,ftpip1,ftpun,ftppw) then		//connect to FTP when outside of the government WAN
+	if syncconnect(CSWeb,cswebip1,ftpun,ftppw) or syncconnect(CSWeb,cswebip2,ftpun,ftppw) then		//connect to FTP when outside of the government WAN
 		if not syncdata(GET,CENSUS2020_DICT,maketext("%2d%3d",ME_PARISH,ME_ED)) then		//get labourforce data for round and ED
 			inc(errflag);
 		endif;
 		if not syncdata(GET,VISITATION_RECORD_DICT,maketext("%2d%3d",ME_PARISH,ME_ED)) then			//get control sheet data for round and ED
 			inc(errflag);
 		endif;
-{		if not syncdata(get,ENUMERATIONREPORT_DICT,maketext("%v",ME_ED)) then	//get enumeration report for ED
-			inc(errflag);
-		endif;
-}		//syncfile(GET,"CSPro/Photos/*.jpg","../Photos/");
-		if not syncfile(GET,"/CSPro/Update/Questionnaire/Census2020Ver2.pen","../Questionnaire/Census2020Ver2.pen") then		//update questionnaire
-			inc(errflag);
-		endif;
-		if not syncfile(GET,"/CSPro/Update/Visitation Record/Visitation Record.pen","../Visitation Record/Visitation Record.pen") then		//update control sheet
-			inc(errflag);
-		endif;
-		if not syncfile(GET,"/CSPro/Update/Menu/Menu.pen","../Menu/Menu.pen") then		//update Menu
-			inc(errflag);
-		endif;
-{		if not syncfile(GET,"/CSPro/Update/Reports/EnumerationReport.pen","../Reports/EnumerationReport.pen") then		//update Enumeration Report
-			inc(errflag);
-		endif;
-		if not syncfile(GET,"/CSPro/Update/Reports/enumeratorrpt.html","../Reports/enumeratorrpt.html") then		//report template
-			inc(errflag);
-		endif;
-}		syncdisconnect();		//disconnect
-	elseif syncconnect(FTP,ftpip2,ftpun,ftppw) then		//connect to FTP when outside of the government WAN
-		if not syncdata(GET,CENSUS2020_DICT,maketext("%2d%3d",ME_PARISH,ME_ED)) then		//get labourforce data for round and ED
-			inc(errflag);
-		endif;
-		if not syncdata(GET,VISITATION_RECORD_DICT,maketext("%2d%3d",ME_PARISH,ME_ED)) then			//get control sheet data for round and ED
+		if not syncdata(GET, CENSUS_ALLOCATIONS_DICT) then		//get allocations
 			inc(errflag);
 		endif;
 {		if not syncdata(get,ENUMERATIONREPORT_DICT,maketext("%v",ME_ED)) then	//get enumeration report for ED
 			inc(errflag);
 		endif;
 }		//syncfile(GET,"CSPro/Photos/*.jpg","../Photos/");
-		if not syncfile(GET,"/CSPro/Update/Questionnaire/Census2020Ver2.pen","../Questionnaire/Census2020Ver2.pen") then		//update questionnaire
+		if not syncfile(GET,"/Census/Update/Questionnaire/Census2020Ver2.pen","../Questionnaire/Census2020Ver2.pen") then		//update questionnaire
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/CSPro/Update/Visitation Record/Visitation Record.pen","../Visitation Record/Visitation Record.pen") then		//update control sheet
+		if not syncfile(GET,"/Census/Update/Visitation Record/Visitation Record.pen","../Visitation Record/Visitation Record.pen") then		//update control sheet
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/CSPro/Update/Menu/Menu.pen","../Menu/Menu.pen") then		//update Menu
+		if not syncfile(GET,"/Census/Update/Allocation/Allocation.pen","../Allocation/Allocation.pen") then		//update Allocation form
+			inc(errflag);
+		endif;
+		if not syncfile(GET,"/Census/Update/Menu/Menu.pen","../Menu/Menu.pen") then		//update Menu
 			inc(errflag);
 		endif;
 {		if not syncfile(GET,"/CSPro/Update/Reports/EnumerationReport.pen","../Reports/EnumerationReport.pen") then		//update Enumeration Report
@@ -383,6 +363,82 @@ function downloadData()
 	elseif errflag = 1 then
 		errmsg("Download of ED %d failed, Please try again",ME_ED);
 	endif;
+end;
+
+//fills visitation record
+function fillVisitationRecord()
+	i = 1;
+	m = 1;
+	n = 1;
+	
+	//initialize array
+	while m <= 300 do
+		while n <= 19 do
+			VRARRAY(m,n) = "";
+			inc(n);
+		enddo;
+		inc(m);
+	enddo;
+	
+	//fill array
+	forcase VISITATION_RECORD_DICT where VI_ED = ME_ED do
+		VRARRAY(i,1) = maketext("%V",VI_BUILDING);
+		VRARRAY(i,2) = maketext("%V",VI_DWELLING_UNIT);
+		VRARRAY(i,3) = maketext("%V",VI_HOUSEHOLD);
+		VRARRAY(i,4) = maketext("%V",VI_STATUS);
+		VRARRAY(i,5) = maketext("%V",VI_ENUMERATOR);
+		VRARRAY(i,6) = VI_ADDRESS1;
+		VRARRAY(i,7) = VI_ADDRESS2;
+		VRARRAY(i,8) = VI_LAST_NAME;
+		VRARRAY(i,9) = VI_FIRST_NAME;
+		VRARRAY(i,10) = maketext("%V",VI_TOTAL);
+		VRARRAY(i,11) = maketext("%V",VI_MALES);
+		VRARRAY(i,12) = maketext("%V",VI_FEMALES);
+		VRARRAY(i,13) = maketext("%V",VI_MALES_RESIDENT_ABROAD);
+		VRARRAY(i,14) = maketext("%V",VI_FEMALES_RESIDENT_ABROAD);
+		VRARRAY(i,15) = maketext("%V",VI_DATE_STARTED);
+		VRARRAY(i,16) = maketext("%V",VI_DATE_COMPLETED);
+		VRARRAY(i,17) = maketext("%V",VI_LATITUDE);
+		VRARRAY(i,18) = maketext("%V",VI_LONGITUDE);
+		VRARRAY(i,19) = VI_COMMENTS;
+		inc(indivcounttot,VI_TOTAL);		//total persons (part B's)
+		inc(i);
+	endfor;
+	housecount = countcases(CENSUS2020_DICT where ED = ME_ED and END_DATE <> notappl);		//counts completed households (Part A's)
+	
+	//create report
+	setreportdata("HOUSECOUNT",maketext("%V",housecount));
+	setreportdata("INDIVCOUNTTOT",maketext("%V",indivcounttot));
+	setreportdata("PARVR",maketext("%V",ME_PARISH));
+	setreportdata("EDVR",maketext("%V",ME_ED));
+	setreportdata("EDCOMPLETE",getlabel(ED_STATUS_VS1,ED_STATUS));
+	setreportdata(VRARRAY);
+	report("../Visitation record/vrreport.html");		//TODO: create this report
+end;
+
+//function to mark current ED as complete or ongoing
+//TODO: finc some way of saving the ED status on the tablet and server
+function edcomplete()
+	string edfilename = pathname(application)+"edstatus.dat";
+	setfile(edfile,edfilename,append);
+	i = 0;
+	do until i in 1,2
+		i = accept(maketext("Mark ED %0d as complete or ongoing?",ME_ED),"Mark as COMPLETE","Mark as ONGOING");
+	enddo;
+	if i = 1 then
+		ED_STATUS = 1;		//mark as complete
+	elseif i = 2 then
+		ED_STATUS = 2;		//mark as ongoing
+	endif;
+	
+	edstatus = maketext("%03d",ME_ED);
+	if fileread(edfile,edstatus) then		//if the ed was found
+		filewrite(edfile,maketext("%d",ED_STATUS));		//change the status on the next line
+	else		//if no line found
+		filewrite(edfile,"%03d\n%d", ME_ED,ED_STATUS);		//write the ed and status
+	endif;
+	
+	errmsg("ED %0d is now %s. Please select Upload Data in the main menu to save changes",ME_ED,getlabel(ED_STATUS_VS1,ED_STATUS));
 end;
 
 //Function that writes login status to a file
@@ -417,16 +473,27 @@ function readloginstatus();
 	endif;
 end;
 
+//displays the manual
+function ViewManual()
+	execsystem("view:"+pathname(application)+"..Manual.pdf");		//TODO: file to be added
+end;
+
 PROC MENU_FF
+preproc
+	userbar(clear);
+	userbar(add button, "View Manual", ViewManual());
+	userbar(show);
 
 PROC MENU_QUEST
 preproc
 
 	//Initialize ftp variables
-	ftpip1 = "64.119.198.70";
-	ftpip2 = "10.129.20.110";
+	//ftpip1 = "64.119.198.70";
+	//ftpip2 = "10.129.20.110";
 	ftpun = "Census2020";
 	ftppw = "Census2020ADM!NP@ssW)rd";
+	cswebip1 = "http://64.119.198.70:8082/csweb/api";
+	cswebip2 = "http://10.129.20.110:8082/csweb/api";
 	
 	//recode ed to parish
 	recode ME_ED => ME_PARISH;
@@ -446,10 +513,31 @@ preproc
 //-------------------------------------------------------------
 PROC UNAME
 preproc
+	version = publishdate();		//sets version number
+	
+	lastupdate = int(publishdate() / 1000000);		//yearmonthdate of last version number
+	
+	updated = tonumber(loadsetting("Updated"));		//Last date app was updated
+	//errmsg("sysdate(%d)-lastupdate(%d)=%d",sysdate("YYYYMMDD"),lastupdate,datediff(sysdate("YYYYMMDD"),lastupdate));
+	//errmsg("updated(%d)-lastupdate(%d)=%d",updated,lastupdate,datediff(updated,lastupdate));
+	if (datediff(sysdate("YYYYMMDD"),lastupdate) >= 1) and (datediff(updated,lastupdate) >= 1) and (getos() = 20) then		//if more than one day since last update and on android
+		if connection() then		//check for internet connection
+			i = 0;
+			do until i in 1,2
+				i = accept("Current app version is more than one day old. Check for updates?","Yes","No");
+			enddo;
+			if i = 1 then 
+				UpdateApp();		//update the app
+			elseif i = 2 then
+				if readloginstatus() = 1 then
+					advance to LOGIN;
+				endif;
+			endif;
+		endif;
+	endif;
+	
 	if readloginstatus() = 1 then		//if already logged in
-		advance to ME_ED;					//just login
-	elseif readloginstatus() = 0 then	//if not, continue logging in
-		
+		advance to LOGIN;					//just login
 	endif;
 
 //------------------------------------------------------------
@@ -461,6 +549,22 @@ postproc
 	else
 		errmsg("Username and ID don't match! Please try again");
 		move to UNAME;
+	endif;
+	
+	//get allocations
+	uid = maketext("%v",USERID);
+	if loadcase(CENSUS_ALLOCATIONS_DICT,uid) = 0 and USERID < 1000 then		//if no allocations found
+		if connection() then		//if on the internet
+			if syncconnect(CSWeb,cswebip1,ftpun,ftppw) then		//connect to csweb when outside of the Government WAN
+				syncdata(GET, CENSUS_ALLOCATIONS_DICT);		//get allocations
+				allocationdate = sysdate("YYYYMMDD");
+				savesetting("ALLOCATIONDATE",maketext("%d",allocationdate));		//saves so that it's persistent between sessions
+			elseif syncconnect(CSWeb,cswebip2,ftpun,ftppw) then	
+				syncdata(GET, CENSUS_ALLOCATIONS_DICT);		//get allocations
+				allocationdate = sysdate("YYYYMMDD");
+				savesetting("ALLOCATIONDATE",maketext("%d",allocationdate));		//saves so that it's persistent between sessions
+			endif;
+		endif;
 	endif;
 
 
@@ -476,10 +580,27 @@ postproc
 	savesetting("ED",maketext("%d",$));
 	setoperatorid(UNAME);
 	
+	recode $	=>	ME_PARISH;		//recode ed to parish
+		1-181	=>	1;	//St. Michael
+		182-295	=>	2;	//Christ Church
+		196-335	=>	3;	//St. George
+		336-397	=>	4;	//St. Philip
+		398-418	=>	5;	//St. John
+		419-479	=>	6;	//St. James
+		480-508	=>	7;	//St. Thomas
+		509-521 =>	8;	//St. Joseph
+		522-532	=>	9;	//St. Andrew
+		533-559	=>	10;	//St. Peter
+		560-583	=>	11;	//St. Lucy
+	endrecode;
+	
 	
 //--------------------------------------------------------------------
 PROC LOGIN
 onfocus
+	$ = notappl;
+	username = getlabel(UNAME_VS1,UNAME);
+	
 	if visualvalue(USERID) > 1000 then		//Supervisor
 		setvalueset(LOGIN,LOGIN_VS1);
 	elseif visualvalue(USERID) < 1000 then	//enumerator
@@ -491,27 +612,44 @@ postproc
 		skip to INTERVIEWER_MENU;
 	elseif $ = 2 then 	//supervisor
 		skip to SUPERVISOR_MENU;
+	elseif $ = 3 then		//change ED
+		move to ME_ED;
+	elseif $ = 4 then		//update app
+		if connection() then
+			updateApp();
+		else
+			errmsg("Please connect to the internet before updating the app");
+		endif;
+	elseif $ = 5 then		//upload data
+		if connection() then
+			uploadData();	
+		else
+			errmsg("Please connect to the internet before uploading data");
+		endif;
 	elseif $ = 9 then
 		writeloginstatus(0);
 		stop(1);
 	endif;
 
+	reenter;
 //---------------------------------------------------
 PROC INTERVIEWER_MENU
 onfocus
 	$ = notappl;	//don't show the last selection
 	
 postproc
-	if $ = 1 then		//Visitation Record
-		launchVR();
-		move to LOGIN;	
-	elseif $ = 2 then	//interview households
+	if $ = 1 then		//start new questionnaire
+		launchQuestionnaire();
+	elseif $ = 2 then	//view questionnaire
 		skip to CHOOSE_HOUSEHOLD;		
-	elseif $ = 3 then	//upload data
+	elseif $ = 3 then	//View visitation record
+		fillVisitationRecord();
+	elseif $ = 4 then	//delete questionnaire
+		//TODO: to be completed
+	elseif $ = 5 then	//upload data
 		uploadData();
 	elseif $ = 9 then	//logout
-		writeloginstatus(0);
-		stop(1);
+		move to LOGIN;
 	endif;
 reenter;		//don't leave the menu
 
@@ -522,22 +660,27 @@ onfocus
 	$ = notappl;	//don't show the last selection
 	
 postproc
-	if $ = 1 then		//Download/upload Data
+	if $ = 1 then		//Download Data
 		downloadData();
-	elseif $ = 2 then	//Open VR
-		skip to CHOOSE_VR;		
-	elseif$ = 3 then
-		skip to CHOOSE_HOUSEHOLD;
+	elseif $ = 2 then	//Open questionnaire
+		skip to CHOOSE_HOUSEHOLD;		
+	elseif $ = 3 then	//View visitation record
+		fillVisitationRecord();
+	elseif $ = 4 then	//Allocate officers
+		//TODO: to be completed
+	elseif $ = 5 then	//mark ED as complete
+		edcomplete();
+	elseif $ = 6 then	//delete questinonaire
+		//TODO: to be completed
 	elseif $ = 9 then	//logout
-		writeloginstatus(0);
-		stop(1);
+		move to LOGIN;
 	endif;
 reenter;		//don't leave the menu
 
 
 //----------------------------------------------------------------------
 PROC CHOOSE_HOUSEHOLD
-
+//chooses a household to view. TODO: may need to include partially saved cases
 onfocus
 	numeric nextEntry = 1;
 	forcase VISITATION_RECORD_DICT do
@@ -571,7 +714,7 @@ onfocus
 	setvalueset($, vsCode, vsLabel);
 
 postproc
-	launchSupervisorVR();
+//	launchSupervisorVR();
 	move to LOGIN;
 
 

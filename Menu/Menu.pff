@@ -1,5 +1,5 @@
 ﻿[Run Information]
-Version=CSPro 7.1
+Version=CSPro 7.2
 AppType=Entry
 Description=Barbados Census 2020
 
@@ -19,6 +19,7 @@ LOGINLIST_DICT=..\Data\Login.csdb|CSPRODB
 VISITATION_RECORD_DICT=..\Data\VisitationRecord.csdb|CSPRODB
 
 [UserFiles]
+EDFILE=
 LOGINFILE=
 PFFFILE=
 

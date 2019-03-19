@@ -1,5 +1,5 @@
 ﻿[Dictionary]
-Version=CSPro 7.1
+Version=CSPro 7.2
 Label=Menu
 Name=MENU_DICT
 RecordTypeStart=1
@@ -62,7 +62,7 @@ Value=560:583;St. Lucy
 Label=Menu record
 Name=MENU_REC
 RecordTypeValue='1'
-RecordLen=91
+RecordLen=92
 
 [Item]
 Label=User Name
@@ -100,13 +100,19 @@ Label=Main Menu
 Name=LOGIN_VS1
 Value=1;Enumerator Menu
 Value=2;Supervisor Menu
-Value=9;Exit
+Value=3;Change ED
+Value=4;Update App
+Value=5;Upload Data
+Value=9;Logout
 
 [ValueSet]
 Label=Login
 Name=LOGIN_VS2
 Value=1;Enumerator Menu
-Value=9;Exit
+Value=3;Change ED
+Value=4;Update App
+Value=5;Upload Data
+Value=9;Logout
 
 [Item]
 Label=Interviewer Menu
@@ -117,10 +123,12 @@ Len=1
 [ValueSet]
 Label=Interviewer Menu
 Name=INTERVIEWER_MENU_VS1
-Value=1;Visitation Record
-Value=2;Census Questionnaire
-Value=3;Upload data\Update app
-Value=9;Logout
+Value=1;Start new questionnaire
+Value=2;View questionnaires
+Value=3;View Visitation record
+Value=4;Delete questionnaire
+Value=5;Upload data
+Value=9;Back
 
 [Item]
 Label=Supervisor menu
@@ -131,10 +139,13 @@ Len=1
 [ValueSet]
 Label=Supervisor menu
 Name=SUPERVISOR_MENU_VS1
-Value=1;Synchronize data
-Value=2;Open Visitation Record
-Value=3;Open Questionnaire
-Value=9;Logout
+Value=1;Download ED data
+Value=2;Open Questionnaire
+Value=3;View Visitation Record
+Value=4;Allocate Officers
+Value=5;Mark ED as complete
+Value=6;Delete Questionnaire
+Value=9;Back
 
 [Item]
 Label=Choose Household
@@ -149,3 +160,15 @@ Name=CHOOSE_VR
 Start=78
 Len=14
 DataType=Alpha
+
+[Item]
+Label=ED status
+Name=ED_STATUS
+Start=92
+Len=1
+
+[ValueSet]
+Label=ED status
+Name=ED_STATUS_VS1
+Value=1;Complete
+Value=2;Ongoing

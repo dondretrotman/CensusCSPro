@@ -1,5 +1,5 @@
 ﻿[Dictionary]
-Version=CSPro 7.1
+Version=CSPro 7.2
 Label=Census2020
 Name=CENSUS2020_DICT
 RecordTypeStart=1
@@ -151,7 +151,7 @@ Value=9;Makeshift Material
 Value=10;Other
 
 [Item]
-Label=H9 – Other 
+Label=H9 – Other
 Name=H9_OTHER
 Start=72
 Len=50
@@ -3230,7 +3230,7 @@ Value=-180.000000000:180.000000000;Valid
 
 [Item]
 Label=Address
-Name=ADDRESS
+Name=ADDRES
 Start=67
 Len=100
 DataType=Alpha

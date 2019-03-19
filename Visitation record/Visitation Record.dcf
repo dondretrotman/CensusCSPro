@@ -1,5 +1,5 @@
 ﻿[Dictionary]
-Version=CSPro 7.1
+Version=CSPro 7.2
 Label=Visitation Record
 Name=VISITATION_RECORD_DICT
 RecordTypeStart=1
@@ -83,7 +83,7 @@ ZeroFill=Yes
 Label=Visitation Record record
 Name=VISITATION_RECORD_REC
 RecordTypeValue='V'
-RecordLen=625
+RecordLen=629
 
 [Item]
 Label=Completion Status
@@ -102,10 +102,16 @@ Value=4;Refused
 Value=5;Partially complete
 
 [Item]
+Label=Enumerator
+Name=VI_ENUMERATOR
+Start=17
+Len=4
+
+[Item]
 Label=Address 1
 Name=VI_ADDRESS1
 Note=House Number, street name\number
-Start=17
+Start=21
 Len=100
 DataType=Alpha
 
@@ -113,28 +119,28 @@ DataType=Alpha
 Label=Address 2
 Name=VI_ADDRESS2
 Note=District name
-Start=117
+Start=121
 Len=100
 DataType=Alpha
 
 [Item]
 Label=Last Name
 Name=VI_LAST_NAME
-Start=217
+Start=221
 Len=50
 DataType=Alpha
 
 [Item]
 Label=First Name
 Name=VI_FIRST_NAME
-Start=267
+Start=271
 Len=50
 DataType=Alpha
 
 [Item]
 Label=Total Part B's
 Name=VI_TOTAL
-Start=317
+Start=321
 Len=2
 
 [ValueSet]
@@ -146,7 +152,7 @@ Value=99;Not Stated
 [Item]
 Label=Males
 Name=VI_MALES
-Start=319
+Start=323
 Len=2
 
 [ValueSet]
@@ -158,7 +164,7 @@ Value=99;Not Stated
 [Item]
 Label=Females
 Name=VI_FEMALES
-Start=321
+Start=325
 Len=2
 
 [ValueSet]
@@ -170,7 +176,7 @@ Value=99;Not Stated
 [Item]
 Label=Males Resident Abroad
 Name=VI_MALES_RESIDENT_ABROAD
-Start=323
+Start=327
 Len=2
 
 [ValueSet]
@@ -182,7 +188,7 @@ Value=99;Not Stated
 [Item]
 Label=Females Resident Abroad
 Name=VI_FEMALES_RESIDENT_ABROAD
-Start=325
+Start=329
 Len=2
 
 [ValueSet]
@@ -194,20 +200,20 @@ Value=99;Not Stated
 [Item]
 Label=Date Started
 Name=VI_DATE_STARTED
-Start=327
+Start=331
 Len=8
 
 [Item]
 Label=Year
 Name=VI_YEAR_STARTED
-Start=327
+Start=331
 Len=4
 ItemType=SubItem
 
 [Item]
 Label=Month
 Name=VI_MONTH_STARTED
-Start=331
+Start=335
 Len=2
 ItemType=SubItem
 
@@ -232,27 +238,27 @@ Value=99;Not stated
 [Item]
 Label=Day
 Name=VI_DAY_STARTED
-Start=333
+Start=337
 Len=2
 ItemType=SubItem
 
 [Item]
 Label=Date Completed
 Name=VI_DATE_COMPLETED
-Start=335
+Start=339
 Len=8
 
 [Item]
 Label=Year
 Name=VI_YEAR_COMPLETED
-Start=335
+Start=339
 Len=4
 ItemType=SubItem
 
 [Item]
 Label=Month
 Name=VI_MONTH_COMPLETED
-Start=339
+Start=343
 Len=2
 ItemType=SubItem
 
@@ -264,14 +270,14 @@ Link=72057208
 [Item]
 Label=Day
 Name=VI_DAY_COMPLETED
-Start=341
+Start=345
 Len=2
 ItemType=SubItem
 
 [Item]
 Label=Latitude
 Name=VI_LATITUDE
-Start=343
+Start=347
 Len=13
 Decimal=9
 DecimalChar=Yes
@@ -284,7 +290,7 @@ Value=-90.000000000:90.000000000;Valid
 [Item]
 Label=Longitude
 Name=VI_LONGITUDE
-Start=356
+Start=360
 Len=14
 Decimal=9
 DecimalChar=Yes
@@ -297,6 +303,6 @@ Value=-180.000000000:180.000000000;Valid
 [Item]
 Label=Comments
 Name=VI_COMMENTS
-Start=370
+Start=374
 Len=256
 DataType=Alpha
