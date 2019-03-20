@@ -624,7 +624,7 @@ POSTPROC
 //------------------------------------------------------------
 PROC DOB
 Postproc
-	if checkdate(DOB_YEAR,DOB_MONTH,DOB_DAY) = 0 then
+	if datevalid(DOB) = 0 then
 		reenter;
 	endif;
 
@@ -660,9 +660,32 @@ postproc
 		errmsg("Only one head of household is allowed. Current head of household is %s %s",strip(FIRST_NAME),strip(LAST_NAME));
 		reenter;
 	endif;
+	
+	//check that theres is only one head of household
+	numheads = count(RTH where RTH = 0);		//count the number of heads of household
+	if numheads > 1 then
+		i = seek(RTH = 0, @1);			//look for the other head
+		errmsg("Too many heads of household.")
+		select("Change previous head",RTH(i), "Change current head",$);
+	endif;
+	
+	//check that theres only 1 spouse or less
+	numspouses = count(RTH where RTH = 1);		//count the number of spouses
+	if numspouses > 1 then
+		i = seek(RTH = 1, @1);			//look for the other spouse
+		errmsg("Too many spouses.")
+		select("Change previous spouse",RTH(i), "Change current spouse",$);
+	endif;
+	
+	//Set case labels in case listings to an easier to read format to include name of head
+	if $ = 0 then
+		caselabel = maketext("%s-%03d-%02d-%03d-%03d-%03d",strip(LAST_NAME),EDNO,PARNO,BUILDING,DWELLING_UNIT,HOUSEHOLD);
+		setcaselabel(CENSUS2020_DICT,caselabel);
+	endif;
 
 //----------------------------------------------------------------------
 PROC ADDPER
+postproc
 	if $ = 2 then
 		HNOPERSONS = count(FIRST_NAME);
 		endgroup;
@@ -680,6 +703,8 @@ PROC HNOPERSONS
 			select("Add more people",ADDPER(totocc()),"Change number of persons",$);
 		endif;
 	endif;
+	
+	//TODO: ENDED HERE!
 
 //-------------------------------------------------------
 PROC H8_OTHER

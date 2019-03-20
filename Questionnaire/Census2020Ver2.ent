@@ -1,5 +1,5 @@
 ﻿[CSPro Application]
-Version=CSPro 7.1
+Version=CSPro 7.2
 Label=CENSUS2020VER2
 Name=CENSUS2020VER2
 AppType=DataEntry
@@ -13,7 +13,6 @@ CAPIFont1Color=0
 CAPIFont2Color=16711680
 NotesDeleteOtherOperators=No
 NotesEditOtherOperators=No
-ShowErrorMessageNumbers=No
 ParadataCollection=SomeEvents
 ParadataRecordValues=Yes
 ParadataRecordCoordinates=Yes

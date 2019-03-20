@@ -3084,7 +3084,7 @@ Value=5;Other
 Label=Metadata
 Name=METADATA
 RecordTypeValue='4'
-RecordLen=177
+RecordLen=277
 
 [Item]
 Label=Interview Start Date
@@ -3229,34 +3229,41 @@ Name=LONGITUDE_VS1
 Value=-180.000000000:180.000000000;Valid
 
 [Item]
-Label=Address
-Name=ADDRES
+Label=Address Line 1
+Name=ADDRESS1
 Start=67
+Len=100
+DataType=Alpha
+
+[Item]
+Label=Address Line 2
+Name=ADDRESS2
+Start=167
 Len=100
 DataType=Alpha
 
 [Item]
 Label=Interviewer ID
 Name=INTERVIEWER_ID
-Start=167
+Start=267
 Len=3
 
 [Item]
 Label=Supervisor ID
 Name=SUPERVISOR_ID
-Start=170
+Start=270
 Len=3
 
 [Item]
 Label=Coder ID
 Name=CODER_ID
-Start=173
+Start=273
 Len=3
 
 [Item]
 Label=Interview status
 Name=INTERVIEW_STATUS
-Start=176
+Start=276
 Len=1
 
 [ValueSet]
@@ -3271,5 +3278,5 @@ Value=5;Refused
 [Item]
 Label=Delete Flag
 Name=DELETE_FLAG
-Start=177
+Start=277
 Len=1

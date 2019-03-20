@@ -1,5 +1,5 @@
 ﻿[FormFile]
-Version=CSPro 7.1
+Version=CSPro 7.2
 Name=CENSUS2020_FF
 Label=Census2020Ver2
 DefaultTextFont=-013 0000 0000 0000 0700 0000 0000 0000 0000 0000 0000 0000 0000 Arial
@@ -709,8 +709,8 @@ UseUnicodeTextBox=Yes
 Form=3
   
 [Text]
-Position=16,533,86,549
-Text=H9 – Other 
+Position=16,533,82,549
+Text=H9 – Other
  
   
 [Field]

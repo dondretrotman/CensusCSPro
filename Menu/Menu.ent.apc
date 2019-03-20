@@ -683,19 +683,34 @@ PROC CHOOSE_HOUSEHOLD
 //chooses a household to view. TODO: may need to include partially saved cases
 onfocus
 	numeric nextEntry = 1;
-	forcase VISITATION_RECORD_DICT do
+	forcase VISITATION_RECORD_DICT where VI_ED = ME_ED do
 		vscode(nextEntry) = maketext("%v%v%v%v%v",VI_PARISH,VI_ED,VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD);
-		vsLabel(nextEntry) = maketext("%v%v%v: %V, %V (%v)",VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD,strip(VI_LAST_NAME),strip(VI_FIRST_NAME),getlabel(VI_STATUS_VS1,VI_STATUS));
+		vsLabel(nextEntry) = maketext("%v%v%v: %V, %V (%v)",VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD,strip(VI_LAST_NAME),strip(VI_FIRST_NAME),strip(VI_COMMENTS));
 		inc(nextEntry);
 	endfor;
 	
 	vsCode(nextEntry) = "";
 	
 	setvalueset($, vsCode, vsLabel);
+	
+	if vsCode(1) = "" then		//if nothing is in the valueset
+		errmsg("There are no questionnaires available for this ED (ED%d). Please fill out a control sheet first",ME_ED);
+		if LOGIN = 1 then 
+			move to INTERVIEWER_MENU;
+		elseif LOGIN = 2 then
+			move to SUPERVISOR_MENU;
+		endif;
+	endif;
 
 postproc
+	CHOOSE_HOUSEHOLD = maketext("%15.14s",CHOOSE_HOUSEHOLD);		//workaround to make this shit work I shouldn't have to hack this to make it work!
+	
 	launchQuestionnaire();
-	move to LOGIN;
+	if LOGIN = 1 then
+		move to LOGIN;
+	elseif LOGIN = 2 then
+		move to SUPERVISOR_MENU;
+	endif;
 
 
 //-----------------------------------------------------------------------
