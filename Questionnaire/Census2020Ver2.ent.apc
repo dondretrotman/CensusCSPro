@@ -24,6 +24,8 @@ Add metadata. i.e. Enumerator ID, Supervisor ID and Interview status.
 *Done - Ask about getting statistics about enumerator performance. ie how long do they take to answer each question, history of changes, etc.
 ask about encrypting CSPro csdb files
 Add code to Check that days, months, years don't exceed limits
+
+Refactoring progress - finished all housing, need to code from beginning of population. Try to compile to see where to continue
 }
 
 PROC GLOBAL
@@ -33,13 +35,13 @@ numeric i, 				//throwaway variable for loops
 		residents, 		//
 		nonreshouse, 	//flag that is set for non-resident house
 		diff,			//for calculating date differences
-		vsindex = 1,	//valueset index
-		;
+		numheads,		//number of heads of household
+		numspouses,		//number of spouses
+		vsindex;	//valueset index
 	
 string 	checkboxcodes,	//for creating dynamic checkboxes
 		checkboxalpha,	//checkbox alpha code
-		caselabel		//stores the label for the current case
-		;
+		caselabel;		//stores the label for the current case
 
 //---------------------------ARRAY DECLARATION---------------------------------
 array string  vsLabels(26);			//Defines dynamic valueset labels
@@ -157,189 +159,7 @@ function getgps()
 end;
 }
 
-PROC H17B
-	if not H17A in 3:4 then		//If not rented or leased
-		skip to H19A;		//goto H19A
-	endif;
 
-//----------------------------------------------------------------------
-PROC H23AI
-//H23(a)i – Which of these appliances\household equipment does your household have?
-	if length(strip($)) = 0 then	//if nothing was chosen
-		skip to H23B;				//skip the next question
-	endif;
-
-//------------------------------------------------------
-PROC H23AII
-preproc
-	ask if H8A = 1 and H8C in 1,3;	//only ask if this is a rented room in a separate house\apartment
-	
-//create dynamic checkboxes based on previous question
-	vsindex = 1;
-	checkboxcodes = "ABCDEFGHIJKLMNOPQRSTUVWXZ";
-	clearStringArray(vsAlphaCodes);		//initialise array
-	
-	do i = 1 while i <= 25;		//loop through all checkboxes
-		checkboxalpha = checkboxcodes[i:1];	//convert index to alpha code
-		if pos(checkboxalpha,H23AI) > 0 then	//if the checkbox was marked in the previous question
-			vsalphacodes(vsindex) = checkboxalpha;	//add it to the valueset
-			vslabels(vsindex) = getlabel(H23AII_VS1, checkboxalpha);
-			inc(vsindex);	//next valueset item
-		endif;		
-	enddo;
-	
-	vsalphacodes(vsindex) = "";	//end valueset
-	setvalueset($,vsalphacodes,vslabels);	//create valueset based on the above
-
-//----------------------------------------------------------------------------
-PROC H25A
-	if $ = 2 then		//if no crime victims
-		skip to H26		//skip to food security
-	endif;
-PROC H25B
-	if pos("i",$) > 0 and length(strip($)) > 1 then
-		errmsg("cannot be not stated and another option");
-		reenter;
-	endif;
-	
-	if length(strip($)) = 0 then
-		errmsg("There are victims of crime in this household but no crimes are selected")
-			select("Change crime status",H25A,"Select a crime",$);
-	endif;
-
-//-------------------------------------------------------------------------
-PROC H25C
-onfocus
-	//DEBUG: Dynamic valueset not showing up
-	//create dynamic checkboxes based on previous question
-	vsindex = 1;
-	checkboxcodes = "abcdefghi";
-	clearStringArray(vsAlphaCodes);		//initialise array
-	
-	do i = 1 while i <= 9;		//loop through all checkboxes
-		checkboxalpha = checkboxcodes[i:1];	//convert index to alpha code
-		if pos(checkboxalpha,H25B) > 0 then	//if the checkbox was marked in the previous question
-			vsalphacodes(vsindex) = checkboxalpha;	//add it to the valueset
-			vslabels(vsindex) = getlabel(H25C_VS1, checkboxalpha);
-			inc(vsindex);	//next valueset item
-		endif;		
-	enddo;
-	
-	vsalphacodes(vsindex) = "";	//end valueset
-	setvalueset($,vsalphacodes,vslabels);	//create valueset based on the above
-	
-postproc
-	if pos("i",$) > 0 and length(strip($)) > 1 then
-		errmsg("cannot be not stated and another option");
-		reenter;
-	endif;
-	
-//----------------------------------------------------------------------------
-PROC H31
-Postproc	//should run after household has been entered
-	if visualvalue(END_TIME) <> notappl and H14A = 2 then		//If no end time and the house is vacant
-		END_TIME = systime();						//then update the end time
-	endif;
-
-//-------------------------------------------------------------------------------------
-PROC H8A
-//H8(a) – Do you rent a room in this Building?
-	if $ = 2 then
-		skip to H8C;
-	endif;
-	
-//----------------------------------------------------------------------
-PROC H8B
-//H8(b) – How many rented rooms are in this Building?
-	if $ = 0 then	//if number of rooms is 0
-		H8A = 2;	//assume no rented rooms
-	elseif $ > 0 then	//if number of rented rooms is more than 0
-		H8A = 1; 	//assume rented rooms
-	endif;
-	
-//----------------------------------------------------------------------
-PROC H8C
-//H8(c) – What type of dwelling unit is this?
-	if H8A = 1 and H14A = 2 then		//if rented rooms exist
-		skip to H14B	//goto H14A
-	endif;
-
-
-//----------------------------------------------------------------------
-PROC P12AI
-onfocus
-	if $ = 2 then		//if no disabilities
-		skip to P14;	//skip to non communicable disease
-	endif;
-	
-//---------------------------------------------------------
-PROC P12AII
-onfocus
-	if P12AI = 2 then
-		skip to P14;
-	endif;
-
-postproc
-	if pos("u",$) > 0 and length(strip($)) > 1 then
-		errmsg("cannot be not stated and another option (%s)",P12AII);
-		reenter;
-	endif;
-
-//-------------------------------------------------------------------------------
-PROC P15C
-onfocus
-//create dynamic checkboxes based on previous question
-	if pos("z",P15B) = 0 then	//if not stated is not selected in the previous question. i.e. show all options if not stated is selected
-		vsindex = 1;
-		checkboxcodes = "ABC";
-		clearStringArray(vsAlphaCodes);		//initialise array
-	
-		do i = 1 while i <= 3;		//loop through all checkboxes
-			checkboxalpha = checkboxcodes[i:1];	//convert index to alpha code
-			if pos(checkboxalpha,P15B) > 0 then	//if the checkbox was marked in the previous question
-				vsalphacodes(vsindex) = checkboxalpha;	//add it to the valueset
-				vslabels(vsindex) = getlabel(P15C_VS1, checkboxalpha);
-				inc(vsindex);	//next valueset item
-			endif;		
-		enddo;
-	
-		vsAlphaCodes(vsindex) = "d";		//add none to valueset
-		vsLabels(vsindex) = "None";
-		inc(vsindex);
-		vsAlphaCodes(vsindex) = "z";		//add not stated to valuset
-		vsLabels(vsindex) = "Not Stated";
-		
-		vsalphacodes(vsindex) = "";	//end valueset
-		setvalueset($,vsalphacodes,vslabels);	//create valueset based on the above
-	endif;
-
-postproc
-	if pos("d",$) > 0 and length(strip($)) > 1 then
-		errmsg("cannot be not stated and another option");
-		reenter;
-	endif;
-	
-	if pos("d",$) > 0 then	//if none
-		$ = "d";			//set all to none
-		skip to P16A;		//skip drug use
-	endif;
-
-//-----------------------------------------------------------------
-PROC P17B
-//P17(b) - In which year did you first arrive in Barbados to live?
-	diff = datediff(DOB_YEAR,$);
-	if diff < 0 then	//if first arrived to live in barbados before birth year
-		errmsg("Year first arrived(%d) is after birth year(%d)",$,DOB_YEAR);
-		reenter;		//birth year is more likely to be correct at this point
-	endif;
-
-//-----------------------------------------------------------
-PROC P18
-	if AGE < 5 then		//if born after may 1, 2015 (Age 5 years)
-		skip to P21A;	//Skip to Education
-	endif;
-
-//----------------------------------------------------------------------
 PROC P25AI
 //TODO: create dynamic checkboxes based on P23
 onfocus
@@ -505,6 +325,24 @@ PROC P40A
 	endif;
 	
 //------------------------------------------------------------
+PROC P49A
+	if $ = 2 then		//if no crime victims
+		skip to P50;		//skip to food security
+	endif;
+	
+//-------------------------------------------------------------------
+PROC P49C
+	if pos("i",$) > 0 and length(strip($)) > 1 then
+		errmsg("cannot be not stated and another option");
+		reenter;
+	endif;
+	
+	if length(strip($)) = 0 then
+		errmsg("There are victims of crime in this household but no crimes are selected")
+			select("Change crime status",H25A,"Select a crime",$);
+	endif;
+
+//-------------------------------------------------------------------------
 PROC CENSUS2020_FF
 preproc
 	userbar(clear);
@@ -524,6 +362,15 @@ onfocus
 	if visualvalue(HNOPERSONS) = notappl then
 		HNOPERSONS = 0;
 	endif;
+	
+	vsindex = 1; //initialize valueset index to 1
+	
+postproc
+//should run after household has been entered
+	if visualvalue(END_TIME) <> notappl and H14A = 2 then		//If no end time and the house is vacant
+		END_TIME = systime();						//then update the end time
+	endif;
+
 	
 //-----------------------------------------------------------------
 PROC PARISH
@@ -679,7 +526,7 @@ postproc
 	
 	//Set case labels in case listings to an easier to read format to include name of head
 	if $ = 0 then
-		caselabel = maketext("%s-%03d-%02d-%03d-%03d-%03d",strip(LAST_NAME),EDNO,PARNO,BUILDING,DWELLING_UNIT,HOUSEHOLD);
+		caselabel = maketext("%s-%02d-%03d-%03d-%03d-%03d",strip(LAST_NAME),PARISH,ED,BUILDING,DWELLING_UNIT,HOUSEHOLD);
 		setcaselabel(CENSUS2020_DICT,caselabel);
 	endif;
 
@@ -704,9 +551,16 @@ PROC HNOPERSONS
 		endif;
 	endif;
 	
-	//TODO: ENDED HERE!
 
 //-------------------------------------------------------
+PROC H8
+//H8 – What type of dwelling unit is this?
+postproc
+	if $ = 2 then		//If rented room
+		skip to H16C;
+	endif;
+
+//--------------------------------------------------
 PROC H8_OTHER
 preproc
 	//only ask if other is selected
@@ -741,14 +595,18 @@ preproc
 
 //-------------------------------------------------------------
 PROC H13
+//H13 – In what year was the dwelling built?
+postproc
 	if H14A = 1 then		//if occupied
 		skip to H14C	//goto H14C
 	endif;
 	
 //-----------------------------------------------------------------------------
 PROC H14C
+//H14(c) – What is the state of construction?
+postproc
 	if H14A = 2 then	//if unoccupied
-		endlevel;		//end interview MAY NEED TO REVIEW FOR CORRECT KEYWORD
+		endlevel;		//end interview TODO: MAY NEED TO REVIEW FOR CORRECT KEYWORD
 	endif;
 	
 	//if occupied by only non residents (USUAL_RESIDENCE = A)
@@ -770,7 +628,16 @@ PROC H14C
 	endif;
 
 //----------------------------------------------------------------------
+PROC H16A
+//H16(a) – How many bedrooms does this dwelling have?
+postproc
+	if nonreshouse = 1 then
+		skip to H20;
+	endif;
+	
+//----------------------------------------------------------
 PROC H16C
+//H16(c) – Do you share a bathroom with any other household?
 preproc
 
 postproc
@@ -779,13 +646,56 @@ postproc
 	endif;
 	
 //------------------------------------------------------------
+PROC H17A
+//H17(a) – Under what type of tenure is this dwelling occupied?
+postproc
+	if $ in 3:6 then
+		skip to H17D;
+	endif;
+	
+//---------------------------------------------
+PROC H17A_OTHER
+preproc
+	ask if H17A = 7;
+	
+
+//--------------------------------------------------
+PROC H17BII_MALES
+//H17(b)ii – If jointly owned, by how many males?
+preproc
+	ask if H17BI = 3;
+
+//----------------------------------------------
+PROC H17BII_FEMALES
+//H17(b)ii – If jointly owned, by how many females?
+preproc
+	ask if H17BI = 3;
+
+//----------------------------------------------
+PROC H17C
+//H17(c) – If owned, was it acquired through
+preproc
+	ask if H17A in 1:2;
+	
+	
+//----------------------------------------
 PROC H17C_OTHER
 preproc
 	//only ask if other is selected
-	ask if H17C = 4;
+	ask if H17C = 5;
 
 //-------------------------------------------------------------
+PROC H17D
+//H17(d) – What is the rental period for this dwelling?
+onfocus
+	if not H17A in 3:4 then	//if not rented/leased
+		skip to H19A;
+	endif;
+	
+//-------------------------------------------------------------------------
 PROC H18
+//H18 – Is this dwelling rented fully furnished, semi-furnished or unfurnished?
+postproc
 	skip to H20;	//goto H20
 
 //----------------------------------------------------------------------
@@ -795,6 +705,24 @@ preproc
 	ask if H19A = 7;
 
 //-------------------------------------------------------------
+PROC H19BII_MALES
+//H19(b)ii – If jointly owned, by how many males?
+preproc
+	ask if H19B = 3;
+
+//----------------------------------------------
+PROC H19BII_FEMALES
+//H19(b)ii – If jointly owned, by how many females?
+preproc
+	ask if H19B = 3;
+
+//----------------------------------------------
+PROC H19D
+//H19(d) – If owned, how was the land acquired?
+preproc
+	ask if H19A in 1:2;		//ask if land is owned
+
+//------------------------------------------------
 PROC H19D_OTHER
 preproc
 	//only ask if other is selected
@@ -802,7 +730,8 @@ preproc
 
 //-------------------------------------------------------------
 PROC H19E
-preproc		//DEBUG: (used to be onfocus) stops here when using navigation
+//H19(e) – What is the rental period for this land?
+onfocus
 	if not H19B in 3,4 then		//if not rented or leased
 		skip to H20;			//skip to Water supply
 	endif;
@@ -815,11 +744,24 @@ preproc
 
 //-------------------------------------------------------------
 PROC H21A
+//H21(a) – What type of toilet facilities does this dwelling unit have?
 //May have to check that person can only have Toilet link to sewer, well or private sewerage if their water supply (H20)is piped into dwelling or at least the yard
+postproc
+	if $ = 5 then		//if none
+		skip to H22A;
+	endif;
+	
+//----------------------------------------------------------------------------
 PROC H21A_OTHER
 preproc
 	//only ask if other is selected
 	ask if H21A = 6;
+
+//-------------------------------------------------------------
+PROC H22B_OTHER
+preproc
+	//only ask if other is selected
+	ask if H22B = 8;
 
 //-------------------------------------------------------------
 PROC H22C
@@ -831,14 +773,45 @@ postproc
 	endif;
 	
 //------------------------------------------------------------
+PROC H23BI
+//H23(a)i – Which of these appliances\household equipment does your household have?
+	if length(strip($)) = 0 then	//if nothing was chosen
+		skip to H24;				//skip the next question
+	endif;
+
+//------------------------------------------------------
+PROC H23BII
+//H23(b)ii – Which of these appliances\household equipment does your household share? (Score as many as are applicable)
+preproc
+	ask if H8A = 1 and H8C in 1,3;	//only ask if this is a rented room in a separate house\apartment
+	
+//create dynamic checkboxes based on previous question
+	vsindex = 1;
+	checkboxcodes = "ABCDEFGHIJKLMNOPQRSTUVWXZ";
+	clearStringArray(vsAlphaCodes);		//initialise array
+	
+	do i = 1 while i <= 25;		//loop through all checkboxes
+		checkboxalpha = checkboxcodes[i:1];	//convert index to alpha code
+		if pos(checkboxalpha,H23BI) > 0 then	//if the checkbox was marked in the previous question
+			vsalphacodes(vsindex) = checkboxalpha;	//add it to the valueset
+			vslabels(vsindex) = getlabel(H23BII_VS1, checkboxalpha);
+			inc(vsindex);	//next valueset item
+		endif;		
+	enddo;
+	
+	vsalphacodes(vsindex) = "";	//end valueset
+	setvalueset($,vsalphacodes,vslabels);	//create valueset based on the above
+
+//----------------------------------------------------------------------------
 PROC E8A
+//E8(a) - Since the last census (2010), has anyone left this household to live overseas and continues to reside abroad?
 //onfocus
 //	if H14A = 2 then
 //		$ = 2;
 //		endgroup;
 //	endif;
 	
-//postproc
+postproc
 	if $ = 2 then		//if no emmigrants
 		endgroup;		//end emmigration section
 	endif;
@@ -944,6 +917,13 @@ preproc
 	ask if P10 = 7;
 
 //-------------------------------------------------------------
+PROC P12A
+onfocus
+	if $ = 2 then		//if no disabilities
+		skip to P14;	//skip to non communicable disease
+	endif;
+	
+//---------------------------------------------------------
 PROC P12C
 	if pos("h",$) > 0 and length(strip($)) > 1 then
 		errmsg("cannot be none and another option");
@@ -965,6 +945,12 @@ PROC P12C_OTHER
 preproc
 	//only ask if other is selected
 	ask if pos(P12C,"H") > 0;
+
+//-------------------------------------------------------------
+PROC P13B_OTHER
+preproc
+	//only ask if other is selected
+	ask if P13B = 5;
 
 //-------------------------------------------------------------
 PROC P14
@@ -1035,19 +1021,34 @@ postproc
 
 //-----------------------------------------------------------------
 PROC P16A
-	if $ = 2 then		//if not born in barbados
-		skip to P17A;	//skip migration
-	endif;
-
-//-----------------------------------------------------------------
-PROC P16B
+postproc	
 	if AGE < 1 then		//if less than a year old	//ADD CHECKS FOR DOB
 		skip to P44;	//skip to last question
 	else
 		skip to P18;	//otherwise go to Living 1 year ago
 	endif;
 
+//-----------------------------------------------------------------
+PROC P16B
+//P16(b) - In which year did you first arrive in Barbados to live?
+onfocus
+
+
+postproc
+	diff = datediff(DOB_YEAR,$);
+	if diff < 0 then	//if first arrived to live in barbados before birth year
+		errmsg("Year first arrived(%d) is after birth year(%d)",$,DOB_YEAR);
+		reenter;		//birth year is more likely to be correct at this point
+	endif;
+
 //-----------------------------------------------------------------------------
+PROC P17
+postproc
+	if AGE < 5 then		//if born after may 1, 2015 (Age 5 years)
+		skip to P21A;	//Skip to Education
+	endif;
+
+//----------------------------------------------------------------------
 PROC P19A
 	if $ <> 3 then		//if was not living in another parish
 		skip to P20A;	//skip to Ever left barbados
@@ -1277,6 +1278,33 @@ preproc
 	ask if pos(P47B,"H") > 0;
 
 //-------------------------------------------------------------
+PROC P47C
+onfocus
+	//DEBUG: Dynamic valueset not showing up
+	//create dynamic checkboxes based on previous question
+	vsindex = 1;
+	checkboxcodes = "abcdefghi";
+	clearStringArray(vsAlphaCodes);		//initialise array
+	
+	do i = 1 while i <= 9;		//loop through all checkboxes
+		checkboxalpha = checkboxcodes[i:1];	//convert index to alpha code
+		if pos(checkboxalpha,P47B) > 0 then	//if the checkbox was marked in the previous question
+			vsalphacodes(vsindex) = checkboxalpha;	//add it to the valueset
+			vslabels(vsindex) = getlabel(P47C_VS1, checkboxalpha);
+			inc(vsindex);	//next valueset item
+		endif;		
+	enddo;
+	
+	vsalphacodes(vsindex) = "";	//end valueset
+	setvalueset($,vsalphacodes,vslabels);	//create valueset based on the above
+	
+postproc
+	if pos("i",$) > 0 and length(strip($)) > 1 then
+		errmsg("cannot be not stated and another option");
+		reenter;
+	endif;
+	
+//----------------------------------------------------------------------------
 PROC P47C_OTHER
 preproc
 	//only ask if other is selected

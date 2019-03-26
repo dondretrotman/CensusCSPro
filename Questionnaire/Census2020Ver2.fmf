@@ -38,7 +38,7 @@ Item=H14A
 Name=FORM002
 Label=Housing
 Level=1
-Size=1247,1895
+Size=1247,1964
   
 Item=HNOPERSONS
 Item=H8
@@ -89,6 +89,8 @@ Item=H23A
 Item=H23BI
 Item=H23BII
 Item=H24
+Item=H17A_OTHER
+Item=H22B_OTHER
   
 [EndForm]
   
@@ -651,231 +653,231 @@ Max=1
   
 [Field]
 Name=HNOPERSONS
-Position=812,410,841,430
+Position=812,384,841,404
 Item=HNOPERSONS,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
-Position=16,413,221,429
+Position=16,387,221,403
 Text=Number of persons in household
  
   
 [Field]
 Name=H8
-Position=812,440,841,460
+Position=812,412,841,432
 Item=H8,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,443,262,459
+Position=16,415,262,431
 Text=H8 – What type of dwelling unit is this?
  
   
 [Field]
 Name=H8_OTHER
-Position=812,470,1222,490
+Position=812,441,1222,461
 Item=H8_OTHER,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
   
 [Text]
-Position=16,473,82,489
+Position=16,444,82,460
 Text=H8 – Other
  
   
 [Field]
 Name=H9
-Position=812,500,841,520
+Position=812,470,841,490
 Item=H9,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,503,330,519
+Position=16,473,330,489
 Text=H9 – Of what materials are the outer walls made?
  
   
 [Field]
 Name=H9_OTHER
-Position=812,530,1222,550
+Position=812,500,1222,520
 Item=H9_OTHER,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
   
 [Text]
-Position=16,533,82,549
+Position=16,503,82,519
 Text=H9 – Other
  
   
 [Field]
 Name=H10
-Position=812,560,841,580
+Position=812,530,841,550
 Item=H10,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,563,275,579
+Position=16,533,275,549
 Text=H10 – Of what material is the roof made?
  
   
 [Field]
 Name=H10_OTHER
-Position=812,590,1222,610
+Position=812,560,1222,580
 Item=H10_OTHER,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
   
 [Text]
-Position=16,593,89,609
+Position=16,563,89,579
 Text=H10 – Other
  
   
 [Field]
 Name=H11
-Position=812,620,827,640
+Position=812,590,827,610
 Item=H11,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,623,279,639
+Position=16,593,279,609
 Text=H11 – What is the main flooring material?
  
   
 [Field]
 Name=H11_OTHER
-Position=812,650,1222,670
+Position=812,620,1222,640
 Item=H11_OTHER,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
   
 [Text]
-Position=16,653,89,669
+Position=16,623,89,639
 Text=H11 – Other
  
   
 [Field]
 Name=H12
-Position=812,680,827,700
+Position=812,650,827,670
 Item=H12,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,683,359,699
+Position=16,653,359,669
 Text=H12 – How is the foundation of the house constructed?
  
   
 [Field]
 Name=H12_OTHER
-Position=812,710,1222,730
+Position=812,680,1222,700
 Item=H12_OTHER,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
   
 [Text]
-Position=16,713,89,729
+Position=16,683,89,699
 Text=H12 – Other
  
   
 [Field]
 Name=H13
-Position=812,740,827,760
+Position=812,710,827,730
 Item=H13,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,743,285,759
+Position=16,713,285,729
 Text=H13 – In what year was the dwelling built?
  
   
 [Field]
 Name=H14B
-Position=812,770,827,790
+Position=812,740,827,760
 Item=H14B,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,773,202,789
+Position=16,743,202,759
 Text=H14(b) – If unoccupied, is unit
  
   
 [Field]
 Name=H14C
-Position=812,800,827,820
+Position=812,770,827,790
 Item=H14C,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,803,279,819
+Position=16,773,279,789
 Text=H14(c) – What is the state of construction?
  
   
 [Field]
 Name=H15
-Position=812,830,841,850
+Position=812,800,841,820
 Item=H15,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
-Position=16,833,326,849
+Position=16,803,326,819
 Text=H15 – How many rooms does this dwelling have?
  
   
 [Field]
 Name=H16A
-Position=812,860,841,880
+Position=812,830,841,850
 Item=H16A,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
-Position=16,863,366,879
+Position=16,833,366,849
 Text=H16(a) – How many bedrooms does this dwelling have?
  
   
 [Field]
 Name=H16B
-Position=812,890,841,910
+Position=812,860,841,880
 Item=H16B,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
-Position=16,893,371,909
+Position=16,863,371,879
 Text=H16(b) – How many Bathrooms does this dwelling have?
  
   
 [Field]
 Name=H16C
-Position=812,920,827,940
+Position=812,890,827,910
 Item=H16C,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,923,402,939
+Position=16,893,402,909
 Text=H16(c) – Do you share a bathroom with any other household?
  
   
@@ -890,6 +892,19 @@ Form=3
 [Text]
 Position=16,953,404,969
 Text=H17(a) – Under what type of tenure is this dwelling occupied?
+ 
+  
+[Field]
+Name=H17A_OTHER
+Position=812,920,1222,940
+Item=H17A_OTHER,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+Form=3
+  
+[Text]
+Position=16,923,102,939
+Text=H17(a) - Other
  
   
 [Field]
@@ -1189,92 +1204,105 @@ Text=H21(b) – Are the toilet facilities shared with any other household?
   
 [Field]
 Name=H22A
-Position=812,1670,827,1690
+Position=812,1702,827,1722
 Item=H22A,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1673,435,1689
+Position=16,1705,435,1721
 Text=H22(a) – What source of lighting is mainly used by this household?
  
   
 [Field]
 Name=H22B
-Position=812,1700,827,1720
+Position=812,1732,827,1752
 Item=H22B,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1703,391,1719
+Position=16,1735,391,1751
 Text=H22(b) – What source of energy is mainly used for cooking?
  
   
 [Field]
+Name=H22B_OTHER
+Position=812,1670,1222,1690
+Item=H22B_OTHER,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+Form=3
+  
+[Text]
+Position=16,1673,102,1689
+Text=H22(b) - Other
+ 
+  
+[Field]
 Name=H22C
-Position=812,1730,869,1750
+Position=812,1762,869,1782
 Item=H22C,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
 Form=3
   
 [Text]
-Position=16,1733,612,1749
+Position=16,1765,612,1781
 Text=H22(c) – Does your household produce solar or any other renewable energy for your own use?
  
   
 [Field]
 Name=H23A
-Position=812,1760,827,1780
+Position=812,1792,827,1812
 Item=H23A,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1763,448,1779
+Position=16,1795,448,1811
 Text=H23(a) – Does this dwelling have a direct connection to the internet?
  
   
 [Field]
 Name=H23BI
-Position=812,1790,1163,1810
+Position=812,1822,1163,1842
 Item=H23BI,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
 Form=3
   
 [Text]
-Position=16,1793,782,1809
+Position=16,1825,782,1841
 Text=H23(b)i – Which of these appliances\household equipment does your household have? (Score as many as are applicable)
  
   
 [Field]
 Name=H23BII
-Position=812,1820,1163,1840
+Position=812,1852,1163,1872
 Item=H23BII,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
 Form=3
   
 [Text]
-Position=16,1823,790,1839
+Position=16,1855,790,1871
 Text=H23(b)ii – Which of these appliances\household equipment does your household share? (Score as many as are applicable)
  
   
 [Field]
 Name=H24
-Position=812,1850,827,1870
+Position=812,1882,827,1902
 Item=H24,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1853,500,1869
+Position=16,1885,500,1901
 Text=H24 – how many vehicles does this household keep at home for private use?
  
 [EndGroup]
@@ -1331,47 +1359,52 @@ UseOccurrenceLabels=Yes
 FreeMovement=No
  
 [Text]
-Position=0,4,15,28
+Position=7,4,22,28
 Text=1
  
   
 [Text]
-Position=0,4,15,28
+Position=7,4,22,28
 Text=2
  
   
 [Text]
-Position=0,4,15,28
+Position=7,4,22,28
 Text=3
  
   
 [Text]
-Position=0,4,15,28
+Position=7,4,22,28
 Text=4
  
   
 [Text]
-Position=0,4,15,28
+Position=7,4,22,28
 Text=5
  
   
 [Text]
+Position=7,4,22,28
 Text=6
  
   
 [Text]
+Position=7,4,22,28
 Text=7
  
   
 [Text]
+Position=7,4,22,28
 Text=8
  
   
 [Text]
+Position=7,4,22,28
 Text=9
  
   
 [Text]
+Position=0,4,22,28
 Text=10
  
   
@@ -1480,211 +1513,212 @@ Required=No
 Type=Record
 TypeName=POPULATION
 Max=40
+MaxField=HNOPERSONS
 DisplaySize=18,26,8820,543
 Orientation=Vertical
 ColumnWidth=0
-StubColumnWidth=0
+StubColumnWidth=155
 HeadingRowHeight=0
 UseOccurrenceLabels=Yes
 FreeMovement=No
  
 [Text]
-Position=848,0,863,24
+Position=862,0,877,24
 Text=1
  
   
 [Text]
-Position=848,0,863,24
+Position=862,0,877,24
 Text=2
  
   
 [Text]
-Position=848,0,863,24
+Position=862,0,877,24
 Text=3
  
   
 [Text]
-Position=848,0,863,24
+Position=862,0,877,24
 Text=4
  
   
 [Text]
-Position=848,0,863,24
+Position=862,0,877,24
 Text=5
  
   
 [Text]
-Position=848,0,863,24
+Position=862,0,877,24
 Text=6
  
   
 [Text]
-Position=848,0,863,24
+Position=862,0,877,24
 Text=7
  
   
 [Text]
-Position=848,0,863,24
+Position=862,0,877,24
 Text=8
  
   
 [Text]
-Position=848,0,863,24
+Position=862,0,877,24
 Text=9
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=10
  
   
 [Text]
-Position=842,0,863,24
+Position=856,0,877,24
 Text=11
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=12
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=13
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=14
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=15
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=16
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=17
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=18
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=19
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=20
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=21
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=22
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=23
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=24
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=25
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=26
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=27
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=28
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=29
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=30
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=31
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=32
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=33
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=34
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=35
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=36
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=37
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=38
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=39
  
   
 [Text]
-Position=841,0,863,24
+Position=855,0,877,24
 Text=40
  
   
@@ -1985,7 +2019,7 @@ Text=P12(c) - What type of aid are you required to used because of the disabilit
  
 [Field]
 Name=P12C
-Position=742,0,855,20
+Position=742,0,869,20
 Item=P12C,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
@@ -2049,6 +2083,25 @@ DataCaptureType=DropDown
   
 [Text]
 Text=P13(b) - What was the origin of your disability?
+ 
+[EndColumn]
+  
+[Column]
+Width=28
+  
+[HeaderText]
+Position=61,4,155,28
+Text=P13(b) - Other
+ 
+[Field]
+Name=P13B_OTHER
+Position=168,0,869,20
+Item=P13B_OTHER,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+  
+[Text]
+Text=P13(b) - Other
  
 [EndColumn]
   
@@ -2897,7 +2950,7 @@ Width=56
   
 [HeaderText]
 Position=9,0,155,56
-Text=P32(a) - are you currently living with a partner?
+Text=P32(a) - Are you currently living with a partner?
  
 [Field]
 Name=P32A
@@ -2907,7 +2960,7 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P32(a) - are you currently living with a partner?
+Text=P32(a) - Are you currently living with a partner?
  
 [EndColumn]
   
@@ -2991,7 +3044,7 @@ Width=72
   
 [HeaderText]
 Position=11,0,155,72
-Text=P33 - What was you main activity during the 12 months ending 30th April 2020?
+Text=P33 - What was your main activity during the 12 months ending 30th April 2020?
  
 [Field]
 Name=P33
@@ -3001,7 +3054,7 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P33 - What was you main activity during the 12 months ending 30th April 2020?
+Text=P33 - What was your main activity during the 12 months ending 30th April 2020?
  
 [EndColumn]
   
@@ -3552,6 +3605,76 @@ DataCaptureType=DropDown
 Text=P48 - Where did you spend the night of May 1 2020?
  
 [EndColumn]
+  
+[Block]
+Name=POP_GENERAL
+Label=General Characteristics
+DisplayTogether=Yes
+Position=0
+Length=8
+  
+[Block]
+Name=POP_DISABILITY
+Label=Disability and Health
+DisplayTogether=Yes
+Position=9
+Length=14
+  
+[Block]
+Name=POP_MIGRATION
+Label=Migration
+DisplayTogether=Yes
+Position=24
+Length=10
+  
+[Block]
+Name=POP_EDUCATION
+Label=Education
+DisplayTogether=Yes
+Position=35
+Length=14
+  
+[Block]
+Name=BLOCK000
+Label=Technical and Vocational Training
+DisplayTogether=Yes
+Position=50
+Length=7
+  
+[Block]
+Name=POP_FERTILITY
+Label=Fertility and Union Status
+DisplayTogether=Yes
+Position=58
+Length=17
+  
+[Block]
+Name=POP_ECONOMICACTIVITY
+Label=Economic Activity
+DisplayTogether=Yes
+Position=76
+Length=16
+  
+[Block]
+Name=POP_AGRICULTURE
+Label=Agriculture
+DisplayTogether=Yes
+Position=93
+Length=5
+  
+[Block]
+Name=POP_FOOD
+Label=Food Security
+DisplayTogether=Yes
+Position=99
+Length=3
+  
+[Block]
+Name=POP_CRIME
+Label=Crime
+DisplayTogether=Yes
+Position=103
+Length=5
   
 [EndGrid]
  
