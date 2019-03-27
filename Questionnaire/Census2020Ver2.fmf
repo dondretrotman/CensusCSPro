@@ -689,6 +689,7 @@ Position=16,444,82,460
 Text=H8 – Other
  
   
+  
 [Field]
 Name=H9
 Position=812,470,841,490
@@ -806,6 +807,7 @@ Position=16,713,285,729
 Text=H13 – In what year was the dwelling built?
  
   
+  
 [Field]
 Name=H14B
 Position=812,740,827,760
@@ -831,6 +833,7 @@ Form=3
 Position=16,773,279,789
 Text=H14(c) – What is the state of construction?
  
+  
   
 [Field]
 Name=H15
@@ -906,6 +909,7 @@ Form=3
 Position=16,923,102,939
 Text=H17(a) - Other
  
+  
   
 [Field]
 Name=H17BI
@@ -1008,6 +1012,7 @@ Form=3
 Position=16,1193,493,1209
 Text=H18 – Is this dwelling rented fully furnished, semi-furnished or unfurnished?
  
+  
   
 [Field]
 Name=H19A
@@ -1137,6 +1142,7 @@ Position=16,1493,300,1509
 Text=H19(f) – How much rent are you now paying?
  
   
+  
 [Field]
 Name=H20
 Position=812,1520,827,1540
@@ -1254,6 +1260,7 @@ Position=16,1765,612,1781
 Text=H22(c) – Does your household produce solar or any other renewable energy for your own use?
  
   
+  
 [Field]
 Name=H23A
 Position=812,1792,827,1812
@@ -1305,6 +1312,55 @@ Form=3
 Position=16,1885,500,1901
 Text=H24 – how many vehicles does this household keep at home for private use?
  
+[Block]
+Name=HOU_BUILDINGMATERIALS
+Label=Building materials
+DisplayTogether=Yes
+Position=3
+Length=9
+  
+[Block]
+Name=HOU_OCCUPANCY
+Label=Occupancy
+DisplayTogether=Yes
+Position=13
+Length=2
+  
+[Block]
+Name=HOU_ROOMS
+Label=Rooms
+DisplayTogether=Yes
+Position=16
+Length=6
+  
+[Block]
+Name=HOU_HOUSINGTENURE
+Label=Housing Tenure
+DisplayTogether=Yes
+Position=23
+Length=8
+  
+[Block]
+Name=HOU_LANDTENURE
+Label=Land Tenure
+DisplayTogether=Yes
+Position=32
+Length=10
+  
+[Block]
+Name=HOU_SERVICES
+Label=Water, toilet, lighting and energy sources
+DisplayTogether=Yes
+Position=43
+Length=9
+  
+[Block]
+Name=HOU_EQUIPMENT
+Label=Internet, equipment and vehicles
+DisplayTogether=Yes
+Position=53
+Length=4
+  
 [EndGroup]
   
 [Group]
@@ -2387,6 +2443,25 @@ Text=P20(c) - What type of school or educational institution are you attending?
 [EndColumn]
   
 [Column]
+Width=28
+  
+[HeaderText]
+Position=62,4,155,28
+Text=P20(c) - Other
+ 
+[Field]
+Name=P20C_OTHER
+Position=168,0,869,20
+Item=P20C_OTHER,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+  
+[Text]
+Text=P20(c) - Other
+ 
+[EndColumn]
+  
+[Column]
 Width=88
   
 [HeaderText]
@@ -2592,6 +2667,25 @@ DataCaptureType=CheckBox
   
 [Text]
 Text=P25(b) - Where do you use the internet? (Score as many as are applicable)
+ 
+[EndColumn]
+  
+[Column]
+Width=28
+  
+[HeaderText]
+Position=61,4,155,28
+Text=P25(b) - Other
+ 
+[Field]
+Name=P25B_OTHER
+Position=168,0,869,20
+Item=P25B_OTHER,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+  
+[Text]
+Text=P25(b) - Other
  
 [EndColumn]
   
@@ -3142,25 +3236,6 @@ Position=8,0,155,88
 Text=P36 - What was your main type of job or occupation during the 12 months ending 30th April 2020
  
 [Field]
-Name=P36
-Position=798,0,855,20
-Item=P36,CENSUS2020_DICT
-FieldLabelType=DictionaryLabel
-DataCaptureType=ComboBox
-  
-[Text]
-Text=P36 - What was your main type of job or occupation during the 12 months ending 30th April 2020
- 
-[EndColumn]
-  
-[Column]
-Width=88
-  
-[HeaderText]
-Position=8,0,155,88
-Text=P36 - What was your main type of job or occupation during the 12 months ending 30th April 2020
- 
-[Field]
 Name=P36_TEXT
 Position=154,0,855,20
 Item=P36_TEXT,CENSUS2020_DICT
@@ -3169,24 +3244,6 @@ UseUnicodeTextBox=Yes
   
 [Text]
 Text=P36 - What was your main type of job or occupation during the 12 months ending 30th April 2020
- 
-[EndColumn]
-  
-[Column]
-Width=104
-  
-[HeaderText]
-Position=16,0,155,104
-Text=P37 - In which industry or type of business did you work during the 12 months ending april 2020?
- 
-[Field]
-Name=P37
-Position=798,0,855,20
-Item=P37,CENSUS2020_DICT
-FieldLabelType=DictionaryLabel
-  
-[Text]
-Text=P37 - In which industry or type of business did you work during the 12 months ending april 2020?
  
 [EndColumn]
   
@@ -3610,8 +3667,8 @@ Text=P48 - Where did you spend the night of May 1 2020?
 Name=POP_GENERAL
 Label=General Characteristics
 DisplayTogether=Yes
-Position=0
-Length=8
+Position=1
+Length=7
   
 [Block]
 Name=POP_DISABILITY
@@ -3632,28 +3689,28 @@ Name=POP_EDUCATION
 Label=Education
 DisplayTogether=Yes
 Position=35
-Length=14
+Length=16
   
 [Block]
-Name=BLOCK000
+Name=POP_TRAINING
 Label=Technical and Vocational Training
 DisplayTogether=Yes
-Position=50
+Position=52
 Length=7
   
 [Block]
 Name=POP_FERTILITY
 Label=Fertility and Union Status
 DisplayTogether=Yes
-Position=58
+Position=60
 Length=17
   
 [Block]
 Name=POP_ECONOMICACTIVITY
 Label=Economic Activity
 DisplayTogether=Yes
-Position=76
-Length=16
+Position=78
+Length=14
   
 [Block]
 Name=POP_AGRICULTURE
@@ -3675,6 +3732,13 @@ Label=Crime
 DisplayTogether=Yes
 Position=103
 Length=5
+  
+[Block]
+Name=POP_END
+Label=End
+DisplayTogether=Yes
+Position=109
+Length=1
   
 [EndGrid]
  
