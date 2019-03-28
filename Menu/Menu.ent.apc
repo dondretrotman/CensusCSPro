@@ -10,6 +10,7 @@ TODO:
  - Need to be able to specify ED for Visitation Record and Household Questionnaires
  - Need to pass certain variables to the visitation record and questionnaire. i.e. interview status, Enumerator ID, Supervisor ID
  - need to implement allocation form
+ - Need to implement VR as a report
 }
 PROC GLOBAL
 //-----------------Variable Declaration-------------------
@@ -147,7 +148,7 @@ function searchArray(array string arrayName(,),string findValue)
 end;
 
 //Launches the Questionnaire to add a household only
-function launchQuestionnaire()
+function addQuestionnaire()
 
 	string pffFilename = pathname(application) + "..\Questionnaire\Census2020Ver2.pff";
 	setfile(pffFile,pffFilename,create);
@@ -169,7 +170,7 @@ function launchQuestionnaire()
 	filewrite(pffFile,"[Files]");
 	filewrite(pffFile,"Application=%s","./Census2020Ver2.ent");
 	filewrite(pffFile,"InputData=%s","../Data/CensusData.csdb|CSPRODB");
-	filewrite(pffFile,"Paradata=%s","../Data/Census.cslog");
+	filewrite(pffFile,"Paradata=%s",maketext("../Data/Census%03d.cslog",ME_ED));
 
 	filewrite(pffFile,"[ExternalFiles]");
 	filewrite(pffFile,"VISITATION_RECORD_DICT=%s","../Data/VisitationRecord.csdb|CSPRODB");
@@ -182,6 +183,7 @@ function launchQuestionnaire()
 	
 	filewrite(pffFile,"PARISH=%V",ME_PARISH);	
 	filewrite(pffFile,"ED=%V",ME_ED);
+	filewrite(pffFile,"USERID=%V",USERID);
 
 	close(pffFile);
 
@@ -211,7 +213,7 @@ string pffFilename = pathname(application) + "..\Questionnaire\Census2020Ver2.pf
 	filewrite(pffFile,"[Files]");
 	filewrite(pffFile,"Application=%s","./Census2020Ver2.ent");
 	filewrite(pffFile,"InputData=%s","../Data/CensusData.csdb|CSPRODB");
-	filewrite(pffFile,"Paradata=%s","../Data/Census.cslog");
+	filewrite(pffFile,"Paradata=%s",maketext("../Data/Census%03d.cslog",ME_ED));
 
 	filewrite(pffFile,"[ExternalFiles]");
 	filewrite(pffFile,"VISITATION_RECORD_DICT=%s","../Data/VisitationRecord.csdb|CSPRODB");
@@ -224,6 +226,7 @@ string pffFilename = pathname(application) + "..\Questionnaire\Census2020Ver2.pf
 	
 	filewrite(pffFile,"PARISH=%S",CHOOSE_HOUSEHOLD[1:2]);		//CHOOSE_HOUSEHOLD[X:Y] where x = starting position, y = length
 	filewrite(pffFile,"ED=%S",CHOOSE_HOUSEHOLD[3:3]);
+	filewrite(pffFile,"USERID=%V",USERID);
 	filewrite(pffFile,"BUILDING=%S",CHOOSE_HOUSEHOLD[6:3]);
 	filewrite(pffFile,"DWELLING_UNIT=%S",CHOOSE_HOUSEHOLD[9:3]);
 	filewrite(pffFile,"HOUSEHOLD=%S",CHOOSE_HOUSEHOLD[12:3]);
@@ -239,7 +242,7 @@ function uploadData()
 		if not syncdata(PUT,VISITATION_RECORD_DICT,maketext("%2d%3d",ME_PARISH,ME_ED)) then		//Upload Control Sheet
 			inc(errflag);
 		endif;
-		if not syncdata(GET, CENSUS_ALLOCATIONS_DICT) then		//get allocations
+		if not syncdata(GET, CENSUS_ASSIGNMENTS_DICT) then		//get allocations
 			inc(errflag);
 		endif;
 		if not syncfile(PUT,"../Data/Census2020Ver2.cslog",maketext("CensusLogs/Census%s.cslog",getdeviceid())) then		//Upload paradata logs
@@ -251,10 +254,13 @@ function uploadData()
 		if not syncfile(GET,"/Census/Update/Visitation Record/Visitation Record.pen","../Visitation Record/Visitation Record.pen") then		//update control sheet
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/Census/Update/Allocation/Allocation.pen","../Allocation/Allocation.pen") then		//update Allocation form
+		if not syncfile(GET,"/Census/Update/Allocation/Assignments.pen","../Allocation/Assignments.pen") then		//update Allocation form
 			inc(errflag);
 		endif;
 		if not syncfile(GET,"/Census/Update/Menu/Menu.pen","../Menu/Menu.pen") then		//update Menu
+			inc(errflag);
+		endif;
+		if not syncfile(GET,"/Census/Update/Menu/Menu.pff","../Menu/Menu.pff") then		//update Menu
 			inc(errflag);
 		endif;
 {		if not syncfile(GET,"/CSPro/Update/Reports/enumeratorrpt.html","../Reports/enumeratorrpt.html") then		//report template
@@ -278,7 +284,7 @@ end;
 function updateApp()
 	errflag = 0;
 	if syncconnect(CSWeb,cswebip1,ftpun,ftppw) or syncconnect(CSWeb,cswebip2,ftpun,ftppw)  then		//connect to FTP when outside of the Government WAN
-		if not syncdata(GET, CENSUS_ALLOCATIONS_DICT) then		//get allocations
+		if not syncdata(GET, CENSUS_ASSIGNMENTS_DICT) then		//get allocations
 			inc(errflag);
 		endif;
 		if not syncfile(GET,"/Census/Update/Questionnaire/Census2020Ver2.pen","../Questionnaire/Census2020Ver2.pen") then		//update questionnaire
@@ -287,10 +293,13 @@ function updateApp()
 		if not syncfile(GET,"/Census/Update/Visitation Record/Visitation Record.pen","../Visitation Record/Visitation Record.pen") then		//update Control Sheets
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/Census/Update/Allocation/Allocation.pen","../Allocation/Allocation.pen") then		//update Allocation form
+		if not syncfile(GET,"/Census/Update/Allocation/Assignments.pen","../Allocation/Assignments.pen") then		//update Allocation form
 			inc(errflag);
 		endif;
 		if not syncfile(GET,"/Census/Update/Menu/Menu.pen","../Menu/Menu.pen") then		//update Menu
+			inc(errflag);
+		endif;
+		if not syncfile(GET,"/Census/Update/Menu/Menu.pff","../Menu/Menu.pff") then		//update Menu
 			inc(errflag);
 		endif;
 {		if not syncfile(GET,"/CSPro/Update/Reports/EnumerationReport.pen","../Reports/EnumerationReport.pen") then		//update Enumeration Report
@@ -326,7 +335,7 @@ function downloadData()
 		if not syncdata(GET,VISITATION_RECORD_DICT,maketext("%2d%3d",ME_PARISH,ME_ED)) then			//get control sheet data for round and ED
 			inc(errflag);
 		endif;
-		if not syncdata(GET, CENSUS_ALLOCATIONS_DICT) then		//get allocations
+		if not syncdata(GET, CENSUS_ASSIGNMENTS_DICT) then		//get allocations
 			inc(errflag);
 		endif;
 {		if not syncdata(get,ENUMERATIONREPORT_DICT,maketext("%v",ME_ED)) then	//get enumeration report for ED
@@ -339,10 +348,13 @@ function downloadData()
 		if not syncfile(GET,"/Census/Update/Visitation Record/Visitation Record.pen","../Visitation Record/Visitation Record.pen") then		//update control sheet
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/Census/Update/Allocation/Allocation.pen","../Allocation/Allocation.pen") then		//update Allocation form
+		if not syncfile(GET,"/Census/Update/Allocation/Assignments.pen","../Allocation/Assignments.pen") then		//update Allocation form
 			inc(errflag);
 		endif;
 		if not syncfile(GET,"/Census/Update/Menu/Menu.pen","../Menu/Menu.pen") then		//update Menu
+			inc(errflag);
+		endif;
+		if not syncfile(GET,"/Census/Update/Menu/Menu.pff","../Menu/Menu.pff") then		//update Menu
 			inc(errflag);
 		endif;
 {		if not syncfile(GET,"/CSPro/Update/Reports/EnumerationReport.pen","../Reports/EnumerationReport.pen") then		//update Enumeration Report
@@ -484,7 +496,7 @@ preproc
 	userbar(add button, "View Manual", ViewManual());
 	userbar(show);
 
-PROC MENU_QUEST
+PROC CENSUS_MENU_QUEST
 preproc
 
 	//Initialize ftp variables
@@ -520,6 +532,8 @@ preproc
 	updated = tonumber(loadsetting("Updated"));		//Last date app was updated
 	//errmsg("sysdate(%d)-lastupdate(%d)=%d",sysdate("YYYYMMDD"),lastupdate,datediff(sysdate("YYYYMMDD"),lastupdate));
 	//errmsg("updated(%d)-lastupdate(%d)=%d",updated,lastupdate,datediff(updated,lastupdate));
+
+	
 	if (datediff(sysdate("YYYYMMDD"),lastupdate) >= 1) and (datediff(updated,lastupdate) >= 1) and (getos() = 20) then		//if more than one day since last update and on android
 		if connection() then		//check for internet connection
 			i = 0;
@@ -552,21 +566,22 @@ postproc
 	endif;
 	
 	//get allocations
-	uid = maketext("%v",USERID);
-	if loadcase(CENSUS_ALLOCATIONS_DICT,uid) = 0 and USERID < 1000 then		//if no allocations found
+	//DEBUG: enable this after allocation have been implemented
+{	uid = maketext("%v",USERID);
+	if loadcase(CENSUS_ASSIGNMENTS_DICT,uid) = 0 and USERID < 1000 then		//if no allocations found
 		if connection() then		//if on the internet
 			if syncconnect(CSWeb,cswebip1,ftpun,ftppw) then		//connect to csweb when outside of the Government WAN
-				syncdata(GET, CENSUS_ALLOCATIONS_DICT);		//get allocations
+				syncdata(GET, CENSUS_ASSIGNMENTS_DICT);		//get allocations
 				allocationdate = sysdate("YYYYMMDD");
 				savesetting("ALLOCATIONDATE",maketext("%d",allocationdate));		//saves so that it's persistent between sessions
 			elseif syncconnect(CSWeb,cswebip2,ftpun,ftppw) then	
-				syncdata(GET, CENSUS_ALLOCATIONS_DICT);		//get allocations
+				syncdata(GET, CENSUS_ASSIGNMENTS_DICT);		//get allocations
 				allocationdate = sysdate("YYYYMMDD");
 				savesetting("ALLOCATIONDATE",maketext("%d",allocationdate));		//saves so that it's persistent between sessions
 			endif;
 		endif;
 	endif;
-
+}
 
 //---------------------------------------------------------------
 PROC ME_ED
@@ -639,7 +654,7 @@ onfocus
 	
 postproc
 	if $ = 1 then		//start new questionnaire
-		launchQuestionnaire();
+		addQuestionnaire();
 	elseif $ = 2 then	//view questionnaire
 		skip to CHOOSE_HOUSEHOLD;		
 	elseif $ = 3 then	//View visitation record
@@ -705,7 +720,7 @@ onfocus
 postproc
 	CHOOSE_HOUSEHOLD = maketext("%15.14s",CHOOSE_HOUSEHOLD);		//workaround to make this shit work I shouldn't have to hack this to make it work!
 	
-	launchQuestionnaire();
+	addQuestionnaire();
 	if LOGIN = 1 then
 		move to LOGIN;
 	elseif LOGIN = 2 then

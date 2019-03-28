@@ -45,7 +45,7 @@ File=.\Menu.ent.qsf
 [Forms]
 File=.\Menu.fmf
 [Dictionary Types]
-Dict-Type=.\Menu.dcf,Input,.\Menu.fmf
+Dict-Type=.\CensusMenu.dcf,Input,.\Menu.fmf
 Dict-Type=..\Visitation record\Visitation Record.dcf,External
 Dict-Type=..\Questionnaire\Census2020.dcf,External
 Dict-Type=..\Allocations\Census Allocations.dcf,External

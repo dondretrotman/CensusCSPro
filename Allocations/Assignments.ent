@@ -1,7 +1,7 @@
 ﻿[CSPro Application]
 Version=CSPro 7.2
-Label=ALLOCATIONS
-Name=ALLOCATIONS
+Label=ASSIGNMENTS
+Name=ASSIGNMENTS
 AppType=DataEntry
 OperatorID=No
 CAPI=Yes
@@ -15,12 +15,12 @@ ComboBoxShowOnlyDiscreteValues=Yes
 ParadataCollection=AllEvents
 ParadataDeviceStateMinutes=5
 [AppCode]
-File=.\Allocations.ent.apc
+File=.\Assignments.ent.apc
 [Message]
-File=.\Allocations.ent.mgf
+File=.\Assignments.ent.mgf
 [Help]
-File=.\Allocations.ent.qsf
+File=.\Assignments.ent.qsf
 [Forms]
-File=.\Allocations.fmf
+File=.\Assignments.fmf
 [Dictionary Types]
-Dict-Type=.\Census Allocations.dcf,Input,.\Allocations.fmf
+Dict-Type=.\Census Allocations.dcf,Input,.\Assignments.fmf

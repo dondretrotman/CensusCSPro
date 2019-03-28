@@ -1,6 +1,6 @@
 {
   "fileType": "Application Deployment Specification",
-  "version": "7.1",
+  "version": "7.2",
   "name": "Census2020Ver2",
   "description": "Barbados 2020 Census",
   "files": [
@@ -11,13 +11,13 @@
       "path": "..\\Menu\\Menu.ent"
     },
     {
-      "path": "..\\Data Entry\\Census2020Ver2.pff"
+      "path": "..\\Questionnaire\\Census2020Ver2.pff"
     },
     {
       "path": "..\\Resources\\Enumerators_Manual_2010.pdf"
     },
     {
-      "path": "..\\Data Entry\\Census2020Ver2.ent"
+      "path": "..\\Questionnaire\\Census2020Ver2.ent"
     },
     {
       "path": "..\\Visitation record\\Visitation Record.pff"
@@ -26,12 +26,12 @@
       "path": "..\\Visitation record\\Visitation Record.ent"
     },
     {
-      "path": "..\\Data Entry\\Enumerators_Manual_2010.pdf"
+      "path": "..\\Allocations\\Assignments.ent"
     }
   ],
   "dictionaries": [
     {
-      "path": "..\\Menu\\Menu.dcf",
+      "path": "..\\Menu\\CensusMenu.dcf",
       "uploadForSync": true
     },
     {
@@ -39,16 +39,17 @@
       "uploadForSync": true
     },
     {
-      "path": "..\\Logins\\Loginlist.dcf"
+      "path": "..\\Questionnaire\\Census2020.dcf",
+      "uploadForSync": true
     },
     {
-      "path": "..\\Census2020.dcf",
+      "path": "..\\Allocations\\Census Allocations.dcf",
       "uploadForSync": true
     }
   ],
   "deployment": {
-    "type": "Dropbox",
-    "cswebUrl": "http:\/\/csweb.teleyah.com\/api",
+    "type": "CSWeb",
+    "cswebUrl": "http:\/\/172.28.10.220\/csweb\/api",
     "ftpUrl": "ftp:\/\/",
     "localFilePath": ".\\Census2020Ver2.zip",
     "localFolderPath": "..\\Deploy"

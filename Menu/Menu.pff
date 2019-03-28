@@ -15,6 +15,8 @@ Paradata=..\Data\Menu.cslog
 
 [ExternalFiles]
 CENSUS2020_DICT=..\Data\CensusData.csdb|CSPRODB
+CENSUS_ALLOCATIONS_DICT=..\Data\assignments.csdb|CSPRODB
+CENSUS_ASSIGNMENTS_DICT=..\Data\assignments.csdb|CSPRODB
 LOGINLIST_DICT=..\Data\Login.csdb|CSPRODB
 VISITATION_RECORD_DICT=..\Data\VisitationRecord.csdb|CSPRODB
 

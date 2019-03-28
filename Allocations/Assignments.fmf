@@ -1,7 +1,7 @@
 ﻿[FormFile]
 Version=CSPro 7.2
-Name=CENSUS_ALLOCATIONS_FF
-Label=Allocations
+Name=CENSUS_ASSIGNMENTS_FF
+Label=Assignments
 DefaultTextFont=-013 0000 0000 0000 0700 0000 0000 0000 0000 0000 0000 0000 0000 Arial
 FieldEntryFont=0018 0000 0000 0000 0600 0000 0000 0000 0000 0000 0000 0000 0000 Courier New
 Type=SystemControlled
@@ -11,7 +11,7 @@ File=.\Census Allocations.dcf
   
 [Form]
 Name=FORM000
-Label=Census Allocations Level
+Label=Census Assignments Level
 Level=1
 Size=0,0
   
@@ -19,13 +19,13 @@ Size=0,0
 [EndForm]
   
 [Level]
-Name=CENSUS_ALLOCATIONS_LEVEL
+Name=CENSUS_ASSIGNMENTS_LEVEL
 Label=Census Allocations Level
   
 [Group]
 Required=Yes
-Name=CENSUS_ALLOCATIONS_LEVEL_FORM
-Label=Census Allocations Level
+Name=CENSUS_ASSIGNMENTS_LEVEL_FORM
+Label=Census Assignments Level
 Form=1
 LogicControl=No
 Max=1

@@ -1,7 +1,7 @@
 ﻿[Dictionary]
 Version=CSPro 7.2
 Label=Census Allocations
-Name=CENSUS_ALLOCATIONS_DICT
+Name=CENSUS_ASSIGNMENTS_DICT
 RecordTypeStart=1
 RecordTypeLen=1
 Positions=Relative
@@ -10,7 +10,7 @@ DecimalChar=Yes
 
 [Level]
 Label=Census Allocations Level
-Name=CENSUS_ALLOCATIONS_LEVEL
+Name=CENSUS_ASSIGNMENTS_LEVEL
 
 [IdItems]
 
@@ -22,7 +22,7 @@ Len=4
 
 [Record]
 Label=Census Allocations Meta
-Name=CENSUS_ALLOCATIONS_META
+Name=CENSUS_ASSIGNMENTS_META
 RecordTypeValue='1'
 RecordLen=51
 
@@ -54,7 +54,7 @@ Len=4
 
 [Record]
 Label=Census Allocations
-Name=CENSUS_ALLOCATIONS
+Name=CENSUS_ASSIGNMENTS
 RecordTypeValue='2'
 MaxRecords=5
 RecordLen=19

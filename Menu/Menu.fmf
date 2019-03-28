@@ -1,5 +1,5 @@
 ﻿[FormFile]
-Version=CSPro 7.1
+Version=CSPro 7.2
 Name=MENU_FF
 Label=Menu
 DefaultTextFont=-013 0000 0000 0000 0700 0000 0000 0000 0000 0000 0000 0000 0000 Arial
@@ -7,7 +7,7 @@ FieldEntryFont=0018 0000 0000 0000 0600 0000 0000 0000 0000 0000 0000 0000 0000 
 Type=SystemControlled
   
 [Dictionaries]
-File=.\Menu.dcf
+File=.\CensusMenu.dcf
   
 [Form]
 Name=FORM001
@@ -27,7 +27,7 @@ Item=ME_ED
 [EndForm]
   
 [Level]
-Name=MENU_QUEST
+Name=CENSUS_MENU_QUEST
 Label=Menu questionnaire
   
 [Group]
@@ -41,7 +41,7 @@ Max=1
 [Field]
 Name=UNAME
 Position=222,23,632,43
-Item=UNAME,MENU_DICT
+Item=UNAME,CENSUS_MENU_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
@@ -55,20 +55,20 @@ Text=User Name
 [Field]
 Name=USERID
 Position=222,53,279,73
-Item=USERID,MENU_DICT
+Item=USERID,CENSUS_MENU_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=1
   
 [Text]
-Position=37,56,90,72
-Text=User Pin
+Position=37,56,82,72
+Text=User ID
  
   
 [Field]
 Name=ME_ED
 Position=222,80,265,100
-Item=ME_ED,MENU_DICT
+Item=ME_ED,CENSUS_MENU_DICT
 FieldLabelType=DictionaryLabel
 Form=1
   
@@ -80,7 +80,7 @@ Text=ED
 [Field]
 Name=LOGIN
 Position=222,105,237,125
-Item=LOGIN,MENU_DICT
+Item=LOGIN,CENSUS_MENU_DICT
 HideInCaseTree=Yes
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -95,7 +95,7 @@ Text=Main Menu
 [Field]
 Name=INTERVIEWER_MENU
 Position=222,135,237,155
-Item=INTERVIEWER_MENU,MENU_DICT
+Item=INTERVIEWER_MENU,CENSUS_MENU_DICT
 HideInCaseTree=Yes
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -110,7 +110,7 @@ Text=Interviewer Menu
 [Field]
 Name=SUPERVISOR_MENU
 Position=222,165,237,185
-Item=SUPERVISOR_MENU,MENU_DICT
+Item=SUPERVISOR_MENU,CENSUS_MENU_DICT
 HideInCaseTree=Yes
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -125,7 +125,7 @@ Text=Supervisor menu
 [Field]
 Name=CHOOSE_HOUSEHOLD
 Position=222,195,419,215
-Item=CHOOSE_HOUSEHOLD,MENU_DICT
+Item=CHOOSE_HOUSEHOLD,CENSUS_MENU_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=RadioButton
@@ -139,7 +139,7 @@ Text=Choose Household
 [Field]
 Name=CHOOSE_VR
 Position=222,225,419,245
-Item=CHOOSE_VR,MENU_DICT
+Item=CHOOSE_VR,CENSUS_MENU_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=RadioButton

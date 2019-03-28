@@ -83,7 +83,7 @@ ZeroFill=Yes
 Label=Housing
 Name=HOUSING
 RecordTypeValue='1'
-RecordLen=728
+RecordLen=778
 
 [Item]
 Label=Number of persons in household
@@ -655,9 +655,16 @@ Value=5;Renewable energy
 Value=6;Other
 
 [Item]
+Label=H22(a) - Other
+Name=H22A_OTHER
+Start=619
+Len=50
+DataType=Alpha
+
+[Item]
 Label=H22(b) – What source of energy is mainly used for cooking?
 Name=H22B
-Start=619
+Start=669
 Len=1
 
 [ValueSet]
@@ -675,14 +682,14 @@ Value=8;Other
 [Item]
 Label=H22(b) - Other
 Name=H22B_OTHER
-Start=620
+Start=670
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H22(c) – Does your household produce solar or any other renewable energy for your own use?
 Name=H22C
-Start=670
+Start=720
 Len=4
 DataType=Alpha
 
@@ -697,7 +704,7 @@ Value='D   ';No
 [Item]
 Label=H23(a) – Does this dwelling have a direct connection to the internet?
 Name=H23A
-Start=674
+Start=724
 Len=1
 
 [ValueSet]
@@ -709,7 +716,7 @@ Value=2;No
 [Item]
 Label=H23(b)i – Which of these appliances\household equipment does your household have? (Score as many as are applicable)
 Name=H23BI
-Start=675
+Start=725
 Len=25
 DataType=Alpha
 
@@ -746,7 +753,7 @@ Value='Y                        ';Home Security Equipment
 [Item]
 Label=H23(b)ii – Which of these appliances\household equipment does your household share? (Score as many as are applicable)
 Name=H23BII
-Start=700
+Start=750
 Len=25
 DataType=Alpha
 
@@ -758,7 +765,7 @@ Link=80780968
 [Item]
 Label=H24 – how many vehicles does this household keep at home for private use?
 Name=H24
-Start=725
+Start=775
 Len=1
 
 [ValueSet]
@@ -773,7 +780,7 @@ Value=4;4 or more
 [Item]
 Label=E8(a) - Since the last census (2010), has anyone left this household to live overseas and continues to reside abroad?
 Name=E8A
-Start=726
+Start=776
 Len=1
 
 [ValueSet]
@@ -785,7 +792,7 @@ Value=2;No
 [Item]
 Label=E8(b) - If YES, Please give the total number of persons who have gone abroad
 Name=E8B
-Start=727
+Start=777
 Len=2
 
 [Record]

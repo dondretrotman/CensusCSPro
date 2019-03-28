@@ -27,10 +27,12 @@ Item=HOUSEHOLD
 Name=FORM001
 Label=Individual
 Level=1
-Size=1327,392
+Size=1411,448
   
 Item=POPULATION000
 Item=H14A
+Item=ADDRESS1
+Item=ADDRESS2
   
 [EndForm]
   
@@ -38,7 +40,7 @@ Item=H14A
 Name=FORM002
 Label=Housing
 Level=1
-Size=1247,1964
+Size=1297,2981
   
 Item=HNOPERSONS
 Item=H8
@@ -91,6 +93,7 @@ Item=H23BII
 Item=H24
 Item=H17A_OTHER
 Item=H22B_OTHER
+Item=H22A_OTHER
   
 [EndForm]
   
@@ -204,16 +207,46 @@ Form=2
 LogicControl=No
 Max=1
   
+  
+[Field]
+Name=ADDRESS1
+Position=339,9,1149,29
+Item=ADDRESS1,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+Form=2
+  
+[Text]
+Position=157,12,250,28
+Text=Address Line 1
+ 
+  
+[Field]
+Name=ADDRESS2
+Position=339,41,1149,61
+Item=ADDRESS2,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+Form=2
+  
+[Text]
+Position=157,44,250,60
+Text=Address Line 2
+ 
+  
 [Field]
 Name=H14A
-Position=342,6,357,26
+Position=339,74,354,94
 Item=H14A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=2
   
 [Text]
-Position=160,9,327,25
+Position=157,77,324,93
 Text=H14(a) – Occupancy Status
  
   
@@ -225,7 +258,7 @@ Required=No
 Type=Record
 TypeName=POPULATION
 Max=40
-DisplaySize=22,47,1302,367
+DisplaySize=22,103,1386,423
 Orientation=Horizontal
 FieldRowHeight=0
 HeadingRowHeight=0
@@ -559,22 +592,61 @@ Text=Sex
 [EndColumn]
   
 [Column]
-Width=121
+Width=65
   
 [HeaderText]
-Position=34,16,121,40
-Text=Date of Birth
+Position=29,16,65,40
+Text=Year
  
 [Field]
-Name=DOB
-Position=0,0,113,20
-Item=DOB,CENSUS2020_DICT
-UpperCase=Yes
+Name=DOB_YEAR
+Position=0,0,57,20
+Item=DOB_YEAR,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
   
 [Text]
-Position=0,0,81,16
-Text=Date of Birth
+Position=0,0,31,16
+Text=Year
+ 
+[EndColumn]
+  
+[Column]
+Width=47
+  
+[HeaderText]
+Position=0,16,47,40
+Text=Month
+ 
+[Field]
+Name=DOB_MONTH
+Position=10,0,39,20
+Item=DOB_MONTH,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
+  
+[Text]
+Position=0,0,40,16
+Text=Month
+ 
+[EndColumn]
+  
+[Column]
+Width=37
+  
+[HeaderText]
+Position=5,16,37,40
+Text=Day
+ 
+[Field]
+Name=DOB_DAY
+Position=0,0,29,20
+Item=DOB_DAY,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=ComboBox
+  
+[Text]
+Position=0,0,26,16
+Text=Day
  
 [EndColumn]
   
@@ -639,8 +711,29 @@ Text=Add another person?
  
 [EndColumn]
   
+[Block]
+Name=POP_INDIVIDUALS
+Label=Individual Listing
+DisplayTogether=Yes
+Position=1
+Length=5
+  
+[Block]
+Name=POP_DOB
+Label=Date of Birth
+DisplayTogether=Yes
+Position=7
+Length=3
+  
 [EndGrid]
  
+[Block]
+Name=HOU_ADDRESS
+Label=Address
+DisplayTogether=Yes
+Position=0
+Length=3
+  
 [EndGroup]
   
 [Group]
@@ -655,6 +748,7 @@ Max=1
 Name=HNOPERSONS
 Position=812,384,841,404
 Item=HNOPERSONS,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=3
   
@@ -667,6 +761,7 @@ Text=Number of persons in household
 Name=H8
 Position=812,412,841,432
 Item=H8,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
@@ -680,6 +775,7 @@ Text=H8 – What type of dwelling unit is this?
 Name=H8_OTHER
 Position=812,441,1222,461
 Item=H8_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
@@ -689,11 +785,11 @@ Position=16,444,82,460
 Text=H8 – Other
  
   
-  
 [Field]
 Name=H9
 Position=812,470,841,490
 Item=H9,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
@@ -707,6 +803,7 @@ Text=H9 – Of what materials are the outer walls made?
 Name=H9_OTHER
 Position=812,500,1222,520
 Item=H9_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
@@ -720,6 +817,7 @@ Text=H9 – Other
 Name=H10
 Position=812,530,841,550
 Item=H10,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
@@ -733,6 +831,7 @@ Text=H10 – Of what material is the roof made?
 Name=H10_OTHER
 Position=812,560,1222,580
 Item=H10_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
@@ -746,6 +845,7 @@ Text=H10 – Other
 Name=H11
 Position=812,590,827,610
 Item=H11,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
@@ -759,6 +859,7 @@ Text=H11 – What is the main flooring material?
 Name=H11_OTHER
 Position=812,620,1222,640
 Item=H11_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
@@ -772,6 +873,7 @@ Text=H11 – Other
 Name=H12
 Position=812,650,827,670
 Item=H12,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
@@ -785,6 +887,7 @@ Text=H12 – How is the foundation of the house constructed?
 Name=H12_OTHER
 Position=812,680,1222,700
 Item=H12_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
@@ -798,6 +901,7 @@ Text=H12 – Other
 Name=H13
 Position=812,710,827,730
 Item=H13,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
@@ -812,6 +916,7 @@ Text=H13 – In what year was the dwelling built?
 Name=H14B
 Position=812,740,827,760
 Item=H14B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
@@ -825,6 +930,7 @@ Text=H14(b) – If unoccupied, is unit
 Name=H14C
 Position=812,770,827,790
 Item=H14C,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
@@ -839,6 +945,7 @@ Text=H14(c) – What is the state of construction?
 Name=H15
 Position=812,800,841,820
 Item=H15,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=3
   
@@ -851,6 +958,7 @@ Text=H15 – How many rooms does this dwelling have?
 Name=H16A
 Position=812,830,841,850
 Item=H16A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=3
   
@@ -859,10 +967,12 @@ Position=16,833,366,849
 Text=H16(a) – How many bedrooms does this dwelling have?
  
   
+  
 [Field]
 Name=H16B
 Position=812,860,841,880
 Item=H16B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=3
   
@@ -875,6 +985,7 @@ Text=H16(b) – How many Bathrooms does this dwelling have?
 Name=H16C
 Position=812,890,827,910
 Item=H16C,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
@@ -888,6 +999,7 @@ Text=H16(c) – Do you share a bathroom with any other household?
 Name=H17A
 Position=812,950,827,970
 Item=H17A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
@@ -901,6 +1013,7 @@ Text=H17(a) – Under what type of tenure is this dwelling occupied?
 Name=H17A_OTHER
 Position=812,920,1222,940
 Item=H17A_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
@@ -910,11 +1023,11 @@ Position=16,923,102,939
 Text=H17(a) - Other
  
   
-  
 [Field]
 Name=H17BI
 Position=812,980,827,1000
 Item=H17BI,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
@@ -924,10 +1037,12 @@ Position=16,983,214,999
 Text=H17(b)i – Is the home owned by
  
   
+  
 [Field]
 Name=H17BII_MALES
 Position=812,1010,841,1030
 Item=H17BII_MALES,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=3
   
@@ -940,6 +1055,7 @@ Text=H17(b)ii – If jointly owned, by how many males?
 Name=H17BII_FEMALES
 Position=812,1040,841,1060
 Item=H17BII_FEMALES,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=3
   
@@ -952,6 +1068,7 @@ Text=H17(b)ii – If jointly owned, by how many females?
 Name=H17C
 Position=812,1070,827,1090
 Item=H17C,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
@@ -965,6 +1082,7 @@ Text=H17(c) – If owned, was it acquired through
 Name=H17C_OTHER
 Position=812,1100,1222,1120
 Item=H17C_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
@@ -974,10 +1092,12 @@ Position=16,1103,104,1119
 Text=H17(c) – Other
  
   
+  
 [Field]
 Name=H17D
 Position=812,1130,827,1150
 Item=H17D,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
@@ -989,377 +1109,414 @@ Text=H17(d) – What is the rental period for this dwelling?
   
 [Field]
 Name=H17E
-Position=812,1160,883,1180
+Position=812,1159,883,1179
 Item=H17E,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=ComboBox
 Form=3
   
 [Text]
-Position=16,1163,304,1179
+Position=16,1162,304,1178
 Text=H17(e) – How much rent are you now paying?
  
   
 [Field]
 Name=H18
-Position=812,1190,827,1210
+Position=812,1188,827,1208
 Item=H18,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1193,493,1209
+Position=16,1191,493,1207
 Text=H18 – Is this dwelling rented fully furnished, semi-furnished or unfurnished?
  
   
-  
 [Field]
 Name=H19A
-Position=812,1220,827,1240
+Position=812,1217,827,1237
 Item=H19A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1223,377,1239
+Position=16,1220,377,1236
 Text=H19(a) – Under what type of tenure is this land occupied?
  
   
 [Field]
 Name=H19A_OTHER
-Position=812,1250,1222,1270
+Position=812,1246,1222,1266
 Item=H19A_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
   
 [Text]
-Position=16,1253,105,1269
+Position=16,1249,105,1265
 Text=H19(a) – Other
  
   
 [Field]
 Name=H19B
-Position=812,1280,827,1300
+Position=812,1276,827,1296
 Item=H19B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1283,206,1299
+Position=16,1279,206,1295
 Text=H19(b)i – Is the land owned by
  
   
+  
 [Field]
 Name=H19BII_MALES
-Position=812,1310,841,1330
+Position=812,1306,841,1326
 Item=H19BII_MALES,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
-Position=16,1313,319,1329
+Position=16,1309,319,1325
 Text=H19(b)ii – If jointly owned, by how many males?
  
   
 [Field]
 Name=H19BII_FEMALES
-Position=812,1340,841,1360
+Position=812,1336,841,1356
 Item=H19BII_FEMALES,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
-Position=16,1343,328,1359
+Position=16,1339,328,1355
 Text=H19(b)ii - If jointly owned, by how many females?
  
   
 [Field]
 Name=H19C
-Position=812,1370,827,1390
+Position=812,1366,827,1386
 Item=H19C,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1373,401,1389
+Position=16,1369,401,1385
 Text=H19(c) – Does the land form part of an approved subdivision?
  
   
 [Field]
 Name=H19D
-Position=812,1400,827,1420
+Position=812,1396,827,1416
 Item=H19D,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1403,313,1419
+Position=16,1399,313,1415
 Text=H19(d) – If owned, how was the land acquired?
  
   
 [Field]
 Name=H19D_OTHER
-Position=812,1430,1222,1450
+Position=812,1426,1222,1446
 Item=H19D_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
   
 [Text]
-Position=16,1433,105,1449
+Position=16,1429,105,1445
 Text=H19(d) – Other
  
   
+  
 [Field]
 Name=H19E
-Position=812,1460,827,1480
+Position=812,1456,827,1476
 Item=H19E,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1463,314,1479
+Position=16,1459,314,1475
 Text=H19(e) – What is the rental period for this land?
  
   
 [Field]
 Name=H19F
-Position=812,1490,883,1510
+Position=812,1486,883,1506
 Item=H19F,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=ComboBox
 Form=3
   
 [Text]
-Position=16,1493,300,1509
+Position=16,1489,300,1505
 Text=H19(f) – How much rent are you now paying?
  
   
-  
 [Field]
 Name=H20
-Position=812,1520,827,1540
+Position=812,1516,827,1536
 Item=H20,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1523,317,1539
+Position=16,1519,317,1535
 Text=H20 – How is your main water supply obtained?
  
   
 [Field]
 Name=H20_OTHER
-Position=812,1550,1222,1570
+Position=812,1546,1222,1566
 Item=H20_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
   
 [Text]
-Position=16,1553,89,1569
+Position=16,1549,89,1565
 Text=H20 – Other
  
   
 [Field]
 Name=H21A
-Position=812,1580,827,1600
+Position=812,1576,827,1596
 Item=H21A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1583,433,1599
+Position=16,1579,433,1595
 Text=H21(a) – What type of toilet facilities does this dwelling unit have?
  
   
 [Field]
 Name=H21A_OTHER
-Position=812,1610,1222,1630
+Position=812,1606,1222,1626
 Item=H21A_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
   
 [Text]
-Position=16,1613,105,1629
+Position=16,1609,105,1625
 Text=H21(a) – Other
  
   
 [Field]
 Name=H21B
-Position=812,1640,827,1660
+Position=812,1636,827,1656
 Item=H21B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1643,429,1659
+Position=16,1639,429,1655
 Text=H21(b) – Are the toilet facilities shared with any other household?
  
   
 [Field]
 Name=H22A
-Position=812,1702,827,1722
+Position=812,1696,827,1716
 Item=H22A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1705,435,1721
+Position=16,1699,435,1715
 Text=H22(a) – What source of lighting is mainly used by this household?
  
   
 [Field]
-Name=H22B
-Position=812,1732,827,1752
-Item=H22B,CENSUS2020_DICT
-FieldLabelType=DictionaryLabel
-DataCaptureType=DropDown
-Form=3
-  
-[Text]
-Position=16,1735,391,1751
-Text=H22(b) – What source of energy is mainly used for cooking?
- 
-  
-[Field]
-Name=H22B_OTHER
-Position=812,1670,1222,1690
-Item=H22B_OTHER,CENSUS2020_DICT
+Name=H22A_OTHER
+Position=812,1726,1222,1746
+Item=H22A_OTHER,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
   
 [Text]
-Position=16,1673,102,1689
+Position=16,1729,102,1745
+Text=H22(a) - Other
+ 
+  
+[Field]
+Name=H22B
+Position=812,1756,827,1776
+Item=H22B,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
+Form=3
+  
+[Text]
+Position=16,1759,391,1775
+Text=H22(b) – What source of energy is mainly used for cooking?
+ 
+  
+[Field]
+Name=H22B_OTHER
+Position=812,1666,1222,1686
+Item=H22B_OTHER,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+Form=3
+  
+[Text]
+Position=16,1669,102,1685
 Text=H22(b) - Other
  
   
 [Field]
 Name=H22C
-Position=812,1762,869,1782
+Position=812,1786,869,1806
 Item=H22C,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
 Form=3
   
 [Text]
-Position=16,1765,612,1781
+Position=16,1789,612,1805
 Text=H22(c) – Does your household produce solar or any other renewable energy for your own use?
  
   
-  
 [Field]
 Name=H23A
-Position=812,1792,827,1812
+Position=812,1816,827,1836
 Item=H23A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1795,448,1811
+Position=16,1819,448,1835
 Text=H23(a) – Does this dwelling have a direct connection to the internet?
  
   
 [Field]
 Name=H23BI
-Position=812,1822,1163,1842
+Position=812,1846,1163,1866
 Item=H23BI,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
 Form=3
   
 [Text]
-Position=16,1825,782,1841
+Position=16,1849,782,1865
 Text=H23(b)i – Which of these appliances\household equipment does your household have? (Score as many as are applicable)
  
   
 [Field]
 Name=H23BII
-Position=812,1852,1163,1872
+Position=812,1876,1163,1896
 Item=H23BII,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
 Form=3
   
 [Text]
-Position=16,1855,790,1871
+Position=16,1879,790,1895
 Text=H23(b)ii – Which of these appliances\household equipment does your household share? (Score as many as are applicable)
  
   
 [Field]
 Name=H24
-Position=812,1882,827,1902
+Position=812,1906,827,1926
 Item=H24,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1885,500,1901
+Position=16,1909,500,1925
 Text=H24 – how many vehicles does this household keep at home for private use?
  
 [Block]
-Name=HOU_BUILDINGMATERIALS
-Label=Building materials
+Name=HOU_BLOCK1
+Label=Block 1
 DisplayTogether=Yes
-Position=3
-Length=9
-  
-[Block]
-Name=HOU_OCCUPANCY
-Label=Occupancy
-DisplayTogether=Yes
-Position=13
+Position=12
 Length=2
   
 [Block]
-Name=HOU_ROOMS
-Label=Rooms
+Name=HOU_BLOCK2
+Label=Block2
 DisplayTogether=Yes
-Position=16
-Length=6
+Position=15
+Length=2
   
 [Block]
-Name=HOU_HOUSINGTENURE
-Label=Housing Tenure
+Name=HOU_BLOCK3
+Label=Block 3
 DisplayTogether=Yes
-Position=23
-Length=8
+Position=18
+Length=2
   
 [Block]
-Name=HOU_LANDTENURE
-Label=Land Tenure
+Name=HOU_HJOINTOWN
+Label=House Joint Ownership
 DisplayTogether=Yes
-Position=32
-Length=10
+Position=24
+Length=2
   
 [Block]
-Name=HOU_SERVICES
-Label=Water, toilet, lighting and energy sources
+Name=HOU_HRENT
+Label=House rent
 DisplayTogether=Yes
-Position=43
-Length=9
+Position=29
+Length=2
   
 [Block]
-Name=HOU_EQUIPMENT
-Label=Internet, equipment and vehicles
+Name=HOU_LJOINTOWN
+Label=Land Joint Ownership
 DisplayTogether=Yes
-Position=53
-Length=4
+Position=36
+Length=2
+  
+[Block]
+Name=HOU_LRENT
+Label=Land Rent
+DisplayTogether=Yes
+Position=42
+Length=2
   
 [EndGroup]
   
@@ -1548,6 +1705,13 @@ Position=0,0,87,16
 Text=Country Code
  
 [EndColumn]
+  
+[Block]
+Name=EMI_INFO
+Label=Emigration
+DisplayTogether=Yes
+Position=0
+Length=4
   
 [EndGrid]
  
@@ -1793,6 +1957,7 @@ Text=Individual number
 Name=PID
 Position=826,0,855,20
 Item=PID,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -1811,6 +1976,7 @@ Text=P8(a) - Is your mother living in this household?
 Name=P8A
 Position=826,0,855,20
 Item=P8A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=ComboBox
   
@@ -1830,6 +1996,7 @@ Text=P8(b) - Is your father living in this household?
 Name=P8B
 Position=826,0,855,20
 Item=P8B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=ComboBox
   
@@ -1849,6 +2016,7 @@ Text=P9 - What is your present marital status?
 Name=P9
 Position=840,0,855,20
 Item=P9,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -1868,6 +2036,7 @@ Text=P10 - What is your ethnic origin?
 Name=P10
 Position=840,0,855,20
 Item=P10,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -1887,6 +2056,7 @@ Text=P10 - Other
 Name=P10_OTHER
 Position=154,0,855,20
 Item=P10_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -1906,6 +2076,7 @@ Text=P11(a) - Are you affiliated with any religious denomination?
 Name=P11A
 Position=840,0,855,20
 Item=P11A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -1925,6 +2096,7 @@ Text=P11(b) - To which religion\denomination do you belong?
 Name=P11B
 Position=826,0,855,20
 Item=P11B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -1944,6 +2116,7 @@ Text=P12(a) - Do you have a disability or major impairment?
 Name=P12A
 Position=840,0,855,20
 Item=P12A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -1963,6 +2136,7 @@ Text=P12(b)i - Do you have difficulty seeing, even if wearing glasses?
 Name=P12BI
 Position=840,0,855,20
 Item=P12BI,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -1982,6 +2156,7 @@ Text=P12(b)ii - Do you have difficulty hearing, even if using an hearing aid?
 Name=P12BII
 Position=840,0,855,20
 Item=P12BII,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2001,6 +2176,7 @@ Text=P12(b)iii - Do you have difficulty walking or climbing steps?
 Name=P12BIII
 Position=840,0,855,20
 Item=P12BIII,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2020,6 +2196,7 @@ Text=P12(b)iv - Do you have difficulty remembering or concentrating?
 Name=P12BIV
 Position=840,0,855,20
 Item=P12BIV,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2039,6 +2216,7 @@ Text=P12(b)v - Do you have difficulty with self-care, such as washing all over o
 Name=P12BV
 Position=840,0,855,20
 Item=P12BV,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2058,6 +2236,7 @@ Text=P12(b)vi - Using your usual language, do you have difficulty communicating?
 Name=P12BVI
 Position=840,0,855,20
 Item=P12BVI,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2077,6 +2256,7 @@ Text=P12(c) - What type of aid are you required to used because of the disabilit
 Name=P12C
 Position=742,0,869,20
 Item=P12C,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
   
@@ -2096,6 +2276,7 @@ Text=P12(c) - Other
 Name=P12C_OTHER
 Position=154,0,855,20
 Item=P12C_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -2115,6 +2296,7 @@ Text=P13(a) - Was your disability\major impairment ever diagnosed by a medical d
 Name=P13A
 Position=840,0,855,20
 Item=P13A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2134,6 +2316,7 @@ Text=P13(b) - What was the origin of your disability?
 Name=P13B
 Position=840,0,855,20
 Item=P13B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2153,6 +2336,7 @@ Text=P13(b) - Other
 Name=P13B_OTHER
 Position=168,0,869,20
 Item=P13B_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -2172,6 +2356,7 @@ Text=P14 - Do you have ay of the following illnesses? (Score as many as are appl
 Name=P14
 Position=700,0,855,20
 Item=P14,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
   
@@ -2191,6 +2376,7 @@ Text=P14 - Other
 Name=P14_OTHER
 Position=154,0,855,20
 Item=P14_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -2210,6 +2396,7 @@ Text=P15(a) - Were you born in Barbados?
 Name=P15A
 Position=840,0,855,20
 Item=P15A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2229,6 +2416,7 @@ Text=P15(b) - If YES, In which parish? (Where you mother was living at the time)
 Name=P15B
 Position=826,0,855,20
 Item=P15B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2248,6 +2436,7 @@ Text=P16(a) - In which country were you born?
 Name=P16A
 Position=812,0,855,20
 Item=P16A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -2266,6 +2455,7 @@ Text=P16(b) - In which year did you first arrive in Barbados to live?
 Name=P16B
 Position=798,0,855,20
 Item=P16B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -2284,6 +2474,7 @@ Text=P17 - Where were you living one (1) year ago?
 Name=P17
 Position=840,0,855,20
 Item=P17,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2303,6 +2494,7 @@ Text=P18(a) - Where you you living on May 1, 2015?
 Name=P18A
 Position=840,0,855,20
 Item=P18A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2322,6 +2514,7 @@ Text=P18(b) - If IN ANOTHER PARISH, Which parish?
 Name=P18B
 Position=826,0,855,20
 Item=P18B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2341,6 +2534,7 @@ Text=P19(a) - Did you ever leave Barbados for a continuous period of 5 years or 
 Name=P19A
 Position=840,0,855,20
 Item=P19A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2360,6 +2554,7 @@ Text=P19(b) - If YES, in which country?
 Name=P19B
 Position=812,0,855,20
 Item=P19B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -2378,6 +2573,7 @@ Text=P19(c) - In what year did you return to Barbados to live?
 Name=P19C
 Position=798,0,855,20
 Item=P19C,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -2396,6 +2592,7 @@ Text=P20(a) - Are you currently attending school or any other educational intitu
 Name=P20A
 Position=840,0,855,20
 Item=P20A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2415,6 +2612,7 @@ Text=P20(b) - Please indicate whether full-time or part-time
 Name=P20B
 Position=840,0,855,20
 Item=P20B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2434,6 +2632,7 @@ Text=P20(c) - What type of school or educational institution are you attending?
 Name=P20C
 Position=840,0,855,20
 Item=P20C,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2453,6 +2652,7 @@ Text=P20(c) - Other
 Name=P20C_OTHER
 Position=168,0,869,20
 Item=P20C_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -2472,6 +2672,7 @@ Text=P21(a) - During the past three months, were you ever unable to go to school
 Name=P21A
 Position=840,0,855,20
 Item=P21A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2491,6 +2692,7 @@ Text=P21(b) - What is the reason for not attending?
 Name=P21B
 Position=840,0,855,20
 Item=P21B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2510,6 +2712,7 @@ Text=P21(b) - Other
 Name=P21B_OTHER
 Position=154,0,855,20
 Item=P21B_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -2529,6 +2732,7 @@ Text=P22 - What is the highest level of educational institution ever attended by
 Name=P22
 Position=840,0,855,20
 Item=P22,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2548,6 +2752,7 @@ Text=P22 - Other
 Name=P22_OTHER
 Position=154,0,855,20
 Item=P22_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -2567,6 +2772,7 @@ Text=P23 - How many years of schooling have you completed?
 Name=P23
 Position=840,0,855,20
 Item=P23,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2586,6 +2792,7 @@ Text=P24(a)i - What examinations have you passed? (Score as many as are applicab
 Name=P24AI
 Position=574,0,855,20
 Item=P24AI,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
   
@@ -2605,6 +2812,7 @@ Text=P24(a)i - Other
 Name=P24AI_OTHER
 Position=154,0,855,20
 Item=P24AI_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -2624,6 +2832,7 @@ Text=P24b - Was the highest-level qualification achieved through the attendance 
 Name=P24B
 Position=840,0,855,20
 Item=P24B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2643,6 +2852,7 @@ Text=P25(a) - Do you have access to the internet?
 Name=P25A
 Position=840,0,855,20
 Item=P25A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2662,6 +2872,7 @@ Text=P25(b) - Where do you use the internet? (Score as many as are applicable)
 Name=P25B
 Position=742,0,855,20
 Item=P25B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
   
@@ -2681,6 +2892,7 @@ Text=P25(b) - Other
 Name=P25B_OTHER
 Position=168,0,869,20
 Item=P25B_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -2700,6 +2912,7 @@ Text=P26(a)i - Were you ever trained\are you being trained for any occupation or
 Name=P26AI
 Position=840,0,855,20
 Item=P26AI,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2719,6 +2932,7 @@ Text=P26(a)ii - If YES, for which occupation\profession?
 Name=P26AII
 Position=798,0,855,20
 Item=P26AII,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=ComboBox
   
@@ -2738,6 +2952,7 @@ Text=P26(a)ii - If YES, for which occupation\profession?
 Name=P26AII_TEXT
 Position=154,0,855,20
 Item=P26AII_TEXT,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -2757,6 +2972,7 @@ Text=P26(b) - Have you completed training or are you still being trained?
 Name=P26B
 Position=840,0,855,20
 Item=P26B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2776,6 +2992,7 @@ Text=P26(c) - If completed training, in what year did you complete training
 Name=P26C
 Position=798,0,855,20
 Item=P26C,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -2794,6 +3011,7 @@ Text=P27 - Where were you trained are you being trained?
 Name=P27
 Position=826,0,855,20
 Item=P27,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2813,6 +3031,7 @@ Text=P28 - How many years of training have you completed?
 Name=P28
 Position=840,0,855,20
 Item=P28,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2832,6 +3051,7 @@ Text=P29(a) - Have you ever had any children?
 Name=P29A
 Position=840,0,855,20
 Item=P29A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -2851,6 +3071,7 @@ Text=P29(b)i - How many liveborn children did you have in all?
 Name=P29BI
 Position=826,0,855,20
 Item=P29BI,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -2869,6 +3090,7 @@ Text=P29(b)ii - How many male liveborn children did you have?
 Name=P29BII
 Position=826,0,855,20
 Item=P29BII,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -2887,6 +3109,7 @@ Text=P29(b)iii - How many female liveborn children did you have?
 Name=P29BIII
 Position=826,0,855,20
 Item=P29BIII,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -2905,6 +3128,7 @@ Text=P29(c)i - How many of your total liveborn children are still alive?
 Name=P29CI
 Position=826,0,855,20
 Item=P29CI,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -2923,6 +3147,7 @@ Text=P29(c)ii - How many of your male liveborn children are still alive?
 Name=P29CII
 Position=826,0,855,20
 Item=P29CII,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -2941,6 +3166,7 @@ Text=P29(c)iii - How many of your female liveborn children are still alive?
 Name=P29CIII
 Position=826,0,855,20
 Item=P29CIII,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -2959,6 +3185,7 @@ Text=P30(a) - What is the date of birth of your first liveborn child?
 Name=P30A
 Position=742,0,855,20
 Item=P30A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -2977,6 +3204,7 @@ Text=P30(b) - How old were you at the birth of your first liveborn child?
 Name=P30B
 Position=826,0,855,20
 Item=P30B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -2995,6 +3223,7 @@ Text=P30(c) - What is the date of birth of your last liveborn child?
 Name=P30C
 Position=742,0,855,20
 Item=P30C,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -3013,6 +3242,7 @@ Text=P30(d) - How old were you at the birth of your last liveborn child?
 Name=P30D
 Position=826,0,855,20
 Item=P30D,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -3031,6 +3261,7 @@ Text=P31 - How many live births did you have during the 12 months ending 30th Ap
 Name=P31
 Position=840,0,855,20
 Item=P31,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3050,6 +3281,7 @@ Text=P32(a) - Are you currently living with a partner?
 Name=P32A
 Position=840,0,855,20
 Item=P32A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3069,6 +3301,7 @@ Text=P32(b)i - If YES and MARRIED, Are you living with your husband?
 Name=P32BI
 Position=840,0,855,20
 Item=P32BI,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3088,6 +3321,7 @@ Text=P32(b)ii - If NO, Have you ever lived with a husband\common law partner?
 Name=P32BII
 Position=840,0,855,20
 Item=P32BII,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3107,6 +3341,7 @@ Text=P32(c) - If with HUSBAND\COMMON LAW PARTNER, score his individual number.
 Name=P32C
 Position=826,0,855,20
 Item=P32C,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=ComboBox
   
@@ -3126,6 +3361,7 @@ Text=P32(d) - If with HUSBAND\COMMON LAW PARTNER, how many years have you and yo
 Name=P32D
 Position=826,0,855,20
 Item=P32D,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -3144,6 +3380,7 @@ Text=P33 - What was your main activity during the 12 months ending 30th April 20
 Name=P33
 Position=840,0,855,20
 Item=P33,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3163,6 +3400,7 @@ Text=P33 - Other
 Name=P33_OTHER
 Position=154,0,855,20
 Item=P33_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -3182,6 +3420,7 @@ Text=P34 - During the 12 months ending 30th April 220, did you work for an emplo
 Name=P34
 Position=826,0,855,20
 Item=P34,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3201,6 +3440,7 @@ Text=P34 - Other
 Name=P34_OTHER
 Position=154,0,855,20
 Item=P34_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -3220,6 +3460,7 @@ Text=P35 - How many months did you work during the 12 months ending 30th April 2
 Name=P35
 Position=840,0,855,20
 Item=P35,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3239,6 +3480,7 @@ Text=P36 - What was your main type of job or occupation during the 12 months end
 Name=P36_TEXT
 Position=154,0,855,20
 Item=P36_TEXT,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -3258,6 +3500,7 @@ Text=P37 - In which industry or type of business did you work during the 12 mont
 Name=P37_TEXT
 Position=154,0,855,20
 Item=P37_TEXT,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -3277,6 +3520,7 @@ Text=P38 - What are your sources of livelihood other than from employment? (Scor
 Name=P38
 Position=686,0,855,20
 Item=P38,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
   
@@ -3296,6 +3540,7 @@ Text=P38 - Other
 Name=P38_OTHER
 Position=154,0,855,20
 Item=P38_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -3315,6 +3560,7 @@ Text=P39(a) - What is the normal pay period from your main occupation\job?
 Name=P39A
 Position=840,0,855,20
 Item=P39A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3334,6 +3580,7 @@ Text=P39(a) - Other
 Name=P39A_OTHER
 Position=154,0,855,20
 Item=P39A_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -3353,6 +3600,7 @@ Text=P39(b) - What was your gross pay or income from your main occupation during
 Name=P39B
 Position=770,0,855,20
 Item=P39B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -3371,6 +3619,7 @@ Text=P39(c) - What was your monthly income from sources of livelihood other than
 Name=P39C
 Position=826,0,855,20
 Item=P39C,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
   
 [Text]
@@ -3389,6 +3638,7 @@ Text=P40 - During the past three months, were you unable to go to work due to la
 Name=P40
 Position=840,0,855,20
 Item=P40,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3408,6 +3658,7 @@ Text=P41(a) - Are you involved in any agricultural activity?
 Name=P41A
 Position=840,0,855,20
 Item=P41A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3427,6 +3678,7 @@ Text=P41(b) - Do you own any agricultural land?
 Name=P41B
 Position=840,0,855,20
 Item=P41B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3446,6 +3698,7 @@ Text=P42 - What is your area of involvement in agricultural activity
 Name=P42
 Position=840,0,855,20
 Item=P42,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3465,6 +3718,7 @@ Text=P43 - In what type of agricultural activity are you involved? (Score as man
 Name=P43
 Position=700,0,855,20
 Item=P43,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
   
@@ -3484,6 +3738,7 @@ Text=P43 - Other
 Name=P43_OTHER
 Position=154,0,855,20
 Item=P43_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -3503,6 +3758,7 @@ Text=P44 - During the past four weeks, did you have no food due to lack of resou
 Name=P44
 Position=840,0,855,20
 Item=P44,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3522,6 +3778,7 @@ Text=P45 - Did you go a whole day and night without eating anything because ther
 Name=P45
 Position=840,0,855,20
 Item=P45,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3541,6 +3798,7 @@ Text=P46 - During the past three months, did you ever fall ill (and required med
 Name=P46
 Position=840,0,855,20
 Item=P46,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3560,6 +3818,7 @@ Text=P47(a) - Have you ever been a victim of crime during the past 12 months end
 Name=P47A
 Position=840,0,855,20
 Item=P47A,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
@@ -3579,6 +3838,7 @@ Text=P47(b) - If yes, Please specify the type of crime
 Name=P47B
 Position=742,0,855,20
 Item=P47B,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
   
@@ -3598,6 +3858,7 @@ Text=P47(b) - Other
 Name=P47B_OTHER
 Position=154,0,855,20
 Item=P47B_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -3617,6 +3878,7 @@ Text=P47(c) - Out of the crimes indicated, which crimes were reported?
 Name=P47C
 Position=728,0,855,20
 Item=P47C,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
   
@@ -3636,6 +3898,7 @@ Text=P47(c) - Other
 Name=P47C_OTHER
 Position=154,0,855,20
 Item=P47C_OTHER,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
@@ -3655,6 +3918,7 @@ Text=P48 - Where did you spend the night of May 1 2020?
 Name=P48
 Position=840,0,855,20
 Item=P48,CENSUS2020_DICT
+UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   

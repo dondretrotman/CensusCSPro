@@ -1,0 +1,174 @@
+﻿[Dictionary]
+Version=CSPro 7.2
+Label=Menu
+Name=CENSUS_MENU_DICT
+RecordTypeStart=1
+RecordTypeLen=1
+Positions=Relative
+ZeroFill=No
+DecimalChar=Yes
+
+[Level]
+Label=Menu questionnaire
+Name=CENSUS_MENU_QUEST
+
+[IdItems]
+
+[Item]
+Label=Parish
+Name=ME_PARISH
+Start=2
+Len=2
+ZeroFill=Yes
+
+[ValueSet]
+Label=Parish
+Name=ME_PARISH_VS1
+Value=1;St. Michael
+Value=2;Christ Church
+Value=3;St. George
+Value=4;St. Philip
+Value=5;St. John
+Value=6;St. James
+Value=7;St. Thomas
+Value=8;St. Joseph
+Value=9;St. Andrew
+Value=10;St. Peter
+Value=11;St. Lucy
+
+[Item]
+Label=ED
+Name=ME_ED
+Start=4
+Len=3
+ZeroFill=Yes
+
+[ValueSet]
+Label=ED
+Name=ME_ED_VS1
+Value=1:181;St. Michael
+Value=182:295;Christ Church
+Value=296:335;St. George
+Value=336:397;St. Philip
+Value=398:418;St. John
+Value=419:479;St. James
+Value=480:508;St. Thomas
+Value=509:521;St. Joseph
+Value=522:532;St. Andrew
+Value=533:559;St. Peter
+Value=560:583;St. Lucy
+
+[Record]
+Label=Menu record
+Name=MENU_REC
+RecordTypeValue='1'
+RecordLen=92
+
+[Item]
+Label=User Name
+Name=UNAME
+Start=7
+Len=50
+DataType=Alpha
+
+[ValueSet]
+Label=User Name
+Name=UNAME_VS1
+Value='DONDRE.TROTMAN                                    ';Dondre Trotman
+Value='SUPERVISOR                                        ';Supervisor
+
+[Item]
+Label=User ID
+Name=USERID
+Start=57
+Len=4
+
+[ValueSet]
+Label=User ID
+Name=USERID_VS1
+Value=100;DONDRE.TROTMAN
+Value=1100;SUPERVISOR
+
+[Item]
+Label=Main Menu
+Name=LOGIN
+Start=61
+Len=1
+
+[ValueSet]
+Label=Main Menu
+Name=LOGIN_VS1
+Value=1;Enumerator Menu
+Value=2;Supervisor Menu
+Value=3;Change ED
+Value=4;Update App
+Value=5;Upload Data
+Value=9;Logout
+
+[ValueSet]
+Label=Login
+Name=LOGIN_VS2
+Value=1;Enumerator Menu
+Value=3;Change ED
+Value=4;Update App
+Value=5;Upload Data
+Value=9;Logout
+
+[Item]
+Label=Interviewer Menu
+Name=INTERVIEWER_MENU
+Start=62
+Len=1
+
+[ValueSet]
+Label=Interviewer Menu
+Name=INTERVIEWER_MENU_VS1
+Value=1;Start new questionnaire
+Value=2;View questionnaires
+Value=3;View Visitation record
+Value=4;Delete questionnaire
+Value=5;Upload data
+Value=9;Back
+
+[Item]
+Label=Supervisor menu
+Name=SUPERVISOR_MENU
+Start=63
+Len=1
+
+[ValueSet]
+Label=Supervisor menu
+Name=SUPERVISOR_MENU_VS1
+Value=1;Download ED data
+Value=2;Open Questionnaire
+Value=3;View Visitation Record
+Value=4;Allocate Officers
+Value=5;Mark ED as complete
+Value=6;Delete Questionnaire
+Value=9;Back
+
+[Item]
+Label=Choose Household
+Name=CHOOSE_HOUSEHOLD
+Start=64
+Len=14
+DataType=Alpha
+
+[Item]
+Label=Choose Visitation Record
+Name=CHOOSE_VR
+Start=78
+Len=14
+DataType=Alpha
+
+[Item]
+Label=ED status
+Name=ED_STATUS
+Start=92
+Len=1
+
+[ValueSet]
+Label=ED status
+Name=ED_STATUS_VS1
+Value=1;Complete
+Value=2;Ongoing

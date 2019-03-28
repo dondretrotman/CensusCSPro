@@ -1,8 +1,22 @@
 ﻿[CAPI QUESTIONS]
-Version=CSPro 7.1
+Version=CSPro 7.2
 
 [LANGUAGES]
 EN=English
+
+[QUESTION]
+Field=CENSUS2020_DICT.ADDPER
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset2 Symbol;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Please remember to include ALL members of the household including: \par
+EN=
+EN=\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-720\li720 Visitors \par
+EN={\pntext\f1\'B7\tab}Boarders\par
+EN={\pntext\f1\'B7\tab}Newborns  born on or before 1 May, 2020\par
+EN={\pntext\f1\'B7\tab}Persons temporarily away on business, vacation, or in a general hospital\par
+EN=}
 
 [QUESTION]
 Field=CENSUS2020_DICT.AGE
@@ -10,7 +24,7 @@ Occurrences=1:40
 EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
 EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 What is your age?\par
+EN=\pard\cf1\fs24 What is \b %FIRST_NAME%'s\b0  age at their last birthday?\par
 EN=}
 
 [QUESTION]
@@ -26,7 +40,7 @@ Occurrences=1:40
 EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
 EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 What is your Date of Birth? (YYYY/MM/DD)\par
+EN=\pard\cf1\fs24 What is \b %FIRST_NAME%'s\b0  Date of Birth? (YYYY/MM/DD)\par
 EN=}
 
 [QUESTION]
@@ -134,9 +148,10 @@ EN=}
 [QUESTION]
 Field=CENSUS2020_DICT.LAST_NAME
 Occurrences=1:1
-EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
-EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Enter the Last Name of the head of household\par
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Enter the Last Name of the Head of household\par
 EN=}
 
 [QUESTION]
@@ -180,15 +195,16 @@ Occurrences=1:40
 EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
 EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 What is your relationship to the head of household?\par
+EN=\pard\cf1\fs24 What is \b %FIRST_NAME%'s\b0  relationship to the head of household?\par
 EN=}
 
 [QUESTION]
 Field=CENSUS2020_DICT.SEX
 Occurrences=1:40
-EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
-EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 What is your gender?\par
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Is \b %FIRST_NAME%\b0  male of female?\par
 EN=}
 
 [QUESTION]
@@ -197,7 +213,21 @@ Occurrences=1:40
 EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
 EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 Does this person usually live in this house?\par
+EN=\pard\cf1\fs24 Does \b %FIRST_NAME%\b0  usually live in this household?\par
+EN=}
+
+[QUESTION]
+Field=POP_INDIVIDUALS
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset2 Symbol;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Please give me the information of all persons living here on Friday, 1 May, 2020. Be sure to include \par
+EN=
+EN=\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-720\li720 Any newborn babies born on or before 1 May\par
+EN={\pntext\f1\'B7\tab}Persons who are temporarily away on vacation or business, or in a general hospital.\par
+EN={\pntext\f1\'B7\tab}Visitors\par
+EN={\pntext\f1\'B7\tab}Boarders.\par
 EN=}
 
 [HELP]

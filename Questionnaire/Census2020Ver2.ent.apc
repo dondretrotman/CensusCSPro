@@ -3,7 +3,7 @@
 Census Android CAPI application
 Author: Dondré Trotman
 Date: 2018/05/24
-Version: 0.2
+Version: 1.0
 
 Description:
 This application is meant to be installed on an Android device using the CSPRO app available on the Google Play Store.
@@ -56,11 +56,13 @@ function checkDate(YEAR, MONTH, DAY)
 	if not YEAR in 1900:2020,9999 then
 		errmsg("Invalid Year. (=%d)",YEAR);
 		checkDate = 0;
+		exit;
 	endif;
 	
 	if not MONTH in 1:12,99 then
 		errmsg("Invalid Month. (=%d)",Month);
 		checkDate = 0;
+		exit;
 	endif;
 	
 //DEBUG: Does not detect Leap years for some reason. Should be fixed
@@ -90,13 +92,14 @@ function checkDate(YEAR, MONTH, DAY)
 		if MONTH = 2 then
 			if not DAY in 1:29,99 then
 				errmsg("%s does not have %d days. Please confirm.",getlabel(DOB_MONTH_VS1,MONTH),DAY);
-				checkDate = 0
+				checkDate = 0;
 			endif;
 		endif;
 	else
 		checkDate = 1;
 	endif;
 end;
+
 //re-initialises string array to "" in all items
 function clearStringArray(array string x())
 	do i = 1 while i <= 26
@@ -173,10 +176,12 @@ preproc
 PROC PART_A
 //show names in label fields when first starting the questionnaire
 onfocus
-	do i = 1 while i <= totocc(POPULATION000)		//DEBUG: totocc and count all return 0 if executed before the roster that they are referring to
+	do i = 1 while i <= totocc(POPULATION000) and FIRST_NAME(i) <> ""		//DEBUG: totocc and count all return 0 if executed before the roster that they are referring to
 		setocclabel(POPULATION000(i), strip(FIRST_NAME(i)));
 		setocclabel(POPULATION001(i), strip(FIRST_NAME(i)));	//DEBUG: each occurence label is the first one
 	enddo;
+	
+	setoperatorid(loadsetting("UNAME"));
 	
 	if visualvalue(HNOPERSONS) = notappl then
 		HNOPERSONS = 0;
@@ -186,10 +191,14 @@ onfocus
 	
 postproc
 //should run after household has been entered
-	if visualvalue(END_TIME) <> notappl and H14A = 2 then		//If no end time and the house is vacant
-		END_TIME = systime();						//then update the end time
+	if visualvalue(END_TIME) = notappl then		//If no end time
+		END_TIME = systime("HHMM");						//then update the end time
 	endif;
-
+	if visualvalue(END_DATE) = notappl then			//if no end date
+		END_DATE = sysdate("YYYYMMDD");				//update end date
+	endif;
+	
+	
 	
 //-----------------------------------------------------------------
 PROC PARISH
@@ -203,18 +212,22 @@ preproc
 		ED = tonumber(sysparm("ED"));
 		setproperty(ED,"PROTECTED","Yes");	
 	endif;
-	if visualvalue(BUILDING) = notappl then	
+	if visualvalue(BUILDING) = notappl and tonumber(sysparm("BUILDING")) <> default then	
 		BUILDING = tonumber(sysparm("BUILDING"));
 		setproperty(BUILDING,"PROTECTED","Yes");	
 	endif;
-	if visualvalue(DWELLING_UNIT) = notappl then	
+	if visualvalue(DWELLING_UNIT) = notappl and tonumber(sysparm("DWELLING_UNIT")) <> default then	
 		DWELLING_UNIT = tonumber(sysparm("DWELLING_UNIT"));
 		setproperty(DWELLING_UNIT,"PROTECTED","Yes");	
 	endif;
-	if visualvalue(HOUSEHOLD) = notappl then	
+	if visualvalue(HOUSEHOLD) = notappl and tonumber(sysparm("HOUSEHOLD")) <> default then	
 		HOUSEHOLD = tonumber(sysparm("HOUSEHOLD"));
 		setproperty(HOUSEHOLD,"PROTECTED","Yes");	
 	endif;
+	if visualvalue(INTERVIEWER_ID) = notappl then
+		INTERVIEWER_ID = tonumber(sysparm("USERID"));
+	endif;
+	//TODO: pull supervisor ID from allocations app
 
 //------------------------------------------------------------------------------
 PROC ED
@@ -235,10 +248,32 @@ PROC ED
 	endif;
 
 //----------------------------------------------------------------------------------
+PROC HOUSEHOLD
+//Should auto increment based on previous household number in the same ED
+onfocus
+	if $ = notappl then		//if blank
+		//search other cases for the highest household num
+		//$ = prevhousehold + 1;
+	endif;
+	
+//------------------------------------------------------------------
+PROC ADDRESS1
+onfocus
+	set behavior($) canenter(notappl) on (noconfirm);
+
+//--------------------------------------------------------------------------
+PROC ADDRESS2
+onfocus
+	set behavior($) canenter(notappl) on (noconfirm);
+
+//--------------------------------------------------------------------------
 PROC H14A
 preproc
 	if visualvalue(START_TIME) = notappl then		//if starting the questionnaire
 		START_TIME = systime("HHMM");		//set start time
+	endif;
+	if visualvalue(START_DATE) = notappl then
+		START_DATE = sysdate("YYYYMMDD");
 	endif;
 	
 onfocus
@@ -280,42 +315,45 @@ postproc
 PROC LAST_NAME
 //Set case labels in case listings to an easier to read format to include name of head
 	if curocc() = 1 then
-		caselabel = maketext("%s-%v-%v-%v-%v",strip(LAST_NAME),ED,BUILDING,DWELLING_UNIT,HOUSEHOLD);
-		setcaselabel(CENSUS2020_DICT,caselabel);
+		caselabel = maketext("%V-%02d-%03d-%03d-%03d-%03d",strip(LAST_NAME),PARISH,ED,BUILDING,DWELLING_UNIT,HOUSEHOLD);
+	setcaselabel(CENSUS2020_DICT,caselabel);
 	endif;
 PROC FIRST_NAME
 POSTPROC
 	setocclabel(POPULATION000(CUROCC()), strip(FIRST_NAME));
 
 //------------------------------------------------------------
-PROC DOB
+PROC POP_DOB
 Postproc
-	if datevalid(DOB) = 0 then
+	if checkdate(DOB_YEAR,DOB_MONTH,DOB_DAY) = 0 then	//checkdate
 		reenter;
+	endif;
+	
+	if datediff(DOB,20200501) < 0 then		//if DOB is before census date
+		errmsg("This person is too young to be enumerated. Only collect information on persons born on or after 1 May, 2020");
+		reenter;			//reenter DOB
 	endif;
 
 //-----------------------------------------------------------------------------------------
 PROC AGE
-preproc
-	tempage = datediff(DOB, 20200501, "Y");
-	
-	if datediff(DOB,20200501) < 0 then		//if DOB 
-		errmsg("This person is too young to be enumerated");
+preproc	
+	if DOB_YEAR <> 9999 and DOB_MONTH <> 99 and DOB_DAY <> 99 then
+		tempage = datediff(DOB, 20200501, "Y");	
+		$ = tempage;	//calculate age
 	endif;
 	
-	$ = tempage;	//calculate age
-
 postproc	
 	if $ <> tempage then
 		errmsg("age (%d) does not agree with DOB (%s), please verify",AGE,edit("9999/99/99",DOB))
-		select("Correct the age", AGE, "Correct the Date of birth", DOB);
+		select("Correct the age", AGE, "Correct the Date of birth", POP_DOB);
 	endif;
+
 
 //----------------------------------------------------------------------
 PROC RTH
 preproc
 	if curocc() = 1 and $ <> 0 then 	//if this is the first person and is not the head 		
-	errmsg("Please verify that this person is the head of household")
+	errmsg("Please verify that this person is the head of household, If this is not the head, then enter details for the head of household.")
 			select("Yes, this is the head", continue, "No, is not the head", LAST_NAME);
 		$ = 0;	//make first person the head of household
 		noinput;
@@ -353,13 +391,21 @@ postproc
 PROC ADDPER
 postproc
 	if $ = 2 then
-		HNOPERSONS = count(FIRST_NAME);
+		//check that there's one head of household
+		numheads = count(RTH where RTH = 0);
+		if numheads < 1 then
+			errmsg("There are no heads of household listed! Please make someone the head or add another person to the household as the head");
+			reenter;
+		endif;
+		
+		HNOPERSONS = count(SEX);
 		endgroup;
 	endif;
 
 //----------------------------------------------------------------------
 PROC HNOPERSONS
 //check number of persons in individual listing
+postproc
 	if $ <> totocc(POPULATION000) then	//if the number of persons don't agree with the number of records
 		if visualvalue(H14A) = 2 then	//and if unoccupied
 			errmsg("Number of persons in household (%d) does not match number in individual listing (%d)",$,totocc(POPULATION000))
@@ -376,7 +422,7 @@ PROC H8
 //H8 – What type of dwelling unit is this?
 postproc
 	if $ = 2 then		//If rented room
-		skip to H16C;
+		skip to H16C;	//skip  to shared bathrooms
 	endif;
 
 //--------------------------------------------------
@@ -388,26 +434,31 @@ preproc
 //-------------------------------------------------------------
 PROC H9
 //H9 – Of what materials are the outer walls made?
-//should checks on the consistency of Walls, roofs, floors and foundations be done afterward?
+//BATCH: should checks on the consistency of Walls, roofs, floors and foundations be done afterward?
 PROC H9_OTHER
 preproc
 	//only ask if other is selected
 	ask if H9 = 10;
 
 //-------------------------------------------------------------
+PROC H10
+//H10 – Of what material is the roof made?
 PROC H10_OTHER
+//H10 – Of what material is the roof made?
 preproc
 	//only ask if other is selected
 	ask if H10 = 9;
 
 //-------------------------------------------------------------
 PROC H11_OTHER
+//H11 – What is the main flooring material?
 preproc
 	//only ask if other is selected
 	ask if H11 = 6;
 
 //-------------------------------------------------------------
 PROC H12_OTHER
+//H12 – How is the foundation of the house constructed?
 preproc
 	//only ask if other is selected
 	ask if H12 = 4;
@@ -417,15 +468,23 @@ PROC H13
 //H13 – In what year was the dwelling built?
 postproc
 	if H14A = 1 then		//if occupied
-		skip to H14C	//goto H14C
+		skip to H14C;	//goto state of construction H14C
 	endif;
 	
 //-----------------------------------------------------------------------------
+PROC H14B
+//H14(b) – If unoccupied, is unit
+preproc
+	ask if H14A = 2;
+	
+//---------------------------------------------------
 PROC H14C
 //H14(c) – What is the state of construction?
 postproc
 	if H14A = 2 then	//if unoccupied
-		endlevel;		//end interview TODO: MAY NEED TO REVIEW FOR CORRECT KEYWORD
+		caselabel = maketext("UNOCCUPIED-%02d-%03d-%03d-%03d-%03d",PARISH,ED,BUILDING,DWELLING_UNIT,HOUSEHOLD);
+		setcaselabel(CENSUS2020_DICT,caselabel);
+		endlevel;		//end interview
 	endif;
 	
 	//if occupied by only non residents (USUAL_RESIDENCE = A)
@@ -457,8 +516,6 @@ postproc
 //----------------------------------------------------------
 PROC H16C
 //H16(c) – Do you share a bathroom with any other household?
-preproc
-
 postproc
 	if nonreshouse = 1 then		//if non-resident household flag is set
 		skip to H20;			//go to Main water supply
@@ -474,19 +531,15 @@ postproc
 	
 //---------------------------------------------
 PROC H17A_OTHER
+////H17(a) – Under what type of tenure is this dwelling occupied?
 preproc
 	ask if H17A = 7;
 	
 
 //--------------------------------------------------
-PROC H17BII_MALES
+PROC HOU_HJOINTOWN
 //H17(b)ii – If jointly owned, by how many males?
-preproc
-	ask if H17BI = 3;
-
-//----------------------------------------------
-PROC H17BII_FEMALES
-//H17(b)ii – If jointly owned, by how many females?
+//H17(b)ii – If jointly owned, by how manyfe males?
 preproc
 	ask if H17BI = 3;
 
@@ -499,6 +552,7 @@ preproc
 	
 //----------------------------------------
 PROC H17C_OTHER
+////H17(c) – If owned, was it acquired through
 preproc
 	//only ask if other is selected
 	ask if H17C = 5;
@@ -508,34 +562,31 @@ PROC H17D
 //H17(d) – What is the rental period for this dwelling?
 onfocus
 	if not H17A in 3:4 then	//if not rented/leased
-		skip to H19A;
+		skip to H19A;		//Skip to land tenure
 	endif;
 	
 //-------------------------------------------------------------------------
 PROC H18
 //H18 – Is this dwelling rented fully furnished, semi-furnished or unfurnished?
 postproc
-	skip to H20;	//goto H20
+	skip to H20;	//goto main water supply
 
 //----------------------------------------------------------------------
 PROC H19A_OTHER
+//H19(a) – Under what type of tenure is this land occupied?
 preproc
 	//only ask if other is selected
 	ask if H19A = 7;
 
 //-------------------------------------------------------------
-PROC H19BII_MALES
+PROC HOU_LJOINTOWN
 //H19(b)ii – If jointly owned, by how many males?
-preproc
-	ask if H19B = 3;
-
-//----------------------------------------------
-PROC H19BII_FEMALES
 //H19(b)ii – If jointly owned, by how many females?
 preproc
 	ask if H19B = 3;
 
 //----------------------------------------------
+
 PROC H19D
 //H19(d) – If owned, how was the land acquired?
 preproc
@@ -543,6 +594,7 @@ preproc
 
 //------------------------------------------------
 PROC H19D_OTHER
+//H19(d) – If owned, how was the land acquired?
 preproc
 	//only ask if other is selected
 	ask if H19D = 5;
@@ -557,6 +609,7 @@ onfocus
 
 //----------------------------------------------------
 PROC H20_OTHER
+//H20 – How is your main water supply obtained?
 preproc
 	//only ask if other is selected
 	ask if H20 = 6;
@@ -567,33 +620,43 @@ PROC H21A
 //May have to check that person can only have Toilet link to sewer, well or private sewerage if their water supply (H20)is piped into dwelling or at least the yard
 postproc
 	if $ = 5 then		//if none
-		skip to H22A;
+		skip to H22A;	//skip to sources of lighting
 	endif;
 	
 //----------------------------------------------------------------------------
 PROC H21A_OTHER
+////H21(a) – What type of toilet facilities does this dwelling unit have?
 preproc
 	//only ask if other is selected
 	ask if H21A = 6;
 
 //-------------------------------------------------------------
+PROC H22A_OTHER
+//H22(a) – What source of lighting is mainly used by this household?
+preproc
+	ask if H22A = 6;
+	
+//------------------------------------------------------
 PROC H22B_OTHER
+//H22(b) – What source of energy is mainly used for cooking?
 preproc
 	//only ask if other is selected
 	ask if H22B = 8;
 
 //-------------------------------------------------------------
 PROC H22C
-preproc
-
+//H22(c) – Does your household produce solar or any other renewable energy for your own use? (Score as many as applicable)
 postproc
 	if nonreshouse = 1 then		//if non-resident household flag is set
+		caselabel = maketext("%V(nonresident)-%02d-%03d-%03d-%03d-%03d",strip(LAST_NAME(1)),PARISH,ED,BUILDING,DWELLING_UNIT,HOUSEHOLD);
+		setcaselabel(CENSUS2020_DICT,caselabel);
 		endlevel;				//end this questionnaire
 	endif;
 	
 //------------------------------------------------------------
 PROC H23BI
 //H23(a)i – Which of these appliances\household equipment does your household have?
+postproc
 	if length(strip($)) = 0 then	//if nothing was chosen
 		skip to H24;				//skip the next question
 	endif;
@@ -604,7 +667,7 @@ PROC H23BII
 preproc
 	ask if H8 in 2;	//only ask if this is a rented room in a separate house\apartment
 	
-//create dynamic checkboxes based on previous question
+	//create dynamic checkboxes based on previous question
 	vsindex = 1;
 	checkboxcodes = "ABCDEFGHIJKLMNOPQRSTUVWXZ";
 	clearStringArray(vsAlphaCodes);		//initialise array
@@ -1147,7 +1210,7 @@ postproc
 PROC P30A
 //P30(a) – What is the date of birth of your first liveborn child?
 postproc
-	if datevalid($) = 0 then		//if date is not valid
+	if checkdate(P30A_YEAR,P30A_MONTH,P30A_DAY) = 0 then		//if date is not valid
 		reenter;
 	endif;
 	
@@ -1156,6 +1219,8 @@ PROC P30B
 //P31(b) – How old were you at the birth of your first liveborn child?
 postproc
 	//TODO: check based on person's age
+
+//----------------------------------------------------------
 PROC P30C
 //P30(c) – What is the date of birth of your last liveborn child?
 onfocus
@@ -1170,7 +1235,7 @@ onfocus
 	endif;
 
 postproc
-	if datevalid($) = 0 then	//if date is not valid
+	if checkdate(P30C_YEAR,P30C_MONTH,P30C_DAY) = 0 then	//if date is not valid
 		reenter;
 	endif;
 		
