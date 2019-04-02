@@ -257,16 +257,6 @@ onfocus
 	endif;
 	
 //------------------------------------------------------------------
-PROC ADDRESS1
-onfocus
-	set behavior($) canenter(notappl) on (noconfirm);
-
-//--------------------------------------------------------------------------
-PROC ADDRESS2
-onfocus
-	set behavior($) canenter(notappl) on (noconfirm);
-
-//--------------------------------------------------------------------------
 PROC H14A
 preproc
 	if visualvalue(START_TIME) = notappl then		//if starting the questionnaire
@@ -313,12 +303,17 @@ postproc
 	
 //----------------------------------------------------------------------
 PROC LAST_NAME
+onfocus
+	setproperty($,"CanEnterNotAppl","No");		//can't leave blank
+postproc
 //Set case labels in case listings to an easier to read format to include name of head
 	if curocc() = 1 then
 		caselabel = maketext("%V-%02d-%03d-%03d-%03d-%03d",strip(LAST_NAME),PARISH,ED,BUILDING,DWELLING_UNIT,HOUSEHOLD);
 	setcaselabel(CENSUS2020_DICT,caselabel);
 	endif;
 PROC FIRST_NAME
+onfocus
+	setproperty($,"CanEnterNotAppl","No");		//can't leave blank
 POSTPROC
 	setocclabel(POPULATION000(CUROCC()), strip(FIRST_NAME));
 
@@ -337,8 +332,8 @@ Postproc
 //-----------------------------------------------------------------------------------------
 PROC AGE
 preproc	
-	if DOB_YEAR <> 9999 and DOB_MONTH <> 99 and DOB_DAY <> 99 then
-		tempage = datediff(DOB, 20200501, "Y");	
+	if DOB_YEAR < 9999 and DOB_MONTH < 99 and DOB_DAY < 99 then
+		tempage = datediff(DOB, 20200501, "y");	
 		$ = tempage;	//calculate age
 	endif;
 	
@@ -432,6 +427,7 @@ preproc
 	ask if H8 = 9;
 
 //-------------------------------------------------------------
+
 PROC H9
 //H9 – Of what materials are the outer walls made?
 //BATCH: should checks on the consistency of Walls, roofs, floors and foundations be done afterward?
@@ -647,6 +643,11 @@ preproc
 PROC H22C
 //H22(c) – Does your household produce solar or any other renewable energy for your own use? (Score as many as applicable)
 postproc
+	if pos("D",$) > 0 and length(strip($)) > 1 then		//If none selected with another option
+		errmsg("cannot be no and another option");
+		reenter;
+	endif;
+	
 	if nonreshouse = 1 then		//if non-resident household flag is set
 		caselabel = maketext("%V(nonresident)-%02d-%03d-%03d-%03d-%03d",strip(LAST_NAME(1)),PARISH,ED,BUILDING,DWELLING_UNIT,HOUSEHOLD);
 		setcaselabel(CENSUS2020_DICT,caselabel);
@@ -737,10 +738,11 @@ preproc
 	
 onfocus
 	$ = IID;
+	noinput;
 
 
 //-----------------------------------------------------------
-PROC P8A
+PROC POP_GENERAL
 //P8(a) – Is your mother living in this household?
 onfocus
 //create dynamic valueset to show only women in household
@@ -760,13 +762,9 @@ onfocus
 	enddo;
 	
 	vsnumcodes(vsindex) = notappl;
-	setvalueset($, vsnumcodes, vslabels);
-			
+	setvalueset(P8A, vsnumcodes, vslabels);
 	
-//----------------------------------------------------
-PROC P8B
 //P8(b) – Is your father living in this household?
-onfocus
 //create dynamic valueset to show only men in household
 	vsindex = 1;		//initialise valueset index
 	clearNumArray(vsNumCodes);	//reset the valueset array
@@ -784,18 +782,18 @@ onfocus
 	enddo;
 	
 	vsnumcodes(vsindex) = notappl;
-	setvalueset($, vsnumcodes, vslabels);
+	setvalueset(P8b, vsnumcodes, vslabels);
 			
-	
-//----------------------------------------------------
-PROC P9
+postproc
 //P9 – What is your present marital status?
-	if AGE < 15 and $ <> 3 then		//if not old enough to be married but married
-		errmsg("%s is not old enough to be %V",strip(FIRST_NAME), getlabel(P9_VS1,$))
-			select("Change answer",$,"Ignore and continue",continue);		//either change answer or ignore (useful for catching illegal child brides)
+	if AGE < 15 and P9 <> 3 then		//if not old enough to be married but married
+		errmsg("%s is not old enough to be %V",strip(FIRST_NAME), getlabel(P9_VS1,P9))
+			select("Change answer",P9,"Ignore and continue",continue);		//either change answer or ignore (useful for catching illegal child brides)
 	endif;
 
 //---------------------------------------------------------------------
+
+
 PROC P10_OTHER
 //P10 – What is your Ethnic Origin?
 preproc
@@ -960,7 +958,7 @@ PROC P19C
 //BATCH: check that person returned after person turned 5 years old
 PROC POP_EDUCATION
 onfocus
-	if AGE < 3 then 
+	if AGE(curocc()) < 3 then 
 		skip to POP_TRAINING;
 	endif;
 
@@ -1129,7 +1127,7 @@ preproc
 //-------------------------------------------------------------
 PROC POP_TRAINING
 onfocus
-	if AGE < 15 then		//if Age is less than 15
+	if AGE(curocc()) < 15 then		//if Age is less than 15
 		skip to POP_FERTILITY;		//skip to next section
 	endif;
 	
@@ -1173,7 +1171,7 @@ postproc
 //----------------------------------------------------------------------------------
 PROC POP_FERTILITY
 onfocus
-	if SEX = 1 or (SEX = 2 and not AGE in 15:64) then	//if male or old woman
+	if SEX(curocc()) = 1 or (SEX(curocc()) = 2 and not AGE(curocc()) in 15:64) then	//if male or old woman
 		skip to POP_ECONOMICACTIVITY;		//skip to economic activity
 	endif;
 	
@@ -1207,25 +1205,38 @@ postproc
 	endif;
 
 //-----------------------------------------------------------------------------------------------------
-PROC P30A
+PROC POP_FIRSTLIVEBORN
 //P30(a) – What is the date of birth of your first liveborn child?
 postproc
 	if checkdate(P30A_YEAR,P30A_MONTH,P30A_DAY) = 0 then		//if date is not valid
 		reenter;
 	endif;
 	
+	//calculate age based on date of birth
+	tempage = datediff(DOB,P30A,"y");
+	if tempage > AGE then
+		errmsg("Date of birth of first liveborn child (%v) is after date of birth (%v). Please enter a valid age",edit("9999/99/99",P30A),edit("9999/99/99",DOB));
+		reenter;
+	endif;
+		
 //------------------------------------------------------------------
 PROC P30B
 //P31(b) – How old were you at the birth of your first liveborn child?
+onfocus
+	$ = tempage;
+	
 postproc
-	//TODO: check based on person's age
+	if $ > AGE then		//if older than current age
+		errmsg("Age at first birth (%v) is older than current age (%v). Please enter a valid age",$,AGE);
+		reenter;
+	endif;
 
 //----------------------------------------------------------
-PROC P30C
+PROC POP_LASTLIVEBORN
 //P30(c) – What is the date of birth of your last liveborn child?
 onfocus
 	if P29BI = 1 then		//if only one child
-		$ = P30A;			//entre the same info for last child
+		P30C = P30A;			//entre the same info for last child
 		P30D = P30B;
 		if AGE > 49 then	//if over 49
 			skip to P32A;	//skip to Union status
@@ -1239,11 +1250,25 @@ postproc
 		reenter;
 	endif;
 		
+	//calculate age based on date of birth
+	tempage = datediff(DOB,P30C,"y");
+	if tempage > AGE then
+		errmsg("Date of birth of last liveborn child (%v) is after date of birth (%v). Please enter a valid age",edit("9999/99/99",P30C),edit("9999/99/99",DOB));
+		reenter;
+	endif;
 	
 //--------------------------------------------------------------------
 PROC P30D
 //P31(d) – How old were you at the birth of your last liveborn child?
+onfocus
+	$ = tempage;
+	
 postproc
+	if $ > AGE then		//if older than current age
+		errmsg("Age at last birth (%v) is older than current age (%v). Please enter a valid age",$,AGE);
+		reenter;
+	endif;
+	
 	if AGE > 49 then	//if age is over 49
 		skip to P32A;	//skip to union status
 	endif;
@@ -1284,7 +1309,7 @@ PROC P32C
 onfocus
 	if P32A = 2 then	//if not with husband or common law partner
 		$ = 0;			//score as 0
-		skip to P33;	//and skip to economic activity
+		skip to POP_ECONOMICACTIVITY;	//and skip to economic activity
 	endif;
 	
 	//create dynamic valueset to show only men in household
@@ -1323,7 +1348,7 @@ postproc
 //-----------------------------------------------------
 PROC POP_ECONOMICACTIVITY
 onfocus
-	if AGE < 15 then		//if Age is less than 15
+	if AGE(curocc()) < 15 then		//if Age is less than 15
 		skip to POP_END;		//skip to end
 	endif;
 	
@@ -1387,7 +1412,8 @@ postproc
 	
 //------------------------------------------------------------
 PROC P41B
-//Skip this and other agriculture questions if the last two questions are no
+postproc
+	//Skip this and other agriculture questions if the last two questions are no
 	If P41A = 2 and $ = 2 then		//if the last two questions are "no"
 		skip to POP_CRIME;		//skip agriculture
 	endif;

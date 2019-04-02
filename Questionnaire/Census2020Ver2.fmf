@@ -159,6 +159,7 @@ Position=50,60,67,76
 Text=ED
  
   
+  
 [Field]
 Name=BUILDING
 Position=157,87,200,107
@@ -197,6 +198,13 @@ Form=1
 Position=50,150,117,166
 Text=Household
  
+[Block]
+Name=ID_BLOCK
+Label=ID
+DisplayTogether=Yes
+Position=2
+Length=3
+  
 [EndGroup]
   
 [Group]
@@ -1978,9 +1986,10 @@ Position=826,0,855,20
 Item=P8A,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
-DataCaptureType=ComboBox
+DataCaptureType=DropDown
   
 [Text]
+Position=0,0,303,16
 Text=P8(a) - Is your mother living in this household?
  
 [EndColumn]
@@ -1998,9 +2007,10 @@ Position=826,0,855,20
 Item=P8B,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
-DataCaptureType=ComboBox
+DataCaptureType=DropDown
   
 [Text]
+Position=0,0,295,16
 Text=P8(b) - Is your father living in this household?
  
 [EndColumn]
@@ -2929,26 +2939,6 @@ Position=0,0,155,56
 Text=P26(a)ii - If YES, for which occupation\profession?
  
 [Field]
-Name=P26AII
-Position=798,0,855,20
-Item=P26AII,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-DataCaptureType=ComboBox
-  
-[Text]
-Text=P26(a)ii - If YES, for which occupation\profession?
- 
-[EndColumn]
-  
-[Column]
-Width=56
-  
-[HeaderText]
-Position=0,0,155,56
-Text=P26(a)ii - If YES, for which occupation\profession?
- 
-[Field]
 Name=P26AII_TEXT
 Position=154,0,855,20
 Item=P26AII_TEXT,CENSUS2020_DICT
@@ -3175,21 +3165,60 @@ Text=P29(c)iii - How many of your female liveborn children are still alive?
 [EndColumn]
   
 [Column]
-Width=56
+Width=28
   
 [HeaderText]
-Position=18,0,155,56
-Text=P30(a) - What is the date of birth of your first liveborn child?
+Position=119,4,155,28
+Text=Year
  
 [Field]
-Name=P30A
-Position=742,0,855,20
-Item=P30A,CENSUS2020_DICT
-UpperCase=Yes
+Name=P30A_YEAR
+Position=812,0,869,20
+Item=P30A_YEAR,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
   
 [Text]
-Text=P30(a) - What is the date of birth of your first liveborn child?
+Position=0,0,31,16
+Text=Year
+ 
+[EndColumn]
+  
+[Column]
+Width=28
+  
+[HeaderText]
+Position=108,4,155,28
+Text=Month
+ 
+[Field]
+Name=P30A_MONTH
+Position=840,0,869,20
+Item=P30A_MONTH,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
+  
+[Text]
+Position=0,0,40,16
+Text=Month
+ 
+[EndColumn]
+  
+[Column]
+Width=28
+  
+[HeaderText]
+Position=123,4,155,28
+Text=Day
+ 
+[Field]
+Name=P30A_DAY
+Position=840,0,869,20
+Item=P30A_DAY,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+  
+[Text]
+Position=0,0,26,16
+Text=Day
  
 [EndColumn]
   
@@ -3213,21 +3242,60 @@ Text=P30(b) - How old were you at the birth of your first liveborn child?
 [EndColumn]
   
 [Column]
-Width=56
+Width=28
   
 [HeaderText]
-Position=18,0,155,56
-Text=P30(c) - What is the date of birth of your last liveborn child?
+Position=119,4,155,28
+Text=Year
  
 [Field]
-Name=P30C
-Position=742,0,855,20
-Item=P30C,CENSUS2020_DICT
-UpperCase=Yes
+Name=P30C_YEAR
+Position=812,0,869,20
+Item=P30C_YEAR,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
   
 [Text]
-Text=P30(c) - What is the date of birth of your last liveborn child?
+Position=0,0,31,16
+Text=Year
+ 
+[EndColumn]
+  
+[Column]
+Width=28
+  
+[HeaderText]
+Position=108,4,155,28
+Text=Month
+ 
+[Field]
+Name=P30C_MONTH
+Position=840,0,869,20
+Item=P30C_MONTH,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
+  
+[Text]
+Position=0,0,40,16
+Text=Month
+ 
+[EndColumn]
+  
+[Column]
+Width=28
+  
+[HeaderText]
+Position=123,4,155,28
+Text=Day
+ 
+[Field]
+Name=P30C_DAY
+Position=840,0,869,20
+Item=P30C_DAY,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+  
+[Text]
+Position=0,0,26,16
+Text=Day
  
 [EndColumn]
   
@@ -3932,76 +4000,132 @@ Name=POP_GENERAL
 Label=General Characteristics
 DisplayTogether=Yes
 Position=1
-Length=7
+Length=6
   
 [Block]
 Name=POP_DISABILITY
-Label=Disability and Health
+Label=Disability And Health
 DisplayTogether=Yes
 Position=9
-Length=14
+Length=0
+  
+[Block]
+Name=POP_DISABILITY2
+Label=Disability Questions
+DisplayTogether=Yes
+Position=11
+Length=6
   
 [Block]
 Name=POP_MIGRATION
 Label=Migration
 DisplayTogether=Yes
-Position=24
-Length=10
+Position=25
+Length=0
   
 [Block]
 Name=POP_EDUCATION
 Label=Education
 DisplayTogether=Yes
-Position=35
-Length=16
+Position=36
+Length=0
   
 [Block]
 Name=POP_TRAINING
 Label=Technical and Vocational Training
 DisplayTogether=Yes
-Position=52
-Length=7
+Position=53
+Length=0
   
 [Block]
 Name=POP_FERTILITY
 Label=Fertility and Union Status
 DisplayTogether=Yes
 Position=60
-Length=17
+Length=0
+  
+[Block]
+Name=POP_LIVEBORN
+Label=Liveborn Children
+DisplayTogether=Yes
+Position=62
+Length=3
+  
+[Block]
+Name=POP_STILLALIVE
+Label=Still Alive Children
+DisplayTogether=Yes
+Position=66
+Length=3
+  
+[Block]
+Name=POP_FIRSTLIVEBORN
+Label=First Liveborn DOB
+DisplayTogether=Yes
+Position=70
+Length=3
+  
+[Block]
+Name=POP_LASTLIVEBORN
+Label=Last Liveborn DOB
+DisplayTogether=Yes
+Position=75
+Length=3
+  
+[Block]
+Name=POP_HUS
+Label=Husband info
+DisplayTogether=Yes
+Position=84
+Length=2
   
 [Block]
 Name=POP_ECONOMICACTIVITY
 Label=Economic Activity
 DisplayTogether=Yes
-Position=78
-Length=14
+Position=87
+Length=0
+  
+[Block]
+Name=POP_OCCINDUS
+Label=Occupation and Industry
+DisplayTogether=Yes
+Position=93
+Length=2
   
 [Block]
 Name=POP_AGRICULTURE
 Label=Agriculture
 DisplayTogether=Yes
-Position=93
-Length=5
+Position=103
+Length=2
+  
+[Block]
+Name=POP_AGRICULTURE2
+Label=Agriculture
+DisplayTogether=Yes
+Position=106
+Length=3
   
 [Block]
 Name=POP_FOOD
 Label=Food Security
 DisplayTogether=Yes
-Position=99
+Position=110
 Length=3
   
 [Block]
 Name=POP_CRIME
 Label=Crime
 DisplayTogether=Yes
-Position=103
-Length=5
+Position=114
+Length=0
   
 [Block]
 Name=POP_END
 Label=End
 DisplayTogether=Yes
-Position=109
+Position=120
 Length=1
   
 [EndGrid]

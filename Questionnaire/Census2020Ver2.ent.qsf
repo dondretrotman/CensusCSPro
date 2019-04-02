@@ -123,12 +123,11 @@ EN=\pard\cf1\fs24 During the last three months, was any member of this household
 EN=}
 
 [QUESTION]
-Field=CENSUS2020_DICT.H8
-Occurrences=1:40
+Field=CENSUS2020_DICT.H8_OTHER
 EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
 EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 What is the date of birth of your last liveborn child? (YYYY/MM/DD)\par
+EN=\pard\cf1\fs24 Select "Other" in the above question\par
 EN=}
 
 [QUESTION]
@@ -160,6 +159,42 @@ Occurrences=2:40
 EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
 EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Enter the Last Name of this person\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.P10_OTHER
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue255;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 To specify, select "Other" in the above question\cf2\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.P12C_OTHER
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue255;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 To specify, select "Other" in the above question.\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.P13B_OTHER
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue255;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 To specify, select "Other" in the above question.\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.P14_OTHER
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue255;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 To specify, select "Other" in the above question.\par
 EN=}
 
 [QUESTION]
@@ -217,6 +252,15 @@ EN=\pard\cf1\fs24 Does \b %FIRST_NAME%\b0  usually live in this household?\par
 EN=}
 
 [QUESTION]
+Field=POP_FIRSTLIVEBORN
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 What is the date of birth of your first liveborn child? (YYYY/MM/DD)\par
+EN=}
+
+[QUESTION]
 Field=POP_INDIVIDUALS
 Occurrences=1:40
 EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset2 Symbol;}}
@@ -228,6 +272,15 @@ EN=\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-720\
 EN={\pntext\f1\'B7\tab}Persons who are temporarily away on vacation or business, or in a general hospital.\par
 EN={\pntext\f1\'B7\tab}Visitors\par
 EN={\pntext\f1\'B7\tab}Boarders.\par
+EN=}
+
+[QUESTION]
+Field=POP_LASTLIVEBORN
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 What is the date of birth of your last liveborn child? (YYYY/MM/DD)\par
 EN=}
 
 [HELP]
