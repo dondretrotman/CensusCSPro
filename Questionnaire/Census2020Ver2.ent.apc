@@ -306,6 +306,10 @@ PROC LAST_NAME
 onfocus
 	setproperty($,"CanEnterNotAppl","No");		//can't leave blank
 postproc
+	if length($) = 0 then		//if nothing entered
+		errmsg("Name cannot be blank");
+	endif;
+	
 //Set case labels in case listings to an easier to read format to include name of head
 	if curocc() = 1 then
 		caselabel = maketext("%V-%02d-%03d-%03d-%03d-%03d",strip(LAST_NAME),PARISH,ED,BUILDING,DWELLING_UNIT,HOUSEHOLD);
@@ -315,6 +319,10 @@ PROC FIRST_NAME
 onfocus
 	setproperty($,"CanEnterNotAppl","No");		//can't leave blank
 POSTPROC
+	if length($) = 0 then		//if nothing entered
+		errmsg("Name cannot be blank");
+	endif;
+	
 	setocclabel(POPULATION000(CUROCC()), strip(FIRST_NAME));
 
 //------------------------------------------------------------
