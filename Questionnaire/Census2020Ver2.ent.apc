@@ -27,7 +27,7 @@ ask about encrypting CSPro csdb files
 TO BE RESEARCHED:
 1. Find out lowest age that a person can be married (P9)
 
-Refactoring progress - finished all housing, need to code Housing and emigration
+Refactoring progress - Complete, need to add extra features
 }
 
 PROC GLOBAL
@@ -43,7 +43,8 @@ numeric i, 				//throwaway variable for loops
 	
 string 	checkboxcodes,	//for creating dynamic checkboxes
 		checkboxalpha,	//checkbox alpha code
-		caselabel;		//stores the label for the current case
+		caselabel,		//stores the label for the current case
+		idno;			//stores id number when loading cases
 
 //---------------------------ARRAY DECLARATION---------------------------------
 array string  vsLabels(26);			//Defines dynamic valueset labels
@@ -65,7 +66,7 @@ function checkDate(YEAR, MONTH, DAY)
 		exit;
 	endif;
 	
-//DEBUG: Does not detect Leap years for some reason. Should be fixed
+	//DEBUG: Does not detect Leap years for some reason. Should be fixed
 	if MONTH in 9,4,6,11 then		//30 days have September, April, June and November
 		if not DAY in 1:30,99 then
 			errmsg("%s does not have %d days. Please confirm.",getlabel(DOB_MONTH_VS1,MONTH),DAY);
@@ -143,26 +144,26 @@ function manual()
 		execsystem(maketext("%s..\Resources\Enumerators_Manual_2010.pdf",pathname(application)));
 	endif;
 end;
-{
+
 //Uses android's built-in GPS to get gps coordinates and sets the latitude and longitude fields
 function getgps()
 	gps(open);
-	if gps(read,60,10) = 1 then	//read up to 60 seconds while trying fo 10m accuracy. if successful
-		execsystem(maketext("gps:%f,%f", gps(latitude),gps(longitude)));
-		errmsg("Latitude=%f, Longitude=%f, Accuracy=%f",gps(latitude), gps(longitude), gps(accuracy));
-		if accept("Save the coordinates?","Yes","No") = 1 then	//if yes
+	if gps(read,60,5,"Getting location, Please wait...") = 1 then	//read up to 60 seconds while trying fo 5m accuracy. if successful
+		//execsystem(maketext("gps:%f,%f", gps(latitude),gps(longitude)));
+		//errmsg("Latitude=%f, Longitude=%f, Accuracy=%f",gps(latitude), gps(longitude), gps(accuracy));
+		if accept(maketext("Save this location? %f, %f",gps(latitude),gps(longitude)),"Yes","No") = 1 then	//if yes
 			LATITUDE = gps(latitude);
 			LONGITUDE = gps(longitude);
+			getgps = 1;
 		endif;
 	else
 		errmsg("gps location failed. Please try again");
-		LATITUDE = 0;		//Should probably remove these
-		LONGITUDE = 0;		//
+		getgps = 0;
 	endif;
 	gps(close);
 //need to add checks at the end of the questionnaire to make sure that gps info was taken
 end;
-}
+
 
 
 PROC CENSUS2020_FF
@@ -174,22 +175,46 @@ preproc
 	userbar(show);
 
 PROC PART_A
-//show names in label fields when first starting the questionnaire
 onfocus
+	//show names in label fields when first starting the questionnaire
 	do i = 1 while i <= totocc(POPULATION000) and FIRST_NAME(i) <> ""		//DEBUG: totocc and count all return 0 if executed before the roster that they are referring to
 		setocclabel(POPULATION000(i), strip(FIRST_NAME(i)));
 		setocclabel(POPULATION001(i), strip(FIRST_NAME(i)));	//DEBUG: each occurence label is the first one
 	enddo;
 	
+	//Set operatorid
 	setoperatorid(loadsetting("UNAME"));
 	
+	//Set number of persons
 	if visualvalue(HNOPERSONS) = notappl then
 		HNOPERSONS = 0;
 	endif;
 	
+	//initialize valueset index
 	vsindex = 1; //initialize valueset index to 1
 	
+	//set completion status
+	if visualvalue(INTERVIEW_STATUS) = notappl then
+		INTERVIEW_STATUS = 2;
+	endif;
+	
 postproc
+	//mandatory longitude and latitude capture
+	if visualvalue(LATITUDE) in 0,notappl,default or visualvalue(LONGITUDE) in 0,notappl,default then
+		getgps();
+	endif;
+	
+	//if latitude or longitude are invalid, prompt to updatefield. If valid, ask if to leave coordinates or to update
+	i=0;
+	do until i in 1,2
+		i = accept(maketext("Accept current location before proceeding to the next dwelling unit (%f,%f)?",LATITUDE,LONGITUDE),"Get current location again","Accept current location");
+	enddo;
+	if i = 1 then
+		getgps();		//get location
+	elseif i = 2 then
+		//break;			//cancel the while loop
+	endif;
+	
 //should run after household has been entered
 	if visualvalue(END_TIME) = notappl then		//If no end time
 		END_TIME = systime("HHMM");						//then update the end time
@@ -198,7 +223,90 @@ postproc
 		END_DATE = sysdate("YYYYMMDD");				//update end date
 	endif;
 	
+	//Set completion status
+	if visualvalue(INTERVIEW_STATUS) <> 1 then
+		//
+	endif;
 	
+	//load case from VR and write info to it. If no case found, make a new one
+//	cases = countcases(VISITATION_RECORD_DICT where VI_PARISH=PARISH and VI_ED=ED and VI_BUILDING=BUILDING and VI_DWELLING_UNIT=DWELLING_UNIT and VI_HOUSEHOLD=HOUSEHOLD);
+	
+	idno = maketext("%V%V%V%V%V",PARISH,ED,BUILDING,DWELLING_UNIT,HOUSEHOLD);
+	if loadcase(VISITATION_RECORD_DICT,idno) then
+		if VI_STATUS = notappl then
+			VI_STATUS = INTERVIEW_STATUS;
+		endif;
+		if VI_ENUMERATOR = notappl then
+			VI_ENUMERATOR = INTERVIEWER_ID;
+		endif;
+		if VI_ADDRESS1 = "" then
+			VI_ADDRESS1 = ADDRESS1;
+		endif;
+		if VI_ADDRESS2 = "" then
+			VI_ADDRESS2 = ADDRESS2;
+		endif;
+		if VI_LAST_NAME = "" then
+			VI_LAST_NAME = LAST_NAME(1);
+		endif;
+		if VI_FIRST_NAME = "" then
+			VI_FIRST_NAME = FIRST_NAME(1);
+		endif;
+		if VI_TOTAL = notappl then
+			VI_TOTAL = HNOPERSONS;
+		endif;
+		if VI_MALES = notappl then
+			VI_MALES = count(SEX where SEX=1);
+		endif;
+		if VI_FEMALES = notappl then
+			VI_FEMALES = count(SEX where SEX=2);
+		endif;
+		if VI_MALES_RESIDENT_ABROAD = notappl then
+			VI_MALES_RESIDENT_ABROAD = count(SEX where SEX=1 and UR=3);
+		endif;
+		if VI_FEMALES_RESIDENT_ABROAD = notappl then
+			VI_FEMALES_RESIDENT_ABROAD = count(SEX where SEX=2 and UR=3);
+		endif;
+		if VI_DATE_STARTED = notappl then
+			VI_DATE_STARTED = START_DATE;
+		endif;
+		if VI_DATE_COMPLETED = notappl then
+			VI_DATE_COMPLETED = END_DATE;
+		endif;
+		if VI_LATITUDE = notappl then
+			VI_LATITUDE = LATITUDE;
+		endif;
+		if VI_LONGITUDE = notappl then
+			VI_LONGITUDE = LONGITUDE;
+		endif;
+		if VI_COMMENTS = "" then
+			VI_COMMENTS = COMMENTS;
+		endif;
+	else
+		loadcase(VISITATION_RECORD_DICT);
+		VI_PARISH = PARISH;
+		VI_ED = ED;
+		VI_BUILDING = BUILDING;
+		VI_DWELLING_UNIT = DWELLING_UNIT;
+		VI_HOUSEHOLD = HOUSEHOLD;
+		VI_STATUS = INTERVIEW_STATUS;
+		VI_ENUMERATOR = INTERVIEWER_ID;
+		VI_ADDRESS1 = ADDRESS1;
+		VI_ADDRESS2 = ADDRESS2;
+		VI_LAST_NAME = LAST_NAME(1);
+		VI_FIRST_NAME = FIRST_NAME(1);
+		VI_TOTAL = count(SEX);
+		VI_MALES = count(SEX where SEX=1);
+		VI_FEMALES = count(SEX where SEX=2);
+		VI_MALES_RESIDENT_ABROAD = count(SEX where SEX=1 and UR=3);
+		VI_FEMALES_RESIDENT_ABROAD = count(SEX where SEX=2 and UR=3);
+		VI_DATE_STARTED = START_DATE;
+		VI_DATE_COMPLETED = END_DATE;
+		VI_LATITUDE = LATITUDE;
+		VI_LONGITUDE = LONGITUDE;
+		VI_COMMENTS = COMMENTS;
+	endif;
+	setcaselabel(VISITATION_RECORD_DICT, maketext("%V-%V-%V-%V-%V:%V",VI_PARISH,VI_ED,VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD,strip(VI_LAST_NAME)));
+	writecase(VISITATION_RECORD_DICT);
 	
 //-----------------------------------------------------------------
 PROC PARISH

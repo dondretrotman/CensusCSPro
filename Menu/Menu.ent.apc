@@ -40,7 +40,8 @@ string	cases,			//case id
 		ftpun, 			//stores ftp username
 		ftppw,			//stores ftp password
 		uid,			//stores user ID for getting allocations
-		edstatus;		//stores ed for ed status file
+		edstatus,		//stores ed for ed status file
+		partial;		//Stores ispartial status (partial,completed)
 
 //-------------------Array Declaration--------------------
 array string vsCode(99);
@@ -698,9 +699,15 @@ PROC CHOOSE_HOUSEHOLD
 //chooses a household to view. TODO: may need to include partially saved cases
 onfocus
 	numeric nextEntry = 1;
-	forcase VISITATION_RECORD_DICT where VI_ED = ME_ED do
-		vscode(nextEntry) = maketext("%v%v%v%v%v",VI_PARISH,VI_ED,VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD);
-		vsLabel(nextEntry) = maketext("%v%v%v: %V, %V (%v)",VI_BUILDING,VI_DWELLING_UNIT,VI_HOUSEHOLD,strip(VI_LAST_NAME),strip(VI_FIRST_NAME),strip(VI_COMMENTS));
+	forcase CENSUS2020_DICT where ED = ME_ED do
+		if ispartial(CENSUS2020_DICT) then
+			partial = "Not complete";
+		else
+			partial = "Completed";
+		endif;
+		
+		vscode(nextEntry) = maketext("%v%v%v%v%v",PARISH,ED,BUILDING,DWELLING_UNIT,HOUSEHOLD);
+		vsLabel(nextEntry) = maketext("%v-%v-%v: %V %v(%v)",BUILDING,DWELLING_UNIT,HOUSEHOLD,strip(LAST_NAME(1)),partial,strip(COMMENTS));
 		inc(nextEntry);
 	endfor;
 	

@@ -3277,7 +3277,7 @@ Value=5;Other
 Label=Metadata
 Name=METADATA
 RecordTypeValue='4'
-RecordLen=277
+RecordLen=377
 
 [Item]
 Label=Interview Start Date
@@ -3494,3 +3494,10 @@ Name=DELETE_FLAG
 Start=277
 Len=1
 ZeroFill=Yes
+
+[Item]
+Label=Comments
+Name=COMMENTS
+Start=278
+Len=100
+DataType=Alpha
