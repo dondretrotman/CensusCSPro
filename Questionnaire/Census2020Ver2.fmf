@@ -1747,7 +1747,6 @@ Orientation=Vertical
 ColumnWidth=0
 StubColumnWidth=155
 HeadingRowHeight=0
-UseOccurrenceLabels=Yes
 FreeMovement=No
  
 [Text]
@@ -2112,26 +2111,6 @@ DataCaptureType=DropDown
   
 [Text]
 Text=P11(b) - To which religion\denomination do you belong?
- 
-[EndColumn]
-  
-[Column]
-Width=56
-  
-[HeaderText]
-Position=13,0,155,56
-Text=P12(a) - Do you have a disability or major impairment?
- 
-[Field]
-Name=P12A
-Position=840,0,855,20
-Item=P12A,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-DataCaptureType=DropDown
-  
-[Text]
-Text=P12(a) - Do you have a disability or major impairment?
  
 [EndColumn]
   
@@ -4004,128 +3983,121 @@ Length=6
   
 [Block]
 Name=POP_DISABILITY
-Label=Disability And Health
-DisplayTogether=Yes
-Position=9
-Length=0
-  
-[Block]
-Name=POP_DISABILITY2
 Label=Disability Questions
 DisplayTogether=Yes
-Position=11
+Position=9
 Length=6
   
 [Block]
 Name=POP_MIGRATION
 Label=Migration
 DisplayTogether=Yes
-Position=25
+Position=23
 Length=0
   
 [Block]
 Name=POP_EDUCATION
 Label=Education
 DisplayTogether=Yes
-Position=36
+Position=34
 Length=0
   
 [Block]
 Name=POP_TRAINING
 Label=Technical and Vocational Training
 DisplayTogether=Yes
-Position=53
+Position=51
 Length=0
   
 [Block]
 Name=POP_FERTILITY
 Label=Fertility and Union Status
 DisplayTogether=Yes
-Position=60
+Position=58
 Length=0
   
 [Block]
 Name=POP_LIVEBORN
 Label=Liveborn Children
 DisplayTogether=Yes
-Position=62
+Position=60
 Length=3
   
 [Block]
 Name=POP_STILLALIVE
 Label=Still Alive Children
 DisplayTogether=Yes
-Position=66
+Position=64
 Length=3
   
 [Block]
 Name=POP_FIRSTLIVEBORN
 Label=First Liveborn DOB
 DisplayTogether=Yes
-Position=70
+Position=68
 Length=3
   
 [Block]
 Name=POP_LASTLIVEBORN
 Label=Last Liveborn DOB
 DisplayTogether=Yes
-Position=75
+Position=73
 Length=3
   
 [Block]
 Name=POP_HUS
 Label=Husband info
 DisplayTogether=Yes
-Position=84
+Position=82
 Length=2
   
 [Block]
 Name=POP_ECONOMICACTIVITY
 Label=Economic Activity
 DisplayTogether=Yes
-Position=87
+Position=85
 Length=0
   
 [Block]
 Name=POP_OCCINDUS
 Label=Occupation and Industry
 DisplayTogether=Yes
-Position=93
+Position=91
 Length=2
   
 [Block]
 Name=POP_AGRICULTURE
 Label=Agriculture
 DisplayTogether=Yes
-Position=103
+Position=101
 Length=2
   
 [Block]
 Name=POP_AGRICULTURE2
 Label=Agriculture
 DisplayTogether=Yes
-Position=106
+Position=104
 Length=3
   
 [Block]
 Name=POP_FOOD
 Label=Food Security
 DisplayTogether=Yes
-Position=110
+Position=108
 Length=3
   
 [Block]
 Name=POP_CRIME
 Label=Crime
 DisplayTogether=Yes
-Position=114
+Position=112
 Length=0
   
 [Block]
 Name=POP_END
 Label=End
 DisplayTogether=Yes
-Position=120
+Position=118
 Length=1
   
 [EndGrid]

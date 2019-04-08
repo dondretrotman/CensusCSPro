@@ -27,7 +27,7 @@ ask about encrypting CSPro csdb files
 TO BE RESEARCHED:
 1. Find out lowest age that a person can be married (P9)
 
-Refactoring progress - Complete, need to add extra features
+Refactoring progress - Complete, need to add question and help text
 }
 
 PROC GLOBAL
@@ -533,7 +533,7 @@ PROC H8
 //H8 – What type of dwelling unit is this?
 postproc
 	if $ = 2 then		//If rented room
-		skip to H16C;	//skip  to shared bathrooms
+		//skip to H16C;	//skip  to shared bathrooms
 	endif;
 
 //--------------------------------------------------
@@ -574,6 +574,11 @@ PROC H12_OTHER
 preproc
 	//only ask if other is selected
 	ask if H12 = 4;
+	
+	//if rented room, skip to H16C after observing walls, roof etc
+	if H8 = 2 then
+		skip to H16C;
+	endif;
 
 //-------------------------------------------------------------
 PROC H13
@@ -637,7 +642,7 @@ postproc
 PROC H17A
 //H17(a) – Under what type of tenure is this dwelling occupied?
 postproc
-	if $ in 3:6 then
+	if $ in 3:4 then
 		skip to H17D;
 	endif;
 	
@@ -910,6 +915,12 @@ postproc
 //---------------------------------------------------------------------
 
 
+PROC P8A
+////P8(a) – Is your mother living in this household?
+//Code moved to POP_GENERAL block
+PROC P8B
+//P8(b) – Is your father living in this household?
+//Code moved to POP_GENERAL block
 PROC P10_OTHER
 //P10 – What is your Ethnic Origin?
 preproc
@@ -925,16 +936,19 @@ postproc
 	endif;
 
 //------------------------------------------------------------
-PROC P12A
-//P12(a) – Do you have a disability or Major Impairment?
-onfocus
-	if $ = 2 then		//if no disabilities
+PROC POP_DISABILITY
+//P12(b)i - vi are labelled P12(a)i - vi in the printed questionnaire
+postproc
+	if P12BI in 1:2 and P12BII in 1:2 and P12BIII in 1:2 and P12BIV in 1:2 and P12BV in 1:2 and P12BVI in 1:2 then		//if no disabilities
+		P12A = 2;
 		skip to P14;	//skip to non communicable disease
+	else
+		P12A = 1;
 	endif;
 	
 //---------------------------------------------------------
 PROC P12C
-//P12(c) – What type of aid are you required to use because of the disability? (Score as many as are applicable)
+//P12(c) (Labeled P12(b) in the printed questionnaire) – What type of aid are you required to use because of the disability? (Score as many as are applicable)
 postproc
 	if pos("I",$) > 0 and length(strip($)) > 1 then		//if none selected with another option
 		errmsg("cannot be none and another option");
@@ -995,7 +1009,7 @@ PROC P16A
 onfocus
 //If Born after May 1, 2019 (If under 1 year old), Go to (final Question). Otherwise, go to question living one year ago (P18)
 	if AGE < 1 then		//if less than a year old	//ADD CHECKS FOR DOB
-		skip to P48;	//skip to last question
+		skip to POP_END;	//skip to last question
 	else
 		skip to P17;	//otherwise go to Living 1 year ago
 	endif;
