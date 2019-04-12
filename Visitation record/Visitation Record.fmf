@@ -1,5 +1,5 @@
 ﻿[FormFile]
-Version=CSPro 7.1
+Version=CSPro 7.2
 Name=VISITATION_RECORD_FF
 Label=Visitation Record
 DefaultTextFont=-013 0000 0000 0000 0700 0000 0000 0000 0000 0000 0000 0000 0000 Arial
@@ -41,8 +41,6 @@ Item=VI_MALES_RESIDENT_ABROAD
 Item=VI_FEMALES_RESIDENT_ABROAD
 Item=VI_DATE_STARTED
 Item=VI_DATE_COMPLETED
-Item=VI_LATITUDE
-Item=VI_LONGITUDE
 Item=VI_COMMENTS
   
 [EndForm]
@@ -58,6 +56,7 @@ Label=(Id Items)
 Form=1
 LogicControl=No
 Max=1
+  
   
 [Field]
 Name=VI_PARISH
@@ -125,6 +124,13 @@ Form=1
 Position=50,150,117,166
 Text=Household
  
+[Block]
+Name=BLOCKID
+Label=ID Fields
+DisplayTogether=Yes
+Position=0
+Length=5
+  
 [EndGroup]
   
 [Group]
@@ -163,6 +169,7 @@ Form=2
 Position=8,42,87,58
 Text=Date Started
  
+  
   
 [Field]
 Name=VI_ADDRESS1
@@ -219,6 +226,7 @@ Form=2
 Position=8,161,76,177
 Text=First Name
  
+  
   
 [Field]
 Name=VI_MALES
@@ -291,32 +299,6 @@ Text=Total Part B's
  
   
 [Field]
-Name=VI_LATITUDE
-Position=193,333,376,353
-Item=VI_LATITUDE,VISITATION_RECORD_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-Form=2
-  
-[Text]
-Position=8,336,60,352
-Text=Latitude
- 
-  
-[Field]
-Name=VI_LONGITUDE
-Position=193,363,390,383
-Item=VI_LONGITUDE,VISITATION_RECORD_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-Form=2
-  
-[Text]
-Position=8,366,72,382
-Text=Longitude
- 
-  
-[Field]
 Name=VI_DATE_COMPLETED
 Position=193,394,306,414
 Item=VI_DATE_COMPLETED,VISITATION_RECORD_DICT
@@ -345,5 +327,19 @@ Form=2
 Position=8,428,75,444
 Text=Comments
  
+[Block]
+Name=BLOCKADDRESS
+Label=Name address
+DisplayTogether=Yes
+Position=2
+Length=4
+  
+[Block]
+Name=BLOCKCOUNTS
+Label=Counts
+DisplayTogether=Yes
+Position=7
+Length=5
+  
 [EndGroup]
   

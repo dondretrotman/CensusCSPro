@@ -1,0 +1,19 @@
+<div id="cspro_report"></div>
+<script type="application/vnd.cspro.report-template" id="cspro_report_template">
+	<h2>Barbados Population and Housing Census Visitation Record Report<h2>
+	<table border=0>
+		<tr><td><h3>ED No: {{EDVR}}</h3></td><td><h3>&emsp;Parish: {{PARVR}}</h3></td></tr>
+		<tr><td><h3>Households completed: {{HOUSECOUNT}}</h3></td><td><h3>&emsp;Number of individuals: {{INDIVCOUNTTOT}}</h3></td></tr>
+	</table>
+	
+	<table border="1">
+		<thead>
+			<tr><th>Building No.</th><th>Dwelling Unit No.</th><th>Household No.</th><th>Status</th><th>Enumerator</th><th>Address</th><th>Head of Household Last Name</th><th>Head of Household First Name</th><th>Total Residents</th><th>Total Males</th><th>Total Females</th><th>Males Resident Abroad</th><th>Females Resident Abroad</th><th>Date Started</th><th>Date Completed</th><th>Location</th><th>Comments</th></tr>
+		</thead>
+		<tbody border="0">
+			{{#VRARRAY}}
+				<tr> {{#.}}<td>{{.}}</td>{{/.}}</tr>
+			{{/VRARRAY}}
+		</tbody>
+	</table>
+</script>

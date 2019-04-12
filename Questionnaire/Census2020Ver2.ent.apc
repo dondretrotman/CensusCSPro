@@ -1086,6 +1086,10 @@ preproc
 PROC P19C
 //P20(c) – In what year did you return to Barbados to live?
 //BATCH: check that person returned after person turned 5 years old
+preproc
+	ask if P19A = 1;		//only ask if left  barbados for > 5 years
+	
+//-------------------------------------------------
 PROC POP_EDUCATION
 onfocus
 	if AGE(curocc()) < 3 then 
@@ -1508,8 +1512,8 @@ preproc
 PROC P38
 //P39 – What are your sources of livelihood other than from employment? (Score as many as applicable)
 postproc
-	if pos("K",$) > 0 and length($) > 1 then		//if None and other options selected
-		errmsg("Cannot be non and have other selections");
+	if pos("K",$) > 0 and length(strip($)) > 1 then		//if None and other options selected
+		errmsg("Cannot be none and have other selections");
 		reenter;		//impute again
 	endif;
 	

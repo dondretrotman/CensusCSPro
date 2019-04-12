@@ -1,5 +1,5 @@
 ﻿[CSPro Application]
-Version=CSPro 7.1
+Version=CSPro 7.2
 Label=VISITATION_RECORD
 Name=VISITATION_RECORD
 AppType=DataEntry
@@ -11,7 +11,6 @@ CAPIFont2=-016 0000 0000 0000 0400 0000 0000 0000 0000 0000 0000 0000 0000 Arial
 CAPIFont1Color=0
 CAPIFont2Color=16711680
 CreateListing=No
-ShowErrorMessageNumbers=No
 ParadataCollection=SomeEvents
 ParadataRecordValues=Yes
 ParadataRecordCoordinates=Yes

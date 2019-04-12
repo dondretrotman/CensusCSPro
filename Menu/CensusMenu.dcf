@@ -125,9 +125,10 @@ Label=Interviewer Menu
 Name=INTERVIEWER_MENU_VS1
 Value=1;Start new questionnaire
 Value=2;View questionnaires
-Value=3;View Visitation record
-Value=4;Delete questionnaire
-Value=5;Upload data
+Value=3;Fill new Visitation record (for non dwelling units ONLY)
+Value=4;View Visitation record
+Value=5;Delete questionnaire
+Value=6;Upload data
 Value=9;Back
 
 [Item]

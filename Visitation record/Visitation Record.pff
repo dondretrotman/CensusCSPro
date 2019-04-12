@@ -1,5 +1,5 @@
 ﻿[Run Information]
-Version=CSPro 7.1
+Version=CSPro 7.2
 AppType=Entry
 Description=Census VR
 [DataEntryInit]
@@ -16,5 +16,7 @@ PFFFILE=
 [Parameters]
 OnExit=../Menu/Menu.pff
 MODE=DEFAULT
+PARISH=10
+ED=548
 LSTENUMCODE=100
-LSTED=185
+LSTED=548

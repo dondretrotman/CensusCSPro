@@ -47,18 +47,18 @@ string	cases,			//case id
 array string vsCode(99);
 array string vsLabel(99);
 array string address(99,3);	//stores addresses
-array string VRARRAY(300,19);	//stores Visitation report data (200 = number of records, 18 = number of fields (VI_BUILDING, VI_DWELLING_UNIT, VI_HOUSEHOLD, VI_STATUS, VI_ADDRESS1, VI_ADDRESS2, VI_LAST_NAME, VI_FIRST_NAME, VI_TOTAL, VI_MALES, VI_FEMALES, VI_MALES_RESIDENT_ABROAD, VI_FEMALES_RESIDENT_ABROAD, VI_DATE_STARTED, VI_DATE_COMPLETED, VI_LATITUDE, VI_LONGITUDE, VI_COMMENTS, VI_ENUMERATOR))
+array string VRARRAY(300,17);	//stores Visitation report data (200 = number of records, 18 = number of fields (VI_BUILDING, VI_DWELLING_UNIT, VI_HOUSEHOLD, VI_STATUS, VI_ADDRESS1, VI_ADDRESS2, VI_LAST_NAME, VI_FIRST_NAME, VI_TOTAL, VI_MALES, VI_FEMALES, VI_MALES_RESIDENT_ABROAD, VI_FEMALES_RESIDENT_ABROAD, VI_DATE_STARTED, VI_DATE_COMPLETED, VI_LATITUDE, VI_LONGITUDE, VI_COMMENTS, VI_ENUMERATOR))
 
 //------------------Function Declaration------------------
 //Launches the visitation record
-{function launchVR()
+function launchVR()
 	// ALW - Added stop
 	//execpff("..\Visitation record\Visitation record.pff", stop);
 	string pffFilename = Pathname(application) + "../Visitation Record/Visitation Record.pff";
 	setfile(pffFile,pffFilename,create);
 
 	filewrite(pffFile,"[Run Information]");
-	filewrite(pffFile,"Version=CSPro 7.1");
+	filewrite(pffFile,"Version=CSPro 7.2");
 	filewrite(pffFile,"AppType=Entry");
 	filewrite(pffFile,"Description=Census VR");
 
@@ -73,7 +73,7 @@ array string VRARRAY(300,19);	//stores Visitation report data (200 = number of r
 
 	filewrite(pffFile,"[Files]");
 	filewrite(pffFile,"Application=%s","./Visitation Record.ent");
-	filewrite(pffFile,"InputData=%s","../Data/Visitation Record.csdb|CSPRODB");
+	filewrite(pffFile,"InputData=%s","../Data/VisitationRecord.csdb|CSPRODB");
 	filewrite(pffFile,"Paradata=%s","../Data/Visitation Record.cslog");
 	
 	filewrite(pffFile,"[UserFiles]");
@@ -82,13 +82,15 @@ array string VRARRAY(300,19);	//stores Visitation report data (200 = number of r
 	filewrite(pffFile,"[Parameters]");
 	filewrite(pffFile,"OnExit=../Menu/Menu.pff");
 	filewrite(pffFile,"MODE=DEFAULT");
+	filewrite(pffFile,"PARISH=%V",ME_PARISH);	
+	filewrite(pffFile,"ED=%V",ME_ED);
 	filewrite(pffFile,"LSTENUMCODE=%s",maketext("%v",visualvalue(USERID)));
 	filewrite(pffFile,"LSTED=%s",maketext("%v",ME_ED));
 		
 	close(pffFile);
 	
 	execpff(filename(pffFile), stop);
-end;}
+end;
 
 {//Launches the Visitation Record for Supervisors
 function launchSupervisorVR()
@@ -264,9 +266,9 @@ function uploadData()
 		if not syncfile(GET,"/Census/Update/Menu/Menu.pff","../Menu/Menu.pff") then		//update Menu
 			inc(errflag);
 		endif;
-{		if not syncfile(GET,"/CSPro/Update/Reports/enumeratorrpt.html","../Reports/enumeratorrpt.html") then		//report template
+		if not syncfile(GET,"/CSPro/Update/Visitation Record/vrreport.html","../Visitation Record/vrreport.html") then		//report template
 			inc(errflag);
-		endif;}
+		endif;
 		syncdisconnect();		//disconnect
 	else
 		inc(errflag,2);
@@ -306,10 +308,10 @@ function updateApp()
 {		if not syncfile(GET,"/CSPro/Update/Reports/EnumerationReport.pen","../Reports/EnumerationReport.pen") then		//update Enumeration Report
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/CSPro/Update/Reports/enumeratorrpt.html","../Reports/enumeratorrpt.html") then		//report template
+}		if not syncfile(GET,"/CSPro/Update/Visitation Record/vrreport.html","../Visitation Record/vrreport.html") then		//report template
 			inc(errflag);
 		endif;
-}		syncdisconnect();		//disconnect
+		syncdisconnect();		//disconnect
 	else
 		inc(errflag,2);
 	endif;
@@ -361,10 +363,10 @@ function downloadData()
 {		if not syncfile(GET,"/CSPro/Update/Reports/EnumerationReport.pen","../Reports/EnumerationReport.pen") then		//update Enumeration Report
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/CSPro/Update/Reports/enumeratorrpt.html","../Reports/enumeratorrpt.html") then		//report template
+}		if not syncfile(GET,"/CSPro/Update/Visitation Record/vrreport.html","../Visitation Record/vrreport.html") then		//report template
 			inc(errflag);
 		endif;
-}		syncdisconnect();		//disconnect
+		syncdisconnect();		//disconnect
 	else
 		inc(errflag,2);
 	endif;
@@ -378,15 +380,15 @@ function downloadData()
 	endif;
 end;
 
-//fills visitation record
-function fillVisitationRecord()
+//fills visitation record report and displays it
+function viewVisitationRecord()
 	i = 1;
 	m = 1;
 	n = 1;
 	
 	//initialize array
 	while m <= 300 do
-		while n <= 19 do
+		while n <= 17 do
 			VRARRAY(m,n) = "";
 			inc(n);
 		enddo;
@@ -400,20 +402,18 @@ function fillVisitationRecord()
 		VRARRAY(i,3) = maketext("%V",VI_HOUSEHOLD);
 		VRARRAY(i,4) = maketext("%V",VI_STATUS);
 		VRARRAY(i,5) = maketext("%V",VI_ENUMERATOR);
-		VRARRAY(i,6) = VI_ADDRESS1;
-		VRARRAY(i,7) = VI_ADDRESS2;
-		VRARRAY(i,8) = VI_LAST_NAME;
-		VRARRAY(i,9) = VI_FIRST_NAME;
-		VRARRAY(i,10) = maketext("%V",VI_TOTAL);
-		VRARRAY(i,11) = maketext("%V",VI_MALES);
-		VRARRAY(i,12) = maketext("%V",VI_FEMALES);
-		VRARRAY(i,13) = maketext("%V",VI_MALES_RESIDENT_ABROAD);
-		VRARRAY(i,14) = maketext("%V",VI_FEMALES_RESIDENT_ABROAD);
-		VRARRAY(i,15) = maketext("%V",VI_DATE_STARTED);
-		VRARRAY(i,16) = maketext("%V",VI_DATE_COMPLETED);
-		VRARRAY(i,17) = maketext("%V",VI_LATITUDE);
-		VRARRAY(i,18) = maketext("%V",VI_LONGITUDE);
-		VRARRAY(i,19) = VI_COMMENTS;
+		VRARRAY(i,6) = maketext("%V, %V",strip(VI_ADDRESS1),strip(VI_ADDRESS2));
+		VRARRAY(i,7) = VI_LAST_NAME;
+		VRARRAY(i,8) = VI_FIRST_NAME;
+		VRARRAY(i,9) = maketext("%V",VI_TOTAL);
+		VRARRAY(i,10) = maketext("%V",VI_MALES);
+		VRARRAY(i,11) = maketext("%V",VI_FEMALES);
+		VRARRAY(i,12) = maketext("%V",VI_MALES_RESIDENT_ABROAD);
+		VRARRAY(i,13) = maketext("%V",VI_FEMALES_RESIDENT_ABROAD);
+		VRARRAY(i,14) = maketext("%V",VI_DATE_STARTED);
+		VRARRAY(i,15) = maketext("%V",VI_DATE_COMPLETED);
+		VRARRAY(i,16) = maketext("%V, %V",VI_LATITUDE,VI_LONGITUDE);
+		VRARRAY(i,17) = VI_COMMENTS;
 		inc(indivcounttot,VI_TOTAL);		//total persons (part B's)
 		inc(i);
 	endfor;
@@ -422,7 +422,7 @@ function fillVisitationRecord()
 	//create report
 	setreportdata("HOUSECOUNT",maketext("%V",housecount));
 	setreportdata("INDIVCOUNTTOT",maketext("%V",indivcounttot));
-	setreportdata("PARVR",maketext("%V",ME_PARISH));
+	setreportdata("PARVR",maketext("%V",getlabel(ME_PARISH_VS1,ME_PARISH)));
 	setreportdata("EDVR",maketext("%V",ME_ED));
 	setreportdata("EDCOMPLETE",getlabel(ED_STATUS_VS1,ED_STATUS));
 	setreportdata(VRARRAY);
@@ -658,11 +658,13 @@ postproc
 		addQuestionnaire();
 	elseif $ = 2 then	//view questionnaire
 		skip to CHOOSE_HOUSEHOLD;		
-	elseif $ = 3 then	//View visitation record
-		fillVisitationRecord();
-	elseif $ = 4 then	//delete questionnaire
+	elseif $ = 3 then	//fill new visitation record
+		launchVR();
+	elseif $ = 4 then	//View visitation record
+		viewVisitationRecord();
+	elseif $ = 5 then	//delete questionnaire
 		//TODO: to be completed
-	elseif $ = 5 then	//upload data
+	elseif $ = 6 then	//upload data
 		uploadData();
 	elseif $ = 9 then	//logout
 		move to LOGIN;
@@ -681,7 +683,7 @@ postproc
 	elseif $ = 2 then	//Open questionnaire
 		skip to CHOOSE_HOUSEHOLD;		
 	elseif $ = 3 then	//View visitation record
-		fillVisitationRecord();
+		viewVisitationRecord();
 	elseif $ = 4 then	//Allocate officers
 		//TODO: to be completed
 	elseif $ = 5 then	//mark ED as complete
