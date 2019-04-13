@@ -4,7 +4,7 @@ Name=CENSUS2020_FF
 Label=Census2020Ver2
 DefaultTextFont=-013 0000 0000 0000 0700 0000 0000 0000 0000 0000 0000 0000 0000 Arial
 FieldEntryFont=0018 0000 0000 0000 0600 0000 0000 0000 0000 0000 0000 0000 0000 Courier New
-Type=SystemControlled
+Type=OperatorControlled
   
 [Dictionaries]
 File=.\Census2020.dcf
@@ -2918,6 +2918,26 @@ Position=0,0,155,56
 Text=P26(a)ii - If YES, for which occupation\profession?
  
 [Field]
+Name=P26AII
+Position=812,0,869,20
+Item=P26AII,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=ComboBox
+  
+[Text]
+Position=0,0,395,20
+Text=P26(a)ii - If YES, for which occupation\\profession?
+ 
+[EndColumn]
+  
+[Column]
+Width=56
+  
+[HeaderText]
+Position=0,0,155,56
+Text=P26(a)ii - If YES, for which occupation\profession?
+ 
+[Field]
 Name=P26AII_TEXT
 Position=154,0,855,20
 Item=P26AII_TEXT,CENSUS2020_DICT
@@ -3520,6 +3540,26 @@ Text=P35 - How many months did you work during the 12 months ending 30th April 2
 Width=88
   
 [HeaderText]
+Position=1,0,155,88
+Text=P36 - What was your main type of job or occupation during the 12 months ending 30th April 2020
+ 
+[Field]
+Name=P36
+Position=812,0,869,20
+Item=P36,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=ComboBox
+  
+[Text]
+Position=0,0,749,20
+Text=P36 - What was your main type of job or occupation during the 12 months ending 30th April 2020
+ 
+[EndColumn]
+  
+[Column]
+Width=88
+  
+[HeaderText]
 Position=8,0,155,88
 Text=P36 - What was your main type of job or occupation during the 12 months ending 30th April 2020
  
@@ -3533,6 +3573,26 @@ UseUnicodeTextBox=Yes
   
 [Text]
 Text=P36 - What was your main type of job or occupation during the 12 months ending 30th April 2020
+ 
+[EndColumn]
+  
+[Column]
+Width=88
+  
+[HeaderText]
+Position=0,0,155,88
+Text=P37 - In which industry or type of business did you work during the 12 months ending april 2020?
+ 
+[Field]
+Name=P37
+Position=812,0,869,20
+Item=P37,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=ComboBox
+  
+[Text]
+Position=0,0,754,20
+Text=P37 - In which industry or type of business did you work during the 12 months ending april 2020?
  
 [EndColumn]
   
@@ -4010,94 +4070,101 @@ Position=51
 Length=0
   
 [Block]
+Name=POP_TRAININGOCC
+Label=Training occupation
+DisplayTogether=Yes
+Position=53
+Length=2
+  
+[Block]
 Name=POP_FERTILITY
 Label=Fertility and Union Status
 DisplayTogether=Yes
-Position=58
+Position=60
 Length=0
   
 [Block]
 Name=POP_LIVEBORN
 Label=Liveborn Children
 DisplayTogether=Yes
-Position=60
+Position=62
 Length=3
   
 [Block]
 Name=POP_STILLALIVE
 Label=Still Alive Children
 DisplayTogether=Yes
-Position=64
+Position=66
 Length=3
   
 [Block]
 Name=POP_FIRSTLIVEBORN
 Label=First Liveborn DOB
 DisplayTogether=Yes
-Position=68
+Position=70
 Length=3
   
 [Block]
 Name=POP_LASTLIVEBORN
 Label=Last Liveborn DOB
 DisplayTogether=Yes
-Position=73
+Position=75
 Length=3
   
 [Block]
 Name=POP_HUS
 Label=Husband info
 DisplayTogether=Yes
-Position=82
+Position=84
 Length=2
   
 [Block]
 Name=POP_ECONOMICACTIVITY
 Label=Economic Activity
 DisplayTogether=Yes
-Position=85
+Position=87
 Length=0
   
 [Block]
 Name=POP_OCCINDUS
 Label=Occupation and Industry
 DisplayTogether=Yes
-Position=91
-Length=2
+Position=93
+Length=4
   
 [Block]
 Name=POP_AGRICULTURE
 Label=Agriculture
 DisplayTogether=Yes
-Position=101
+Position=105
 Length=2
   
 [Block]
 Name=POP_AGRICULTURE2
 Label=Agriculture
 DisplayTogether=Yes
-Position=104
+Position=108
 Length=3
   
 [Block]
 Name=POP_FOOD
 Label=Food Security
 DisplayTogether=Yes
-Position=108
+Position=112
 Length=3
   
 [Block]
 Name=POP_CRIME
 Label=Crime
 DisplayTogether=Yes
-Position=112
+Position=116
 Length=0
   
 [Block]
 Name=POP_END
 Label=End
 DisplayTogether=Yes
-Position=118
+Position=122
 Length=1
   
 [EndGrid]

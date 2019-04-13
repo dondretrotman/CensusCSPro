@@ -39,7 +39,8 @@ numeric i, 				//throwaway variable for loops
 		diff,			//for calculating date differences
 		numheads,		//number of heads of household
 		numspouses,		//number of spouses
-		vsindex;	//valueset index
+		vsindex,		//valueset index
+		nextEntry;		//keeps track of cases
 	
 string 	checkboxcodes,	//for creating dynamic checkboxes
 		checkboxalpha,	//checkbox alpha code
@@ -50,6 +51,10 @@ string 	checkboxcodes,	//for creating dynamic checkboxes
 array string  vsLabels(26);			//Defines dynamic valueset labels
 array numeric vsNumCodes(26);		//defines dynamic numeric valueset codes
 array string  vsAlphaCodes(26);		//defines dynamic string valueset codes
+array numeric industryCodes(711);	//defines valueset for industry codes (There are 711 industry codes)
+array string  industryLabels(711);	
+array numeric occupationCodes(534);	//defines valueset for occupation codes (There are 534 occupations
+array string  occupationLabels(534);
 
 //--------------------------FUNCTION DECLARATION-------------------------------
 //Checks that date is valid. Returns 1 if valid. Returns 0 if invalid
@@ -1226,12 +1231,12 @@ onfocus
 	Tertiary => m-s
 	}
 postproc
-	if pos("A",$) > 0 and length($) > 1 then
+	if pos("A",$) > 0 and length(strip($)) > 1 then
 		errmsg("cannot be 'none' and another option");
 		reenter;
 	endif;
 	
-	if pos("B",$) > 0 and length($) > 1 then
+	if pos("B",$) > 0 and length(strip($)) > 1 then
 		errmsg("cannot be 'not taken any exam' and another option");
 		reenter;
 	endif;
@@ -1283,6 +1288,24 @@ postproc
 	endif;
 	
 //---------------------------------------------------------------------
+PROC POP_TRAININGOCC
+onfocus
+	nextEntry = 1;
+	forcase OCCUPATION_CODES_DICT do
+		occupationCodes(nextEntry) = tonumber(LU_BARSOC_CODE);
+		occupationLabels(nextEntry) = LU_OCCUPATION;
+		inc(nextEntry);
+	endfor;
+	occupationCodes(nextEntry) = notappl;
+	setvalueset(P26AII, occupationCodes, occupationLabels);
+	
+postproc
+	if length(strip(P26AII_TEXT)) = 0 and P26AII = notappl then
+		errmsg("Please either select an occupation or enter an occupation");
+		reenter;
+	endif;
+	
+//-----------------------------------------------------------------------
 PROC P26B
 //P27(b) – Have you completed training or are you still being trained?
 postproc
@@ -1509,6 +1532,41 @@ preproc
 	ask if P34 in 4,8;
 
 //-------------------------------------------------------------
+PROC POP_OCCINDUS
+onfocus
+	//create valueset for industry
+	nextEntry = 1;
+	forcase INDUSTRY_CODES_DICT do
+		industryCodes(nextEntry) = tonumber(ISIC_V4_CODE);
+		industryLabels(nextEntry) = INDUSTRY;
+		inc(nextEntry);
+	endfor;
+	industryCodes(nextEntry) = notappl;
+	setvalueset(P36, industryCodes, industryLabels);
+	
+	//create valueset for occupation
+	nextEntry = 1;
+	if occupationCodes(1) in 0,notappl then
+		forcase OCCUPATION_CODES_DICT do
+			occupationCodes(nextEntry) = tonumber(LU_BARSOC_CODE);
+			occupationLabels(nextEntry) = LU_OCCUPATION;
+			inc(nextEntry);
+		endfor;
+		occupationCodes(nextEntry) = notappl;
+	endif;
+	setvalueset(P37, occupationCodes, occupationLabels);
+
+postproc
+	if length(strip(P36_TEXT)) = 0 and P36 = notappl then
+		errmsg("Please either select an occupation or enter an occupation");
+		reenter;
+	endif;
+	if length(strip(P37_TEXT)) = 0 and P37 = notappl then
+		errmsg("Please either select an industry or enter an industry");
+		reenter;
+	endif;
+	
+//----------------------------------------------------------------------------------
 PROC P38
 //P39 – What are your sources of livelihood other than from employment? (Score as many as applicable)
 postproc
