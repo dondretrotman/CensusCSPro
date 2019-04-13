@@ -22,6 +22,7 @@ VISITATION_RECORD_DICT=..\Data\VisitationRecord.csdb|CSPRODB
 [UserFiles]
 EDFILE=
 LOGINFILE=
+MENUFILE=
 PFFFILE=
 
 [Parameters]

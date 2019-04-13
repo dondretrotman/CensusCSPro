@@ -27,6 +27,12 @@
     },
     {
       "path": "..\\Allocations\\Assignments.ent"
+    },
+    {
+      "path": "..\\Data\\IndustryCodes.csdb"
+    },
+    {
+      "path": "..\\Data\\OccupationCodesBARSOC.csdb"
     }
   ],
   "dictionaries": [
@@ -44,6 +50,14 @@
     },
     {
       "path": "..\\Allocations\\Census Allocations.dcf",
+      "uploadForSync": true
+    },
+    {
+      "path": "..\\Questionnaire\\IndustryCodes.dcf",
+      "uploadForSync": true
+    },
+    {
+      "path": "..\\Questionnaire\\OccupationCodes.dcf",
       "uploadForSync": true
     }
   ],

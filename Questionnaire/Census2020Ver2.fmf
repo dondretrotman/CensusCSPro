@@ -2922,7 +2922,7 @@ Name=P26AII
 Position=812,0,869,20
 Item=P26AII,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
-DataCaptureType=ComboBox
+DataCaptureType=DropDown
   
 [Text]
 Position=0,0,395,20

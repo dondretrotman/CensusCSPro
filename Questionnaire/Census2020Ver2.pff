@@ -1,32 +1,26 @@
 ﻿[Run Information]
-Version=CSPro 7.2
+Version=CSPro 7.3
 AppType=Entry
 Description=Barbados 2020 Census Questionnaire
-
 [DataEntryInit]
-OperatorID=DONDRE.TROTMAN
-StartMode=Add
-Lock=CaseListing
+OperatorID=DONDRE.TROTMAN                                    
+StartMode=Add;01017001001001
 ShowInApplicationListing=Hidden
-AutoAdd=NO
-Interactive=Ask
-
+AutoAdd=No
+Lock=CaseListing
 [Files]
-Application=.\Census2020Ver2.ent
-InputData=..\Data\CensusData.csdb|CSPRODB
-Paradata=../Data/Census174.cslog
-
+Application=./Census2020Ver2.ent
+InputData=../Data/CensusData.csdb|CSPRODB
+Paradata=../Data/Census017.cslog
 [ExternalFiles]
-INDUSTRY_CODES_DICT=..\Data\IndustryCodes.csdb|CSPRODB
-OCCUPATION_CODES_DICT=..\Data\OccupationCodesBARSOC.csdb|CSPRODB
-VISITATION_RECORD_DICT=..\Data\VisitationRecord.csdb|CSPRODB
-
+VISITATION_RECORD_DICT=../Data/VisitationRecord.csdb|CSPRODB
 [UserFiles]
 PFFFILE=
-
 [Parameters]
-OnExit=../Menu/Menu.pff
-ED=174
+OnExit = ../Menu/Menu.pff
 PARISH=01
-USERID=100
-
+ED=017
+USERID= 100
+BUILDING=001
+DWELLING_UNIT=001
+HOUSEHOLD=001

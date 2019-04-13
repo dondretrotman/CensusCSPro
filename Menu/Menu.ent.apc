@@ -16,7 +16,8 @@ PROC GLOBAL
 //-----------------Variable Declaration-------------------
 file	pffFile,		//creates .pff file
 		loginfile,		//saves login status in a file
-		edfile;			//saves ed completion status
+		edfile,			//saves ed completion status
+		menufile;		//saves menu location
 		
 numeric par,			//temp Parish variable
 		usertype,		//sets user type
@@ -41,7 +42,8 @@ string	cases,			//case id
 		ftppw,			//stores ftp password
 		uid,			//stores user ID for getting allocations
 		edstatus,		//stores ed for ed status file
-		partial;		//Stores ispartial status (partial,completed)
+		partial,		//Stores ispartial status (partial,completed)
+		menu;			//stores menu location
 
 //-------------------Array Declaration--------------------
 array string vsCode(99);
@@ -208,7 +210,7 @@ string pffFilename = pathname(application) + "..\Questionnaire\Census2020Ver2.pf
 	filewrite(pffFile,"OperatorID=%s",UNAME);
 	// ALW - The below line will add the case if it does not exist
 	// or enter the case in modify mode if it does
-	filewrite(pffFile,"StartMode=Add:%s",CHOOSE_HOUSEHOLD);
+	filewrite(pffFile,"StartMode=Add;%v",CHOOSE_HOUSEHOLD);
 	filewrite(pffFile,"ShowInApplicationListing=Hidden");
 	filewrite(pffFile,"AutoAdd=No");
 	filewrite(pffFile,"Lock=CaseListing");
@@ -233,6 +235,10 @@ string pffFilename = pathname(application) + "..\Questionnaire\Census2020Ver2.pf
 	filewrite(pffFile,"BUILDING=%S",CHOOSE_HOUSEHOLD[6:3]);
 	filewrite(pffFile,"DWELLING_UNIT=%S",CHOOSE_HOUSEHOLD[9:3]);
 	filewrite(pffFile,"HOUSEHOLD=%S",CHOOSE_HOUSEHOLD[12:3]);
+	
+	close(pffFile);
+	
+	execpff(filename(pffFile), stop);
 end;
 
 //Function to upload all Census and VR data
@@ -486,6 +492,39 @@ function readloginstatus();
 	endif;
 end;
 
+//saves current place in main menu
+function saveMenu();
+	string menufilename = pathname(application)+"savemenu.dat";		//set file path
+	setfile(menufile, menufilename,create);		//set file handle
+	
+	filewrite(loginfile,"%d",LOGIN);
+	close(menufile);
+end;
+
+//resumes to where we left off in the menu
+function alpha resumeMenu();
+	//read the file
+	string menufilename = pathname(application)+"savemenu.dat";
+	setfile(menufile, menufilename);
+	fileread(menufile, menu);
+	close(menufile);
+	
+	//go to the right place
+	if menu <> "" then
+		LOGIN = tonumber(menu);
+		if LOGIN = 1 then
+			advance to INTERVIEWER_MENU;
+		elseif LOGIN = 2 then
+			advance to SUPERVISOR_MENU;
+		endif;
+	endif;
+	
+	//empty the file
+	setfile(menufile, menufilename,create);
+	filewrite(menufile,"");
+	close(menufile);
+end;
+
 //displays the manual
 function ViewManual()
 	execsystem("view:"+pathname(application)+"..Manual.pdf");		//TODO: file to be added
@@ -623,6 +662,8 @@ onfocus
 		setvalueset(LOGIN,LOGIN_VS2);
 	endif;
 	
+	//resumeMenu();
+	
 postproc
 	if $ = 1 then	//interviewer
 		skip to INTERVIEWER_MENU;
@@ -727,9 +768,10 @@ onfocus
 	endif;
 
 postproc
-	CHOOSE_HOUSEHOLD = maketext("%15.14s",CHOOSE_HOUSEHOLD);		//workaround to make this shit work I shouldn't have to hack this to make it work!
+	//CHOOSE_HOUSEHOLD = maketext("%15.14s",CHOOSE_HOUSEHOLD);		//workaround to make this shit work I shouldn't have to hack this to make it work!
 	
-	addQuestionnaire();
+	//saveMenu();
+	viewQuestionnaire();
 	if LOGIN = 1 then
 		move to LOGIN;
 	elseif LOGIN = 2 then
@@ -753,6 +795,7 @@ onfocus
 	setvalueset($, vsCode, vsLabel);
 
 postproc
+	//saveMenu();
 //	launchSupervisorVR();
 	move to LOGIN;
 
