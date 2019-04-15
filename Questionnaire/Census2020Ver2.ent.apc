@@ -1296,6 +1296,7 @@ onfocus
 		occupationLabels(nextEntry) = LU_OCCUPATION;
 		inc(nextEntry);
 	endfor;
+	
 	occupationCodes(nextEntry) = notappl;
 	setvalueset(P26AII, occupationCodes, occupationLabels);
 	

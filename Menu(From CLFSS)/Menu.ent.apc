@@ -18,14 +18,16 @@ PROC GLOBAL
 file 	pffFile,		//Creates a .pff file
 		loginfile,		//saves login status in a file
 		;
+		
+config	ftpip1,		//Stores ftp address
+		ftpip2,		//stores ftp secondary address
+		ftpun, 		//stores ftp username
+		ftppw,		//stores ftp password
+		;
 
 string 	rnd_ed,		//round and ED number to be downloaded
 		status,		//stores current login status
 		username,		//stores user name
-		ftpip1,		//Stores ftp address
-		ftpip2,		//stores ftp secondary address
-		ftpun, 		//stores ftp username
-		ftppw,		//stores ftp password
 		convid,		//stores control sheet id that was converted to a questionnaire id
 		temparray,	//temporarily stores a string array value
 		;

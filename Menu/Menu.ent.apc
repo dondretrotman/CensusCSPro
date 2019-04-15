@@ -8,9 +8,10 @@ Notes:
  - since the VRs don't need to be filled out beforehand we can treat it as the enumerator report and let enumerators choose their own id info
 TODO:
  - Need to be able to specify ED for Visitation Record and Household Questionnaires
- - Need to pass certain variables to the visitation record and questionnaire. i.e. interview status, Enumerator ID, Supervisor ID
+ - DONE Need to pass certain variables to the visitation record and questionnaire. i.e. interview status, Enumerator ID, Supervisor ID
  - need to implement allocation form
- - Need to implement VR as a report
+ - DONE Need to implement VR as a report
+ - Configure message file
 }
 PROC GLOBAL
 //-----------------Variable Declaration-------------------
@@ -18,6 +19,11 @@ file	pffFile,		//creates .pff file
 		loginfile,		//saves login status in a file
 		edfile,			//saves ed completion status
 		menufile;		//saves menu location
+		
+config	cswebip1,		//Stores CSWeb address
+		cswebip2,		//Stores CSWeb secondary address
+		ftpun, 			//stores ftp username
+		ftppw;			//stores ftp password
 		
 numeric par,			//temp Parish variable
 		usertype,		//sets user type
@@ -34,12 +40,6 @@ numeric par,			//temp Parish variable
 string	cases,			//case id
 		status,			//holds current login status
 		username,		//stores user name
-		ftpip1,			//Stores ftp address
-		ftpip2,			//stores ftp secondary address
-		cswebip1,		//Stores CSWeb address
-		cswebip2,		//Stores CSWeb secondary address
-		ftpun, 			//stores ftp username
-		ftppw,			//stores ftp password
 		uid,			//stores user ID for getting allocations
 		edstatus,		//stores ed for ed status file
 		partial,		//Stores ispartial status (partial,completed)
@@ -179,6 +179,8 @@ function addQuestionnaire()
 
 	filewrite(pffFile,"[ExternalFiles]");
 	filewrite(pffFile,"VISITATION_RECORD_DICT=%s","../Data/VisitationRecord.csdb|CSPRODB");
+	filewrite(pffFile, "INDUSTRY_CODES_DICT=%v", "../Data/IndustryCodes.csdb|CSPRODB");
+	filewrite(pffFile, "OCCUPATION_CODES_DICT=%v", "../Data/OccupationCodesBARSOC.csdb|CSPRODB");
 
 	filewrite(pffFile,"[UserFiles]");
 	filewrite(pffFile,"PFFFILE=%s","");
@@ -222,6 +224,8 @@ string pffFilename = pathname(application) + "..\Questionnaire\Census2020Ver2.pf
 
 	filewrite(pffFile,"[ExternalFiles]");
 	filewrite(pffFile,"VISITATION_RECORD_DICT=%s","../Data/VisitationRecord.csdb|CSPRODB");
+	filewrite(pffFile, "INDUSTRY_CODES_DICT=%v", "../Data/IndustryCodes.csdb|CSPRODB");
+	filewrite(pffFile, "OCCUPATION_CODES_DICT=%v", "../Data/OccupationCodesBARSOC.csdb|CSPRODB");
 
 	filewrite(pffFile,"[UserFiles]");
 	filewrite(pffFile,"PFFFILE=%s","");
@@ -542,11 +546,11 @@ preproc
 	//Initialize ftp variables
 	//ftpip1 = "64.119.198.70";
 	//ftpip2 = "10.129.20.110";
-	ftpun = "Census2020";
+	{ftpun = "Census2020";
 	ftppw = "Census2020ADM!NP@ssW)rd";
 	cswebip1 = "http://64.119.198.70:8082/csweb/api";
 	cswebip2 = "http://10.129.20.110:8082/csweb/api";
-	
+	}
 	//recode ed to parish
 	recode ME_ED => ME_PARISH;
 		1-181	=>	1;
