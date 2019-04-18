@@ -71,23 +71,11 @@ Start=7
 Len=50
 DataType=Alpha
 
-[ValueSet]
-Label=User Name
-Name=UNAME_VS1
-Value='DONDRE.TROTMAN                                    ';Dondre Trotman
-Value='SUPERVISOR                                        ';Supervisor
-
 [Item]
 Label=User ID
 Name=USERID
 Start=57
 Len=4
-
-[ValueSet]
-Label=User ID
-Name=USERID_VS1
-Value=100;DONDRE.TROTMAN
-Value=1100;SUPERVISOR
 
 [Item]
 Label=Main Menu

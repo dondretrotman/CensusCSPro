@@ -15,11 +15,11 @@ EN=}
 [QUESTION]
 Field=MENU_DICT.LOGIN
 Condition=USERID < 1000
-EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
-EN={\colortbl;\red0\green0\blue0;}
-EN={\*\generator Wine Riched20 2.0;}
-EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Logged in as \b %UNAME%\b0  (Enumerator). ED = \b %ME_ED%\par
-EN=\b0 \par
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033\deflangfe1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\sl240\slmult1\cf1\fs24 Logged in as \b %username%\b0  (Enumerator). ED = \b %ME_ED%\par
+EN=\b0\par
 EN=}
 
 [QUESTION]

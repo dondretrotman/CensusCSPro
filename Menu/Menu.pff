@@ -5,7 +5,8 @@ Description=Barbados Census 2020
 
 [DataEntryInit]
 StartMode=Add
-Lock=CaseListing
+Lock=Stats,CaseListing
+FullScreen=YES
 Interactive=Ask
 
 [Files]
@@ -17,6 +18,7 @@ CENSUS2020_DICT=..\Data\CensusData.csdb|CSPRODB
 CENSUS_ALLOCATIONS_DICT=..\Data\assignments.csdb|CSPRODB
 CENSUS_ASSIGNMENTS_DICT=..\Data\assignments.csdb|CSPRODB
 LOGINLIST_DICT=..\Data\Login.csdb|CSPRODB
+USERS_DICT=..\Data\CensusUsers.csdb|CSPRODB
 VISITATION_RECORD_DICT=..\Data\VisitationRecord.csdb|CSPRODB
 
 [UserFiles]
@@ -26,5 +28,4 @@ MENUFILE=
 PFFFILE=
 
 [Parameters]
-Parameter=onexit = ..\Menu\Menu.pff
 

@@ -1,6 +1,6 @@
 {
   "fileType": "Application Deployment Specification",
-  "version": "7.1",
+  "version": "7.2",
   "name": "Census2020Ver2",
   "description": "Barbados 2020 Census",
   "files": [
@@ -21,11 +21,20 @@
     },
     {
       "path": "..\\Visitation record\\Visitation Record.ent"
+    },
+    {
+      "path": "..\\Data\\OccupationCodesBARSOC.csdb"
+    },
+    {
+      "path": "..\\Data\\IndustryCodes.csdb"
+    },
+    {
+      "path": "..\\Data\\CensusUsers.csdb"
     }
   ],
   "dictionaries": [
     {
-      "path": "..\\Menu\\Menu.dcf",
+      "path": "..\\Menu\\CensusMenu.dcf",
       "uploadForSync": true
     },
     {
@@ -33,7 +42,11 @@
       "uploadForSync": true
     },
     {
-      "path": "..\\Census2020.dcf",
+      "path": "..\\Questionnaire\\Census2020.dcf",
+      "uploadForSync": true
+    },
+    {
+      "path": "..\\Menu\\CensusUsers.dcf",
       "uploadForSync": true
     }
   ],

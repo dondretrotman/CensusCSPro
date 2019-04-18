@@ -3495,6 +3495,17 @@ Start=277
 Len=1
 ZeroFill=Yes
 
+[ValueSet]
+Label=Delete Flag
+Name=DELETE_FLAG_VS1
+Value=1;(DELETED)
+Value=2;(Not Deleted)
+
+[ValueSet]
+Label=Delete Flag
+Name=DELETE_FLAG_VS2
+Value=1;(DELETED)
+
 [Item]
 Label=Comments
 Name=COMMENTS

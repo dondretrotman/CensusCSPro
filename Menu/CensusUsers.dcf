@@ -1,0 +1,155 @@
+﻿[Dictionary]
+Version=CSPro 7.2
+Label=Users Dictionary
+Name=USERS_DICT
+RecordTypeStart=1
+RecordTypeLen=1
+Positions=Relative
+ZeroFill=Yes
+DecimalChar=Yes
+
+[Level]
+Label=Users Level
+Name=USERS_LEVEL
+
+[IdItems]
+
+[Item]
+Label=ID
+Name=ID
+Start=2
+Len=4
+ZeroFill=Yes
+
+[Record]
+Label=Users Record
+Name=USERS_REC
+RecordTypeValue='2'
+RecordLen=76
+
+[Item]
+Label=Name
+Name=UN_NAME
+Start=6
+Len=50
+DataType=Alpha
+
+[Item]
+Label=Username
+Name=UN_USERNAME
+Start=56
+Len=20
+DataType=Alpha
+
+[Item]
+Label=Role
+Name=UN_ROLE
+Start=76
+Len=1
+ZeroFill=Yes
+
+[ValueSet]
+Label=Role
+Name=UN_ROLE_VS1
+Value=1;Enumerator
+Value=2;Supervisor
+Value=3;Senior Supervisor
+Value=4;Zone Manager
+Value=0;Admin
+
+[Record]
+Label=Assignments Record
+Name=ASSIGNMENTS_REC
+RecordTypeValue='1'
+MaxRecords=10
+RecordLen=18
+
+[Item]
+Label=ED
+Name=UED
+Start=6
+Len=3
+ZeroFill=Yes
+
+[ValueSet]
+Label=ED
+Name=UED_VS1
+Value=1:181;St. Michael
+Value=182:295;Christ Church
+Value=296:335;St. George
+Value=336:397;St. Philip
+Value=398:418;St. John
+Value=419:479;St. James
+Value=480:508;St. Thomas
+Value=509:521;St. Joseph
+Value=522:532;St. Andrew
+Value=533:559;St. Peter
+Value=560:583;St. Lucy
+
+[Item]
+Label=Parish
+Name=UPARISH
+Start=9
+Len=2
+ZeroFill=Yes
+
+[ValueSet]
+Label=Parish
+Name=UPARISH_VS1
+Value=1;St. Michael
+Value=2;Christ Church
+Value=3;St. George
+Value=4;St. Philip
+Value=5;St. John
+Value=6;St. James
+Value=7;St. Thomas
+Value=8;St. Joseph
+Value=9;St. Andrew
+Value=10;St. Peter
+Value=11;St. Lucy
+
+[Item]
+Label=Assignment Date
+Name=UASSIGNMENT_DATE
+Start=11
+Len=8
+
+[Item]
+Label=Assignment Year
+Name=UASSIGNMENT_YEAR
+Start=11
+Len=4
+ItemType=SubItem
+ZeroFill=Yes
+
+[Item]
+Label=Assignment Month
+Name=UASSIGNMENT_MONTH
+Start=15
+Len=2
+ItemType=SubItem
+ZeroFill=Yes
+
+[ValueSet]
+Label=Month
+Name=UASSIGNMENT_MONTH_VS1
+Value=1;January
+Value=2;February
+Value=3;March
+Value=4;April
+Value=5;May
+Value=6;June
+Value=7;July
+Value=8;August
+Value=9;September
+Value=10;October
+Value=11;November
+Value=12;December
+
+[Item]
+Label=Assignment Day
+Name=UASSIGNMENT_DAY
+Start=17
+Len=2
+ItemType=SubItem
+ZeroFill=Yes

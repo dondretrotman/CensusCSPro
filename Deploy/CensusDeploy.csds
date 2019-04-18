@@ -33,6 +33,9 @@
     },
     {
       "path": "..\\Data\\OccupationCodesBARSOC.csdb"
+    },
+    {
+      "path": "..\\Data\\CensusUsers.csdb"
     }
   ],
   "dictionaries": [
@@ -49,8 +52,7 @@
       "uploadForSync": true
     },
     {
-      "path": "..\\Allocations\\Census Allocations.dcf",
-      "uploadForSync": true
+      "path": "..\\Menu\\CensusUsers.dcf"
     },
     {
       "path": "..\\Questionnaire\\IndustryCodes.dcf",

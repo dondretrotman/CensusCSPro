@@ -11,7 +11,6 @@ TODO:
  - DONE Need to pass certain variables to the visitation record and questionnaire. i.e. interview status, Enumerator ID, Supervisor ID
  - need to implement allocation form
  - DONE Need to implement VR as a report
- - Configure message file
 }
 PROC GLOBAL
 //-----------------Variable Declaration-------------------
@@ -35,6 +34,7 @@ numeric par,			//temp Parish variable
 		housecount,		//counts number of households
 		indivcounttot,	//counts total number of individuals in an ED
 		allocationdate,	//last allocation date
+		role,			//stores user role (enumerator, supervisor, senior supervisor, etc)
 		a,i,j,k,l,m,n;		//general counters and temp variables
 
 string	cases,			//case id
@@ -215,7 +215,7 @@ string pffFilename = pathname(application) + "..\Questionnaire\Census2020Ver2.pf
 	filewrite(pffFile,"StartMode=Add;%v",CHOOSE_HOUSEHOLD);
 	filewrite(pffFile,"ShowInApplicationListing=Hidden");
 	filewrite(pffFile,"AutoAdd=No");
-	filewrite(pffFile,"Lock=CaseListing");
+	filewrite(pffFile,"Lock=CaseListing,Stats");
 
 	filewrite(pffFile,"[Files]");
 	filewrite(pffFile,"Application=%s","./Census2020Ver2.ent");
@@ -255,7 +255,7 @@ function uploadData()
 		if not syncdata(PUT,VISITATION_RECORD_DICT,maketext("%2d%3d",ME_PARISH,ME_ED)) then		//Upload Control Sheet
 			inc(errflag);
 		endif;
-		if not syncdata(GET, CENSUS_ASSIGNMENTS_DICT) then		//get allocations
+		if not syncdata(GET, USERS_DICT) then		//get allocations
 			inc(errflag);
 		endif;
 		if not syncfile(PUT,"../Data/Census2020Ver2.cslog",maketext("CensusLogs/Census%s.cslog",getdeviceid())) then		//Upload paradata logs
@@ -297,7 +297,7 @@ end;
 function updateApp()
 	errflag = 0;
 	if syncconnect(CSWeb,cswebip1,ftpun,ftppw) or syncconnect(CSWeb,cswebip2,ftpun,ftppw)  then		//connect to FTP when outside of the Government WAN
-		if not syncdata(GET, CENSUS_ASSIGNMENTS_DICT) then		//get allocations
+		if not syncdata(GET, USERS_DICT) then		//get allocations
 			inc(errflag);
 		endif;
 		if not syncfile(GET,"/Census/Update/Questionnaire/Census2020Ver2.pen","../Questionnaire/Census2020Ver2.pen") then		//update questionnaire
@@ -348,7 +348,7 @@ function downloadData()
 		if not syncdata(GET,VISITATION_RECORD_DICT,maketext("%2d%3d",ME_PARISH,ME_ED)) then			//get control sheet data for round and ED
 			inc(errflag);
 		endif;
-		if not syncdata(GET, CENSUS_ASSIGNMENTS_DICT) then		//get allocations
+		if not syncdata(GET, USERS_DICT) then		//get allocations
 			inc(errflag);
 		endif;
 {		if not syncdata(get,ENUMERATIONREPORT_DICT,maketext("%v",ME_ED)) then	//get enumeration report for ED
@@ -437,6 +437,32 @@ function viewVisitationRecord()
 	setreportdata("EDCOMPLETE",getlabel(ED_STATUS_VS1,ED_STATUS));
 	setreportdata(VRARRAY);
 	report("../Visitation record/vrreport.html");		//TODO: create this report
+end;
+
+//marks questionnaire for deletion
+function deleteQuestionnaire()
+	errmsg("Are you sure you want to flag the questionnaire with ID = %V? for deletion", CHOOSE_HOUSEHOLD)
+	select("Yes, flag for deletion",continue,"No, flag to remain",INTERVIEWER_MENU);
+	
+	loadcase(CENSUS2020_DICT,CHOOSE_HOUSEHOLD);
+	DELETE_FLAG = 1;		//mark case for deletion
+	writecase(CENSUS2020_DICT);
+	
+	loadcase(VISITATION_RECORD_DICT,CHOOSE_HOUSEHOLD);
+	VI_DELETE_FLAG = 1;		//mark case for deletion
+	writecase(VISITATION_RECORD_DICT);
+	errmsg("Case set for deletion");
+end;
+
+//marks Visitation record for deletion
+function deleteVR()
+	errmsg("Are you sure you want to flag the visitation record with ID = %V? for deletion", CHOOSE_HOUSEHOLD)
+	select("Yes, flag for deletion",continue,"No, flag to remain",INTERVIEWER_MENU);
+	
+	loadcase(VISITATION_RECORD_DICT,CHOOSE_HOUSEHOLD);
+	VI_DELETE_FLAG = 1;		//mark case for deletion
+	writecase(VISITATION_RECORD_DICT);
+	errmsg("Case set for deletion");
 end;
 
 //function to mark current ED as complete or ongoing
@@ -602,30 +628,45 @@ preproc
 PROC USERID
 //code to make sure that the valueset label matches Username
 postproc
-	if getlabel(USERID_VS1,$) = strip(UNAME) then
+	uid = maketext("%04d",$);
+	if loadcase(USERS_DICT,uid) then
+		if compare(UN_USERNAME,UNAME) = 0 then
+			writeLoginStatus(1);
+			username = strip(UN_NAME);
+			role = UN_ROLE;
+		else
+			errmsg("Username and ID don't match! Please try again");
+			move to UNAME;
+		endif;
+	else
+		errmsg("No user with the username %v was found",strip(UNAME));
+		move to UNAME;
+	endif;
+
+{	if getlabel(USERID_VS1,$) = strip(UNAME) then
 		writeLoginStatus(1);//success
 	else
 		errmsg("Username and ID don't match! Please try again");
 		move to UNAME;
 	endif;
-	
+}	
 	//get allocations
 	//DEBUG: enable this after allocation have been implemented
-{	uid = maketext("%v",USERID);
-	if loadcase(CENSUS_ASSIGNMENTS_DICT,uid) = 0 and USERID < 1000 then		//if no allocations found
+	uid = maketext("%v",USERID);
+	if loadcase(USERS_DICT,uid) = 0 and USERID < 1000 then		//if no allocations found
 		if connection() then		//if on the internet
 			if syncconnect(CSWeb,cswebip1,ftpun,ftppw) then		//connect to csweb when outside of the Government WAN
-				syncdata(GET, CENSUS_ASSIGNMENTS_DICT);		//get allocations
+				syncdata(GET, USERS_DICT);		//get allocations
 				allocationdate = sysdate("YYYYMMDD");
 				savesetting("ALLOCATIONDATE",maketext("%d",allocationdate));		//saves so that it's persistent between sessions
 			elseif syncconnect(CSWeb,cswebip2,ftpun,ftppw) then	
-				syncdata(GET, CENSUS_ASSIGNMENTS_DICT);		//get allocations
+				syncdata(GET, USERS_DICT);		//get allocations
 				allocationdate = sysdate("YYYYMMDD");
 				savesetting("ALLOCATIONDATE",maketext("%d",allocationdate));		//saves so that it's persistent between sessions
 			endif;
 		endif;
 	endif;
-}
+
 
 //---------------------------------------------------------------
 PROC ME_ED
@@ -658,12 +699,13 @@ postproc
 PROC LOGIN
 onfocus
 	$ = notappl;
-	username = getlabel(UNAME_VS1,UNAME);
-	
-	if visualvalue(USERID) > 1000 then		//Supervisor
+
+	if role = 2 then		//Supervisor
 		setvalueset(LOGIN,LOGIN_VS1);
-	elseif visualvalue(USERID) < 1000 then	//enumerator
+	elseif role = 1 then	//enumerator
 		setvalueset(LOGIN,LOGIN_VS2);
+	elseif role = 0 then	//admin
+		//TODO: implement a valueset for admin
 	endif;
 	
 	//resumeMenu();
@@ -708,7 +750,7 @@ postproc
 	elseif $ = 4 then	//View visitation record
 		viewVisitationRecord();
 	elseif $ = 5 then	//delete questionnaire
-		//TODO: to be completed
+		skip to CHOOSE_HOUSEHOLD;
 	elseif $ = 6 then	//upload data
 		uploadData();
 	elseif $ = 9 then	//logout
@@ -734,7 +776,7 @@ postproc
 	elseif $ = 5 then	//mark ED as complete
 		edcomplete();
 	elseif $ = 6 then	//delete questinonaire
-		//TODO: to be completed
+		skip to CHOOSE_HOUSEHOLD;
 	elseif $ = 9 then	//logout
 		move to LOGIN;
 	endif;
@@ -748,13 +790,13 @@ onfocus
 	numeric nextEntry = 1;
 	forcase CENSUS2020_DICT where ED = ME_ED do
 		if ispartial(CENSUS2020_DICT) then
-			partial = "Not complete";
+			partial = "(Not complete)";
 		else
-			partial = "Completed";
+			partial = "(Completed)";
 		endif;
 		
 		vscode(nextEntry) = maketext("%v%v%v%v%v",PARISH,ED,BUILDING,DWELLING_UNIT,HOUSEHOLD);
-		vsLabel(nextEntry) = maketext("%v-%v-%v: %V %v(%v)",BUILDING,DWELLING_UNIT,HOUSEHOLD,strip(LAST_NAME(1)),partial,strip(COMMENTS));
+		vsLabel(nextEntry) = maketext("%v-%v-%v: %V %v%V(%v)",BUILDING,DWELLING_UNIT,HOUSEHOLD,strip(LAST_NAME(1)),partial,getlabel(DELETE_FLAG_VS2,DELETE_FLAG),strip(COMMENTS));
 		inc(nextEntry);
 	endfor;
 	
@@ -775,11 +817,11 @@ postproc
 	//CHOOSE_HOUSEHOLD = maketext("%15.14s",CHOOSE_HOUSEHOLD);		//workaround to make this shit work I shouldn't have to hack this to make it work!
 	
 	//saveMenu();
-	viewQuestionnaire();
-	if LOGIN = 1 then
-		move to LOGIN;
-	elseif LOGIN = 2 then
-		move to SUPERVISOR_MENU;
+	
+	if (LOGIN = 1 and INTERVIEWER_MENU in 2) or (LOGIN = 2 and SUPERVISOR_MENU = 2) then
+		viewQuestionnaire();
+	elseif (LOGIN = 1 and INTERVIEWER_MENU = 5) or (LOGIN = 2 and SUPERVISOR_MENU = 6) then
+		deletequestionnaire();
 	endif;
 
 

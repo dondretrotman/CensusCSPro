@@ -18,7 +18,7 @@ AutoAdvanceOnSelection=Yes
 [External Dictionaries]
 File=..\Visitation record\Visitation Record.dcf
 File=..\Questionnaire\Census2020.dcf
-File=..\Allocations\Census Allocations.dcf
+File=.\CensusUsers.dcf
 [AppCode]
 File=.\Menu.ent.apc
 [Message]
@@ -31,7 +31,7 @@ File=.\Menu.fmf
 Dict-Type=.\CensusMenu.dcf,Input,.\Menu.fmf
 Dict-Type=..\Visitation record\Visitation Record.dcf,External
 Dict-Type=..\Questionnaire\Census2020.dcf,External
-Dict-Type=..\Allocations\Census Allocations.dcf,External
+Dict-Type=.\CensusUsers.dcf,External
 [Sync]
 Server=http://csweb.teleyah.com/api
 Direction=Put

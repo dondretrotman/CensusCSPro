@@ -83,7 +83,7 @@ ZeroFill=Yes
 Label=Visitation Record record
 Name=VISITATION_RECORD_REC
 RecordTypeValue='V'
-RecordLen=629
+RecordLen=630
 
 [Item]
 Label=Completion Status
@@ -306,3 +306,15 @@ Name=VI_COMMENTS
 Start=374
 Len=256
 DataType=Alpha
+
+[Item]
+Label=Delete flag
+Name=VI_DELETE_FLAG
+Start=630
+Len=1
+
+[ValueSet]
+Label=Delete flag
+Name=VI_DELETE_FLAG_VS1
+Value=1;Delete case
+Value=2;Keep case
