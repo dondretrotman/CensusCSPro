@@ -5,30 +5,49 @@ Version=CSPro 7.2
 EN=English
 
 [QUESTION]
+Field=CENSUS_MENU_DICT.CHOOSE_HOUSEHOLD
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Household Listing for ED%ME_ED%\par
+EN=}
+
+[QUESTION]
 Field=MENU_DICT.CHOOSE_VR
 EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
 EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 ED = %VI_ED%\par
+EN=\pard\cf1\fs24 Visitation Record Listing for ED%ME_ED%\par
 EN=}
 
 [QUESTION]
 Field=MENU_DICT.LOGIN
 Condition=USERID < 1000
 EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033\deflangfe1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
-EN={\colortbl ;\red0\green0\blue0;}
+EN={\colortbl ;\red0\green0\blue0;\red0\green0\blue255;}
 EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\sl240\slmult1\cf1\fs24 Logged in as \b %username%\b0  (Enumerator). ED = \b %ME_ED%\par
+EN=\pard\sl240\slmult1\cf1\fs24 Logged in as \b %username%\b0  (Enumerator). \par
+EN=Your Enumeration District is \b %ME_ED%\par
+EN=\cf2\b0 Version: %VERSION%\cf1\par
+EN=\par
+EN=Please choose an action\par
+EN=\cf2 Press the question mark symbol "(?)" for help\cf1\b\par
 EN=\b0\par
 EN=}
 
 [QUESTION]
 Field=MENU_DICT.LOGIN
 Condition=USERID > 1000
-EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
-EN={\colortbl;\red0\green0\blue0;}
-EN={\*\generator Wine Riched20 2.0;}
-EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Logged in as \b %UNAME%\b0  (Supervisor). ED = \b %ME_ED%\par
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033\deflangfe1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;\red0\green0\blue255;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\sl240\slmult1\cf1\fs24 Logged in as \b %username%\b0  (Supervisor). \par
+EN=Your Enumeration District is \b %ME_ED%\par
+EN=\cf2\b0 Version: %VERSION%\cf1\par
+EN=\par
+EN=Please choose an action\par
+EN=\cf2 Press the question mark symbol "(?)" for help\cf1\b\par
+EN=\par
 EN=}
 
 [QUESTION]
@@ -41,10 +60,14 @@ EN=}
 
 [QUESTION]
 Field=MENU_DICT.UNAME
-EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
-EN={\colortbl;\red0\green0\blue0;}
-EN={\*\generator Wine Riched20 2.0;}
-EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Please enter your username in the format: \b firstname.lastname\b0 \par
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033\deflangfe1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;\red0\green0\blue255;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\sl240\slmult1\cf1\fs24 Welcome to the Barbados Population and Housing Census 2020. \par
+EN=Please enter your username in the format: \b firstname.lastname\par
+EN=\b0 Tap the question mark symbol "(?)" to get help on any question\par
+EN=\par
+EN=\cf2 Version: %VERSION%\cf1\par
 EN=}
 
 [QUESTION]
@@ -69,10 +92,107 @@ EN=}
 
 [HELP]
 Field=MENU_DICT.USERID
-EN={\rtf1\ansi\ansicpg1252\uc1\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\fcharset0 Arial;}}
-EN={\colortbl;\red0\green0\blue0;}
-EN={\*\generator Wine Riched20 2.0;}
-EN=\pard\sl-240\slmult1 \cf1\lang1033\fs24\f0 Enumerator ID = 0999\par
-EN=Supervisor ID = 1999\par
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033\deflangfe1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\sl240\slmult1\cf1\fs24 Enumerator ID = 100\par
+EN=Supervisor ID = 1000\par
+EN=}
+
+[HELP]
+Field=CENSUS_MENU_DICT.ME_ED
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Only the enumeration districts that you are assigned to will appear here (unless you are a supervisor). If you don't see the correct ED's listed, please contact your supervisor.\par
+EN=}
+
+[HELP]
+Field=CENSUS_MENU_DICT.LOGIN
+Condition=USERID < 1000
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Enumerator Menu - \tab Work as an enumerator\par
+EN=Change ED - \tab\tab Switch from ED%ME_ED% to another Enumeration District\par
+EN=Update App - \tab Check for the latest updates to the app (fixes most problems)\par
+EN=Upload Data - \tab Uploads all data for ED%ME_ED% to the server\par
+EN=Logout - \tab\tab Log out the user and exit the app\par
+EN=}
+
+[HELP]
+Field=CENSUS_MENU_DICT.LOGIN
+Condition=USERID > 1000
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Enumerator Menu - Work as an enumerator\par
+EN=Supervisor Menu - Work as a supervisor\par
+EN=Change ED - Switch from ED%ME_ED% to another Enumeration District\par
+EN=Update App - Check for the latest updates to the app (fixes most problems)\par
+EN=Upload Data - Uploads all data for ED%ME_ED%\par
+EN=Logout - Log out the user and exit the app\par
+EN=
+EN=\pard\par
+EN=}
+
+[HELP]
+Field=CENSUS_MENU_DICT.INTERVIEWER_MENU
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Start new questionnaire -\tab Starts a new interview\par
+EN=View questionnaires - \tab Lists questionnaires that have been started already\par
+EN=Fill new Visitation record -\tab Create a new visitation record for buildings that have \b no dwelling units\b0\par
+EN=View Visitation Record -\tab Views the visitation record\par
+EN=Delete questionnaire - \tab Marks a questionnaire for deletion. This does not actually delete a questionnaire. The questionnaire will be deleted at a later stage\par
+EN=Upload data - \tab\tab Uploads all data for ED%ME_ED% to the server\par
+EN=Back -\tab\tab\tab\tab Go to previous menu\par
+EN=}
+
+[HELP]
+Field=CENSUS_MENU_DICT.SUPERVISOR_MENU
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Download ED data -\tab\tab Downloads all data for ED%ME_ED% that was uploaded\par
+EN=Open questionnaire - \tab Lists questionnaires to be viewed/edited\par
+EN=Allocate Officers - \tab\tab List enumerators that can be assigned to an ED\par
+EN=Mark ED as complete - \tab Mark ED%ME_ED% as completed and ready to be processed further\par
+EN=Delete Questionnaire - \tab Mark questionnaire for deletion. This does not actually delete the questionnaire. It will be completed at a later stage\par
+EN=Back - \tab\tab\tab Go to previous menu\par
+EN=}
+
+[HELP]
+Field=CENSUS_MENU_DICT.CHOOSE_HOUSEHOLD
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Questionnaire listing format is Building#-Dwelling Unit#-Household# LastName CompletionStatus (DeletionStatus) (Remarks)\par
+EN=\par
+EN=CompletionStatus can be one of the following:\par
+EN=Blank - The questionnaire is new\par
+EN=Partial - The questionnaire is partially complete\par
+EN=Complete - The questionnaire has been completed\par
+EN=\par
+EN=DeletionStatus can be one of the following:\par
+EN=DELETED - Questionnaire has been marked for deletion\par
+EN=Not deleted - Questionaire has not been marked for deletion\par
+EN=}
+
+[HELP]
+Field=CENSUS_MENU_DICT.CHOOSE_VR
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Visitation Record listing format is Building#-Dwelling Unit#-Household#: Last Name, First Name (Status)\par
+EN=\par
+EN=Status can be one of the following:\par
+EN=Not Started - No attempt to contact the household was made\par
+EN=Completed - The household has been completed\par
+EN=Non-contact - The household was not contacted despite several attempts\par
+EN=Vacant - No residents were found in the household\par
+EN=Refused - Residents refused to give any information\par
+EN=Partially complete - The household is in progress\par
 EN=}
 

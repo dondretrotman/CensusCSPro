@@ -13,7 +13,7 @@ File=.\CensusMenu.dcf
 Name=FORM001
 Label=Menu record
 Level=1
-Size=663,370
+Size=657,321
   
 Item=LOGIN
 Item=INTERVIEWER_MENU
@@ -23,6 +23,7 @@ Item=CHOOSE_VR
 Item=UNAME
 Item=USERID
 Item=ME_ED
+Item=ALLOCATE_ENUMERATOR
   
 [EndForm]
   
@@ -54,32 +55,32 @@ Text=User Name
   
 [Field]
 Name=USERID
-Position=222,53,279,73
+Position=222,52,279,72
 Item=USERID,CENSUS_MENU_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=1
   
 [Text]
-Position=37,56,82,72
+Position=37,55,82,71
 Text=User ID
  
   
 [Field]
 Name=ME_ED
-Position=222,80,265,100
+Position=222,81,265,101
 Item=ME_ED,CENSUS_MENU_DICT
 FieldLabelType=DictionaryLabel
 Form=1
   
 [Text]
-Position=37,83,54,99
+Position=37,84,54,100
 Text=ED
  
   
 [Field]
 Name=LOGIN
-Position=222,105,237,125
+Position=222,110,237,130
 Item=LOGIN,CENSUS_MENU_DICT
 HideInCaseTree=Yes
 UpperCase=Yes
@@ -88,13 +89,13 @@ DataCaptureType=DropDown
 Form=1
   
 [Text]
-Position=37,108,107,124
+Position=37,113,107,129
 Text=Main Menu
  
   
 [Field]
 Name=INTERVIEWER_MENU
-Position=222,135,237,155
+Position=222,139,237,159
 Item=INTERVIEWER_MENU,CENSUS_MENU_DICT
 HideInCaseTree=Yes
 UpperCase=Yes
@@ -103,13 +104,13 @@ DataCaptureType=DropDown
 Form=1
   
 [Text]
-Position=40,138,151,154
+Position=37,142,148,158
 Text=Interviewer Menu
  
   
 [Field]
 Name=SUPERVISOR_MENU
-Position=222,165,237,185
+Position=222,168,237,188
 Item=SUPERVISOR_MENU,CENSUS_MENU_DICT
 HideInCaseTree=Yes
 UpperCase=Yes
@@ -118,13 +119,13 @@ DataCaptureType=DropDown
 Form=1
   
 [Text]
-Position=40,168,148,184
+Position=37,171,145,187
 Text=Supervisor menu
  
   
 [Field]
 Name=CHOOSE_HOUSEHOLD
-Position=222,195,419,215
+Position=222,197,419,217
 Item=CHOOSE_HOUSEHOLD,CENSUS_MENU_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -132,13 +133,13 @@ DataCaptureType=RadioButton
 Form=1
   
 [Text]
-Position=40,198,158,214
+Position=37,200,155,216
 Text=Choose Household
  
   
 [Field]
 Name=CHOOSE_VR
-Position=222,225,419,245
+Position=222,227,419,247
 Item=CHOOSE_VR,CENSUS_MENU_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -146,8 +147,21 @@ DataCaptureType=RadioButton
 Form=1
   
 [Text]
-Position=40,228,199,244
+Position=37,230,196,246
 Text=Choose Visitation Record
+ 
+  
+[Field]
+Name=ALLOCATE_ENUMERATOR
+Position=222,257,279,277
+Item=ALLOCATE_ENUMERATOR,CENSUS_MENU_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=RadioButton
+Form=1
+  
+[Text]
+Position=37,260,167,276
+Text=Allocate Enumerator
  
 [EndGroup]
   

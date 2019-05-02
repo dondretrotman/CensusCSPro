@@ -62,7 +62,7 @@ Value=560:583;St. Lucy
 Label=Menu record
 Name=MENU_REC
 RecordTypeValue='1'
-RecordLen=92
+RecordLen=96
 
 [Item]
 Label=User Name
@@ -151,9 +151,15 @@ Len=14
 DataType=Alpha
 
 [Item]
+Label=Allocate Enumerator
+Name=ALLOCATE_ENUMERATOR
+Start=92
+Len=4
+
+[Item]
 Label=ED status
 Name=ED_STATUS
-Start=92
+Start=96
 Len=1
 
 [ValueSet]

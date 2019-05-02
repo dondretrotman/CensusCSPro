@@ -10,7 +10,7 @@ TODO:
  - Need to be able to specify ED for Visitation Record and Household Questionnaires
  - DONE Need to pass certain variables to the visitation record and questionnaire. i.e. interview status, Enumerator ID, Supervisor ID
  - need to implement allocation form
- - DONE Need to implement VR as a report
+ - Need to create a structure for senior supervisor, supervisor and enumerator
 }
 PROC GLOBAL
 //-----------------Variable Declaration-------------------
@@ -244,6 +244,40 @@ string pffFilename = pathname(application) + "..\Questionnaire\Census2020Ver2.pf
 	
 	execpff(filename(pffFile), stop);
 end;
+
+//function that launches form to allocate enumerators
+function allocateenum();
+	string pffFilename = pathname(Application) + "../Allocation/Allocation.pff";
+
+	setfile(pffFile,pffFilename,create);
+
+	filewrite(pffFile, "[Run Information]");
+	filewrite(pffFile, "Version=CSPro 7.2");
+	filewrite(pffFile, "AppType=Entry");
+	filewrite(pffFile, "Description=    ");
+
+	filewrite(pffFile, "[DataEntryInit]");
+	filewrite(pffFile,"OperatorID=%s",UNAME);
+	filewrite(pffFile,"StartMode=Add;%v",ALLOCATE_ENUMERATOR);
+	filewrite(pffFile, "ShowInApplicationListing=Hidden");
+	filewrite(pffFile, "AutoAdd=No");
+	filewrite(pffFile,"Lock=CaseListing");
+
+	filewrite(pffFile, "[Files]");
+	filewrite(pffFile, "Application=%v", "./CensusAllocation.ent");
+	filewrite(pffFile, "InputData=%v", "../Data/CensusUsers.csdb|CSPRODB");
+	
+	filewrite(pffFile,"[Parameters]");
+	filewrite(pffFile,"OnExit=%v","../Menu/Menu.pff");
+	filewrite(pffFile,"AUSER_ID=%v",ALLOCATE_ENUMERATOR);
+	filewrite(pffFile,"AED=%v",ME_ED);
+	filewrite(pffFile,"ASUPERVISORNAME=%v",UNAME);
+	filewrite(pffFile,"ASUPERVISOR_ID=%v",USERID);
+
+	close(pffFile);
+
+	execpff(filename(pffFile),stop);
+end
 
 //Function to upload all Census and VR data
 function uploadData()
@@ -772,7 +806,7 @@ postproc
 	elseif $ = 3 then	//View visitation record
 		viewVisitationRecord();
 	elseif $ = 4 then	//Allocate officers
-		//TODO: to be completed
+		skip to ALLOCATE_ENUMERATOR
 	elseif $ = 5 then	//mark ED as complete
 		edcomplete();
 	elseif $ = 6 then	//delete questinonaire
@@ -847,3 +881,7 @@ postproc
 
 
 //----------------------------------------------------------------
+PROC ALLOCATE_ENUMERATOR
+postproc
+	allocateenum();
+	move to SUPERVISOR_MENU;
