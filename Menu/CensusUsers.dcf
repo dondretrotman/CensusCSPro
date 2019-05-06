@@ -25,7 +25,7 @@ ZeroFill=Yes
 Label=Users Record
 Name=USERS_REC
 RecordTypeValue='2'
-RecordLen=76
+RecordLen=80
 
 [Item]
 Label=Name
@@ -56,6 +56,13 @@ Value=2;Supervisor
 Value=3;Senior Supervisor
 Value=4;Zone Manager
 Value=0;Admin
+
+[Item]
+Label=Next level user
+Name=UN_NLEVEL
+Start=77
+Len=4
+ZeroFill=Yes
 
 [Record]
 Label=Assignments Record

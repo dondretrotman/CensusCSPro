@@ -76,6 +76,7 @@ Label=User ID
 Name=USERID
 Start=57
 Len=4
+ZeroFill=Yes
 
 [Item]
 Label=Main Menu

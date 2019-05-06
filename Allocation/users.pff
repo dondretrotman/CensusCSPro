@@ -6,4 +6,5 @@ AppType=Excel2CSPro
 Application=.\users.xl2cs
 
 [Parameters]
+OnExit=../Menu/Menu.pff
 

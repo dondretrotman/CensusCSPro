@@ -26,7 +26,7 @@
       "path": "..\\Visitation record\\Visitation Record.ent"
     },
     {
-      "path": "..\\Allocations\\Assignments.ent"
+      "path": "..\\Allocation\\users.pff"
     },
     {
       "path": "..\\Data\\IndustryCodes.csdb"
@@ -36,6 +36,15 @@
     },
     {
       "path": "..\\Data\\CensusUsers.csdb"
+    },
+    {
+      "path": "..\\Allocation\\users.xl2cs"
+    },
+    {
+      "path": "..\\Allocation\\logins.xlsx"
+    },
+    {
+      "path": "..\\Visitation record\\vrreport.html"
     }
   ],
   "dictionaries": [
@@ -52,7 +61,8 @@
       "uploadForSync": true
     },
     {
-      "path": "..\\Menu\\CensusUsers.dcf"
+      "path": "..\\Menu\\CensusUsers.dcf",
+      "uploadForSync": true
     },
     {
       "path": "..\\Questionnaire\\IndustryCodes.dcf",

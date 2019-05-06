@@ -16,6 +16,7 @@ PROC GLOBAL
 //-----------------Variable Declaration-------------------
 file	pffFile,		//creates .pff file
 		loginfile,		//saves login status in a file
+		pffExcel,		//points to Excel file
 		edfile,			//saves ed completion status
 		menufile;		//saves menu location
 		
@@ -46,9 +47,10 @@ string	cases,			//case id
 		menu;			//stores menu location
 
 //-------------------Array Declaration--------------------
-array string vsCode(99);
-array string vsLabel(99);
-array string address(99,3);	//stores addresses
+array string vsCode(300);
+array string vsLabel(300);
+array numeric	vsEDCode(10);
+array string address(300,3);	//stores addresses
 array string VRARRAY(300,17);	//stores Visitation report data (200 = number of records, 18 = number of fields (VI_BUILDING, VI_DWELLING_UNIT, VI_HOUSEHOLD, VI_STATUS, VI_ADDRESS1, VI_ADDRESS2, VI_LAST_NAME, VI_FIRST_NAME, VI_TOTAL, VI_MALES, VI_FEMALES, VI_MALES_RESIDENT_ABROAD, VI_FEMALES_RESIDENT_ABROAD, VI_DATE_STARTED, VI_DATE_COMPLETED, VI_LATITUDE, VI_LONGITUDE, VI_COMMENTS, VI_ENUMERATOR))
 
 //------------------Function Declaration------------------
@@ -247,7 +249,20 @@ end;
 
 //function that launches form to allocate enumerators
 function allocateenum();
-	string pffFilename = pathname(Application) + "../Allocation/Allocation.pff";
+	string excelfile = pathname(Application) + "../Allocation/logins.xlsx";		//point to location of logins file
+	string line1 = pathname(ProgramFiles64)+"Microsoft Office\Office16\EXCEL.exe";
+	string line2 = "cd ..\Allocation";
+	string line3 = "logins.xlsx";
+	string pffFilename = pathname(Application) + "../Allocation/users.pff";
+	setfile(pffFile,pffFilename,update);
+	setfile(pffExcel,excelfile,update);		//set file for reading
+	close(pffExcel);
+	close(pffFile);
+	errmsg('"%v" "%v"',line1,excelfile);
+	execsystem(maketext('"%v" "%v"',line1,excelfile));		//edit excel
+	execpff(filename(pffFile), stop);	//convert to csdb
+	{
+	string pffFilename = pathname(Application) + "../Allocation/users.pff";
 
 	setfile(pffFile,pffFilename,create);
 
@@ -276,7 +291,7 @@ function allocateenum();
 
 	close(pffFile);
 
-	execpff(filename(pffFile),stop);
+	execpff(filename(pffFile),stop);}
 end
 
 //Function to upload all Census and VR data
@@ -687,7 +702,7 @@ postproc
 	//get allocations
 	//DEBUG: enable this after allocation have been implemented
 	uid = maketext("%v",USERID);
-	if loadcase(USERS_DICT,uid) = 0 and USERID < 1000 then		//if no allocations found
+	if loadcase(USERS_DICT,uid) = 0 and role = 1 then		//if no allocations found
 		if connection() then		//if on the internet
 			if syncconnect(CSWeb,cswebip1,ftpun,ftppw) then		//connect to csweb when outside of the Government WAN
 				syncdata(GET, USERS_DICT);		//get allocations
@@ -708,6 +723,34 @@ onfocus
 	//displays saved ED  number
 
 	$ = tonumber(loadsetting("ED")); 
+	
+	//reset arrays
+	numeric nextEntry = 1;
+	while nextEntry <= 10 do
+		vsEDCode(NextEntry) = notappl;
+		vsLabel(nextEntry) = "";
+		inc(nextEntry);
+	enddo;
+	
+	if role = 1 then
+		//load ED from lookup file
+		nextEntry = 1;
+		uid = maketext("%v",USERID);
+		if loadcase(USERS_DICT,uid) then
+			while nextEntry <= count(UED) do
+				vsEDCode(nextEntry) = UED(nextEntry);
+				vsLabel(nextEntry) = maketext("%v",UED(nextEntry));
+				inc(nextEntry);
+			enddo;
+		endif;
+		setvalueset(ME_ED,vsEDCode,VsLabel);
+		
+		if vsEDcode(1) in notappl,0 then
+			errmsg("There are no allocations available");
+		endif;
+	elseif role <> 1 then
+		setvalueset(ME_ED,ME_ED_VS1);
+	endif;
 	
 postproc
 	//saves the ED number as a setting
@@ -806,7 +849,7 @@ postproc
 	elseif $ = 3 then	//View visitation record
 		viewVisitationRecord();
 	elseif $ = 4 then	//Allocate officers
-		skip to ALLOCATE_ENUMERATOR
+		allocateenum();
 	elseif $ = 5 then	//mark ED as complete
 		edcomplete();
 	elseif $ = 6 then	//delete questinonaire

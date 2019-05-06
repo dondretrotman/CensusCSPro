@@ -71,6 +71,7 @@ Name=ME_ED
 Position=222,81,265,101
 Item=ME_ED,CENSUS_MENU_DICT
 FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
 Form=1
   
 [Text]

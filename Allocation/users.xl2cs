@@ -5,13 +5,14 @@ StartingRow=2
 CaseManagement=CreateNewFile
 RunOnlyIfNewer=No
 
-Mapping=USERS_REC;@1;Users
+Mapping=USERS_REC;@2;Users
 Mapping=USERS_REC.ID;@1
 Mapping=UN_NAME;@2
 Mapping=UN_USERNAME;@3
 Mapping=UN_ROLE;@4
+Mapping=UN_NLEVEL;@5
 
-Mapping=ASSIGNMENTS_REC;@2;Assignments
+Mapping=ASSIGNMENTS_REC;@3;Assignments
 Mapping=ASSIGNMENTS_REC.ID;@1
 Mapping=UED;@3
 Mapping=UPARISH;@3
