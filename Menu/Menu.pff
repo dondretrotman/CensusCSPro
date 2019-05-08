@@ -22,6 +22,7 @@ USERS_DICT=..\Data\CensusUsers.csdb|CSPRODB
 VISITATION_RECORD_DICT=..\Data\VisitationRecord.csdb|CSPRODB
 
 [UserFiles]
+BATFILE=
 EDFILE=
 LOGINFILE=
 MENUFILE=
