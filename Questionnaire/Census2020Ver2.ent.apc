@@ -574,6 +574,13 @@ preproc
 	ask if H11 = 6;
 
 //-------------------------------------------------------------
+PROC H12
+//H12 – How is the foundation of the house constructed?
+postproc
+	//if rented room, skip to H16C after observing walls, roof etc
+	if H8 = 2 and $ <> 4 then
+		skip to H16C;
+	endif;
 PROC H12_OTHER
 //H12 – How is the foundation of the house constructed?
 preproc

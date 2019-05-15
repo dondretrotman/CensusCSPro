@@ -834,7 +834,7 @@ postproc
 	elseif $ = 3 then	//View visitation record
 		viewVisitationRecord();
 	elseif $ = 4 then	//Allocate officers
-		allocateenum();
+		//allocateenum();
 	elseif $ = 5 then	//mark ED as complete
 		edcomplete();
 	elseif $ = 6 then	//delete questinonaire
