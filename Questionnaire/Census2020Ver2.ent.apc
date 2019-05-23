@@ -1010,6 +1010,14 @@ preproc
 
 //-------------------------------------------------------------
 
+PROC P15A
+//P15(a) - Where you born in Barbados?
+postproc
+	if $ = 2 then
+		skip to P16A;
+	endif;
+	
+//----------------------------------------------
 PROC P15B
 //P16(b) – If Yes, in which parish (Where your mother was living at the time)
 preproc
