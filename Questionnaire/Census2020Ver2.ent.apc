@@ -37,6 +37,10 @@ numeric i, 				//throwaway variable for loops
 		residents, 		//
 		nonreshouse, 	//flag that is set for non-resident house
 		diff,			//for calculating date differences
+		censusdate,		//stores census date
+		censusyear,
+		censusmonth,
+		censusday,
 		numheads,		//number of heads of household
 		numspouses,		//number of spouses
 		vsindex,		//valueset index
@@ -44,6 +48,7 @@ numeric i, 				//throwaway variable for loops
 	
 string 	checkboxcodes,	//for creating dynamic checkboxes
 		checkboxalpha,	//checkbox alpha code
+		censusmonthtext,
 		caselabel,		//stores the label for the current case
 		idno;			//stores id number when loading cases
 
@@ -59,7 +64,7 @@ array string  occupationLabels(534);
 //--------------------------FUNCTION DECLARATION-------------------------------
 //Checks that date is valid. Returns 1 if valid. Returns 0 if invalid
 function checkDate(YEAR, MONTH, DAY)
-	if not YEAR in 1900:2020,9999 then
+	if not YEAR in 1900:censusyear,9999 then
 		errmsg("Invalid Year. (=%d)",YEAR);
 		checkDate = 0;
 		exit;
@@ -82,7 +87,7 @@ function checkDate(YEAR, MONTH, DAY)
 			errmsg("%s does not have %d days. Please confirm.",getlabel(DOB_MONTH_VS1,MONTH),DAY);
 			checkDate = 0;
 		endif;
-	elseif MONTH = 2 and YEAR in 1900:2020 then					//Except February alone
+	elseif MONTH = 2 and YEAR in 1900:censusyear then					//Except February alone
 		if YEAR % 4 = 0 and YEAR <> 1900 then		
 			if not DAY in 1:29,99 then		//Which has 29 days each leap year
 				errmsg("%s does not have %d days. Please confirm.",getlabel(DOB_MONTH_VS1,MONTH),DAY);
@@ -181,6 +186,13 @@ preproc
 
 PROC PART_A
 onfocus
+	//set census date
+	censusdate = 20200501;
+	censusyear = 2020;
+	censusmonth = 05;
+	censusmonthtext = "May";
+	censusday = 01;
+	
 	//show names in label fields when first starting the questionnaire
 	do i = 1 while i <= totocc(POPULATION000) and FIRST_NAME(i) <> ""		//DEBUG: totocc and count all return 0 if executed before the roster that they are referring to
 		setocclabel(POPULATION000(i), strip(FIRST_NAME(i)));
@@ -340,7 +352,11 @@ preproc
 	if visualvalue(INTERVIEWER_ID) = notappl then
 		INTERVIEWER_ID = tonumber(sysparm("USERID"));
 	endif;
-	//TODO: pull supervisor ID from allocations app
+	//DONE TODO: pull supervisor ID from allocations app. To be tested
+	if visualvalue(SUPERVISOR_ID) = notappl then
+		loadcase(USERS_DICT,INTERVIEWER_ID);
+		SUPERVISOR_ID = UN_NLEVEL;
+	endif;
 
 //------------------------------------------------------------------------------
 PROC ED
@@ -388,6 +404,10 @@ postproc
 	if $ = 2 then	//if unoccupied 
 		caselabel = maketext("VACANT-%v-%v-%v-%v",ED,BUILDING,DWELLING_UNIT,HOUSEHOLD);
 		setcaselabel(CENSUS2020_DICT,caselabel);
+		//skip to HOUSING_FORM;
+		if LAST_NAME(1) = "" and FIRST_NAME(1) = "" and visualvalue(SEX(1)) = notappl then		//check that items in the first individual are blank
+			delete(POPULATION000(1));		//delete record if it exists
+		endif;
 		endgroup;	//don't enter any people
 	endif;
 
@@ -445,8 +465,8 @@ Postproc
 		reenter;
 	endif;
 	
-	if datediff(DOB,20200501) < 0 then		//if DOB is before census date
-		errmsg("This person is too young to be enumerated. Only collect information on persons born on or after 1 May, 2020");
+	if datediff(DOB,censusdate) < 0 then		//if DOB is before census date
+		errmsg("This person is too young to be enumerated. Only collect information on persons born on or after %v %v, %v",censusday,censusmonthtext,censusyear);
 		reenter;			//reenter DOB
 	endif;
 
@@ -530,6 +550,10 @@ postproc
 			errmsg("Number of persons in household (%d) does not match number in individual listing (%d)",$,totocc(POPULATION000))
 			select("Add more people",ADDPER(totocc()),"Change number of persons",$);
 		endif;
+	endif;
+	if $ > 0 and visualvalue(H14A) = 2 then		//if DU is unoccupied but has persons living there
+		errmsg("Unit is unoccupied but has %v person",$)
+		select("change occupancy",H14A,"Chang enumber of persons",$);
 	endif;
 	
 
@@ -981,7 +1005,7 @@ postproc
 
 //------------------------------------------------------------------------------------
 PROC P12C_OTHER
-////P12(c) – What type of aid are you required to use because of the disability? (Score as many as are applicable)
+////P12(c) (Labeled P12(b) in the printed questionnaire) – What type of aid are you required to use because of the disability? (Score as many as are applicable)
 preproc
 	//only ask if other is selected
 	ask if pos("H",P12C) > 0;
@@ -1019,13 +1043,13 @@ postproc
 	
 //----------------------------------------------
 PROC P15B
-//P16(b) – If Yes, in which parish (Where your mother was living at the time)
+//P15(b) – If Yes, in which parish (Where your mother was living at the time)
 preproc
 	ask if P15A = 1;	//only ask if born in barbados
 	
 //-----------------------------------------------
 PROC P16A
-//P17(a) – In which country were you born?
+//P16(a) – In which country were you born?
 onfocus
 //If Born after May 1, 2019 (If under 1 year old), Go to (final Question). Otherwise, go to question living one year ago (P18)
 	if AGE < 1 then		//if less than a year old	//ADD CHECKS FOR DOB
@@ -1104,7 +1128,7 @@ preproc
 	
 //-------------------------------------------------
 PROC P19C
-//P20(c) – In what year did you return to Barbados to live?
+//P19(c) – In what year did you return to Barbados to live?
 //BATCH: check that person returned after person turned 5 years old
 preproc
 	ask if P19A = 1;		//only ask if left  barbados for > 5 years
@@ -1118,7 +1142,7 @@ onfocus
 
 //--------------------------------------------
 PROC P20A
-//P21(a) Are you currently attending school or any other educational institution?
+//P20(a) Are you currently attending school or any other educational institution?
 postproc
 	if $ = 2 then				//if NO
 		if AGE < 3 then			//and less than 3 years old
@@ -1132,7 +1156,7 @@ postproc
 
 //-------------------------------------------------------------------
 PROC P20B
-//P21(b) – Please indicate whether full-time or part-time
+//P20(b) – Please indicate whether full-time or part-time
 PROC P20C
 //P20(c) – What type of school or educational institution are you attending?
 PROC P20C_OTHER
@@ -1229,7 +1253,7 @@ preproc
 
 //-------------------------------------------------------------
 PROC P23
-//P24 – How many years of schooling have you completed?
+//P23 – How many years of schooling have you completed?
 //BATCH: make checks based on age and highest level of educational institution
 PROC P24AI
 //P24(a)i – What examinations have you passed (score as many as are applicable)
@@ -1273,7 +1297,7 @@ postproc
 	
 //--------------------------------------------------
 PROC P25B_OTHER
-//P26(b) – Where do you use the internet? (Score as many as applicable)
+//P25(b) – Where do you use the internet? (Score as many as applicable)
 preproc
 	//only ask if other is selected
 	ask if pos("H",P25B) > 0;
@@ -1287,7 +1311,7 @@ onfocus
 	
 //--------------------------------------------------------
 PROC P26AI
-//P27(a)i – Were you ever trained\are you being trained for any occupation or profession?
+//P26(a)i – Were you ever trained\are you being trained for any occupation or profession?
 preproc
 	if AGE < 15 then		//if under 15 years old
 		skip to POP_END;		//skip to last question
@@ -1323,7 +1347,7 @@ postproc
 	
 //-----------------------------------------------------------------------
 PROC P26B
-//P27(b) – Have you completed training or are you still being trained?
+//P26(b) – Have you completed training or are you still being trained?
 postproc
 	if $ in 2,3 then		//if did not complete training or still being trained
 		skip to P27;		//skip to where trained
@@ -1394,7 +1418,7 @@ postproc
 		
 //------------------------------------------------------------------
 PROC P30B
-//P31(b) – How old were you at the birth of your first liveborn child?
+//P30(b) – How old were you at the birth of your first liveborn child?
 onfocus
 	$ = tempage;
 	
@@ -1432,7 +1456,7 @@ postproc
 	
 //--------------------------------------------------------------------
 PROC P30D
-//P31(d) – How old were you at the birth of your last liveborn child?
+//P30(d) – How old were you at the birth of your last liveborn child?
 onfocus
 	$ = tempage;
 	
@@ -1455,6 +1479,10 @@ postproc
 		errmsg("Had %s liveborn children in the last twelve months but %d total live births",getlabel(P31_VS1,P31),P29BI)
 		select("Change number of liveborn children",P29BI,"Change births in last 12 months",$);
 	endif;
+	if $ in 1:4 and datediff(P30C,censusdate,"m") > 12 then		//if last live birth was more than 12 months ago.
+		errmsg("Last live birth was on %v. More than 12 months from the Census date",edit("9999/99/99",P30C))
+		select("Change date of birth of last liveborn child",POP_LASTLIVEBORN,"Change births in last 12 months",$);
+	endif;
 
 //-----------------------------------------------------------------------
 PROC P32A
@@ -1466,13 +1494,13 @@ postproc
 	
 //-----------------------------------------------------------
 PROC P32BI
-//P33(b)i – If yes and MARRIED, Are you living with your husband?
+//P32(b)i – If yes and MARRIED, Are you living with your husband?
 preproc
 	ask if P32A = 1 and P9 = 1;		//only ask if currently  living with a partner and married
 
 //---------------------------------------------------------------------------------
 PROC P32BII
-//P33(b)ii – If NO, Have you ever lived with a husband\Common law partner?
+//P32(b)ii – If NO, Have you ever lived with a husband\Common law partner?
 preproc
 	ask if P32A = 2;		//only ask if not currently living with a partner
 	
@@ -1507,7 +1535,7 @@ onfocus
 	
 //----------------------------------------------------------------------
 PROC P32D
-//P33(d) – If with husband or Common law partner, how many years have you and your current partner been living together?
+//P32(d) – If with husband or Common law partner, how many years have you and your current partner been living together?
 preproc
 	ask if P32A = 1;		//only ask if with husband or common law partner
 	
@@ -1527,14 +1555,14 @@ onfocus
 	
 //--------------------------------------------------------
 PROC P33_OTHER
-//P34 – What was your main activity during the 12 months ending 30th April 2020?
+//P33 – What was your main activity during the 12 months ending 30th April 2020?
 preproc
 	//only ask if other is selected
 	ask if P33 = 8;
 
 //-------------------------------------------------------------
 PROC P34
-//P35 – During the 12 months ending 30th April 2020, did you work for an employer or for yourself?
+//P34 – During the 12 months ending 30th April 2020, did you work for an employer or for yourself?
 postproc
 	if $ = 9 then		//if did not work
 		skip to P38;	//go to sources of livelihood other than employment
@@ -1542,7 +1570,7 @@ postproc
 	
 //-------------------------------------------------------------
 PROC P34_OTHER
-//P35 – During the 12 months ending 30th April 2020, did you work for an employer or for yourself?
+//P34 – During the 12 months ending 30th April 2020, did you work for an employer or for yourself?
 preproc
 	//only ask if other is selected
 	ask if P34 in 4,8;
@@ -1584,7 +1612,7 @@ postproc
 	
 //----------------------------------------------------------------------------------
 PROC P38
-//P39 – What are your sources of livelihood other than from employment? (Score as many as applicable)
+//P38 – What are your sources of livelihood other than from employment? (Score as many as applicable)
 postproc
 	if pos("K",$) > 0 and length(strip($)) > 1 then		//if None and other options selected
 		errmsg("Cannot be none and have other selections");
@@ -1596,16 +1624,24 @@ postproc
 	endif;
 	
 //----------------------------------------------------------
+PROC P38_OTHERASSISTANCE
+//P38 – What are your sources of livelihood other than from employment? (Score as many as applicable)
+preproc
+	//only ask if other is selected
+	ask if pos("I",P38) > 0;
+
+//-------------------------------------------------------------
 PROC P38_OTHER
-//P39 – What are your sources of livelihood other than from employment? (Score as many as applicable)
+//P38 – What are your sources of livelihood other than from employment? (Score as many as applicable)
 preproc
 	//only ask if other is selected
 	ask if pos("J",P38) > 0;
 
 //-------------------------------------------------------------
 PROC P39A
-//P49(a) – What is the normal pay period from your main occupation\job?
+//P39(a) – What is the normal pay period from your main occupation\job?
 PROC P39A_OTHER
+//P39(a) – What is the normal pay period from your main occupation\job?
 preproc
 	//only ask if other is selected
 	ask if P39A = 4;
@@ -1619,7 +1655,10 @@ postproc
 	endif;
 	
 //------------------------------------------------------------
+PROC P41A
+//P41(a) – Are you involved in any agricultural activity?
 PROC P41B
+//P41(b) – Do you own any agricultural land?
 postproc
 	//Skip this and other agriculture questions if the last two questions are no
 	If P41A = 2 and $ = 2 then		//if the last two questions are "no"
@@ -1627,7 +1666,10 @@ postproc
 	endif;
 	
 //-----------------------------------------------------------------------------
+PROC P43
+///P43 – In what type of agricultural activity are you involved? 
 PROC P43_OTHER
+//P43 – In what type of agricultural activity are you involved? 
 preproc
 	//only ask if other is selected
 	ask if pos("K",P43) > 0;
@@ -1641,21 +1683,25 @@ postproc
 	endif;
 	
 //-------------------------------------------------------------------
+PROC P47B
+//P47(b) – If Yes, Please specify the type of crime 
 PROC P47B_OTHER
+//P47(b) – If Yes, Please specify the type of crime 
 preproc
 	//only ask if other is selected
 	ask if pos("H",P47B) > 0;
 
 //-------------------------------------------------------------
 PROC P47C
+//P47(c) – Out of the crimes indicated, which crimes were reported? 
 onfocus
 	//DEBUG: Dynamic valueset not showing up
 	//create dynamic checkboxes based on previous question
 	vsindex = 1;
-	checkboxcodes = "ABCDEFGH";
+	checkboxcodes = "ABCDEFGHI";
 	clearStringArray(vsAlphaCodes);		//initialise array
 	
-	do i = 1 while i <= 8;		//loop through all checkboxes
+	do i = 1 while i <= 9;		//loop through all checkboxes
 		checkboxalpha = checkboxcodes[i:1];	//convert index to alpha code
 		if pos(checkboxalpha,P47B) > 0 then	//if the checkbox was marked in the previous question
 			vsalphacodes(vsindex) = checkboxalpha;	//add it to the valueset
@@ -1668,7 +1714,7 @@ onfocus
 	setvalueset($,vsalphacodes,vslabels);	//create valueset based on the above
 
 postproc
-	if pos("I",$) > 0 and length(strip($)) > 1 then
+	if pos("J",$) > 0 and length(strip($)) > 1 then
 		errmsg("cannot be not stated and another option");
 		reenter;
 	endif;
@@ -1680,6 +1726,7 @@ postproc
 
 //-------------------------------------------------------------------------
 PROC P47C_OTHER
+//P47(c) – Out of the crimes indicated, which crimes were reported? 
 preproc
 	//only ask if other is selected
 	ask if pos("H",P47C) > 0;

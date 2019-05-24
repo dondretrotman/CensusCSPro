@@ -113,7 +113,7 @@ Item=E8B
 Name=FORM004
 Label=Population
 Level=1
-Size=8845,568
+Size=8845,567
   
 Item=POPULATION001
   
@@ -1742,7 +1742,7 @@ Type=Record
 TypeName=POPULATION
 Max=40
 MaxField=HNOPERSONS
-DisplaySize=18,26,8820,543
+DisplaySize=18,25,8820,542
 Orientation=Vertical
 ColumnWidth=0
 StubColumnWidth=159
@@ -2915,7 +2915,7 @@ Width=56
   
 [HeaderText]
 Position=0,0,159,56
-Text=P26(a)ii - If YES, for which occupation\\profession?
+Text=P26(a)ii - If YES, for which occupation\profession?
  
 [Field]
 Name=P26AII
@@ -2926,7 +2926,7 @@ DataCaptureType=DropDown
   
 [Text]
 Position=0,0,326,16
-Text=P26(a)ii - If YES, for which occupation\\profession?
+Text=P26(a)ii - If YES, for which occupation\profession?
  
 [EndColumn]
   
@@ -3637,6 +3637,25 @@ Text=P38 - What are your sources of livelihood other than from employment? (Scor
 [EndColumn]
   
 [Column]
+Width=40
+  
+[HeaderText]
+Position=33,0,159,40
+Text=P38 - Other Public Assistance
+ 
+[Field]
+Name=P38_OTHERASSISTANCE
+Position=168,0,869,20
+Item=P38_OTHERASSISTANCE,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+  
+[Text]
+Text=P38 - Other Public Assistance
+ 
+[EndColumn]
+  
+[Column]
 Width=28
   
 [HeaderText]
@@ -3935,11 +3954,11 @@ Text=P47(a) - Have you ever been a victim of crime during the past 12 months end
 [EndColumn]
   
 [Column]
-Width=56
+Width=72
   
 [HeaderText]
-Position=12,0,159,56
-Text=P47(b) - If yes, Please specify the type of crime
+Position=12,0,159,72
+Text=P47(b) - If yes, Please specify the type of crime (Score as many as applicable)
  
 [Field]
 Name=P47B
@@ -3950,7 +3969,7 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
   
 [Text]
-Text=P47(b) - If yes, Please specify the type of crime
+Text=P47(b) - If yes, Please specify the type of crime (Score as many as applicable)
  
 [EndColumn]
   
@@ -3975,11 +3994,11 @@ Text=P47(b) - Other
 [EndColumn]
   
 [Column]
-Width=72
+Width=104
   
 [HeaderText]
-Position=27,0,159,72
-Text=P47(c) - Out of the crimes indicated, which crimes were reported?
+Position=27,0,159,104
+Text=P47(c) - Out of the crimes indicated, which crimes were reported? (Score as many as applicable)
  
 [Field]
 Name=P47C
@@ -3990,7 +4009,7 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
   
 [Text]
-Text=P47(c) - Out of the crimes indicated, which crimes were reported?
+Text=P47(c) - Out of the crimes indicated, which crimes were reported? (Score as many as applicable)
  
 [EndColumn]
   
@@ -4136,35 +4155,35 @@ Length=4
 Name=POP_AGRICULTURE
 Label=Agriculture
 DisplayTogether=Yes
-Position=105
+Position=106
 Length=2
   
 [Block]
 Name=POP_AGRICULTURE2
 Label=Agriculture
 DisplayTogether=Yes
-Position=108
+Position=109
 Length=3
   
 [Block]
 Name=POP_FOOD
 Label=Food Security
 DisplayTogether=Yes
-Position=112
+Position=113
 Length=3
   
 [Block]
 Name=POP_CRIME
 Label=Crime
 DisplayTogether=Yes
-Position=116
+Position=117
 Length=0
   
 [Block]
 Name=POP_END
 Label=End
 DisplayTogether=Yes
-Position=122
+Position=123
 Length=1
   
 [EndGrid]

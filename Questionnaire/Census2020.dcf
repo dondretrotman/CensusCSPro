@@ -1021,7 +1021,7 @@ Name=POPULATION
 RecordTypeValue='3'
 Required=No
 MaxRecords=40
-RecordLen=1266
+RecordLen=1316
 
 [Item]
 Label=Individual Number
@@ -3004,16 +3004,23 @@ Value='J           ';Other
 Value='K           ';None
 
 [Item]
+Label=P38 - Other Public Assistance
+Name=P38_OTHERASSISTANCE
+Start=971
+Len=50
+DataType=Alpha
+
+[Item]
 Label=P38 - Other
 Name=P38_OTHER
-Start=971
+Start=1021
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P39(a) - What is the normal pay period from your main occupation\job?
 Name=P39A
-Start=1021
+Start=1071
 Len=1
 ZeroFill=Yes
 
@@ -3028,21 +3035,21 @@ Value=4;Other
 [Item]
 Label=P39(a) - Other
 Name=P39A_OTHER
-Start=1022
+Start=1072
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P39(b) - What was your gross pay or income from your main occupation during the last pay period? (Before tax or deductions)
 Name=P39B
-Start=1072
+Start=1122
 Len=6
 ZeroFill=Yes
 
 [Item]
 Label=P39(c) - What was your monthly income from sources of livelihood other than employment?
 Name=P39C
-Start=1078
+Start=1128
 Len=2
 ZeroFill=Yes
 
@@ -3065,7 +3072,7 @@ Value=12;Over $10000
 [Item]
 Label=P40 - During the past three months, were you unable to go to work due to lack of money or transportation?
 Name=P40
-Start=1080
+Start=1130
 Len=1
 ZeroFill=Yes
 
@@ -3078,7 +3085,7 @@ Value=2;No
 [Item]
 Label=P41(a) - Are you involved in any agricultural activity?
 Name=P41A
-Start=1081
+Start=1131
 Len=1
 ZeroFill=Yes
 
@@ -3091,7 +3098,7 @@ Value=2;No
 [Item]
 Label=P41(b) - Do you own any agricultural land?
 Name=P41B
-Start=1082
+Start=1132
 Len=1
 ZeroFill=Yes
 
@@ -3104,7 +3111,7 @@ Value=2;No
 [Item]
 Label=P42 - What is your area of involvement in agricultural activity
 Name=P42
-Start=1083
+Start=1133
 Len=1
 ZeroFill=Yes
 
@@ -3119,7 +3126,7 @@ Value=4;Landless farmer
 [Item]
 Label=P43 - In what type of agricultural activity are you involved? (Score as many as applicable)
 Name=P43
-Start=1084
+Start=1134
 Len=11
 DataType=Alpha
 
@@ -3141,14 +3148,14 @@ Value='K          ';Other
 [Item]
 Label=P43 - Other
 Name=P43_OTHER
-Start=1095
+Start=1145
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P44 - During the past four weeks, did you have no food due to lack of resources?
 Name=P44
-Start=1145
+Start=1195
 Len=1
 ZeroFill=Yes
 
@@ -3163,7 +3170,7 @@ Value=4;More than 10
 [Item]
 Label=P45 - Did you go a whole day and night without eating anything because there was not enough food?
 Name=P45
-Start=1146
+Start=1196
 Len=1
 ZeroFill=Yes
 
@@ -3178,7 +3185,7 @@ Value=4;More than 10
 [Item]
 Label=P46 - During the past three months, did you ever fall ill (and required medical attention) but did not go to a healthcare facility because of a lack of resources?
 Name=P46
-Start=1147
+Start=1197
 Len=1
 ZeroFill=Yes
 
@@ -3193,7 +3200,7 @@ Value=4;More than 10
 [Item]
 Label=P47(a) - Have you ever been a victim of crime during the past 12 months ending april 30, 2020?
 Name=P47A
-Start=1148
+Start=1198
 Len=1
 ZeroFill=Yes
 
@@ -3205,62 +3212,64 @@ Value=2;No
 Value=3;Don't Know
 
 [Item]
-Label=P47(b) - If yes, Please specify the type of crime
+Label=P47(b) - If yes, Please specify the type of crime (Score as many as applicable)
 Name=P47B
-Start=1149
+Start=1199
 Len=8
 DataType=Alpha
 
 [ValueSet]
-Label=P47(b) - If yes, Please specify the type of crime
+Label=P47(b) - If yes, Please specify the type of crime (Score as many as applicable)
 Name=P47B_VS1
-Value='A       ';Murder
+Value='A       ';Attempted Murder
 Value='B       ';Robbery
 Value='C       ';Kidnapping
 Value='D       ';Wounding
 Value='E       ';Shooting
 Value='F       ';Larceny
-Value='G       ';Rape\Sexual Abuse
-Value='H       ';Other
+Value='G       ';Physical Abuse
+Value='H       ';Rape\Sexual Abuse
+Value='I       ';Other
 
 [Item]
 Label=P47(b) - Other
 Name=P47B_OTHER
-Start=1157
+Start=1207
 Len=50
 DataType=Alpha
 
 [Item]
-Label=P47(c) - Out of the crimes indicated, which crimes were reported?
+Label=P47(c) - Out of the crimes indicated, which crimes were reported? (Score as many as applicable)
 Name=P47C
-Start=1207
+Start=1257
 Len=9
 DataType=Alpha
 
 [ValueSet]
-Label=P47(c) - Out of the crimes indicated, which crimes were reported?
+Label=P47(c) - Out of the crimes indicated, which crimes were reported? (Score as many as applicable)
 Name=P47C_VS1
-Value='A        ';Murder
+Value='A        ';Attempted Murder
 Value='B        ';Robbery
 Value='C        ';Kidnapping
 Value='D        ';Wounding
 Value='E        ';Shooting
 Value='F        ';Larceny
-Value='G        ';Rape\Sexual Abuse
-Value='H        ';Other
-Value='I        ';None
+Value='G        ';Physical Abuse
+Value='H        ';Rape\Sexual Abuse
+Value='I        ';Other
+Value='J        ';None
 
 [Item]
 Label=P47(c) - Other
 Name=P47C_OTHER
-Start=1216
+Start=1266
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P48 - Where did you spend the night of May 1 2020?
 Name=P48
-Start=1266
+Start=1316
 Len=1
 ZeroFill=Yes
 
@@ -3277,7 +3286,7 @@ Value=5;Other
 Label=Metadata
 Name=METADATA
 RecordTypeValue='4'
-RecordLen=377
+RecordLen=379
 
 [Item]
 Label=Interview Start Date
@@ -3455,27 +3464,27 @@ DataType=Alpha
 Label=Interviewer ID
 Name=INTERVIEWER_ID
 Start=267
-Len=3
+Len=4
 ZeroFill=Yes
 
 [Item]
 Label=Supervisor ID
 Name=SUPERVISOR_ID
-Start=270
-Len=3
+Start=271
+Len=4
 ZeroFill=Yes
 
 [Item]
 Label=Coder ID
 Name=CODER_ID
-Start=273
+Start=275
 Len=3
 ZeroFill=Yes
 
 [Item]
 Label=Interview status
 Name=INTERVIEW_STATUS
-Start=276
+Start=278
 Len=1
 ZeroFill=Yes
 
@@ -3491,7 +3500,7 @@ Value=5;Refused
 [Item]
 Label=Delete Flag
 Name=DELETE_FLAG
-Start=277
+Start=279
 Len=1
 ZeroFill=Yes
 
@@ -3509,6 +3518,6 @@ Value=1;(DELETED)
 [Item]
 Label=Comments
 Name=COMMENTS
-Start=278
+Start=280
 Len=100
 DataType=Alpha
