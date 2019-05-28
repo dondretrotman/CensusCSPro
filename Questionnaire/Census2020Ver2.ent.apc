@@ -194,7 +194,7 @@ onfocus
 	censusday = 01;
 	
 	//show names in label fields when first starting the questionnaire
-	do i = 1 while i <= totocc(POPULATION000) and FIRST_NAME(i) <> ""		//DEBUG: totocc and count all return 0 if executed before the roster that they are referring to
+	do i = 1 while i <= maxocc(POPULATION000) and FIRST_NAME(i) <> ""		//DEBUG: totocc and count all return 0 if executed before the roster that they are referring to. should be fixed
 		setocclabel(POPULATION000(i), strip(FIRST_NAME(i)));
 		setocclabel(POPULATION001(i), strip(FIRST_NAME(i)));	//DEBUG: each occurence label is the first one
 	enddo;
@@ -1473,7 +1473,7 @@ postproc
 //---------------------------------------------------------------
 PROC P31
 //P31 – How many live births did you have during the 12 months ending 30th April 2020?
-//TODO:validate against P30Bi and P30CI
+//done TODO:validate against P30Bi and P30CI
 postproc
 	if $ in 1:4 and P29BI = 0 then		//if had children in the last 12 months but had no children in total
 		errmsg("Had %s liveborn children in the last twelve months but %d total live births",getlabel(P31_VS1,P31),P29BI)

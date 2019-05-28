@@ -11,10 +11,10 @@
       "path": "..\\Menu\\Menu.ent"
     },
     {
-      "path": "..\\Data Entry\\Census2020Ver2.pff"
+      "path": "..\\Questionnaire\\Census2020Ver2.pff"
     },
     {
-      "path": "..\\Data Entry\\Census2020Ver2.ent"
+      "path": "..\\Questionnaire\\Census2020Ver2.ent"
     },
     {
       "path": "..\\Visitation record\\Visitation Record.pff"
@@ -30,6 +30,18 @@
     },
     {
       "path": "..\\Data\\CensusUsers.csdb"
+    },
+    {
+      "path": "..\\Visitation record\\vrreport.html"
+    },
+    {
+      "path": "..\\Allocation\\logins.xlsx"
+    },
+    {
+      "path": "..\\Allocation\\users.pff"
+    },
+    {
+      "path": "..\\Allocation\\users.xl2cs"
     }
   ],
   "dictionaries": [
@@ -48,6 +60,14 @@
     {
       "path": "..\\Menu\\CensusUsers.dcf",
       "uploadForSync": true
+    },
+    {
+      "path": "..\\Questionnaire\\IndustryCodes.dcf",
+      "uploadForSync": true
+    },
+    {
+      "path": "..\\Questionnaire\\OccupationCodes.dcf",
+      "uploadForSync": true
     }
   ],
   "deployment": {
@@ -55,6 +75,6 @@
     "cswebUrl": "http:\/\/csweb.teleyah.com\/api",
     "ftpUrl": "ftp:\/\/",
     "localFilePath": ".\\Census2020Ver2.zip",
-    "localFolderPath": "..\\Deploy"
+    "localFolderPath": "\\\\172.28.10.220\\c$\\wamp64\\www\\csweb\\files\\Census\\Update"
   }
 }

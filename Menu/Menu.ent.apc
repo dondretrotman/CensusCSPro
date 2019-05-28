@@ -79,7 +79,7 @@ function launchVR()
 	filewrite(pffFile,"[Files]");
 	filewrite(pffFile,"Application=%s","./Visitation Record.ent");
 	filewrite(pffFile,"InputData=%s","../Data/VisitationRecord.csdb|CSPRODB");
-	filewrite(pffFile,"Paradata=%s","../Data/Visitation Record.cslog");
+	filewrite(pffFile,"Paradata=%s",maketext("../Data/VR%v-%v.cslog",ME_ED,UNAME));
 	
 	filewrite(pffFile,"[UserFiles]");
 	filewrite(pffFile,"PFFFILE=%s","");
@@ -178,7 +178,7 @@ function addQuestionnaire()
 	filewrite(pffFile,"[Files]");
 	filewrite(pffFile,"Application=%s","./Census2020Ver2.ent");
 	filewrite(pffFile,"InputData=%s","../Data/CensusData.csdb|CSPRODB");
-	filewrite(pffFile,"Paradata=%s",maketext("../Data/Census%03d.cslog",ME_ED));
+	filewrite(pffFile,"Paradata=%s",maketext("../Data/Census%v-%v.cslog",ME_ED,UNAME));
 
 	filewrite(pffFile,"[ExternalFiles]");
 	filewrite(pffFile,"VISITATION_RECORD_DICT=%s","../Data/VisitationRecord.csdb|CSPRODB");
@@ -223,7 +223,7 @@ string pffFilename = pathname(application) + "..\Questionnaire\Census2020Ver2.pf
 	filewrite(pffFile,"[Files]");
 	filewrite(pffFile,"Application=%s","./Census2020Ver2.ent");
 	filewrite(pffFile,"InputData=%s","../Data/CensusData.csdb|CSPRODB");
-	filewrite(pffFile,"Paradata=%s",maketext("../Data/Census%03d.cslog",ME_ED));
+	filewrite(pffFile,"Paradata=%s",maketext("../Data/Census%V-%V.cslog",ME_ED,UNAME));
 
 	filewrite(pffFile,"[ExternalFiles]");
 	filewrite(pffFile,"VISITATION_RECORD_DICT=%s","../Data/VisitationRecord.csdb|CSPRODB");
@@ -283,17 +283,24 @@ end
 function uploadData()
 	errflag = 0;		//clears  flag
 	if syncconnect(CSWeb,cswebip1,ftpun,ftppw) or syncconnect(CSWeb,cswebip2,ftpun,ftppw) then	//connect to FTP when outside of the Government WAN
-		if not syncdata(PUT,CENSUS2020_DICT,maketext("%2d%3d",ME_PARISH,ME_ED)) then		//Upload Labourforce data
+		if not syncdata(PUT,CENSUS2020_DICT,maketext("%v%v",ME_PARISH,ME_ED)) then		//Upload Labourforce data
 			inc(errflag);
 		endif;
-		if not syncdata(PUT,VISITATION_RECORD_DICT,maketext("%2d%3d",ME_PARISH,ME_ED)) then		//Upload Control Sheet
+		if not syncdata(PUT,VISITATION_RECORD_DICT,maketext("%v%v",ME_PARISH,ME_ED)) then		//Upload Control Sheet
 			inc(errflag);
 		endif;
 		if not syncdata(GET, USERS_DICT) then		//get allocations
 			inc(errflag);
 		endif;
-		if not syncfile(PUT,"../Data/Census2020Ver2.cslog",maketext("CensusLogs/Census%s.cslog",getdeviceid())) then		//Upload paradata logs
-			inc(errflag);
+		if fileexist(maketext("../Data/Census%v-%v.cslog",ME_ED,UNAME)) then
+			if not syncfile(PUT,maketext("../Data/Census%v-%v.cslog",ME_ED,UNAME),maketext("CensusLogs/Census%V-%V.cslog",ME_ED,UNAME)) then		//Upload paradata logs
+				inc(errflag);
+			endif;
+		endif;
+		if fileexist(maketext("../Data/VR%v-%v.cslog",ME_ED,UNAME)) then
+			if not syncfile(PUT,maketext("../Data/VR%v-%v.cslog",ME_ED,UNAME),maketext("CensusLogs/VR%V-%V.cslog",ME_ED,UNAME)) then		//Upload paradata logs
+				inc(errflag);
+			endif;
 		endif;
 		if not syncfile(GET,"/Census/Update/Questionnaire/Census2020Ver2.pen","../Questionnaire/Census2020Ver2.pen") then		//update questionnaire
 			inc(errflag);
@@ -301,16 +308,16 @@ function uploadData()
 		if not syncfile(GET,"/Census/Update/Visitation Record/Visitation Record.pen","../Visitation Record/Visitation Record.pen") then		//update control sheet
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/Census/Update/Allocation/Assignments.pen","../Allocation/Assignments.pen") then		//update Allocation form
+		{if not syncfile(GET,"/Census/Update/Allocation/Assignments.pen","../Allocation/Assignments.pen") then		//update Allocation form
 			inc(errflag);
-		endif;
+		endif;}
 		if not syncfile(GET,"/Census/Update/Menu/Menu.pen","../Menu/Menu.pen") then		//update Menu
 			inc(errflag);
 		endif;
 		if not syncfile(GET,"/Census/Update/Menu/Menu.pff","../Menu/Menu.pff") then		//update Menu
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/CSPro/Update/Visitation Record/vrreport.html","../Visitation Record/vrreport.html") then		//report template
+		if not syncfile(GET,"/Census/Update/Visitation Record/vrreport.html","../Visitation Record/vrreport.html") then		//report template
 			inc(errflag);
 		endif;
 		syncdisconnect();		//disconnect
@@ -340,9 +347,9 @@ function updateApp()
 		if not syncfile(GET,"/Census/Update/Visitation Record/Visitation Record.pen","../Visitation Record/Visitation Record.pen") then		//update Control Sheets
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/Census/Update/Allocation/Assignments.pen","../Allocation/Assignments.pen") then		//update Allocation form
+		{if not syncfile(GET,"/Census/Update/Allocation/Assignments.pen","../Allocation/Assignments.pen") then		//update Allocation form
 			inc(errflag);
-		endif;
+		endif;}
 		if not syncfile(GET,"/Census/Update/Menu/Menu.pen","../Menu/Menu.pen") then		//update Menu
 			inc(errflag);
 		endif;
@@ -352,7 +359,7 @@ function updateApp()
 {		if not syncfile(GET,"/CSPro/Update/Reports/EnumerationReport.pen","../Reports/EnumerationReport.pen") then		//update Enumeration Report
 			inc(errflag);
 		endif;
-}		if not syncfile(GET,"/CSPro/Update/Visitation Record/vrreport.html","../Visitation Record/vrreport.html") then		//report template
+}		if not syncfile(GET,"/Census/Update/Visitation Record/vrreport.html","../Visitation Record/vrreport.html") then		//report template
 			inc(errflag);
 		endif;
 		syncdisconnect();		//disconnect
@@ -364,7 +371,7 @@ function updateApp()
 	elseif errflag = 0 then
 		errmsg("App update was successful. Please restart the app to see any changes");
 		savesetting("Updated",maketext("%d",sysdate("YYYYMMDD")));
-		stop(0);
+		execpff("Menu.pff",stop);
 	elseif errflag = 1 then
 		errmsg("App update was probably successful but there was an error, please restart the app and try again to make sure. If you keep getting this error please contact the IT dept"); 
 	endif;
@@ -376,10 +383,10 @@ function downloadData()
 	errmsg("Attempting to download all data from ED :%d",ME_ED);
 	//errmsg("Data dictionary value Round :%V, ED :%V", RNDNO,EDNO);
 	if syncconnect(CSWeb,cswebip1,ftpun,ftppw) or syncconnect(CSWeb,cswebip2,ftpun,ftppw) then		//connect to FTP when outside of the government WAN
-		if not syncdata(GET,CENSUS2020_DICT,maketext("%2d%3d",ME_PARISH,ME_ED)) then		//get labourforce data for round and ED
+		if not syncdata(GET,CENSUS2020_DICT,maketext("%v%v",ME_PARISH,ME_ED)) then		//get labourforce data for round and ED
 			inc(errflag);
 		endif;
-		if not syncdata(GET,VISITATION_RECORD_DICT,maketext("%2d%3d",ME_PARISH,ME_ED)) then			//get control sheet data for round and ED
+		if not syncdata(GET,VISITATION_RECORD_DICT,maketext("%v%v",ME_PARISH,ME_ED)) then			//get control sheet data for round and ED
 			inc(errflag);
 		endif;
 		if not syncdata(GET, USERS_DICT) then		//get allocations
@@ -395,9 +402,9 @@ function downloadData()
 		if not syncfile(GET,"/Census/Update/Visitation Record/Visitation Record.pen","../Visitation Record/Visitation Record.pen") then		//update control sheet
 			inc(errflag);
 		endif;
-		if not syncfile(GET,"/Census/Update/Allocation/Assignments.pen","../Allocation/Assignments.pen") then		//update Allocation form
+		{if not syncfile(GET,"/Census/Update/Allocation/Assignments.pen","../Allocation/Assignments.pen") then		//update Allocation form
 			inc(errflag);
-		endif;
+		endif;}
 		if not syncfile(GET,"/Census/Update/Menu/Menu.pen","../Menu/Menu.pen") then		//update Menu
 			inc(errflag);
 		endif;
@@ -407,7 +414,7 @@ function downloadData()
 {		if not syncfile(GET,"/CSPro/Update/Reports/EnumerationReport.pen","../Reports/EnumerationReport.pen") then		//update Enumeration Report
 			inc(errflag);
 		endif;
-}		if not syncfile(GET,"/CSPro/Update/Visitation Record/vrreport.html","../Visitation Record/vrreport.html") then		//report template
+}		if not syncfile(GET,"/Census/Update/Visitation Record/vrreport.html","../Visitation Record/vrreport.html") then		//report template
 			inc(errflag);
 		endif;
 		syncdisconnect();		//disconnect
@@ -592,6 +599,10 @@ end;
 //displays the manual
 function ViewManual()
 	execsystem("view:"+pathname(application)+"..Manual.pdf");		//TODO: file to be added
+end;
+
+function OnStop()
+	stop(1);
 end;
 
 PROC MENU_FF
