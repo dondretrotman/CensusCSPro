@@ -40,15 +40,15 @@ Item=ADDRESS2
 Name=FORM002
 Label=Housing
 Level=1
-Size=1297,2981
+Size=1297,3071
   
 Item=HNOPERSONS
 Item=H8
 Item=H8_OTHER
 Item=H9
 Item=H9_OTHER
-Item=H10
-Item=H10_OTHER
+Item=H10B
+Item=H10B_OTHER
 Item=H11
 Item=H11_OTHER
 Item=H12
@@ -56,14 +56,13 @@ Item=H12_OTHER
 Item=H13
 Item=H14B
 Item=H14C
-Item=H15
-Item=H16A
-Item=H16B
-Item=H16C
+Item=H15C
+Item=H15A
+Item=H15B
+Item=H16
 Item=H17A
-Item=H17BI
-Item=H17BII_MALES
-Item=H17BII_FEMALES
+Item=H17B_MALES
+Item=H17B_FEMALES
 Item=H17C
 Item=H17C_OTHER
 Item=H17D
@@ -71,9 +70,8 @@ Item=H17E
 Item=H18
 Item=H19A
 Item=H19A_OTHER
-Item=H19B
-Item=H19BII_MALES
-Item=H19BII_FEMALES
+Item=H19B_MALES
+Item=H19B_FEMALES
 Item=H19C
 Item=H19D
 Item=H19D_OTHER
@@ -94,6 +92,8 @@ Item=H24
 Item=H17A_OTHER
 Item=H22B_OTHER
 Item=H22A_OTHER
+Item=H10A
+Item=H22C_OTHER
   
 [EndForm]
   
@@ -101,7 +101,7 @@ Item=H22A_OTHER
 Name=FORM003
 Label=Emigration
 Level=1
-Size=816,259
+Size=1227,415
   
 Item=EMIGRATION000
 Item=E8A
@@ -754,20 +754,20 @@ Max=1
   
 [Field]
 Name=HNOPERSONS
-Position=812,384,841,404
+Position=812,357,841,377
 Item=HNOPERSONS,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
-Position=16,387,221,403
+Position=16,360,221,376
 Text=Number of persons in household
  
   
 [Field]
 Name=H8
-Position=812,412,841,432
+Position=812,385,841,405
 Item=H8,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -775,13 +775,13 @@ DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,415,262,431
+Position=16,388,262,404
 Text=H8 – What type of dwelling unit is this?
  
   
 [Field]
 Name=H8_OTHER
-Position=812,441,1222,461
+Position=812,414,1222,434
 Item=H8_OTHER,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -789,13 +789,13 @@ UseUnicodeTextBox=Yes
 Form=3
   
 [Text]
-Position=16,444,82,460
+Position=16,417,82,433
 Text=H8 – Other
  
   
 [Field]
 Name=H9
-Position=812,470,841,490
+Position=812,443,841,463
 Item=H9,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -803,13 +803,13 @@ DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,473,330,489
+Position=16,446,330,462
 Text=H9 – Of what materials are the outer walls made?
  
   
 [Field]
 Name=H9_OTHER
-Position=812,500,1222,520
+Position=812,473,1222,493
 Item=H9_OTHER,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -817,36 +817,49 @@ UseUnicodeTextBox=Yes
 Form=3
   
 [Text]
-Position=16,503,82,519
+Position=16,476,82,492
 Text=H9 – Other
  
   
 [Field]
-Name=H10
+Name=H10A
+Position=812,500,827,520
+Item=H10A,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
+Form=3
+  
+[Text]
+Position=16,503,224,519
+Text=H10(a) - What type of roof is this?
+ 
+  
+[Field]
+Name=H10B
 Position=812,530,841,550
-Item=H10,CENSUS2020_DICT
+Item=H10B,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,533,275,549
-Text=H10 – Of what material is the roof made?
+Position=16,533,350,549
+Text=H10(b) – Of what material is the roof covering made?
  
   
 [Field]
-Name=H10_OTHER
+Name=H10B_OTHER
 Position=812,560,1222,580
-Item=H10_OTHER,CENSUS2020_DICT
+Item=H10B_OTHER,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
 Form=3
   
 [Text]
-Position=16,563,89,579
-Text=H10 – Other
+Position=16,563,105,579
+Text=H10(b) – Other
  
   
 [Field]
@@ -859,8 +872,8 @@ DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,593,279,609
-Text=H11 – What is the main flooring material?
+Position=16,593,263,609
+Text=H11 – What material is the floor made?
  
   
 [Field]
@@ -950,57 +963,56 @@ Text=H14(c) – What is the state of construction?
   
   
 [Field]
-Name=H15
-Position=812,800,841,820
-Item=H15,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-Form=3
-  
-[Text]
-Position=16,803,326,819
-Text=H15 – How many rooms does this dwelling have?
- 
-  
-[Field]
-Name=H16A
+Name=H15A
 Position=812,830,841,850
-Item=H16A,CENSUS2020_DICT
+Item=H15A,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
 Position=16,833,366,849
-Text=H16(a) – How many bedrooms does this dwelling have?
+Text=H15(a) – How many bedrooms does this dwelling have?
  
   
-  
 [Field]
-Name=H16B
+Name=H15B
 Position=812,860,841,880
-Item=H16B,CENSUS2020_DICT
+Item=H15B,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
 Position=16,863,371,879
-Text=H16(b) – How many Bathrooms does this dwelling have?
+Text=H15(b) – How many Bathrooms does this dwelling have?
  
   
 [Field]
-Name=H16C
+Name=H15C
+Position=812,800,841,820
+Item=H15C,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+Form=3
+  
+[Text]
+Position=16,803,378,819
+Text=H15(c) – How many other rooms does this dwelling have?
+ 
+  
+[Field]
+Name=H16
 Position=812,890,827,910
-Item=H16C,CENSUS2020_DICT
+Item=H16,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,893,402,909
-Text=H16(c) – Do you share a bathroom with any other household?
+Position=16,893,387,909
+Text=H16 – Do you share a bathroom with any other household?
  
   
 [Field]
@@ -1031,45 +1043,31 @@ Position=16,923,102,939
 Text=H17(a) - Other
  
   
-[Field]
-Name=H17BI
-Position=812,980,827,1000
-Item=H17BI,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-DataCaptureType=DropDown
-Form=3
-  
-[Text]
-Position=16,983,214,999
-Text=H17(b)i – Is the home owned by
- 
-  
   
 [Field]
-Name=H17BII_MALES
+Name=H17B_MALES
 Position=812,1010,841,1030
-Item=H17BII_MALES,CENSUS2020_DICT
+Item=H17B_MALES,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
-Position=16,1013,319,1029
-Text=H17(b)ii – If jointly owned, by how many males?
+Position=16,1013,311,1029
+Text=H17(b) – If jointly owned, by how many males?
  
   
 [Field]
-Name=H17BII_FEMALES
+Name=H17B_FEMALES
 Position=812,1040,841,1060
-Item=H17BII_FEMALES,CENSUS2020_DICT
+Item=H17B_FEMALES,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
-Position=16,1043,331,1059
-Text=H17(b)ii – If jointly owned, by how many females?
+Position=16,1043,323,1059
+Text=H17(b) – If jointly owned, by how many females?
  
   
 [Field]
@@ -1171,45 +1169,31 @@ Position=16,1249,105,1265
 Text=H19(a) – Other
  
   
-[Field]
-Name=H19B
-Position=812,1276,827,1296
-Item=H19B,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-DataCaptureType=DropDown
-Form=3
-  
-[Text]
-Position=16,1279,206,1295
-Text=H19(b)i – Is the land owned by
- 
-  
   
 [Field]
-Name=H19BII_MALES
+Name=H19B_MALES
 Position=812,1306,841,1326
-Item=H19BII_MALES,CENSUS2020_DICT
+Item=H19B_MALES,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
-Position=16,1309,319,1325
-Text=H19(b)ii – If jointly owned, by how many males?
+Position=16,1309,311,1325
+Text=H19(b) – If jointly owned, by how many males?
  
   
 [Field]
-Name=H19BII_FEMALES
+Name=H19B_FEMALES
 Position=812,1336,841,1356
-Item=H19BII_FEMALES,CENSUS2020_DICT
+Item=H19B_FEMALES,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
-Position=16,1339,328,1355
-Text=H19(b)ii - If jointly owned, by how many females?
+Position=16,1339,320,1355
+Text=H19(b) - If jointly owned, by how many females?
  
   
 [Field]
@@ -1410,7 +1394,7 @@ Text=H22(b) - Other
   
 [Field]
 Name=H22C
-Position=812,1786,869,1806
+Position=812,1786,897,1806
 Item=H22C,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -1418,13 +1402,26 @@ DataCaptureType=CheckBox
 Form=3
   
 [Text]
-Position=16,1789,612,1805
-Text=H22(c) – Does your household produce solar or any other renewable energy for your own use?
+Position=16,1789,713,1805
+Text=H22(c) – Does your household use any renewable energy for your own use? (Score as many as are applicable)
+ 
+  
+[Field]
+Name=H22C_OTHER
+Position=812,1815,1222,1835
+Item=H22C_OTHER,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+Form=3
+  
+[Text]
+Position=16,1818,101,1834
+Text=H22(c) - Other
  
   
 [Field]
 Name=H23A
-Position=812,1816,827,1836
+Position=812,1844,827,1864
 Item=H23A,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -1432,13 +1429,13 @@ DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1819,448,1835
-Text=H23(a) – Does this dwelling have a direct connection to the internet?
+Position=16,1847,364,1863
+Text=H23(a) – Does this dwelling have fixed internet access?
  
   
 [Field]
 Name=H23BI
-Position=812,1846,1163,1866
+Position=812,1874,1163,1894
 Item=H23BI,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -1446,13 +1443,13 @@ DataCaptureType=CheckBox
 Form=3
   
 [Text]
-Position=16,1849,782,1865
+Position=16,1877,782,1893
 Text=H23(b)i – Which of these appliances\household equipment does your household have? (Score as many as are applicable)
  
   
 [Field]
 Name=H23BII
-Position=812,1876,1163,1896
+Position=812,1904,1163,1924
 Item=H23BII,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -1460,13 +1457,13 @@ DataCaptureType=CheckBox
 Form=3
   
 [Text]
-Position=16,1879,790,1895
+Position=16,1907,790,1923
 Text=H23(b)ii – Which of these appliances\household equipment does your household share? (Score as many as are applicable)
  
   
 [Field]
 Name=H24
-Position=812,1906,827,1926
+Position=812,1934,827,1954
 Item=H24,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -1474,56 +1471,49 @@ DataCaptureType=DropDown
 Form=3
   
 [Text]
-Position=16,1909,500,1925
+Position=16,1937,500,1953
 Text=H24 – how many vehicles does this household keep at home for private use?
  
 [Block]
 Name=HOU_BLOCK1
 Label=Block 1
 DisplayTogether=Yes
-Position=12
+Position=13
 Length=2
   
 [Block]
 Name=HOU_BLOCK2
-Label=Block2
+Label=Block 2
 DisplayTogether=Yes
-Position=15
-Length=2
-  
-[Block]
-Name=HOU_BLOCK3
-Label=Block 3
-DisplayTogether=Yes
-Position=18
-Length=2
+Position=16
+Length=4
   
 [Block]
 Name=HOU_HJOINTOWN
 Label=House Joint Ownership
 DisplayTogether=Yes
-Position=24
+Position=23
 Length=2
   
 [Block]
 Name=HOU_HRENT
 Label=House rent
 DisplayTogether=Yes
-Position=29
+Position=28
 Length=2
   
 [Block]
 Name=HOU_LJOINTOWN
 Label=Land Joint Ownership
 DisplayTogether=Yes
-Position=36
+Position=34
 Length=2
   
 [Block]
 Name=HOU_LRENT
 Label=Land Rent
 DisplayTogether=Yes
-Position=42
+Position=40
 Length=2
   
 [EndGroup]
@@ -1572,7 +1562,7 @@ Type=Record
 TypeName=EMIGRATION
 Max=10
 MaxField=E8B
-DisplaySize=28,70,405,234
+DisplaySize=29,70,1202,390
 Orientation=Horizontal
 FieldRowHeight=0
 HeadingRowHeight=0
@@ -1637,7 +1627,7 @@ Width=10
 Width=33
   
 [HeaderText]
-Position=0,0,33,24
+Position=0,16,33,40
 Text=Sex
  
 [Field]
@@ -1658,7 +1648,7 @@ Text=Sex
 Width=119
   
 [HeaderText]
-Position=0,0,119,24
+Position=0,16,119,40
 Text=Year of Departure
  
 [Field]
@@ -1678,7 +1668,7 @@ Text=Year of Departure
 Width=116
   
 [HeaderText]
-Position=0,0,116,24
+Position=0,16,116,40
 Text=Age at Departure
  
 [Field]
@@ -1697,7 +1687,7 @@ Text=Age at Departure
 Width=94
   
 [HeaderText]
-Position=0,0,94,24
+Position=0,16,94,40
 Text=Country Code
  
 [Field]
@@ -1714,12 +1704,51 @@ Text=Country Code
  
 [EndColumn]
   
+[Column]
+Width=80
+  
+[HeaderText]
+Position=0,0,80,40
+Text=Reason for Departure
+ 
+[Field]
+Name=EREASON
+Position=43,0,72,20
+Item=EREASON,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
+  
+[Text]
+Position=0,0,139,16
+Text=Reason for Departure
+ 
+[EndColumn]
+  
+[Column]
+Width=709
+  
+[HeaderText]
+Position=666,16,709,40
+Text=Other
+ 
+[Field]
+Name=EREASONOTHER
+Position=0,0,701,20
+Item=EREASONOTHER,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+  
+[Text]
+Text=Other
+ 
+[EndColumn]
+  
 [Block]
 Name=EMI_INFO
 Label=Emigration
 DisplayTogether=Yes
 Position=0
-Length=4
+Length=6
   
 [EndGrid]
  

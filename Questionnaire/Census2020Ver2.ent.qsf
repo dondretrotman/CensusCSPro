@@ -98,7 +98,7 @@ EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Enter the F
 EN=}
 
 [QUESTION]
-Field=CENSUS2020_DICT.H10_OTHER
+Field=CENSUS2020_DICT.H10B_OTHER
 EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
 EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
@@ -396,10 +396,11 @@ EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Enter first
 EN=}
 
 [HELP]
-Field=CENSUS2020_DICT.H15
-EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+Field=CENSUS2020_DICT.H15C
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
-EN={\*\generator Msftedit 5.41.21.2512;}\viewkind4\uc1\pard\cf1\fs24 Exclude kitchens, toilets, bathrooms, garages, patios, verandas and laudry rooms\par
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Exclude kitchens, toilets, bathrooms, bedrooms, garages, patios, verandas and laudry rooms\par
 EN=}
 
 [HELP]

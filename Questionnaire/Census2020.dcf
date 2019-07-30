@@ -83,7 +83,7 @@ ZeroFill=Yes
 Label=Housing
 Name=HOUSING
 RecordTypeValue='1'
-RecordLen=778
+RecordLen=829
 
 [Item]
 Label=Number of persons in household
@@ -115,15 +115,16 @@ ZeroFill=Yes
 [ValueSet]
 Label=H8 – What type of dwelling unit is this?
 Name=H8_VS1
-Value=1;Separate house\detached\undivided
-Value=2;Rented room in a separate\detached house
-Value=3;Part of a private house\Attached
+Value=1;Single house\detached\undivided
+Value=2;Rented room in a single\detached house
+Value=3;Extension of a private house\Attached
 Value=4;Flat\Apartment
-Value=5;Townhouse\Condominium
-Value=6;Double house\Duplex
-Value=7;Part of a commercial building
-Value=8;Group Dwelling
-Value=9;Other
+Value=5;Government terrace unit\Apartment
+Value=6;Townhouse\Condominium
+Value=7;Double house\Duplex
+Value=8;Part of a commercial building
+Value=9;Group Dwelling
+Value=10;Other
 
 [Item]
 Label=H8 – Other
@@ -161,41 +162,57 @@ Len=50
 DataType=Alpha
 
 [Item]
-Label=H10 – Of what material is the roof made?
-Name=H10
+Label=H10(a) - What type of roof is this?
+Name=H10A
 Start=122
+Len=1
+ZeroFill=Yes
+
+[ValueSet]
+Label=H10(a) - What type of roof is this?
+Name=H10A_VS1
+Value=1;High hip roof
+Value=2;Low hip roof
+Value=3;Flat roof
+Value=4;Gable roof
+Value=5;Split roof
+
+[Item]
+Label=H10(b) – Of what material is the roof covering made?
+Name=H10B
+Start=123
 Len=2
 ZeroFill=Yes
 
 [ValueSet]
-Label=Roof Materials
-Name=H10_VS1
+Label=H10(b) – Of what material is the roof covering made?
+Name=H10B_VS1
 Value=1;Wooden shingles
 Value=2;Asphalt Shingles
 Value=3;Roofing Tiles
 Value=4;Corrugated Metal Sheets (galvanised or permaclad)
 Value=5;Concrete
-Value=6;Rubber Rye
+Value=6;Rubbroid
 Value=7;Asbestos
-Value=8;Thatch\Makeshift
+Value=8;Makeshift\Thatch
 Value=9;Other
 
 [Item]
-Label=H10 – Other
-Name=H10_OTHER
-Start=124
+Label=H10(b) – Other
+Name=H10B_OTHER
+Start=125
 Len=50
 DataType=Alpha
 
 [Item]
-Label=H11 – What is the main flooring material?
+Label=H11 – What material is the floor made?
 Name=H11
-Start=174
+Start=175
 Len=1
 ZeroFill=Yes
 
 [ValueSet]
-Label=Flooring materials
+Label=H11 – What material is the floor made?
 Name=H11_VS1
 Value=1;Masonry (Concrete)
 Value=2;Wood
@@ -207,36 +224,37 @@ Value=6;Other
 [Item]
 Label=H11 – Other
 Name=H11_OTHER
-Start=175
+Start=176
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H12 – How is the foundation of the house constructed?
 Name=H12
-Start=225
+Start=226
 Len=1
 ZeroFill=Yes
 
 [ValueSet]
 Label=Foundation
 Name=H12_VS1
-Value=1;Fully enclosed masonry
-Value=2;Pillars or columns
-Value=3;Loose rock
-Value=4;Other
+Value=1;Fully enclosed foundation
+Value=2;Pillars or columns with groundsill
+Value=3;Pillars or columns without groundsill
+Value=4;Loose rock
+Value=5;Other
 
 [Item]
 Label=H12 – Other
 Name=H12_OTHER
-Start=226
+Start=227
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H13 – In what year was the dwelling built?
 Name=H13
-Start=276
+Start=277
 Len=1
 ZeroFill=Yes
 
@@ -255,7 +273,7 @@ Value=8;Don't know
 [Item]
 Label=H14(a) – Occupancy Status
 Name=H14A
-Start=277
+Start=278
 Len=1
 ZeroFill=Yes
 
@@ -268,7 +286,7 @@ Value=2;Unoccupied
 [Item]
 Label=H14(b) – If unoccupied, is unit
 Name=H14B
-Start=278
+Start=279
 Len=1
 ZeroFill=Yes
 
@@ -284,7 +302,7 @@ Value=5;Arrangement unknown
 [Item]
 Label=H14(c) – What is the state of construction?
 Name=H14C
-Start=279
+Start=280
 Len=1
 ZeroFill=Yes
 
@@ -297,15 +315,47 @@ Value=3;Under inactive construction
 Value=4;Derelict
 
 [Item]
-Label=H15 – How many rooms does this dwelling have?
-Name=H15
-Start=280
+Label=H15(a) – How many bedrooms does this dwelling have?
+Name=H15A
+Start=281
 Len=2
 ZeroFill=Yes
 
 [ValueSet]
-Label=Number of rooms
-Name=H15_VS1
+Label=H15(a) – How many bedrooms does this dwelling have?
+Name=H15A_VS1
+Value=0;None
+Value=1;One
+Value=2;Two
+Value=3;Three
+Value=4;Four
+Value=5:20;Five and over
+
+[Item]
+Label=H15(b) – How many Bathrooms does this dwelling have?
+Name=H15B
+Start=283
+Len=2
+ZeroFill=Yes
+
+[ValueSet]
+Label=H15(b) – How many Bathrooms does this dwelling have?
+Name=H15B_VS1
+Value=0;None
+Value=1;One
+Value=2;Two
+Value=3:20;Three or more
+
+[Item]
+Label=H15(c) – How many other rooms does this dwelling have?
+Name=H15C
+Start=285
+Len=2
+ZeroFill=Yes
+
+[ValueSet]
+Label=H15(c) – How many other rooms does this dwelling have?
+Name=H15C_VS1
 Value=1;One
 Value=2;Two
 Value=3;Three
@@ -318,100 +368,52 @@ Value=9:98;Nine or More
 Value=99;Don't know
 
 [Item]
-Label=H16(a) – How many bedrooms does this dwelling have?
-Name=H16A
-Start=282
-Len=2
-ZeroFill=Yes
-
-[ValueSet]
-Label=Number of Bedrooms
-Name=H16A_VS1
-Value=0;None
-Value=1;One
-Value=2;Two
-Value=3;Three
-Value=4;Four
-Value=5:20;Five and over
-
-[Item]
-Label=H16(b) – How many Bathrooms does this dwelling have?
-Name=H16B
-Start=284
-Len=2
-ZeroFill=Yes
-
-[ValueSet]
-Label=Number of Bathrooms
-Name=H16B_VS1
-Value=0;None
-Value=1;One
-Value=2;Two
-Value=3:20;Three or more
-
-[Item]
-Label=H16(c) – Do you share a bathroom with any other household?
-Name=H16C
-Start=286
+Label=H16 – Do you share a bathroom with any other household?
+Name=H16
+Start=287
 Len=1
 ZeroFill=Yes
 
 [ValueSet]
-Label=Shared bathroom
-Name=H16C_VS1
+Label=H16 – Do you share a bathroom with any other household?
+Name=H16_VS1
 Value=1;Yes
 Value=2;No
 
 [Item]
 Label=H17(a) – Under what type of tenure is this dwelling occupied?
 Name=H17A
-Start=287
+Start=288
 Len=1
 ZeroFill=Yes
 
 [ValueSet]
 Label=Dwelling tenure
 Name=H17A_VS1
-Value=1;Owned with mortgage
-Value=2;Owned without mortgage
-Value=3;Private rented\leased
-Value=4;Gov't rented\leased
-Value=5;Rent free
-Value=6;Squatted
-Value=7;Other
+Value=1;Owned
+Value=2;Private rented\leased
+Value=3;Gov't rented\leased
+Value=4;Rent free
+Value=5;Squatted
+Value=6;Other
 
 [Item]
 Label=H17(a) - Other
 Name=H17A_OTHER
-Start=288
+Start=289
 Len=50
 DataType=Alpha
 
 [Item]
-Label=H17(b)i – Is the home owned by
-Name=H17BI
-Start=338
-Len=1
-ZeroFill=Yes
-
-[ValueSet]
-Label=H17(b)i – Is the home owned by
-Name=H17BI_VS1
-Link=75051824
-Value=1;A male
-Value=2;A female
-Value=3;Jointly owned
-
-[Item]
-Label=H17(b)ii – If jointly owned, by how many males?
-Name=H17BII_MALES
+Label=H17(b) – If jointly owned, by how many males?
+Name=H17B_MALES
 Start=339
 Len=2
 ZeroFill=Yes
 
 [Item]
-Label=H17(b)ii – If jointly owned, by how many females?
-Name=H17BII_FEMALES
+Label=H17(b) – If jointly owned, by how many females?
+Name=H17B_FEMALES
 Start=341
 Len=2
 ZeroFill=Yes
@@ -508,13 +510,12 @@ ZeroFill=Yes
 [ValueSet]
 Label=H19(a) – Under what type of tenure is this land occupied?
 Name=H19A_VS1
-Value=1;Owned with mortgage
-Value=2;Owned without mortgage
-Value=3;Private rented\leased
-Value=4;Gov't rented\leased
-Value=5;Rent free
-Value=6;Squatted
-Value=7;Other
+Value=1;Owned
+Value=2;Private rented\leased
+Value=3;Gov't rented\leased
+Value=4;Rent free
+Value=5;Squatted
+Value=6;Other
 
 [Item]
 Label=H19(a) – Other
@@ -524,35 +525,23 @@ Len=50
 DataType=Alpha
 
 [Item]
-Label=H19(b)i – Is the land owned by
-Name=H19B
+Label=H19(b) – If jointly owned, by how many males?
+Name=H19B_MALES
 Start=452
-Len=1
-ZeroFill=Yes
-
-[ValueSet]
-Label=H19(b)i – Is the land owned by
-Name=H19B_VS1
-Link=75051824
-
-[Item]
-Label=H19(b)ii – If jointly owned, by how many males?
-Name=H19BII_MALES
-Start=453
 Len=2
 ZeroFill=Yes
 
 [Item]
-Label=H19(b)ii - If jointly owned, by how many females?
-Name=H19BII_FEMALES
-Start=455
+Label=H19(b) - If jointly owned, by how many females?
+Name=H19B_FEMALES
+Start=454
 Len=2
 ZeroFill=Yes
 
 [Item]
 Label=H19(c) – Does the land form part of an approved subdivision?
 Name=H19C
-Start=457
+Start=456
 Len=1
 ZeroFill=Yes
 
@@ -565,7 +554,7 @@ Value=2;No
 [Item]
 Label=H19(d) – If owned, how was the land acquired?
 Name=H19D
-Start=458
+Start=457
 Len=1
 ZeroFill=Yes
 
@@ -581,14 +570,14 @@ Value=5;Other
 [Item]
 Label=H19(d) – Other
 Name=H19D_OTHER
-Start=459
+Start=458
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H19(e) – What is the rental period for this land?
 Name=H19E
-Start=509
+Start=508
 Len=1
 ZeroFill=Yes
 
@@ -600,7 +589,7 @@ Link=75052616
 [Item]
 Label=H19(f) – How much rent are you now paying?
 Name=H19F
-Start=510
+Start=509
 Len=5
 ZeroFill=Yes
 
@@ -612,7 +601,7 @@ Link=75053320
 [Item]
 Label=H20 – How is your main water supply obtained?
 Name=H20
-Start=515
+Start=514
 Len=1
 ZeroFill=Yes
 
@@ -621,7 +610,7 @@ Label=Main Water Supply
 Name=H20_VS1
 Value=1;Piped into Dwelling
 Value=2;Piped into yard
-Value=3;Friend\relatives pipe
+Value=3;Neighbour\Friend\relatives pipe
 Value=4;Public stand pipe\Public tank
 Value=5;Stream\spring\well
 Value=6;Other
@@ -629,14 +618,14 @@ Value=6;Other
 [Item]
 Label=H20 – Other
 Name=H20_OTHER
-Start=516
+Start=515
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H21(a) – What type of toilet facilities does this dwelling unit have?
 Name=H21A
-Start=566
+Start=565
 Len=1
 ZeroFill=Yes
 
@@ -653,14 +642,14 @@ Value=6;Other
 [Item]
 Label=H21(a) – Other
 Name=H21A_OTHER
-Start=567
+Start=566
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H21(b) – Are the toilet facilities shared with any other household?
 Name=H21B
-Start=617
+Start=616
 Len=1
 ZeroFill=Yes
 
@@ -669,12 +658,11 @@ Label=Shared Toilet Facilities
 Name=H21B_VS1
 Value=1;Yes
 Value=2;No
-Value=3;Don't know
 
 [Item]
 Label=H22(a) – What source of lighting is mainly used by this household?
 Name=H22A
-Start=618
+Start=617
 Len=1
 ZeroFill=Yes
 
@@ -684,21 +672,21 @@ Name=H22A_VS1
 Value=1;Electric
 Value=2;Kerosene
 Value=3;Gas
-Value=4;Batteries
+Value=4;Battery operated devices
 Value=5;Renewable energy
 Value=6;Other
 
 [Item]
 Label=H22(a) - Other
 Name=H22A_OTHER
-Start=619
+Start=618
 Len=50
 DataType=Alpha
 
 [Item]
 Label=H22(b) – What source of energy is mainly used for cooking?
 Name=H22B
-Start=669
+Start=668
 Len=1
 ZeroFill=Yes
 
@@ -717,34 +705,43 @@ Value=8;Other
 [Item]
 Label=H22(b) - Other
 Name=H22B_OTHER
-Start=670
+Start=669
 Len=50
 DataType=Alpha
 
 [Item]
-Label=H22(c) – Does your household produce solar or any other renewable energy for your own use?
+Label=H22(c) – Does your household use any renewable energy for your own use? (Score as many as are applicable)
 Name=H22C
-Start=720
-Len=4
+Start=719
+Len=6
 DataType=Alpha
 
 [ValueSet]
-Label=Renewable Energy
+Label=H22(c) – Does your household use any renewable energy for your own use? (Score as many as are applicable)
 Name=H22C_VS1
-Value='A   ';Yes, from solar panels
-Value='B   ';Yes, from wind power
-Value='C   ';Yes, from other sources
-Value='D   ';No
+Value='A     ';Yes, solar water panels
+Value='B     ';Yes, photovoltaic (PV) panels
+Value='C     ';Yes, wind power
+Value='D     ';Yes, bioenergy
+Value='E     ';Yes, other sources
+Value='F     ';No
 
 [Item]
-Label=H23(a) – Does this dwelling have a direct connection to the internet?
+Label=H22(c) - Other
+Name=H22C_OTHER
+Start=725
+Len=50
+DataType=Alpha
+
+[Item]
+Label=H23(a) – Does this dwelling have fixed internet access?
 Name=H23A
-Start=724
+Start=775
 Len=1
 ZeroFill=Yes
 
 [ValueSet]
-Label=H23(a) – Does this dwelling have a direct connection to the internet?
+Label=H23(a) – Does this dwelling have fixed internet access?
 Name=H23A_VS1
 Value=1;Yes
 Value=2;No
@@ -752,7 +749,7 @@ Value=2;No
 [Item]
 Label=H23(b)i – Which of these appliances\household equipment does your household have? (Score as many as are applicable)
 Name=H23BI
-Start=725
+Start=776
 Len=25
 DataType=Alpha
 
@@ -769,7 +766,7 @@ Value='F                        ';Washing Machine
 Value='G                        ';Clothes Dryer
 Value='H                        ';Generator
 Value='I                        ';TV
-Value='J                        ';Android TV Box
+Value='J                        ';Android TV Device
 Value='K                        ';Cable TV\Satallite
 Value='L                        ';DVD Player\VCR
 Value='M                        ';Radio\Stereo System
@@ -777,19 +774,16 @@ Value='N                        ';Water Tank
 Value='O                        ';Toaster Oven
 Value='P                        ';Dish Washer
 Value='Q                        ';Fixed Line Telephone
-Value='R                        ';Mobile Phone
-Value='S                        ';Tablet
-Value='T                        ';Game Consoles (e.g. Xbox, Playstation, Nintendo, etc)
-Value='U                        ';Solar Water Heater
-Value='V                        ';Other Water Heater
-Value='W                        ';Computer (Laptop, Desktop)
-Value='X                        ';Smoke Alarm
-Value='Y                        ';Home Security Equipment
+Value='R                        ';Game Consoles (e.g. Xbox, Playstation, Nintendo, etc)
+Value='S                        ';NON-Solar Water Heater
+Value='T                        ';Computer (Laptop, Desktop)
+Value='U                        ';Smoke Alarm
+Value='V                        ';Home Security Equipment
 
 [Item]
 Label=H23(b)ii – Which of these appliances\household equipment does your household share? (Score as many as are applicable)
 Name=H23BII
-Start=750
+Start=801
 Len=25
 DataType=Alpha
 
@@ -801,7 +795,7 @@ Link=80780968
 [Item]
 Label=H24 – how many vehicles does this household keep at home for private use?
 Name=H24
-Start=775
+Start=826
 Len=1
 ZeroFill=Yes
 
@@ -817,7 +811,7 @@ Value=4;4 or more
 [Item]
 Label=E8(a) - Since the last census (2010), has anyone left this household to live overseas and continues to reside abroad?
 Name=E8A
-Start=776
+Start=827
 Len=1
 ZeroFill=Yes
 
@@ -830,7 +824,7 @@ Value=2;No
 [Item]
 Label=E8(b) - If YES, Please give the total number of persons who have gone abroad
 Name=E8B
-Start=777
+Start=828
 Len=2
 ZeroFill=Yes
 
@@ -840,7 +834,7 @@ Name=EMIGRATION
 RecordTypeValue='2'
 Required=No
 MaxRecords=10
-RecordLen=26
+RecordLen=78
 
 [Item]
 Label=Sex
@@ -1014,6 +1008,20 @@ Value=339;Sri Lanka
 Value=340;Taiwan
 Value=341;Thailand
 Value=342;Vietman
+
+[Item]
+Label=Reason for Departure
+Name=EREASON
+Start=27
+Len=2
+ZeroFill=Yes
+
+[Item]
+Label=Other
+Name=EREASONOTHER
+Start=29
+Len=50
+DataType=Alpha
 
 [Record]
 Label=Population

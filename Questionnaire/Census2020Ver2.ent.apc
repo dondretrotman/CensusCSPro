@@ -2,8 +2,8 @@
 {
 Census Android CAPI application
 Author: Dondré Trotman
-Date: 2018/05/24
-Version: 1.0
+Date: 2019/07/30
+Version: 3.0
 
 Description:
 This application is meant to be installed on an Android device using the CSPRO app available on the Google Play Store.
@@ -569,7 +569,7 @@ postproc
 PROC H8_OTHER
 preproc
 	//only ask if other is selected
-	ask if H8 = 9;
+	ask if H8 = 10;
 
 //-------------------------------------------------------------
 
@@ -582,13 +582,13 @@ preproc
 	ask if H9 = 10;
 
 //-------------------------------------------------------------
-PROC H10
-//H10 – Of what material is the roof made?
-PROC H10_OTHER
-//H10 – Of what material is the roof made?
+PROC H10B
+//H10B – Of what material is the roof made?
+PROC H10B_OTHER
+//H10B – Of what material is the roof made?
 preproc
 	//only ask if other is selected
-	ask if H10 = 9;
+	ask if H10B = 9;
 
 //-------------------------------------------------------------
 PROC H11_OTHER
@@ -602,18 +602,18 @@ PROC H12
 //H12 – How is the foundation of the house constructed?
 postproc
 	//if rented room, skip to H16C after observing walls, roof etc
-	if H8 = 2 and $ <> 4 then
-		skip to H16C;
+	if H8 = 2 and $ <> 5 then
+		skip to H16;
 	endif;
 PROC H12_OTHER
 //H12 – How is the foundation of the house constructed?
 preproc
 	//only ask if other is selected
-	ask if H12 = 4;
+	ask if H12 = 5;
 	
 	//if rented room, skip to H16C after observing walls, roof etc
 	if H8 = 2 then
-		skip to H16C;
+		skip to H16;
 	endif;
 
 //-------------------------------------------------------------
@@ -654,20 +654,20 @@ postproc
 		enddo;
 		if residents = 0 then	//if all persons are not usually resident in this house
 			nonreshouse = 1;	//set non-resident house flag
-			skip to H15;		//skip to H15
+			skip to H15A;		//skip to H15
 		endif;
 	endif;
 
 //----------------------------------------------------------------------
-PROC H16A
+PROC H15A
 //H16(a) – How many bedrooms does this dwelling have?
-postproc
+{postproc
 	if nonreshouse = 1 then
 		skip to H20;
 	endif;
-	
+	}
 //----------------------------------------------------------
-PROC H16C
+PROC H16
 //H16(c) – Do you share a bathroom with any other household?
 postproc
 	if nonreshouse = 1 then		//if non-resident household flag is set
@@ -678,7 +678,7 @@ postproc
 PROC H17A
 //H17(a) – Under what type of tenure is this dwelling occupied?
 postproc
-	if $ in 3:4 then
+	if $ in 2:3 then		//if RENTED or LEASED, skip to H17D
 		skip to H17D;
 	endif;
 	
@@ -686,15 +686,13 @@ postproc
 PROC H17A_OTHER
 ////H17(a) – Under what type of tenure is this dwelling occupied?
 preproc
-	ask if H17A = 7;
+	ask if H17A = 6;
 	
 
 //--------------------------------------------------
 PROC HOU_HJOINTOWN
 //H17(b)ii – If jointly owned, by how many males?
 //H17(b)ii – If jointly owned, by how manyfe males?
-preproc
-	ask if H17BI = 3;
 
 //----------------------------------------------
 PROC H17C
@@ -714,7 +712,7 @@ preproc
 PROC H17D
 //H17(d) – What is the rental period for this dwelling?
 onfocus
-	if not H17A in 3:4 then	//if not rented/leased
+	if not H17A in 2:3 then	//if not rented/leased
 		skip to H19A;		//Skip to land tenure
 	endif;
 	
@@ -729,14 +727,12 @@ PROC H19A_OTHER
 //H19(a) – Under what type of tenure is this land occupied?
 preproc
 	//only ask if other is selected
-	ask if H19A = 7;
+	ask if H19A = 6;
 
 //-------------------------------------------------------------
 PROC HOU_LJOINTOWN
 //H19(b)ii – If jointly owned, by how many males?
 //H19(b)ii – If jointly owned, by how many females?
-preproc
-	ask if H19B = 3;
 
 //----------------------------------------------
 
@@ -756,7 +752,7 @@ preproc
 PROC H19E
 //H19(e) – What is the rental period for this land?
 onfocus
-	if not H19B in 3,4 then		//if not rented or leased
+	if not H19A in 2,3 then		//if not rented or leased
 		skip to H20;			//skip to Water supply
 	endif;
 
@@ -798,9 +794,9 @@ preproc
 
 //-------------------------------------------------------------
 PROC H22C
-//H22(c) – Does your household produce solar or any other renewable energy for your own use? (Score as many as applicable)
+//H22(c) – Does your household use any renewable energy for your own use? (Score as many as applicable)
 postproc
-	if pos("D",$) > 0 and length(strip($)) > 1 then		//If none selected with another option
+	if pos("F",$) > 0 and length(strip($)) > 1 then		//If none selected with another option
 		errmsg("cannot be no and another option");
 		reenter;
 	endif;
@@ -812,6 +808,13 @@ postproc
 	endif;
 	
 //------------------------------------------------------------
+PROC H22C_OTHER
+//H22(c) – Does your household use any renewable energy for your own use? (Score as many as applicable)
+preproc
+	//only ask if other is selected
+	ask if pos("E",H22C) > 0;
+
+//---------------------------------------------------------------------------
 PROC H23BI
 //H23(a)i – Which of these appliances\household equipment does your household have?
 postproc
@@ -827,10 +830,10 @@ preproc
 	
 	//create dynamic checkboxes based on previous question
 	vsindex = 1;
-	checkboxcodes = "ABCDEFGHIJKLMNOPQRSTUVWXZ";
+	checkboxcodes = "ABCDEFGHIJKLMNOPQRSTUV";
 	clearStringArray(vsAlphaCodes);		//initialise array
 	
-	do i = 1 while i <= 25;		//loop through all checkboxes
+	do i = 1 while i <= 24;		//loop through all checkboxes
 		checkboxalpha = checkboxcodes[i:1];	//convert index to alpha code
 		if pos(checkboxalpha,H23BI) > 0 then	//if the checkbox was marked in the previous question
 			vsalphacodes(vsindex) = checkboxalpha;	//add it to the valueset
