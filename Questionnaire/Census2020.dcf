@@ -834,7 +834,7 @@ Name=EMIGRATION
 RecordTypeValue='2'
 Required=No
 MaxRecords=10
-RecordLen=78
+RecordLen=77
 
 [Item]
 Label=Sex
@@ -1013,13 +1013,21 @@ Value=342;Vietman
 Label=Reason for Departure
 Name=EREASON
 Start=27
-Len=2
+Len=1
 ZeroFill=Yes
+
+[ValueSet]
+Label=Reason for Departure
+Name=EREASON_VS1
+Value=1;Employment
+Value=2;Study
+Value=3;Medical
+Value=4;Other
 
 [Item]
 Label=Other
 Name=EREASONOTHER
-Start=29
+Start=28
 Len=50
 DataType=Alpha
 

@@ -875,8 +875,12 @@ PROC EAGE
 //Same issue as before
 
 //----------------------------------------------------------------
-PROC ECOUNTRY
+PROC EREASONOTHER
+preproc
+	//only ask if reason for emigrating is other
+	ask if EREASON = 4;
 	
+//-----------------------------------------------------
 PROC POPULATION001
 //show names in label fields when first starting the questionnaire
 
