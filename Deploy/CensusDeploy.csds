@@ -45,6 +45,75 @@
     },
     {
       "path": "..\\Visitation record\\vrreport.html"
+    },
+    {
+      "path": "..\\Resources\\Floor_material\\wooden.jpg"
+    },
+    {
+      "path": "..\\Resources\\Wall_material\\concrete.jpg"
+    },
+    {
+      "path": "..\\Resources\\Wall_material\\wood.jpg"
+    },
+    {
+      "path": "..\\Resources\\Wall_material\\stone.jpg"
+    },
+    {
+      "path": "..\\Resources\\Wall_material\\plywood.jpg"
+    },
+    {
+      "path": "..\\Resources\\Wall_material\\concrete-board.jpg"
+    },
+    {
+      "path": "..\\Resources\\Wall_material\\concrete-block.jpeg"
+    },
+    {
+      "path": "..\\Resources\\Roof_type\\High-gable.jpg"
+    },
+    {
+      "path": "..\\Resources\\Roof_type\\split-flat.jpg"
+    },
+    {
+      "path": "..\\Resources\\Roof_type\\low-gable.jpg"
+    },
+    {
+      "path": "..\\Resources\\Roof_type\\hip.jpg"
+    },
+    {
+      "path": "..\\Resources\\Roof_Material\\asbestos.jpg"
+    },
+    {
+      "path": "..\\Resources\\Roof_Material\\wooden-shingles.jpg"
+    },
+    {
+      "path": "..\\Resources\\Roof_Material\\ruberoid.jpg"
+    },
+    {
+      "path": "..\\Resources\\Roof_Material\\roofing-tiles.jpeg"
+    },
+    {
+      "path": "..\\Resources\\Roof_Material\\makeshift-thatch.jpg"
+    },
+    {
+      "path": "..\\Resources\\Roof_Material\\corrugated-metal.jpg"
+    },
+    {
+      "path": "..\\Resources\\Roof_Material\\concrete.jpg"
+    },
+    {
+      "path": "..\\Resources\\Roof_Material\\asphalt-shingles.jpg"
+    },
+    {
+      "path": "..\\Resources\\Foundation\\fully-enclosed.jpg"
+    },
+    {
+      "path": "..\\Resources\\Foundation\\pillars-no-groundsill.jpg"
+    },
+    {
+      "path": "..\\Resources\\Foundation\\pillars-groundsill.jpg"
+    },
+    {
+      "path": "..\\Resources\\Foundation\\loose-rock.jpg"
     }
   ],
   "dictionaries": [

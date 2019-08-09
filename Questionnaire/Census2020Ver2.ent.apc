@@ -569,7 +569,7 @@ postproc
 PROC H8_OTHER
 preproc
 	//only ask if other is selected
-	ask if H8 = 10;
+	ask if H8 = 9;
 
 //-------------------------------------------------------------
 

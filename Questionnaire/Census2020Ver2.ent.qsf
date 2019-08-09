@@ -349,15 +349,10 @@ EN=}
 [QUESTION]
 Field=POP_INDIVIDUALS
 Occurrences=1:40
-EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset2 Symbol;}}
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
 EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
-EN=\pard\cf1\fs24 Please give me the information of all persons living here on Friday, 1 May, 2020. Be sure to include \par
-EN=
-EN=\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-720\li720 Any newborn babies born on or before 1 May\par
-EN={\pntext\f1\'B7\tab}Persons who are temporarily away on vacation or business, or in a general hospital.\par
-EN={\pntext\f1\'B7\tab}Visitors\par
-EN={\pntext\f1\'B7\tab}Boarders.\par
+EN=\pard\cf1\fs24 Please give me the information of all persons living here on Friday, 1 May, 2020. \par
 EN=}
 
 [QUESTION]
@@ -432,5 +427,20 @@ Field=CENSUS2020_DICT.ED
 EN={\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
 EN={\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\cf1\fs24 ED number should correspond with parish\par
+EN=}
+
+[HELP]
+Field=POP_INDIVIDUALS
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset2 Symbol;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Be sure to include \par
+EN=
+EN=\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-720\li720 Any newborn babies born on or before 1 May\par
+EN={\pntext\f1\'B7\tab}Persons who are temporarily away on vacation or business, or in a general hospital.\par
+EN={\pntext\f1\'B7\tab}Visitors\par
+EN=
+EN=\pard Boarders.\par
 EN=}
 
