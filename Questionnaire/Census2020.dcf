@@ -143,19 +143,13 @@ ZeroFill=Yes
 Label=Wall materials
 Name=H9_VS1
 Value=1;Wood\Timber
-Image=..\Resources\Wall_material\wood.jpg
 Value=2;Stone
-Image=..\Resources\Wall_material\stone.jpg
 Value=3;Concrete block
-Image=..\Resources\Wall_material\concrete-block.jpeg
 Value=4;Wood & concrete
 Value=5;Wood\Timber & Concrete block
 Value=6;Concrete
-Image=..\Resources\Wall_material\concrete.jpg
 Value=7;Plywood
-Image=..\Resources\Wall_material\plywood.jpg
 Value=8;Concrete Board
-Image=..\Resources\Wall_material\concrete-board.jpg
 Value=9;Makeshift Material
 Value=10;Other
 
@@ -177,13 +171,9 @@ ZeroFill=Yes
 Label=H10(a) - What type of roof is this?
 Name=H10A_VS1
 Value=1;Low gable
-Image=..\Resources\Roof_type\low-gable.jpg
 Value=2;High gable
-Image=..\Resources\Roof_type\High-gable.jpg
 Value=3;Flat\split
-Image=..\Resources\Roof_type\split-flat.jpg
 Value=4;Hip
-Image=..\Resources\Roof_type\hip.jpg
 Value=5;Combination
 
 [Item]
@@ -197,21 +187,13 @@ ZeroFill=Yes
 Label=H10(b) – Of what material is the roof covering made?
 Name=H10B_VS1
 Value=1;Wooden shingles
-Image=..\Resources\Roof_Material\wooden-shingles.jpg
 Value=2;Asphalt Shingles
-Image=..\Resources\Roof_Material\asphalt-shingles.jpg
 Value=3;Roofing Tiles
-Image=..\Resources\Roof_Material\roofing-tiles.jpeg
 Value=4;Corrugated Metal Sheets (galvanised or permaclad)
-Image=..\Resources\Roof_Material\corrugated-metal.jpg
 Value=5;Concrete
-Image=..\Resources\Roof_Material\concrete.jpg
 Value=6;Ruberoid
-Image=..\Resources\Roof_Material\ruberoid.jpg
 Value=7;Asbestos
-Image=..\Resources\Roof_Material\asbestos.jpg
 Value=8;Makeshift\Thatch
-Image=..\Resources\Roof_Material\makeshift-thatch.jpg
 Value=9;Other
 
 [Item]
@@ -233,7 +215,6 @@ Label=H11 – What material is the floor made?
 Name=H11_VS1
 Value=1;Masonry (Concrete)
 Value=2;Wood
-Image=..\Resources\Floor_material\wooden.jpg
 Value=3;Cement Board
 Value=4;Combination of cement board, wood and\or masonry
 Value=5;Makeshift marterials
@@ -257,13 +238,9 @@ ZeroFill=Yes
 Label=Foundation
 Name=H12_VS1
 Value=1;Fully enclosed foundation
-Image=..\Resources\Foundation\fully-enclosed.jpg
 Value=2;Pillars or columns with groundsill
-Image=..\Resources\Foundation\pillars-groundsill.jpg
 Value=3;Pillars or columns without groundsill
-Image=..\Resources\Foundation\pillars-no-groundsill.jpg
 Value=4;Loose rock
-Image=..\Resources\Foundation\loose-rock.jpg
 Value=5;Other
 
 [Item]
