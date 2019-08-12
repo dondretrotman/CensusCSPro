@@ -1292,7 +1292,7 @@ PROC P24AI_OTHER
 //P24(a)i – What examinations have you passed (score as many as are applicable)
 preproc
 	//only ask if other is selected
-	ask if pos("T",P24AI) > 0;
+	ask if pos("U",P24AI) > 0;
 
 //-------------------------------------------------------------
 PROC P25A
@@ -1307,7 +1307,7 @@ PROC P25B_OTHER
 //P25(b) – Where do you use the internet? (Score as many as applicable)
 preproc
 	//only ask if other is selected
-	ask if pos("H",P25B) > 0;
+	ask if pos("I",P25B) > 0;
 
 //-------------------------------------------------------------
 PROC POP_TRAINING
@@ -1496,22 +1496,16 @@ PROC P32A
 //UNION STATUS P32(a) – Are you currently living with a partner?
 postproc
 	if $ = 2 then		//if not living with a partner
-		skip to P32BII	//skip to Ever lived with a husband P32BII
+		skip to P32E	//skip to Ever lived with a husband P32BII
 	endif;
 	
 //-----------------------------------------------------------
-PROC P32BI
+PROC P32B
 //P32(b)i – If yes and MARRIED, Are you living with your husband?
 preproc
 	ask if P32A = 1 and P9 = 1;		//only ask if currently  living with a partner and married
 
 //---------------------------------------------------------------------------------
-PROC P32BII
-//P32(b)ii – If NO, Have you ever lived with a husband\Common law partner?
-preproc
-	ask if P32A = 2;		//only ask if not currently living with a partner
-	
-//----------------------------------------------------------
 PROC P32C
 //P32(c) – If With husband or with common law partner, score his individual number.
 onfocus
@@ -1554,6 +1548,12 @@ postproc
 	endif;
 	
 //-----------------------------------------------------
+PROC P32E
+//P32(b)ii – If NO, Have you ever lived with a husband\Common law partner?
+preproc
+	ask if P32A = 2;		//only ask if not currently living with a partner
+	
+//----------------------------------------------------------
 PROC POP_ECONOMICACTIVITY
 onfocus
 	if AGE(curocc()) < 15 then		//if Age is less than 15
@@ -1679,7 +1679,7 @@ PROC P43_OTHER
 //P43 – In what type of agricultural activity are you involved? 
 preproc
 	//only ask if other is selected
-	ask if pos("K",P43) > 0;
+	ask if pos("L",P43) > 0;
 
 //-------------------------------------------------------------
 PROC P47A

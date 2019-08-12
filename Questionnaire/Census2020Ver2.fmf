@@ -1713,7 +1713,7 @@ Text=Reason for Departure
  
 [Field]
 Name=EREASON
-Position=43,0,72,20
+Position=43,0,58,20
 Item=EREASON,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
@@ -2600,11 +2600,11 @@ Text=P19(c) - In what year did you return to Barbados to live?
 [EndColumn]
   
 [Column]
-Width=88
+Width=120
   
 [HeaderText]
-Position=25,0,159,88
-Text=P20(a) - Are you currently attending school or any other educational intitution?
+Position=25,0,159,120
+Text=P20(a) - Are you currently being home-schooled, attending school or any other educational intitution?
  
 [Field]
 Name=P20A
@@ -2615,7 +2615,7 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P20(a) - Are you currently attending school or any other educational intitution?
+Text=P20(a) - Are you currently being home-schooled, attending school or any other educational intitution?
  
 [EndColumn]
   
@@ -2640,11 +2640,11 @@ Text=P20(b) - Please indicate whether full-time or part-time
 [EndColumn]
   
 [Column]
-Width=72
+Width=88
   
 [HeaderText]
-Position=14,0,159,72
-Text=P20(c) - What type of school or educational institution are you attending?
+Position=14,0,159,88
+Text=P20(c) - What level of school, home-school or educational institution are you attending?
  
 [Field]
 Name=P20C
@@ -2655,7 +2655,7 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P20(c) - What type of school or educational institution are you attending?
+Text=P20(c) - What level of school, home-school or educational institution are you attending?
  
 [EndColumn]
   
@@ -3387,42 +3387,22 @@ Text=P32(a) - Are you currently living with a partner?
 [EndColumn]
   
 [Column]
-Width=72
+Width=104
   
 [HeaderText]
-Position=27,0,159,72
-Text=P32(b)i - If YES and MARRIED, Are you living with your husband?
+Position=27,0,159,104
+Text=P32(b) - If YES and MARRIED, Are you living with your husband or with a common law partner?
  
 [Field]
-Name=P32BI
+Name=P32B
 Position=840,0,855,20
-Item=P32BI,CENSUS2020_DICT
+Item=P32B,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P32(b)i - If YES and MARRIED, Are you living with your husband?
- 
-[EndColumn]
-  
-[Column]
-Width=72
-  
-[HeaderText]
-Position=14,0,159,72
-Text=P32(b)ii - If NO, Have you ever lived with a husband\common law partner?
- 
-[Field]
-Name=P32BII
-Position=840,0,855,20
-Item=P32BII,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-DataCaptureType=DropDown
-  
-[Text]
-Text=P32(b)ii - If NO, Have you ever lived with a husband\common law partner?
+Text=P32(b) - If YES and MARRIED, Are you living with your husband or with a common law partner?
  
 [EndColumn]
   
@@ -3462,6 +3442,26 @@ FieldLabelType=DictionaryLabel
   
 [Text]
 Text=P32(d) - If with HUSBAND\COMMON LAW PARTNER, how many years have you and your partner been living together?
+ 
+[EndColumn]
+  
+[Column]
+Width=72
+  
+[HeaderText]
+Position=14,0,159,72
+Text=P32(e) - Have you ever lived with a husband\common law partner?
+ 
+[Field]
+Name=P32E
+Position=840,0,855,20
+Item=P32E,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
+  
+[Text]
+Text=P32(e) - Have you ever lived with a husband\common law partner?
  
 [EndColumn]
   
@@ -3705,89 +3705,11 @@ Text=P38 - Other
 [EndColumn]
   
 [Column]
-Width=72
-  
-[HeaderText]
-Position=25,0,159,72
-Text=P39(a) - What is the normal pay period from your main occupation\job?
- 
-[Field]
-Name=P39A
-Position=840,0,855,20
-Item=P39A,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-DataCaptureType=DropDown
-  
-[Text]
-Text=P39(a) - What is the normal pay period from your main occupation\job?
- 
-[EndColumn]
-  
-[Column]
-Width=28
-  
-[HeaderText]
-Position=65,4,159,28
-Text=P39(a) - Other
- 
-[Field]
-Name=P39A_OTHER
-Position=154,0,855,20
-Item=P39A_OTHER,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-UseUnicodeTextBox=Yes
-  
-[Text]
-Text=P39(a) - Other
- 
-[EndColumn]
-  
-[Column]
-Width=120
-  
-[HeaderText]
-Position=24,0,159,120
-Text=P39(b) - What was your gross pay or income from your main occupation during the last pay period? (Before tax or deductions)
- 
-[Field]
-Name=P39B
-Position=770,0,855,20
-Item=P39B,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-  
-[Text]
-Text=P39(b) - What was your gross pay or income from your main occupation during the last pay period? (Before tax or deductions)
- 
-[EndColumn]
-  
-[Column]
-Width=88
-  
-[HeaderText]
-Position=13,0,159,88
-Text=P39(c) - What was your monthly income from sources of livelihood other than employment?
- 
-[Field]
-Name=P39C
-Position=826,0,855,20
-Item=P39C,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-  
-[Text]
-Text=P39(c) - What was your monthly income from sources of livelihood other than employment?
- 
-[EndColumn]
-  
-[Column]
 Width=104
   
 [HeaderText]
 Position=16,0,159,104
-Text=P40 - During the past three months, were you unable to go to work due to lack of money or transportation?
+Text=P39 - During the past three months, were you unable to go to work due to lack of money or transportation?
  
 [Field]
 Name=P40
@@ -3798,7 +3720,85 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P40 - During the past three months, were you unable to go to work due to lack of money or transportation?
+Text=P39 - During the past three months, were you unable to go to work due to lack of money or transportation?
+ 
+[EndColumn]
+  
+[Column]
+Width=72
+  
+[HeaderText]
+Position=25,0,159,72
+Text=P40(a) - What is the normal pay period from your main occupation\job?
+ 
+[Field]
+Name=P39A
+Position=840,0,855,20
+Item=P39A,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
+  
+[Text]
+Text=P40(a) - What is the normal pay period from your main occupation\job?
+ 
+[EndColumn]
+  
+[Column]
+Width=28
+  
+[HeaderText]
+Position=65,4,159,28
+Text=P40(a) - Other
+ 
+[Field]
+Name=P39A_OTHER
+Position=154,0,855,20
+Item=P39A_OTHER,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+  
+[Text]
+Text=P40(a) - Other
+ 
+[EndColumn]
+  
+[Column]
+Width=120
+  
+[HeaderText]
+Position=24,0,159,120
+Text=P40(b) - What was your gross pay or income from your main occupation during the last pay period? (Before tax or deductions)
+ 
+[Field]
+Name=P39B
+Position=770,0,855,20
+Item=P39B,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+  
+[Text]
+Text=P40(b) - What was your gross pay or income from your main occupation during the last pay period? (Before tax or deductions)
+ 
+[EndColumn]
+  
+[Column]
+Width=88
+  
+[HeaderText]
+Position=13,0,159,88
+Text=P40(c) - What was your monthly income from sources of livelihood other than employment?
+ 
+[Field]
+Name=P39C
+Position=826,0,855,20
+Item=P39C,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+  
+[Text]
+Text=P40(c) - What was your monthly income from sources of livelihood other than employment?
  
 [EndColumn]
   
@@ -3943,11 +3943,11 @@ Text=P45 - Did you go a whole day and night without eating anything because ther
 [EndColumn]
   
 [Column]
-Width=136
+Width=152
   
 [HeaderText]
-Position=13,0,159,136
-Text=P46 - During the past three months, did you ever fall ill (and required medical attention) but did not go to a healthcare facility because of a lack of resources?
+Position=13,0,159,152
+Text=P46 - During the past three months, have you ever been ill (and required medical attention) but did not go to a healthcare facility because of a lack of resources?
  
 [Field]
 Name=P46
@@ -3958,7 +3958,7 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P46 - During the past three months, did you ever fall ill (and required medical attention) but did not go to a healthcare facility because of a lack of resources?
+Text=P46 - During the past three months, have you ever been ill (and required medical attention) but did not go to a healthcare facility because of a lack of resources?
  
 [EndColumn]
   
@@ -3967,7 +3967,7 @@ Width=88
   
 [HeaderText]
 Position=12,0,159,88
-Text=P47(a) - Have you ever been a victim of crime during the past 12 months ending april 30, 2020?
+Text=P47(a) - Have you ever a victim of crime during the past 12 months ending april 30, 2020?
  
 [Field]
 Name=P47A
@@ -3978,7 +3978,7 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P47(a) - Have you ever been a victim of crime during the past 12 months ending april 30, 2020?
+Text=P47(a) - Have you ever a victim of crime during the past 12 months ending april 30, 2020?
  
 [EndColumn]
   
@@ -4163,7 +4163,7 @@ Length=3
 Name=POP_HUS
 Label=Husband info
 DisplayTogether=Yes
-Position=84
+Position=83
 Length=2
   
 [Block]
