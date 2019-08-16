@@ -1835,14 +1835,14 @@ Value=1;Full-time
 Value=2;Part-time
 
 [Item]
-Label=P20(c) - What level of school, home-school or educational institution are you attending?
+Label=P20(c) - What level of schooling, home-school or educational institution are you attending?
 Name=P20C
 Start=358
 Len=1
 ZeroFill=Yes
 
 [ValueSet]
-Label=P20(c) - What level of school, home-school or educational institution are you attending?
+Label=P20(c) - What level of schooling, home-school or educational institution are you attending?
 Name=P20C_VS1
 Value=1;Preprimary
 Value=2;Primary
@@ -2018,7 +2018,7 @@ Name=P25B_VS1
 Value='A       ';At Home
 Value='B       ';At School
 Value='C       ';At Work
-Value='D       ';Community Centre
+Value='D       ';At Community Centre
 Value='E       ';At Library
 Value='F       ';Family\Friends
 Value='G       ';Cellular Phone\Tablet
@@ -3161,7 +3161,7 @@ Value='G          ';Herbs
 Value='H          ';Poultry Farming
 Value='I          ';Cotton
 Value='J          ';Fish farming
-Value='K          ';Hydroponics
+Value='K          ';Aquaponics\Hydroponics
 Value='L          ';Other
 
 [Item]
@@ -3215,14 +3215,14 @@ Value=3;3 - 10 times
 Value=4;More than 10
 
 [Item]
-Label=P47(a) - Have you ever a victim of crime during the past 12 months ending april 30, 2020?
+Label=P47(a) - Have you been a victim of crime during the past 12 months ending april 30, 2020?
 Name=P47A
 Start=1198
 Len=1
 ZeroFill=Yes
 
 [ValueSet]
-Label=P47(a) - Have you ever a victim of crime during the past 12 months ending april 30, 2020?
+Label=P47(a) - Have you been a victim of crime during the past 12 months ending april 30, 2020?
 Name=P47A_VS1
 Value=1;Yes
 Value=2;No
