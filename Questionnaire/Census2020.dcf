@@ -635,8 +635,8 @@ Value=1;Toilet linked to sewer
 Value=2;Toilet linked to suck well\soak-away
 Value=3;Toilet linked to private sewerage treatment facility\Septic tank
 Value=4;Pit toilet
-Value=5;None
-Value=6;Other
+Value=5;Other
+Value=6;None
 
 [Item]
 Label=H21(a) – Other
@@ -1009,14 +1009,14 @@ Value=341;Thailand
 Value=342;Vietman
 
 [Item]
-Label=Reason for Departure
+Label=Main Reason for Departure
 Name=EREASON
 Start=27
 Len=1
 ZeroFill=Yes
 
 [ValueSet]
-Label=Reason for Departure
+Label=Main Reason for Departure
 Name=EREASON_VS1
 Value=1;Employment
 Value=2;Study
@@ -1036,7 +1036,7 @@ Name=POPULATION
 RecordTypeValue='3'
 Required=No
 MaxRecords=40
-RecordLen=1316
+RecordLen=1317
 
 [Item]
 Label=Individual Number
@@ -1254,10 +1254,10 @@ ZeroFill=Yes
 Label=Marital Status
 Name=P9_VS1
 Value=1;Married
-Value=2;Divorced
-Value=3;Never Married
-Value=4;Legally Separated
-Value=5;Widowed
+Value=2;Legally Separated
+Value=3;Divorced
+Value=4;Widowed
+Value=5;Never Married
 
 [Item]
 Label=P10 - What is your ethnic origin?
@@ -1510,7 +1510,7 @@ Value='B          ';Diabetes
 Value='C          ';Kidney Disease
 Value='D          ';Heart Disease
 Value='E          ';Hypertension
-Value='F          ';Alzheimer's\Dementia
+Value='F          ';Dementia\Alzheimer's
 Value='G          ';Lupus
 Value='H          ';Cancer
 Value='I          ';Mental illness
@@ -2180,7 +2180,7 @@ ZeroFill=Yes
 [ValueSet]
 Label=P28 - How many years of training have you completed?
 Name=P28_VS1
-Value=1;Under 1/2 years
+Value=1;Under 1/2 year
 Value=2;1/2 - 1 year
 Value=3;1 - 1 1/2 years
 Value=4;1 1/2 - 2 years
@@ -3073,13 +3073,13 @@ DataType=Alpha
 Label=P40(b) - What was your gross pay or income from your main occupation during the last pay period? (Before tax or deductions)
 Name=P39B
 Start=1123
-Len=6
+Len=7
 ZeroFill=Yes
 
 [Item]
 Label=P40(c) - What was your monthly income from sources of livelihood other than employment?
 Name=P39C
-Start=1129
+Start=1130
 Len=2
 ZeroFill=Yes
 
@@ -3102,7 +3102,7 @@ Value=12;Over $10000
 [Item]
 Label=P41(a) - Are you involved in any agricultural activity?
 Name=P41A
-Start=1131
+Start=1132
 Len=1
 ZeroFill=Yes
 
@@ -3115,7 +3115,7 @@ Value=2;No
 [Item]
 Label=P41(b) - Do you own any agricultural land?
 Name=P41B
-Start=1132
+Start=1133
 Len=1
 ZeroFill=Yes
 
@@ -3128,7 +3128,7 @@ Value=2;No
 [Item]
 Label=P42 - What is your area of involvement in agricultural activity
 Name=P42
-Start=1133
+Start=1134
 Len=1
 ZeroFill=Yes
 
@@ -3144,7 +3144,7 @@ Value=5;Labourer\Worker
 [Item]
 Label=P43 - In what type of agricultural activity are you involved? (Score as many as applicable)
 Name=P43
-Start=1134
+Start=1135
 Len=11
 DataType=Alpha
 
@@ -3167,14 +3167,14 @@ Value='L          ';Other
 [Item]
 Label=P43 - Other
 Name=P43_OTHER
-Start=1145
+Start=1146
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P44 - During the past four weeks, did you have no food due to lack of resources?
 Name=P44
-Start=1195
+Start=1196
 Len=1
 ZeroFill=Yes
 
@@ -3187,7 +3187,7 @@ Value=2;No
 [Item]
 Label=P45 - Did you go a whole day and night without eating anything because there was not enough food?
 Name=P45
-Start=1196
+Start=1197
 Len=1
 ZeroFill=Yes
 
@@ -3202,7 +3202,7 @@ Value=4;More than 10
 [Item]
 Label=P46 - During the past three months, have you ever been ill (and required medical attention) but did not go to a healthcare facility because of a lack of resources?
 Name=P46
-Start=1197
+Start=1198
 Len=1
 ZeroFill=Yes
 
@@ -3217,7 +3217,7 @@ Value=4;More than 10
 [Item]
 Label=P47(a) - Have you been a victim of crime during the past 12 months ending april 30, 2020?
 Name=P47A
-Start=1198
+Start=1199
 Len=1
 ZeroFill=Yes
 
@@ -3231,7 +3231,7 @@ Value=3;Don't Know
 [Item]
 Label=P47(b) - If yes, Please specify the type of crime (Score as many as applicable)
 Name=P47B
-Start=1199
+Start=1200
 Len=8
 DataType=Alpha
 
@@ -3251,14 +3251,14 @@ Value='I       ';Other
 [Item]
 Label=P47(b) - Other
 Name=P47B_OTHER
-Start=1207
+Start=1208
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P47(c) - Out of the crimes indicated, which crimes were reported? (Score as many as applicable)
 Name=P47C
-Start=1257
+Start=1258
 Len=9
 DataType=Alpha
 
@@ -3279,14 +3279,14 @@ Value='J        ';None
 [Item]
 Label=P47(c) - Other
 Name=P47C_OTHER
-Start=1266
+Start=1267
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P48 - Where did you spend the night of May 1 2020?
 Name=P48
-Start=1316
+Start=1317
 Len=1
 ZeroFill=Yes
 

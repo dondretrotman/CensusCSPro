@@ -562,7 +562,7 @@ PROC H8
 //H8 – What type of dwelling unit is this?
 postproc
 	if $ = 2 then		//If rented room
-		//skip to H16C;	//skip  to shared bathrooms
+		//Fill in H9 - H12, then skip to H16;	//skip  to shared bathrooms
 	endif;
 
 //--------------------------------------------------
@@ -777,7 +777,7 @@ PROC H21A_OTHER
 ////H21(a) – What type of toilet facilities does this dwelling unit have?
 preproc
 	//only ask if other is selected
-	ask if H21A = 6;
+	ask if H21A = 5;
 
 //-------------------------------------------------------------
 PROC H22A_OTHER
@@ -950,7 +950,7 @@ onfocus
 			
 postproc
 //P9 – What is your present marital status?
-	if AGE < 15 and P9 <> 3 then		//if not old enough to be married but married
+	if AGE < 15 and P9 <> 5 then		//if not old enough to be married but married
 		errmsg("%s is not old enough to be %V",strip(FIRST_NAME), getlabel(P9_VS1,P9))
 			select("Change answer",P9,"Ignore and continue",continue);		//either change answer or ignore (useful for catching illegal child brides)
 	endif;
