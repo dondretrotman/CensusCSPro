@@ -903,6 +903,10 @@ preproc
 onfocus
 	$ = IID;
 	noinput;
+	
+	if UR <> 1 then		//if usual residence is not in this house (person lives elsewhere in barbados or abroad)
+		endgroup;		//don't collect any individual data
+	endif;
 
 
 //-----------------------------------------------------------
