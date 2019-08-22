@@ -386,6 +386,27 @@ onfocus
 	endif;
 	
 //------------------------------------------------------------------
+PROC COMMUNITY_ID
+onfocus
+	clearstringarray(vsLabels);
+	clearnumarray(vsNumCodes);
+	
+	nextEntry = 1;
+	forcase COMMUNITY_DICT where COM_PARISH = PARISH do
+		vsNumCodes(nextEntry) = COM_CODE ;
+		vsLabels(nextEntry) = maketext("%v",COM_COMMUNITY);
+		inc(nextEntry);
+	endfor;
+	
+	vsNumCodes(nextEntry) = 999999;
+	vsLabels(nextEntry) = "Other";
+	inc(nextEntry);
+	
+	vsNumCodes(nextEntry) = notappl;
+	
+	setvalueset($, vsNumCodes, vsLabels);
+	
+//-----------------------------------------------------------------
 PROC H14A
 preproc
 	if visualvalue(START_TIME) = notappl then		//if starting the questionnaire
@@ -625,6 +646,11 @@ postproc
 	endif;
 	
 //-----------------------------------------------------------------------------
+PROC HOU_BLOCK1
+preproc
+	ask if H14A = 2;
+	
+//--------------------------------------------------------------
 PROC H14B
 //H14(b) – If unoccupied, is unit
 preproc

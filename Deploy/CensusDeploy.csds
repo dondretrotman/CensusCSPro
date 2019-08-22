@@ -45,6 +45,9 @@
     },
     {
       "path": "..\\Visitation record\\vrreport.html"
+    },
+    {
+      "path": "..\\Data\\Communities.csdb"
     }
   ],
   "dictionaries": [
@@ -70,6 +73,10 @@
     },
     {
       "path": "..\\Questionnaire\\OccupationCodes.dcf",
+      "uploadForSync": true
+    },
+    {
+      "path": "..\\Questionnaire\\Communities.dcf",
       "uploadForSync": true
     }
   ],

@@ -1,0 +1,57 @@
+﻿[Dictionary]
+Version=CSPro 7.2
+Label=COMMUNITY Dictionary
+Name=COMMUNITY_DICT
+RecordTypeStart=0
+RecordTypeLen=0
+Positions=Relative
+ZeroFill=Yes
+DecimalChar=Yes
+
+[Level]
+Label=COMMUNITY Level
+Name=COMMUNITY_LEVEL
+
+[IdItems]
+
+[Item]
+Label=COM_CODE
+Name=COM_CODE
+Start=1
+Len=6
+ZeroFill=Yes
+
+[Record]
+Label=COMMUNITY Record
+Name=COMMUNITY_REC
+RecordTypeValue=''
+RecordLen=35
+
+[Item]
+Label=COM_COMMUNITY
+Name=COM_COMMUNITY
+Start=7
+Len=27
+DataType=Alpha
+
+[Item]
+Label=COM_PARISH
+Name=COM_PARISH
+Start=34
+Len=2
+ZeroFill=Yes
+
+[ValueSet]
+Label=COM_PARISH
+Name=COM_PARISH_VS1
+Value=1;Value 1
+Value=2;Value 2
+Value=3;Value 3
+Value=4;Value 4
+Value=5;Value 5
+Value=6;Value 6
+Value=7;Value 7
+Value=8;Value 8
+Value=9;Value 9
+Value=10;Value 10
+Value=11;Value 11

@@ -42,6 +42,9 @@
     },
     {
       "path": "..\\Allocation\\users.xl2cs"
+    },
+    {
+      "path": "..\\Data\\Communities.csdb"
     }
   ],
   "dictionaries": [
@@ -67,6 +70,10 @@
     },
     {
       "path": "..\\Questionnaire\\OccupationCodes.dcf",
+      "uploadForSync": true
+    },
+    {
+      "path": "..\\Questionnaire\\Communities.dcf",
       "uploadForSync": true
     }
   ],

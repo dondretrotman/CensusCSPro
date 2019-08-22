@@ -35,6 +35,7 @@ File=..\Visitation record\Visitation Record.dcf
 File=.\IndustryCodes.dcf
 File=.\OccupationCodes.dcf
 File=..\Menu\CensusUsers.dcf
+File=.\Communities.dcf
 [AppCode]
 File=.\Census2020Ver2.ent.apc
 [Message]
@@ -49,6 +50,7 @@ Dict-Type=..\Visitation record\Visitation Record.dcf,External
 Dict-Type=.\IndustryCodes.dcf,External
 Dict-Type=.\OccupationCodes.dcf,External
 Dict-Type=..\Menu\CensusUsers.dcf,External
+Dict-Type=.\Communities.dcf,External
 [Sync]
 Server=Dropbox
 Direction=Put

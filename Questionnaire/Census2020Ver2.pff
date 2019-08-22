@@ -17,6 +17,8 @@ InputData=..\Data\CensusData.csdb|CSPRODB
 Paradata=../Data/Census548.cslog
 
 [ExternalFiles]
+COMMUNITIES_DICT=..\Data\Communities.csdb|CSPRODB
+COMMUNITY_DICT=..\Data\Communities.csdb|CSPRODB
 INDUSTRY_CODES_DICT=..\Data\IndustryCodes.csdb|CSPRODB
 OCCUPATION_CODES_DICT=..\Data\OccupationCodesBARSOC.csdb|CSPRODB
 USERS_DICT=..\Data\CensusUsers.csdb|CSPRODB

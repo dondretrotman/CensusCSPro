@@ -27,12 +27,13 @@ Item=HOUSEHOLD
 Name=FORM001
 Label=Individual
 Level=1
-Size=1411,448
+Size=1411,492
   
 Item=POPULATION000
 Item=H14A
 Item=ADDRESS1
 Item=ADDRESS2
+Item=COMMUNITY_ID
   
 [EndForm]
   
@@ -245,8 +246,21 @@ Text=Address Line 2
  
   
 [Field]
+Name=COMMUNITY_ID
+Position=339,74,424,94
+Item=COMMUNITY_ID,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
+Form=2
+  
+[Text]
+Position=157,77,229,93
+Text=Community
+ 
+  
+[Field]
 Name=H14A
-Position=339,74,354,94
+Position=339,107,354,127
 Item=H14A,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -254,7 +268,7 @@ DataCaptureType=DropDown
 Form=2
   
 [Text]
-Position=157,77,324,93
+Position=157,110,324,126
 Text=H14(a) – Occupancy Status
  
   
@@ -266,7 +280,7 @@ Required=No
 Type=Record
 TypeName=POPULATION
 Max=40
-DisplaySize=22,103,1386,423
+DisplaySize=22,136,1386,456
 Orientation=Horizontal
 FieldRowHeight=0
 HeadingRowHeight=0
@@ -740,7 +754,7 @@ Name=HOU_ADDRESS
 Label=Address
 DisplayTogether=Yes
 Position=0
-Length=3
+Length=4
   
 [EndGroup]
   
@@ -1053,8 +1067,8 @@ FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
-Position=16,1013,311,1029
-Text=H17(b) – If jointly owned, by how many males?
+Position=16,1013,268,1029
+Text=H17(b) – If owned, by how many males?
  
   
 [Field]
@@ -1066,8 +1080,8 @@ FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
-Position=16,1043,323,1059
-Text=H17(b) – If jointly owned, by how many females?
+Position=16,1043,280,1059
+Text=H17(b) – If owned, by how many females?
  
   
 [Field]
@@ -1179,8 +1193,8 @@ FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
-Position=16,1309,311,1325
-Text=H19(b) – If jointly owned, by how many males?
+Position=16,1309,268,1325
+Text=H19(b) – If owned, by how many males?
  
   
 [Field]
@@ -1192,8 +1206,8 @@ FieldLabelType=DictionaryLabel
 Form=3
   
 [Text]
-Position=16,1339,320,1355
-Text=H19(b) - If jointly owned, by how many females?
+Position=16,1339,277,1355
+Text=H19(b) - If owned, by how many females?
  
   
 [Field]
@@ -1720,7 +1734,7 @@ DataCaptureType=DropDown
   
 [Text]
 Position=0,0,139,16
-Text=Reason for Departure
+Text=Main Reason for Departure
  
 [EndColumn]
   
@@ -2640,11 +2654,11 @@ Text=P20(b) - Please indicate whether full-time or part-time
 [EndColumn]
   
 [Column]
-Width=88
+Width=104
   
 [HeaderText]
-Position=14,0,159,88
-Text=P20(c) - What level of school, home-school or educational institution are you attending?
+Position=14,0,159,104
+Text=P20(c) - What level of schooling, home-school or educational institution are you attending?
  
 [Field]
 Name=P20C
@@ -2655,7 +2669,7 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P20(c) - What level of school, home-school or educational institution are you attending?
+Text=P20(c) - What level of schooling, home-school or educational institution are you attending?
  
 [EndColumn]
   
@@ -3773,7 +3787,7 @@ Text=P40(b) - What was your gross pay or income from your main occupation during
  
 [Field]
 Name=P39B
-Position=770,0,855,20
+Position=770,0,869,20
 Item=P39B,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
@@ -3967,7 +3981,7 @@ Width=88
   
 [HeaderText]
 Position=12,0,159,88
-Text=P47(a) - Have you ever a victim of crime during the past 12 months ending april 30, 2020?
+Text=P47(a) - Have you been a victim of crime during the past 12 months ending april 30, 2020?
  
 [Field]
 Name=P47A
@@ -3978,7 +3992,7 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P47(a) - Have you ever a victim of crime during the past 12 months ending april 30, 2020?
+Text=P47(a) - Have you been a victim of crime during the past 12 months ending april 30, 2020?
  
 [EndColumn]
   

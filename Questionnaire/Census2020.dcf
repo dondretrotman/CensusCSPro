@@ -404,14 +404,14 @@ Len=50
 DataType=Alpha
 
 [Item]
-Label=H17(b) – If jointly owned, by how many males?
+Label=H17(b) – If owned, by how many males?
 Name=H17B_MALES
 Start=339
 Len=2
 ZeroFill=Yes
 
 [Item]
-Label=H17(b) – If jointly owned, by how many females?
+Label=H17(b) – If owned, by how many females?
 Name=H17B_FEMALES
 Start=341
 Len=2
@@ -524,14 +524,14 @@ Len=50
 DataType=Alpha
 
 [Item]
-Label=H19(b) – If jointly owned, by how many males?
+Label=H19(b) – If owned, by how many males?
 Name=H19B_MALES
 Start=452
 Len=2
 ZeroFill=Yes
 
 [Item]
-Label=H19(b) - If jointly owned, by how many females?
+Label=H19(b) - If owned, by how many females?
 Name=H19B_FEMALES
 Start=454
 Len=2
@@ -3303,7 +3303,7 @@ Value=5;Other
 Label=Metadata
 Name=METADATA
 RecordTypeValue='4'
-RecordLen=379
+RecordLen=385
 
 [Item]
 Label=Interview Start Date
@@ -3478,30 +3478,37 @@ Len=100
 DataType=Alpha
 
 [Item]
+Label=Community
+Name=COMMUNITY_ID
+Start=267
+Len=6
+ZeroFill=Yes
+
+[Item]
 Label=Interviewer ID
 Name=INTERVIEWER_ID
-Start=267
+Start=273
 Len=4
 ZeroFill=Yes
 
 [Item]
 Label=Supervisor ID
 Name=SUPERVISOR_ID
-Start=271
+Start=277
 Len=4
 ZeroFill=Yes
 
 [Item]
 Label=Coder ID
 Name=CODER_ID
-Start=275
+Start=281
 Len=3
 ZeroFill=Yes
 
 [Item]
 Label=Interview status
 Name=INTERVIEW_STATUS
-Start=278
+Start=284
 Len=1
 ZeroFill=Yes
 
@@ -3517,7 +3524,7 @@ Value=5;Refused
 [Item]
 Label=Delete Flag
 Name=DELETE_FLAG
-Start=279
+Start=285
 Len=1
 ZeroFill=Yes
 
@@ -3535,6 +3542,6 @@ Value=1;(DELETED)
 [Item]
 Label=Comments
 Name=COMMENTS
-Start=280
+Start=286
 Len=100
 DataType=Alpha
