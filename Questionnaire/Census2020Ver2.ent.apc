@@ -1337,7 +1337,7 @@ PROC P25B_OTHER
 //P25(b) – Where do you use the internet? (Score as many as applicable)
 preproc
 	//only ask if other is selected
-	ask if pos("I",P25B) > 0;
+	ask if pos("H",P25B) > 0;
 
 //-------------------------------------------------------------
 PROC POP_TRAINING

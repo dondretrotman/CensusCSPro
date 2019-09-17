@@ -2278,6 +2278,25 @@ Text=P12(b)vi - Using your usual language, do you have difficulty communicating?
 [EndColumn]
   
 [Column]
+Width=168
+  
+[HeaderText]
+Position=2,0,159,168
+Text=P12(b)vii - Do you have learning and intellectual difficulties, such as in reading and spelling, or difficulties understanding social situations, such as being aware of other people’s emotions and feelings?
+ 
+[Field]
+Name=P12BVII
+Position=854,0,869,20
+Item=P12BVII,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=RadioButton
+  
+[Text]
+Text=P12(b)vii - Do you have learning and intellectual difficulties, such as in reading and spelling, or difficulties understanding social situations, such as being aware of other people’s emotions and feelings?
+ 
+[EndColumn]
+  
+[Column]
 Width=104
   
 [HeaderText]
@@ -4108,125 +4127,125 @@ Name=POP_DISABILITY
 Label=Disability Questions
 DisplayTogether=Yes
 Position=9
-Length=6
+Length=7
   
 [Block]
 Name=POP_MIGRATION
 Label=Migration
 DisplayTogether=Yes
-Position=23
+Position=24
 Length=0
   
 [Block]
 Name=POP_EDUCATION
 Label=Education
 DisplayTogether=Yes
-Position=34
+Position=35
 Length=0
   
 [Block]
 Name=POP_TRAINING
 Label=Technical and Vocational Training
 DisplayTogether=Yes
-Position=51
+Position=52
 Length=0
   
 [Block]
 Name=POP_TRAININGOCC
 Label=Training occupation
 DisplayTogether=Yes
-Position=53
+Position=54
 Length=2
   
 [Block]
 Name=POP_FERTILITY
 Label=Fertility and Union Status
 DisplayTogether=Yes
-Position=60
+Position=61
 Length=0
   
 [Block]
 Name=POP_LIVEBORN
 Label=Liveborn Children
 DisplayTogether=Yes
-Position=62
+Position=63
 Length=3
   
 [Block]
 Name=POP_STILLALIVE
 Label=Still Alive Children
 DisplayTogether=Yes
-Position=66
+Position=67
 Length=3
   
 [Block]
 Name=POP_FIRSTLIVEBORN
 Label=First Liveborn DOB
 DisplayTogether=Yes
-Position=70
+Position=71
 Length=3
   
 [Block]
 Name=POP_LASTLIVEBORN
 Label=Last Liveborn DOB
 DisplayTogether=Yes
-Position=75
+Position=76
 Length=3
   
 [Block]
 Name=POP_HUS
 Label=Husband info
 DisplayTogether=Yes
-Position=83
+Position=84
 Length=2
   
 [Block]
 Name=POP_ECONOMICACTIVITY
 Label=Economic Activity
 DisplayTogether=Yes
-Position=87
+Position=88
 Length=0
   
 [Block]
 Name=POP_OCCINDUS
 Label=Occupation and Industry
 DisplayTogether=Yes
-Position=93
+Position=94
 Length=4
   
 [Block]
 Name=POP_AGRICULTURE
 Label=Agriculture
 DisplayTogether=Yes
-Position=106
+Position=107
 Length=2
   
 [Block]
 Name=POP_AGRICULTURE2
 Label=Agriculture
 DisplayTogether=Yes
-Position=109
+Position=110
 Length=3
   
 [Block]
 Name=POP_FOOD
 Label=Food Security
 DisplayTogether=Yes
-Position=113
+Position=114
 Length=3
   
 [Block]
 Name=POP_CRIME
 Label=Crime
 DisplayTogether=Yes
-Position=117
+Position=118
 Length=0
   
 [Block]
 Name=POP_END
 Label=End
 DisplayTogether=Yes
-Position=123
+Position=124
 Length=1
   
 [EndGrid]
