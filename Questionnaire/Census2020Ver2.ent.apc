@@ -1635,14 +1635,14 @@ onfocus
 		endfor;
 		occupationCodes(nextEntry) = notappl;
 	endif;
-	setvalueset(P37, occupationCodes, occupationLabels);
+	setvalueset(P37A, occupationCodes, occupationLabels);
 
 postproc
 	if length(strip(P36_TEXT)) = 0 and P36 = notappl then
 		errmsg("Please either select an occupation or enter an occupation");
 		reenter;
 	endif;
-	if length(strip(P37_TEXT)) = 0 and P37 = notappl then
+	if length(strip(P37A_TEXT)) = 0 and P37A = notappl then
 		errmsg("Please either select an industry or enter an industry");
 		reenter;
 	endif;
@@ -1699,7 +1699,7 @@ PROC P41B
 postproc
 	//Skip this and other agriculture questions if the last two questions are no
 	If P41A = 2 and $ = 2 then		//if the last two questions are "no"
-		skip to POP_CRIME;		//skip agriculture
+		skip to POP_FOOD;		//skip agriculture
 	endif;
 	
 //-----------------------------------------------------------------------------

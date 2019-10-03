@@ -1641,7 +1641,7 @@ Width=10
 Width=33
   
 [HeaderText]
-Position=0,16,33,40
+Position=0,32,33,56
 Text=Sex
  
 [Field]
@@ -1662,7 +1662,7 @@ Text=Sex
 Width=119
   
 [HeaderText]
-Position=0,16,119,40
+Position=0,32,119,56
 Text=Year of Departure
  
 [Field]
@@ -1682,7 +1682,7 @@ Text=Year of Departure
 Width=116
   
 [HeaderText]
-Position=0,16,116,40
+Position=0,32,116,56
 Text=Age at Departure
  
 [Field]
@@ -1701,7 +1701,7 @@ Text=Age at Departure
 Width=94
   
 [HeaderText]
-Position=0,16,94,40
+Position=0,32,94,56
 Text=Country Code
  
 [Field]
@@ -1722,8 +1722,8 @@ Text=Country Code
 Width=80
   
 [HeaderText]
-Position=0,0,80,40
-Text=Reason for Departure
+Position=0,0,80,56
+Text=Main Reason for Departure
  
 [Field]
 Name=EREASON
@@ -1742,7 +1742,7 @@ Text=Main Reason for Departure
 Width=709
   
 [HeaderText]
-Position=666,16,709,40
+Position=666,32,709,56
 Text=Other
  
 [Field]
@@ -1793,202 +1793,202 @@ HeadingRowHeight=0
 FreeMovement=No
  
 [Text]
-Position=862,0,877,24
+Position=1394,0,1409,24
 Text=1
  
   
 [Text]
-Position=862,0,877,24
+Position=1394,0,1409,24
 Text=2
  
   
 [Text]
-Position=862,0,877,24
+Position=1394,0,1409,24
 Text=3
  
   
 [Text]
-Position=862,0,877,24
+Position=1394,0,1409,24
 Text=4
  
   
 [Text]
-Position=862,0,877,24
+Position=1394,0,1409,24
 Text=5
  
   
 [Text]
-Position=862,0,877,24
+Position=1394,0,1409,24
 Text=6
  
   
 [Text]
-Position=862,0,877,24
+Position=1394,0,1409,24
 Text=7
  
   
 [Text]
-Position=862,0,877,24
+Position=1394,0,1409,24
 Text=8
  
   
 [Text]
-Position=862,0,877,24
+Position=1394,0,1409,24
 Text=9
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=10
  
   
 [Text]
-Position=856,0,877,24
+Position=1388,0,1409,24
 Text=11
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=12
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=13
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=14
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=15
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=16
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=17
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=18
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=19
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=20
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=21
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=22
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=23
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=24
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=25
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=26
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=27
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=28
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=29
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=30
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=31
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=32
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=33
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=34
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=35
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=36
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=37
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=38
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=39
  
   
 [Text]
-Position=855,0,877,24
+Position=1387,0,1409,24
 Text=40
  
   
@@ -2341,7 +2341,7 @@ Width=88
   
 [HeaderText]
 Position=37,0,159,88
-Text=P13(a) - Was your disability\major impairment ever diagnosed by a medical doctor?
+Text=P13(a) - Relating to question P12, were you ever diagnosed by a medical doctor?
  
 [Field]
 Name=P13A
@@ -2352,16 +2352,16 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P13(a) - Was your disability\major impairment ever diagnosed by a medical doctor?
+Text=P13(a) - Relating to question P12, were you ever diagnosed by a medical doctor?
  
 [EndColumn]
   
 [Column]
-Width=56
+Width=72
   
 [HeaderText]
-Position=14,0,159,56
-Text=P13(b) - What was the origin of your disability?
+Position=14,0,159,72
+Text=P13(b) - What was the origin of your condition iidentified in question P12?
  
 [Field]
 Name=P13B
@@ -2372,7 +2372,7 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P13(b) - What was the origin of your disability?
+Text=P13(b) - What was the origin of your condition iidentified in question P12?
  
 [EndColumn]
   
@@ -2949,6 +2949,25 @@ UseUnicodeTextBox=Yes
   
 [Text]
 Text=P25(b) - Other
+ 
+[EndColumn]
+  
+[Column]
+Width=40
+  
+[HeaderText]
+Position=6,0,159,40
+Text=P25(c) - Do you have a cell phone
+ 
+[Field]
+Name=P25C
+Position=854,0,869,20
+Item=P25C,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=RadioButton
+  
+[Text]
+Text=P25(c) - Do you have a cell phone
  
 [EndColumn]
   
@@ -3643,18 +3662,18 @@ Width=88
   
 [HeaderText]
 Position=4,0,159,88
-Text=P37 - In which industry or type of business did you work during the 12 months ending april 2020?
+Text=P37(a) - In which industry or type of business did you work during the 12 months ending april 2020?
  
 [Field]
-Name=P37
+Name=P37A
 Position=812,0,869,20
-Item=P37,CENSUS2020_DICT
+Item=P37A,CENSUS2020_DICT
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
 Position=0,0,628,16
-Text=P37 - In which industry or type of business did you work during the 12 months ending april 2020?
+Text=P37(a) - In which industry or type of business did you work during the 12 months ending april 2020?
  
 [EndColumn]
   
@@ -3663,18 +3682,94 @@ Width=104
   
 [HeaderText]
 Position=20,0,159,104
-Text=P37 - In which industry or type of business did you work during the 12 months ending april 2020?
+Text=P37(a) - In which industry or type of business did you work during the 12 months ending april 2020?
  
 [Field]
-Name=P37_TEXT
+Name=P37A_TEXT
 Position=154,0,855,20
-Item=P37_TEXT,CENSUS2020_DICT
+Item=P37A_TEXT,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
 [Text]
-Text=P37 - In which industry or type of business did you work during the 12 months ending april 2020?
+Text=P37(a) - In which industry or type of business did you work during the 12 months ending april 2020?
+ 
+[EndColumn]
+  
+[Column]
+Width=40
+  
+[HeaderText]
+Position=8,0,159,40
+Text=P37(b) - Where is your work located? Line 1
+ 
+[Field]
+Name=P37B1
+Position=0,0,1401,20
+Item=P37B1,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+  
+[Text]
+Text=P37(b) - Where is your work located? Line 1
+ 
+[EndColumn]
+  
+[Column]
+Width=28
+  
+[HeaderText]
+Position=112,4,159,28
+Text=Line 2
+ 
+[Field]
+Name=P37B2
+Position=0,0,1401,20
+Item=P37B2,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+  
+[Text]
+Text=Line 2
+ 
+[EndColumn]
+  
+[Column]
+Width=28
+  
+[HeaderText]
+Position=111,4,159,28
+Text=Parish
+ 
+[Field]
+Name=P37B3
+Position=1372,0,1401,20
+Item=P37B3,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=RadioButton
+  
+[Text]
+Text=Parish
+ 
+[EndColumn]
+  
+[Column]
+Width=56
+  
+[HeaderText]
+Position=3,0,159,56
+Text=P37(c) - What is your main mode of travel to work?
+ 
+[Field]
+Name=P37C
+Position=1386,0,1401,20
+Item=P37C,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+DataCaptureType=RadioButton
+  
+[Text]
+Text=P37(c) - What is your main mode of travel to work?
  
 [EndColumn]
   
@@ -3734,26 +3829,6 @@ UseUnicodeTextBox=Yes
   
 [Text]
 Text=P38 - Other
- 
-[EndColumn]
-  
-[Column]
-Width=104
-  
-[HeaderText]
-Position=16,0,159,104
-Text=P39 - During the past three months, were you unable to go to work due to lack of money or transportation?
- 
-[Field]
-Name=P40
-Position=840,0,855,20
-Item=P40,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-DataCaptureType=DropDown
-  
-[Text]
-Text=P39 - During the past three months, were you unable to go to work due to lack of money or transportation?
  
 [EndColumn]
   
@@ -3832,6 +3907,26 @@ FieldLabelType=DictionaryLabel
   
 [Text]
 Text=P40(c) - What was your monthly income from sources of livelihood other than employment?
+ 
+[EndColumn]
+  
+[Column]
+Width=104
+  
+[HeaderText]
+Position=16,0,159,104
+Text=P39 - During the past three months, were you unable to go to work due to lack of money or transportation?
+ 
+[Field]
+Name=P40
+Position=840,0,855,20
+Item=P40,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
+  
+[Text]
+Text=P39 - During the past three months, were you unable to go to work due to lack of money or transportation?
  
 [EndColumn]
   
@@ -4147,105 +4242,105 @@ Length=0
 Name=POP_TRAINING
 Label=Technical and Vocational Training
 DisplayTogether=Yes
-Position=52
+Position=53
 Length=0
   
 [Block]
 Name=POP_TRAININGOCC
 Label=Training occupation
 DisplayTogether=Yes
-Position=54
+Position=55
 Length=2
   
 [Block]
 Name=POP_FERTILITY
 Label=Fertility and Union Status
 DisplayTogether=Yes
-Position=61
+Position=62
 Length=0
   
 [Block]
 Name=POP_LIVEBORN
 Label=Liveborn Children
 DisplayTogether=Yes
-Position=63
+Position=64
 Length=3
   
 [Block]
 Name=POP_STILLALIVE
 Label=Still Alive Children
 DisplayTogether=Yes
-Position=67
+Position=68
 Length=3
   
 [Block]
 Name=POP_FIRSTLIVEBORN
 Label=First Liveborn DOB
 DisplayTogether=Yes
-Position=71
+Position=72
 Length=3
   
 [Block]
 Name=POP_LASTLIVEBORN
 Label=Last Liveborn DOB
 DisplayTogether=Yes
-Position=76
+Position=77
 Length=3
   
 [Block]
 Name=POP_HUS
 Label=Husband info
 DisplayTogether=Yes
-Position=84
+Position=85
 Length=2
   
 [Block]
 Name=POP_ECONOMICACTIVITY
 Label=Economic Activity
 DisplayTogether=Yes
-Position=88
+Position=89
 Length=0
   
 [Block]
 Name=POP_OCCINDUS
 Label=Occupation and Industry
 DisplayTogether=Yes
-Position=94
-Length=4
+Position=95
+Length=8
   
 [Block]
 Name=POP_AGRICULTURE
 Label=Agriculture
 DisplayTogether=Yes
-Position=107
+Position=112
 Length=2
   
 [Block]
 Name=POP_AGRICULTURE2
 Label=Agriculture
 DisplayTogether=Yes
-Position=110
+Position=115
 Length=3
   
 [Block]
 Name=POP_FOOD
 Label=Food Security
 DisplayTogether=Yes
-Position=114
+Position=119
 Length=3
   
 [Block]
 Name=POP_CRIME
 Label=Crime
 DisplayTogether=Yes
-Position=118
+Position=123
 Length=0
   
 [Block]
 Name=POP_END
 Label=End
 DisplayTogether=Yes
-Position=124
+Position=129
 Length=1
   
 [EndGrid]

@@ -1036,7 +1036,7 @@ Name=POPULATION
 RecordTypeValue='3'
 Required=No
 MaxRecords=40
-RecordLen=1318
+RecordLen=1522
 
 [Item]
 Label=Individual Number
@@ -2047,9 +2047,22 @@ Len=50
 DataType=Alpha
 
 [Item]
+Label=P25(c) - Do you have a cell phone
+Name=P25C
+Start=644
+Len=1
+ZeroFill=Yes
+
+[ValueSet]
+Label=P25(c) - Do you have a cell phone
+Name=P25C_VS1
+Value=1;Yes
+Value=2;No
+
+[Item]
 Label=P26(a)i - Were you ever trained\are you being trained for any occupation or profession?
 Name=P26AI
-Start=644
+Start=645
 Len=1
 ZeroFill=Yes
 
@@ -2062,7 +2075,7 @@ Value=2;No
 [Item]
 Label=P26(a)ii - If YES, for which occupation\profession?
 Name=P26AII
-Start=645
+Start=646
 Len=4
 ZeroFill=Yes
 
@@ -2129,14 +2142,14 @@ Value=9999;Not Stated
 [Item]
 Label=P26(a)ii - If YES, for which occupation\profession?
 Name=P26AII_TEXT
-Start=649
+Start=650
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P26(b) - Have you completed training or are you still being trained?
 Name=P26B
-Start=699
+Start=700
 Len=1
 ZeroFill=Yes
 
@@ -2150,7 +2163,7 @@ Value=3;Still Being Trained
 [Item]
 Label=P26(c) - If completed training, in what year did you complete training
 Name=P26C
-Start=700
+Start=701
 Len=4
 ZeroFill=Yes
 
@@ -2162,7 +2175,7 @@ Value=1970:2020;Valid
 [Item]
 Label=P27 - Where were you trained are you being trained?
 Name=P27
-Start=704
+Start=705
 Len=2
 ZeroFill=Yes
 
@@ -2187,7 +2200,7 @@ Value=14;Other Non-institutional Training
 [Item]
 Label=P28 - How many years of training have you completed?
 Name=P28
-Start=706
+Start=707
 Len=1
 ZeroFill=Yes
 
@@ -2207,7 +2220,7 @@ Value=9;5 years and over
 [Item]
 Label=P29(a) - Have you ever had any children?
 Name=P29A
-Start=707
+Start=708
 Len=1
 ZeroFill=Yes
 
@@ -2220,7 +2233,7 @@ Value=2;No
 [Item]
 Label=P29(b)i - How many liveborn children did you have in all?
 Name=P29BI
-Start=708
+Start=709
 Len=2
 ZeroFill=Yes
 
@@ -2232,7 +2245,7 @@ Value=0:20;valid
 [Item]
 Label=P29(b)ii - How many male liveborn children did you have?
 Name=P29BII
-Start=710
+Start=711
 Len=2
 ZeroFill=Yes
 
@@ -2244,7 +2257,7 @@ Value=0:20;valid
 [Item]
 Label=P29(b)iii - How many female liveborn children did you have?
 Name=P29BIII
-Start=712
+Start=713
 Len=2
 ZeroFill=Yes
 
@@ -2256,7 +2269,7 @@ Value=0:20;valid
 [Item]
 Label=P29(c)i - How many of your total liveborn children are still alive?
 Name=P29CI
-Start=714
+Start=715
 Len=2
 ZeroFill=Yes
 
@@ -2268,7 +2281,7 @@ Value=0:20;valid
 [Item]
 Label=P29(c)ii - How many of your male liveborn children are still alive?
 Name=P29CII
-Start=716
+Start=717
 Len=2
 ZeroFill=Yes
 
@@ -2280,7 +2293,7 @@ Value=0:20;valid
 [Item]
 Label=P29(c)iii - How many of your female liveborn children are still alive?
 Name=P29CIII
-Start=718
+Start=719
 Len=2
 ZeroFill=Yes
 
@@ -2292,14 +2305,14 @@ Value=0:20;valid
 [Item]
 Label=P30(a) - What is the date of birth of your first liveborn child?
 Name=P30A
-Start=720
+Start=721
 Len=8
 ZeroFill=Yes
 
 [Item]
 Label=Year
 Name=P30A_YEAR
-Start=720
+Start=721
 Len=4
 ItemType=SubItem
 ZeroFill=Yes
@@ -2433,7 +2446,7 @@ Value=9999;Don't know
 [Item]
 Label=Month
 Name=P30A_MONTH
-Start=724
+Start=725
 Len=2
 ItemType=SubItem
 ZeroFill=Yes
@@ -2458,7 +2471,7 @@ Value=99;Don't know
 [Item]
 Label=Day
 Name=P30A_DAY
-Start=726
+Start=727
 Len=2
 ItemType=SubItem
 ZeroFill=Yes
@@ -2502,7 +2515,7 @@ Value=99;Don't know
 [Item]
 Label=P30(b) - How old were you at the birth of your first liveborn child?
 Name=P30B
-Start=728
+Start=729
 Len=2
 ZeroFill=Yes
 
@@ -2514,14 +2527,14 @@ Value=10:64;valid
 [Item]
 Label=P30(c) - What is the date of birth of your last liveborn child?
 Name=P30C
-Start=730
+Start=731
 Len=8
 ZeroFill=Yes
 
 [Item]
 Label=Year
 Name=P30C_YEAR
-Start=730
+Start=731
 Len=4
 ItemType=SubItem
 ZeroFill=Yes
@@ -2655,7 +2668,7 @@ Value=9999;Don't know
 [Item]
 Label=Month
 Name=P30C_MONTH
-Start=734
+Start=735
 Len=2
 ItemType=SubItem
 ZeroFill=Yes
@@ -2680,7 +2693,7 @@ Value=99;Don't know
 [Item]
 Label=Day
 Name=P30C_DAY
-Start=736
+Start=737
 Len=2
 ItemType=SubItem
 ZeroFill=Yes
@@ -2724,7 +2737,7 @@ Value=99;Don't know
 [Item]
 Label=P30(d) - How old were you at the birth of your last liveborn child?
 Name=P30D
-Start=738
+Start=739
 Len=2
 ZeroFill=Yes
 
@@ -2736,7 +2749,7 @@ Value=10:64;valid
 [Item]
 Label=P31 - How many live births did you have during the 12 months ending 30th April 2020?
 Name=P31
-Start=740
+Start=741
 Len=1
 ZeroFill=Yes
 
@@ -2752,7 +2765,7 @@ Value=5;None
 [Item]
 Label=P32(a) - Are you currently living with a partner?
 Name=P32A
-Start=741
+Start=742
 Len=1
 ZeroFill=Yes
 
@@ -2766,7 +2779,7 @@ Value=2;No
 Label=P32(b) - If YES and MARRIED, Are you living with your husband or with a common law partner?
 Name=P32B
 Note=Married as stated in P9 (P9=1)
-Start=742
+Start=743
 Len=1
 ZeroFill=Yes
 
@@ -2779,7 +2792,7 @@ Value=2;With Common Law Partner
 [Item]
 Label=P32(c) - If with HUSBAND\COMMON LAW PARTNER, score his individual number.
 Name=P32C
-Start=743
+Start=744
 Len=2
 ZeroFill=Yes
 
@@ -2792,7 +2805,7 @@ Value=1:40;With husband/common law partner
 [Item]
 Label=P32(d) - If with HUSBAND\COMMON LAW PARTNER, how many years have you and your partner been living together?
 Name=P32D
-Start=745
+Start=746
 Len=2
 ZeroFill=Yes
 
@@ -2804,7 +2817,7 @@ Value=0:80;valid
 [Item]
 Label=P32(e) - Have you ever lived with a husband\common law partner?
 Name=P32E
-Start=747
+Start=748
 Len=1
 ZeroFill=Yes
 
@@ -2817,7 +2830,7 @@ Value=2;Never had a husband\common law partner
 [Item]
 Label=P33 - What was your main activity during the 12 months ending 30th April 2020?
 Name=P33
-Start=748
+Start=749
 Len=1
 ZeroFill=Yes
 
@@ -2836,14 +2849,14 @@ Value=8;Other
 [Item]
 Label=P33 - Other
 Name=P33_OTHER
-Start=749
+Start=750
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P34 - During the 12 months ending 30th April 220, did you work for an employer or for yourself?
 Name=P34
-Start=799
+Start=800
 Len=2
 ZeroFill=Yes
 
@@ -2863,14 +2876,14 @@ Value=9;Did not Work
 [Item]
 Label=P34 - Other
 Name=P34_OTHER
-Start=801
+Start=802
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P35 - How many months did you work during the 12 months ending 30th April 2020?
 Name=P35
-Start=851
+Start=852
 Len=1
 ZeroFill=Yes
 
@@ -2888,7 +2901,7 @@ Value=7;12
 [Item]
 Label=P36 - What was your main type of job or occupation during the 12 months ending 30th April 2020
 Name=P36
-Start=852
+Start=853
 Len=4
 ZeroFill=Yes
 
@@ -2955,20 +2968,20 @@ Value=9999;Not Stated
 [Item]
 Label=P36 - What was your main type of job or occupation during the 12 months ending 30th April 2020
 Name=P36_TEXT
-Start=856
+Start=857
 Len=50
 DataType=Alpha
 
 [Item]
-Label=P37 - In which industry or type of business did you work during the 12 months ending april 2020?
-Name=P37
-Start=906
+Label=P37(a) - In which industry or type of business did you work during the 12 months ending april 2020?
+Name=P37A
+Start=907
 Len=4
 ZeroFill=Yes
 
 [ValueSet]
-Label=P37 - In which industry or type of business did you work during the 12 months ending april 2020?
-Name=P37_VS1
+Label=P37(a) - In which industry or type of business did you work during the 12 months ending april 2020?
+Name=P37A_VS1
 Value=111:322;Agriculture, forestry and fishing
 Value=510:990;Mining and quarrying
 Value=1010:3320;Manufacturing
@@ -2993,7 +3006,7 @@ Value=9999;Not stated
 
 [ValueSet]
 Label=P38 - In which industry or type of business did you work during the 12 months ending april 2020?
-Name=P37_VS2
+Name=P37A_VS2
 Value=0:999;Agriculture, hunting, forestry and fishing
 Value=1000:1999;Mining and quarrying
 Value=2000:2999;Manufacturing
@@ -3006,16 +3019,69 @@ Value=8000:9900;Community, social and personal service activities
 Value=9999;Not stated
 
 [Item]
-Label=P37 - In which industry or type of business did you work during the 12 months ending april 2020?
-Name=P37_TEXT
-Start=910
+Label=P37(a) - In which industry or type of business did you work during the 12 months ending april 2020?
+Name=P37A_TEXT
+Start=911
 Len=50
 DataType=Alpha
 
 [Item]
+Label=P37(b) - Where is your work located? Line 1
+Name=P37B1
+Start=961
+Len=100
+DataType=Alpha
+
+[Item]
+Label=Line 2
+Name=P37B2
+Start=1061
+Len=100
+DataType=Alpha
+
+[Item]
+Label=Parish
+Name=P37B3
+Start=1161
+Len=2
+ZeroFill=Yes
+
+[ValueSet]
+Label=Parish
+Name=P37B3_VS1
+Value=1;St. Michael
+Value=2;Christ Church
+Value=3;St. George
+Value=4;St. Philip
+Value=5;St. John
+Value=6;St. James
+Value=7;St. Thomas
+Value=8;St. Joseph
+Value=9;St. Andrew
+Value=10;St. Peter
+Value=11;St. Lucy
+
+[Item]
+Label=P37(c) - What is your main mode of travel to work?
+Name=P37C
+Start=1163
+Len=1
+ZeroFill=Yes
+
+[ValueSet]
+Label=P37(c) - What is your main mode of travel to work?
+Name=P37C_VS1
+Value=1;Walking
+Value=2;Bicycle
+Value=3;Private motor vehicle
+Value=4;Bus
+Value=5;Taxi
+Value=6;None (for working at home)
+
+[Item]
 Label=P38 - What are your sources of livelihood other than from employment? (Score as many as applicable)
 Name=P38
-Start=960
+Start=1164
 Len=12
 DataType=Alpha
 
@@ -3037,21 +3103,21 @@ Value='K           ';None
 [Item]
 Label=P38 - Other Public Assistance
 Name=P38_OTHERASSISTANCE
-Start=972
+Start=1176
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P38 - Other
 Name=P38_OTHER
-Start=1022
+Start=1226
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P39 - During the past three months, were you unable to go to work due to lack of money or transportation?
 Name=P40
-Start=1072
+Start=1276
 Len=1
 ZeroFill=Yes
 
@@ -3064,7 +3130,7 @@ Value=2;No
 [Item]
 Label=P40(a) - What is the normal pay period from your main occupation\job?
 Name=P39A
-Start=1073
+Start=1277
 Len=1
 ZeroFill=Yes
 
@@ -3079,21 +3145,21 @@ Value=4;Other
 [Item]
 Label=P40(a) - Other
 Name=P39A_OTHER
-Start=1074
+Start=1278
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P40(b) - What was your gross pay or income from your main occupation during the last pay period? (Before tax or deductions)
 Name=P39B
-Start=1124
+Start=1328
 Len=7
 ZeroFill=Yes
 
 [Item]
 Label=P40(c) - What was your monthly income from sources of livelihood other than employment?
 Name=P39C
-Start=1131
+Start=1335
 Len=2
 ZeroFill=Yes
 
@@ -3116,7 +3182,7 @@ Value=12;Over $10000
 [Item]
 Label=P41(a) - Are you involved in any agricultural activity?
 Name=P41A
-Start=1133
+Start=1337
 Len=1
 ZeroFill=Yes
 
@@ -3129,7 +3195,7 @@ Value=2;No
 [Item]
 Label=P41(b) - Do you own any agricultural land?
 Name=P41B
-Start=1134
+Start=1338
 Len=1
 ZeroFill=Yes
 
@@ -3142,7 +3208,7 @@ Value=2;No
 [Item]
 Label=P42 - What is your area of involvement in agricultural activity
 Name=P42
-Start=1135
+Start=1339
 Len=1
 ZeroFill=Yes
 
@@ -3158,7 +3224,7 @@ Value=5;Labourer\Worker
 [Item]
 Label=P43 - In what type of agricultural activity are you involved? (Score as many as applicable)
 Name=P43
-Start=1136
+Start=1340
 Len=11
 DataType=Alpha
 
@@ -3181,14 +3247,14 @@ Value='L          ';Other
 [Item]
 Label=P43 - Other
 Name=P43_OTHER
-Start=1147
+Start=1351
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P44 - During the past four weeks, did you have no food due to lack of resources?
 Name=P44
-Start=1197
+Start=1401
 Len=1
 ZeroFill=Yes
 
@@ -3201,7 +3267,7 @@ Value=2;No
 [Item]
 Label=P45 - Did you go a whole day and night without eating anything because there was not enough food?
 Name=P45
-Start=1198
+Start=1402
 Len=1
 ZeroFill=Yes
 
@@ -3216,7 +3282,7 @@ Value=4;More than 10
 [Item]
 Label=P46 - During the past three months, have you ever been ill (and required medical attention) but did not go to a healthcare facility because of a lack of resources?
 Name=P46
-Start=1199
+Start=1403
 Len=1
 ZeroFill=Yes
 
@@ -3231,7 +3297,7 @@ Value=4;More than 10
 [Item]
 Label=P47(a) - Have you been a victim of crime during the past 12 months ending april 30, 2020?
 Name=P47A
-Start=1200
+Start=1404
 Len=1
 ZeroFill=Yes
 
@@ -3245,7 +3311,7 @@ Value=3;Don't Know
 [Item]
 Label=P47(b) - If yes, Please specify the type of crime (Score as many as applicable)
 Name=P47B
-Start=1201
+Start=1405
 Len=8
 DataType=Alpha
 
@@ -3265,14 +3331,14 @@ Value='I       ';Other
 [Item]
 Label=P47(b) - Other
 Name=P47B_OTHER
-Start=1209
+Start=1413
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P47(c) - Out of the crimes indicated, which crimes were reported? (Score as many as applicable)
 Name=P47C
-Start=1259
+Start=1463
 Len=9
 DataType=Alpha
 
@@ -3293,14 +3359,14 @@ Value='J        ';None
 [Item]
 Label=P47(c) - Other
 Name=P47C_OTHER
-Start=1268
+Start=1472
 Len=50
 DataType=Alpha
 
 [Item]
 Label=P48 - Where did you spend the night of May 1 2020?
 Name=P48
-Start=1318
+Start=1522
 Len=1
 ZeroFill=Yes
 

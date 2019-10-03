@@ -275,7 +275,7 @@ EN=\pard\cf1\fs24 Type an occupation/profession\par
 EN=}
 
 [QUESTION]
-Field=CENSUS2020_DICT.P37
+Field=CENSUS2020_DICT.P37A
 Occurrences=1:40
 EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
@@ -284,12 +284,39 @@ EN=\pard\cf1\fs24 Select an industry\par
 EN=}
 
 [QUESTION]
-Field=CENSUS2020_DICT.P37_TEXT
+Field=CENSUS2020_DICT.P37A_TEXT
 Occurrences=1:40
 EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
 EN={\colortbl ;\red0\green0\blue0;}
 EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
 EN=\pard\cf1\fs24 Type an industry/place of work\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.P37B1
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Where is your work located? Line 1\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.P37B2
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Line 2\par
+EN=}
+
+[QUESTION]
+Field=CENSUS2020_DICT.P37B3
+Occurrences=1:40
+EN={\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+EN={\colortbl ;\red0\green0\blue0;}
+EN={\*\generator Riched20 10.0.14393}\viewkind4\uc1
+EN=\pard\cf1\fs24 Parish\par
 EN=}
 
 [QUESTION]
