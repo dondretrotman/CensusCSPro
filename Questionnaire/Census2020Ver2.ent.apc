@@ -2,8 +2,8 @@
 {
 Census Android CAPI application
 Author: Dondré Trotman
-Date: 2019/07/30
-Version: 3.0
+Date: 2019/10/17
+Version: 3.4
 
 Description:
 This application is meant to be installed on an Android device using the CSPRO app available on the Google Play Store.
@@ -1014,7 +1014,7 @@ PROC POP_DISABILITY
 postproc
 	if P12BI in 1:2 and P12BII in 1:2 and P12BIII in 1:2 and P12BIV in 1:2 and P12BV in 1:2 and P12BVI in 1:2 then		//if no disabilities
 		P12A = 2;
-		skip to P14;	//skip to non communicable disease
+		skip to P14A;	//skip to non communicable disease
 	else
 		P12A = 1;
 	endif;
@@ -1055,7 +1055,7 @@ preproc
 	ask if P13B = 5;
 
 //-------------------------------------------------------------
-PROC P14
+PROC P14A
 //P14 – Do you have any of the following illnesses? (Score as many as are applicable)
 	if pos("K",$) > 0 and length(strip($)) > 1 then		//If none selected with another option
 		errmsg("cannot be none and another option");
@@ -1063,11 +1063,11 @@ PROC P14
 	endif;
 
 //------------------------------------------------------------------------
-PROC P14_OTHER
+PROC P14A_OTHER
 //P14 – Do you have any of the following illnesses? (Score as many as are applicable)
 preproc
 	//only ask if other is selected
-	ask if pos("J",P14) > 0;
+	ask if pos("J",P14A) > 0;
 
 //-------------------------------------------------------------
 
@@ -1692,27 +1692,48 @@ postproc
 	endif;
 	
 //------------------------------------------------------------
-PROC P41A
-//P41(a) – Are you involved in any agricultural activity?
 PROC P41B
 //P41(b) – Do you own any agricultural land?
-postproc
+{postproc
 	//Skip this and other agriculture questions if the last two questions are no
 	If P41A = 2 and $ = 2 then		//if the last two questions are "no"
 		skip to POP_FOOD;		//skip agriculture
 	endif;
-	
+}	
 //-----------------------------------------------------------------------------
-PROC P43
-///P43 – In what type of agricultural activity are you involved? 
-PROC P43_OTHER
-//P43 – In what type of agricultural activity are you involved? 
+PROC POP_AGRICULTURE2
+postproc 
+if P42 <> 6 or pos("L", P43) = 0 then		//if involved in agricultural activity
+	P41A = 1;
+else
+	P41A = 2;
+endif;
+
+//---------------------------------------------------------
+PROC P42_OTHER
+//P42 – Are you involved in any of these areas of agricultural activities?
 preproc
 	//only ask if other is selected
-	ask if pos("L",P43) > 0;
+	ask if P42 = 7;
 
 //-------------------------------------------------------------
-PROC P47A
+PROC P43
+///P43 – Are you involved in any of these types of agricultural activities? 
+postproc
+	if pos("L",$) > 0 and length(strip($)) > 1 then		//If none selected with another option
+		errmsg("cannot be not involved and another option");
+		reenter;
+	endif;
+
+//----------------------------------------------------------------------------
+PROC P43_OTHER
+//P43 – Are you involved in any of these types of agricultural activities?  
+preproc
+	//only ask if other is selected
+	ask if pos("M",P43) > 0;
+
+//-------------------------------------------------------------
+PROC P44A
 //P47(a) – Have you ever been a victim of crime during the past 12 months ending April 30, 2020?
 postproc
 	if $ in 2,3 then		//if no crime victims
@@ -1720,16 +1741,16 @@ postproc
 	endif;
 	
 //-------------------------------------------------------------------
-PROC P47B
+PROC P44B
 //P47(b) – If Yes, Please specify the type of crime 
-PROC P47B_OTHER
+PROC P44B_OTHER
 //P47(b) – If Yes, Please specify the type of crime 
 preproc
 	//only ask if other is selected
-	ask if pos("H",P47B) > 0;
+	ask if pos("H",P44B) > 0;
 
 //-------------------------------------------------------------
-PROC P47C
+PROC P44C
 //P47(c) – Out of the crimes indicated, which crimes were reported? 
 onfocus
 	//DEBUG: Dynamic valueset not showing up
@@ -1740,9 +1761,9 @@ onfocus
 	
 	do i = 1 while i <= 9;		//loop through all checkboxes
 		checkboxalpha = checkboxcodes[i:1];	//convert index to alpha code
-		if pos(checkboxalpha,P47B) > 0 then	//if the checkbox was marked in the previous question
+		if pos(checkboxalpha,P44B) > 0 then	//if the checkbox was marked in the previous question
 			vsalphacodes(vsindex) = checkboxalpha;	//add it to the valueset
-			vslabels(vsindex) = getlabel(P47C_VS1, checkboxalpha);
+			vslabels(vsindex) = getlabel(P44C_VS1, checkboxalpha);
 			inc(vsindex);	//next valueset item
 		endif;		
 	enddo;
@@ -1758,14 +1779,14 @@ postproc
 	
 	if length(strip($)) = 0 then
 		errmsg("There are victims of crime in this household but no crimes are selected")
-			select("Change crime status",P47A,"Select a crime",$);
+			select("Change crime status",P44A,"Select a crime",$);
 	endif;
 
 //-------------------------------------------------------------------------
-PROC P47C_OTHER
+PROC P44C_OTHER
 //P47(c) – Out of the crimes indicated, which crimes were reported? 
 preproc
 	//only ask if other is selected
-	ask if pos("H",P47C) > 0;
+	ask if pos("H",P44C) > 0;
 
 //-------------------------------------------------------------

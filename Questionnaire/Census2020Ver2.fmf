@@ -1790,6 +1790,7 @@ Orientation=Vertical
 ColumnWidth=0
 StubColumnWidth=159
 HeadingRowHeight=0
+UseOccurrenceLabels=Yes
 FreeMovement=No
  
 [Text]
@@ -2404,9 +2405,9 @@ Position=14,0,159,88
 Text=P14 - Do you have ay of the following illnesses? (Score as many as are applicable)
  
 [Field]
-Name=P14
+Name=P14A
 Position=700,0,855,20
-Item=P14,CENSUS2020_DICT
+Item=P14A,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
@@ -2424,15 +2425,35 @@ Position=81,4,159,28
 Text=P14 - Other
  
 [Field]
-Name=P14_OTHER
+Name=P14A_OTHER
 Position=154,0,855,20
-Item=P14_OTHER,CENSUS2020_DICT
+Item=P14A_OTHER,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 UseUnicodeTextBox=Yes
   
 [Text]
 Text=P14 - Other
+ 
+[EndColumn]
+  
+[Column]
+Width=152
+  
+[HeaderText]
+Position=13,0,159,152
+Text=P14 - During the past three months, have you ever been ill (and required medical attention) but did not go to a healthcare facility because of a lack of resources?
+ 
+[Field]
+Name=P14B
+Position=840,0,855,20
+Item=P14B,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+DataCaptureType=DropDown
+  
+[Text]
+Text=P14 - During the past three months, have you ever been ill (and required medical attention) but did not go to a healthcare facility because of a lack of resources?
  
 [EndColumn]
   
@@ -3935,27 +3956,7 @@ Width=56
   
 [HeaderText]
 Position=21,0,159,56
-Text=P41(a) - Are you involved in any agricultural activity?
- 
-[Field]
-Name=P41A
-Position=840,0,855,20
-Item=P41A,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-DataCaptureType=DropDown
-  
-[Text]
-Text=P41(a) - Are you involved in any agricultural activity?
- 
-[EndColumn]
-  
-[Column]
-Width=56
-  
-[HeaderText]
-Position=21,0,159,56
-Text=P41(b) - Do you own any agricultural land?
+Text=P41 - Do you own any agricultural land?
  
 [Field]
 Name=P41B
@@ -3966,16 +3967,16 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P41(b) - Do you own any agricultural land?
+Text=P41 - Do you own any agricultural land?
  
 [EndColumn]
   
 [Column]
-Width=56
+Width=88
   
 [HeaderText]
-Position=13,0,159,56
-Text=P42 - What is your area of involvement in agricultural activity
+Position=13,0,159,88
+Text=P42 - Are you involved in any of these areas of agricultural activities?
  
 [Field]
 Name=P42
@@ -3986,16 +3987,35 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P42 - What is your area of involvement in agricultural activity
+Text=P42 - Are you involved in any of these areas of agricultural activities?
  
 [EndColumn]
   
 [Column]
-Width=88
+Width=28
   
 [HeaderText]
-Position=18,0,159,88
-Text=P43 - In what type of agricultural activity are you involved? (Score as many as applicable)
+Position=81,4,159,28
+Text=P42 - Other
+ 
+[Field]
+Name=P42_OTHER
+Position=700,0,1401,20
+Item=P42_OTHER,CENSUS2020_DICT
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+  
+[Text]
+Text=P42 - Other
+ 
+[EndColumn]
+  
+[Column]
+Width=104
+  
+[HeaderText]
+Position=18,0,159,104
+Text=P43 - Are you involved in any of these types of agricultural activities? (Score as many as applicable)
  
 [Field]
 Name=P43
@@ -4006,7 +4026,7 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=CheckBox
   
 [Text]
-Text=P43 - In what type of agricultural activity are you involved? (Score as many as applicable)
+Text=P43 - Are you involved in any of these types of agricultural activities? (Score as many as applicable)
  
 [EndColumn]
   
@@ -4031,22 +4051,62 @@ Text=P43 - Other
 [EndColumn]
   
 [Column]
-Width=72
+Width=88
   
 [HeaderText]
-Position=16,0,159,72
-Text=P44 - During the past four weeks, did you have no food due to lack of resources?
+Position=12,0,159,88
+Text=P44(a) - Have you been a victim of crime during the past 12 months ending april 30, 2020?
  
 [Field]
-Name=P44
+Name=P44A
 Position=840,0,855,20
-Item=P44,CENSUS2020_DICT
+Item=P44A,CENSUS2020_DICT
 UpperCase=Yes
 FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P44 - During the past four weeks, did you have no food due to lack of resources?
+Text=P44(a) - Have you been a victim of crime during the past 12 months ending april 30, 2020?
+ 
+[EndColumn]
+  
+[Column]
+Width=72
+  
+[HeaderText]
+Position=12,0,159,72
+Text=P44(b) - If yes, Please specify the type of crime (Score as many as applicable)
+ 
+[Field]
+Name=P44B
+Position=742,0,855,20
+Item=P44B,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+DataCaptureType=CheckBox
+  
+[Text]
+Text=P44(b) - If yes, Please specify the type of crime (Score as many as applicable)
+ 
+[EndColumn]
+  
+[Column]
+Width=28
+  
+[HeaderText]
+Position=65,4,159,28
+Text=P44(b) - Other
+ 
+[Field]
+Name=P44B_OTHER
+Position=154,0,855,20
+Item=P44B_OTHER,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+  
+[Text]
+Text=P44(b) - Other
  
 [EndColumn]
   
@@ -4054,8 +4114,48 @@ Text=P44 - During the past four weeks, did you have no food due to lack of resou
 Width=104
   
 [HeaderText]
-Position=13,0,159,104
-Text=P45 - Did you go a whole day and night without eating anything because there was not enough food?
+Position=27,0,159,104
+Text=P44(c) - Out of the crimes indicated, which crimes were reported? (Score as many as applicable)
+ 
+[Field]
+Name=P44C
+Position=728,0,855,20
+Item=P44C,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+DataCaptureType=CheckBox
+  
+[Text]
+Text=P44(c) - Out of the crimes indicated, which crimes were reported? (Score as many as applicable)
+ 
+[EndColumn]
+  
+[Column]
+Width=28
+  
+[HeaderText]
+Position=66,4,159,28
+Text=P44(c) - Other
+ 
+[Field]
+Name=P44C_OTHER
+Position=154,0,855,20
+Item=P44C_OTHER,CENSUS2020_DICT
+UpperCase=Yes
+FieldLabelType=DictionaryLabel
+UseUnicodeTextBox=Yes
+  
+[Text]
+Text=P44(c) - Other
+ 
+[EndColumn]
+  
+[Column]
+Width=56
+  
+[HeaderText]
+Position=19,0,159,56
+Text=P45 - Where did you spend the night of May 1 2020?
  
 [Field]
 Name=P45
@@ -4066,147 +4166,7 @@ FieldLabelType=DictionaryLabel
 DataCaptureType=DropDown
   
 [Text]
-Text=P45 - Did you go a whole day and night without eating anything because there was not enough food?
- 
-[EndColumn]
-  
-[Column]
-Width=152
-  
-[HeaderText]
-Position=13,0,159,152
-Text=P46 - During the past three months, have you ever been ill (and required medical attention) but did not go to a healthcare facility because of a lack of resources?
- 
-[Field]
-Name=P46
-Position=840,0,855,20
-Item=P46,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-DataCaptureType=DropDown
-  
-[Text]
-Text=P46 - During the past three months, have you ever been ill (and required medical attention) but did not go to a healthcare facility because of a lack of resources?
- 
-[EndColumn]
-  
-[Column]
-Width=88
-  
-[HeaderText]
-Position=12,0,159,88
-Text=P47(a) - Have you been a victim of crime during the past 12 months ending april 30, 2020?
- 
-[Field]
-Name=P47A
-Position=840,0,855,20
-Item=P47A,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-DataCaptureType=DropDown
-  
-[Text]
-Text=P47(a) - Have you been a victim of crime during the past 12 months ending april 30, 2020?
- 
-[EndColumn]
-  
-[Column]
-Width=72
-  
-[HeaderText]
-Position=12,0,159,72
-Text=P47(b) - If yes, Please specify the type of crime (Score as many as applicable)
- 
-[Field]
-Name=P47B
-Position=742,0,855,20
-Item=P47B,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-DataCaptureType=CheckBox
-  
-[Text]
-Text=P47(b) - If yes, Please specify the type of crime (Score as many as applicable)
- 
-[EndColumn]
-  
-[Column]
-Width=28
-  
-[HeaderText]
-Position=65,4,159,28
-Text=P47(b) - Other
- 
-[Field]
-Name=P47B_OTHER
-Position=154,0,855,20
-Item=P47B_OTHER,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-UseUnicodeTextBox=Yes
-  
-[Text]
-Text=P47(b) - Other
- 
-[EndColumn]
-  
-[Column]
-Width=104
-  
-[HeaderText]
-Position=27,0,159,104
-Text=P47(c) - Out of the crimes indicated, which crimes were reported? (Score as many as applicable)
- 
-[Field]
-Name=P47C
-Position=728,0,855,20
-Item=P47C,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-DataCaptureType=CheckBox
-  
-[Text]
-Text=P47(c) - Out of the crimes indicated, which crimes were reported? (Score as many as applicable)
- 
-[EndColumn]
-  
-[Column]
-Width=28
-  
-[HeaderText]
-Position=66,4,159,28
-Text=P47(c) - Other
- 
-[Field]
-Name=P47C_OTHER
-Position=154,0,855,20
-Item=P47C_OTHER,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-UseUnicodeTextBox=Yes
-  
-[Text]
-Text=P47(c) - Other
- 
-[EndColumn]
-  
-[Column]
-Width=56
-  
-[HeaderText]
-Position=19,0,159,56
-Text=P48 - Where did you spend the night of May 1 2020?
- 
-[Field]
-Name=P48
-Position=840,0,855,20
-Item=P48,CENSUS2020_DICT
-UpperCase=Yes
-FieldLabelType=DictionaryLabel
-DataCaptureType=DropDown
-  
-[Text]
-Text=P48 - Where did you spend the night of May 1 2020?
+Text=P45 - Where did you spend the night of May 1 2020?
  
 [EndColumn]
   
@@ -4228,119 +4188,112 @@ Length=7
 Name=POP_MIGRATION
 Label=Migration
 DisplayTogether=Yes
-Position=24
+Position=25
 Length=0
   
 [Block]
 Name=POP_EDUCATION
 Label=Education
 DisplayTogether=Yes
-Position=35
+Position=36
 Length=0
   
 [Block]
 Name=POP_TRAINING
 Label=Technical and Vocational Training
 DisplayTogether=Yes
-Position=53
+Position=54
 Length=0
   
 [Block]
 Name=POP_TRAININGOCC
 Label=Training occupation
 DisplayTogether=Yes
-Position=55
+Position=56
 Length=2
   
 [Block]
 Name=POP_FERTILITY
 Label=Fertility and Union Status
 DisplayTogether=Yes
-Position=62
+Position=63
 Length=0
   
 [Block]
 Name=POP_LIVEBORN
 Label=Liveborn Children
 DisplayTogether=Yes
-Position=64
+Position=65
 Length=3
   
 [Block]
 Name=POP_STILLALIVE
 Label=Still Alive Children
 DisplayTogether=Yes
-Position=68
+Position=69
 Length=3
   
 [Block]
 Name=POP_FIRSTLIVEBORN
 Label=First Liveborn DOB
 DisplayTogether=Yes
-Position=72
+Position=73
 Length=3
   
 [Block]
 Name=POP_LASTLIVEBORN
 Label=Last Liveborn DOB
 DisplayTogether=Yes
-Position=77
+Position=78
 Length=3
   
 [Block]
 Name=POP_HUS
 Label=Husband info
 DisplayTogether=Yes
-Position=85
+Position=86
 Length=2
   
 [Block]
 Name=POP_ECONOMICACTIVITY
 Label=Economic Activity
 DisplayTogether=Yes
-Position=89
+Position=90
 Length=0
   
 [Block]
 Name=POP_OCCINDUS
 Label=Occupation and Industry
 DisplayTogether=Yes
-Position=95
+Position=96
 Length=8
   
 [Block]
 Name=POP_AGRICULTURE
 Label=Agriculture
 DisplayTogether=Yes
-Position=112
-Length=2
+Position=113
+Length=1
   
 [Block]
 Name=POP_AGRICULTURE2
 Label=Agriculture
 DisplayTogether=Yes
 Position=115
-Length=3
-  
-[Block]
-Name=POP_FOOD
-Label=Food Security
-DisplayTogether=Yes
-Position=119
-Length=3
+Length=4
   
 [Block]
 Name=POP_CRIME
 Label=Crime
 DisplayTogether=Yes
-Position=123
+Position=120
 Length=0
   
 [Block]
 Name=POP_END
 Label=End
 DisplayTogether=Yes
-Position=129
+Position=126
 Length=1
   
 [EndGrid]
